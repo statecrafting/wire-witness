@@ -1,0 +1,27 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "004-allowlisted-capture-proxy",
+      "005-binding-and-sidecar-protocol"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire-witness-cli",
+          "kind": "crate"
+        }
+      }
+    ],
+    "specId": "006-standalone-host",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "b9c6a163db86f00040c26973573d56989111cf84735ef2d63bfdc0cc37bffcaa"
+}

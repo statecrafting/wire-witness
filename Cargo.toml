@@ -1,0 +1,17 @@
+# Spec: 001-boundaries-and-authority owns this manifest.
+# Planned crates are declared by draft specs and do not exist in this session.
+[workspace]
+resolver = "3"
+members = []
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.85"
+license = "Apache-2.0"
+repository = "https://github.com/statecrafting/wire-witness"
+
+[workspace.dependencies]
+spec-spine-core = { version = "=0.27.0", default-features = false }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"

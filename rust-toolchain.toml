@@ -1,0 +1,6 @@
+# Pinned to the toolchain used by the closest repository model when this
+# repository was bootstrapped. Move it deliberately in a governed change.
+[toolchain]
+channel = "1.98.1"
+components = ["clippy", "rustfmt"]
+profile = "minimal"

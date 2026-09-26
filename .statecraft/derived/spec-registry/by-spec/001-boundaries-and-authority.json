@@ -1,0 +1,98 @@
+{
+  "record": {
+    "created": "2026-09-26",
+    "dependsOn": [
+      "000-bootstrap"
+    ],
+    "establishes": [
+      {
+        "kind": "file",
+        "path": "Cargo.toml"
+      },
+      {
+        "kind": "file",
+        "path": "Cargo.lock"
+      },
+      {
+        "kind": "file",
+        "path": "Makefile"
+      },
+      {
+        "kind": "file",
+        "path": "scripts/check-authored-content.sh"
+      },
+      {
+        "id": "wire-witness-core",
+        "kind": "crate",
+        "planned": true
+      }
+    ],
+    "id": "001-boundaries-and-authority",
+    "implementation": "pending",
+    "obligations": [
+      {
+        "anchor": "3-1-testimony-never-authority",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "Every output is testimony about an observed exchange and never authorizes, admits, evaluates, or changes a plan or policy."
+      },
+      {
+        "anchor": "3-2-binding-not-correlation",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Supervised capture repeats its supplied attempt binding verbatim and never infers, mints, or alters that binding."
+      },
+      {
+        "anchor": "3-4-dependency-rules",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "The pure core performs no I/O, reads no clock, forbids unsafe, and depends on no async runtime, HTTP stack, or TLS stack."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/001-boundaries-and-authority/spec.md",
+          "Cargo.toml",
+          "scripts/check-authored-content.sh"
+        ],
+        "kind": "verification",
+        "text": "The corpus gate and authored-content check hold while all product crates remain planned and absent."
+      }
+    ],
+    "sectionDigests": {
+      "001-boundaries-authority-and-dependency-layout": "bd0d27e4a141c4edc8aa42d0e29680c72a18da297df93016aa9e4f3d097c3fc0",
+      "1-purpose": "7858e6b44877bdd0d2c7eb81a99180e6ef064eec342b97be1c8e5485025f5dcb",
+      "2-territory": "b25d75cebc7bb98a216426a32690a34aa3dc86509656a12d200eaee48d0fe883",
+      "3-1-testimony-never-authority": "8c0ac107c92c85f8289d55ff293022b7de64ef23b3d557c607d11a72d55af99b",
+      "3-2-binding-not-correlation": "85372353eb237bb8386e31982930c953c4f7ab1c890afdb184055c9a9836b5cc",
+      "3-3-library-plus-isolated-hosts": "20c25a22f6e6656eb25bb3ec818783af5fe38003be8b723eb59f97604e5c6c7b",
+      "3-4-dependency-rules": "d3840948931af3b7852840636f590af2020b056fc7314e71f1a5da3576587ab7",
+      "3-5-ecosystem-responsibilities": "259f1b964df5585ebb68d2ed78b0114427b58b64761235e8061359cf8e504081",
+      "3-behavior": "abd63fd23a8e9c188f9b717c03d8179c28169667d4f2ffeff6fd73f597036cd3",
+      "4-out-of-scope": "4fde6c7ef8cdbe56131f20da7a0c4c1034823b4d5bfc644773d4837b7d80a30a",
+      "5-observable-negative-cases": "241720af069b2ac0d13b58606e066413f13841e9b0b9de87ef2ed75e97bde6bd",
+      "verification": "bc3c343c9ed44851bf3a430212d03be199d475201c984a52dd20b0cd1ae9d915"
+    },
+    "sectionHeadings": [
+      "001: Boundaries, authority, and dependency layout",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Testimony, never authority",
+      "3.2 Binding, not correlation",
+      "3.3 Library plus isolated hosts",
+      "3.4 Dependency rules",
+      "3.5 Ecosystem responsibilities",
+      "4. Out of scope",
+      "5. Observable negative cases",
+      "Verification"
+    ],
+    "specPath": "specs/001-boundaries-and-authority/spec.md",
+    "status": "draft",
+    "summary": "Defines wire-witness as a library plus isolated hosts that capture provider wire exchanges and produce testimony without granting authority. Assigns ecosystem responsibilities, fixes the three-crate dependency layout, and reserves captured-output training, hosting, and publication to the owner.\n",
+    "title": "Boundaries, authority, and dependency layout"
+  },
+  "shardHash": "9f025a0e501d3c0099e44e963a1fa7ba1e97feb2d365d574a93e48c93115c4f8",
+  "specVersion": "1.9.0"
+}

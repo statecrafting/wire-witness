@@ -1,0 +1,124 @@
+{
+  "record": {
+    "created": "2026-09-26",
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "004-allowlisted-capture-proxy",
+      "005-binding-and-sidecar-protocol"
+    ],
+    "establishes": [
+      {
+        "id": "wire-witness-cli",
+        "kind": "crate",
+        "planned": true
+      }
+    ],
+    "id": "006-standalone-host",
+    "implementation": "pending",
+    "interfaceReferences": [
+      {
+        "corpus": "statecraft-cli",
+        "digest": "sha256:e4673bee00f957d08b5365cdc18d8e191f23dd6ee36abc4bba52743d03dafafa",
+        "obtained": "2026-09-26",
+        "rationale": "Keep standalone configuration explicit and separate from managed Statecraft ownership.",
+        "sections": [
+          {
+            "anchor": "3-2-the-three-ownership-classes",
+            "digest": "sha256:02617148a08a07e69a421a88a68e2de0c50139d2d21a01ef22051e639debb044"
+          },
+          {
+            "anchor": "3-16-configuration-authority",
+            "digest": "sha256:1f6d251188ea6e6456fe86b5762a0b0a480be4ae68f358986452162b5f9c40d7"
+          }
+        ],
+        "spec": "002-environment-lifecycle"
+      },
+      {
+        "corpus": "statecraft-cli",
+        "digest": "sha256:e22eeaa09d82c8ee2a8e0775f2d503b065472755fa4aeac34525d37c55ae532e",
+        "obtained": "2026-09-26",
+        "rationale": "Use the family exit vocabulary and additive JSON rendering rule.",
+        "sections": [
+          {
+            "anchor": "3-3-the-exit-code-vocabulary",
+            "digest": "sha256:f35a79008a237f5d879e0f9c6404a115623f82d503e462d4563e0a91936a5813"
+          },
+          {
+            "anchor": "3-4-two-renderings-of-one-value",
+            "digest": "sha256:d120bb76f4fd03b77c7671afa49fbeb0ad2bd1a0016a396b180d649358bf8045"
+          }
+        ],
+        "spec": "006-command-surface"
+      }
+    ],
+    "obligations": [
+      {
+        "anchor": "3-2-unsupervised-identity",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "A standalone session has an unsupervised identity and never claims a Statecraft run, attempt, or effect id."
+      },
+      {
+        "anchor": "3-3-child-only-environment",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Proxy and CA trust configuration is applied only to the spawned child process and never mutates global or persistent user configuration."
+      },
+      {
+        "anchor": "3-1-command-surface",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Standalone and sidecar commands host the same core and proxy contracts without reimplementing normalization or policy."
+      },
+      {
+        "anchor": "3-4-results-and-exits",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "Human and JSON output render the same result; JSON may gain fields but existing fields are not removed or retyped within version 1."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/006-standalone-host/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The draft compiles, the planned CLI crate is recorded, and both Statecraft interface pins verify."
+      }
+    ],
+    "sectionDigests": {
+      "006-standalone-host-and-per-process-environment": "8886c6a82593a3ee6943fab0d040e2a8846e04282b35779d7c9dcbe7e4d1a2d8",
+      "1-purpose": "c62cd1d05146e0ee3abed9234ba01e3da416ba162cdbfee8977a120a56c3d6e1",
+      "2-territory": "418169fa573322d347f023a21a2e9c02f0217f36db08860075c8d0981bba65a9",
+      "3-1-command-surface": "5d0f958a95962ae03655493e7a27e3803172d1042a30b101b5438e6df6268261",
+      "3-2-unsupervised-identity": "c204911a1ed71a44594f353f6aa96a2f57865d3994acd4cc323a0185a386b2b8",
+      "3-3-child-only-environment": "efb5c6a2f55e969b251276e3535f663cde4cae3ce2924290422b16f25e99503b",
+      "3-4-results-and-exits": "aa4b74a57efc009a488b22c07014bf11dbbba1bd152fbfe8111e9715b09e9eb1",
+      "3-behavior": "c062003cbadb27d68fb2f5c42f1d852eccaab070353c494720e1f2dabd4d27aa",
+      "4-observable-negative-cases": "0bfced76d2dd94b1a9bf9049099e947ac064068577a980fc01b0f4a10b4f1035",
+      "5-out-of-scope": "9c13fcb9dde9213263a424f4e507693ea50cd6cf0e95b910be579b1c52b6851c",
+      "verification": "df2e364cb3808e7bf67052be24aa630e3d579e722aef15e08a88756d5b60fb86"
+    },
+    "sectionHeadings": [
+      "006: Standalone host and per-process environment",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Command surface",
+      "3.2 Unsupervised identity",
+      "3.3 Child-only environment",
+      "3.4 Results and exits",
+      "4. Observable negative cases",
+      "5. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/006-standalone-host/spec.md",
+    "status": "draft",
+    "summary": "Defines the standalone CLI, unsupervised session identity, child-only proxy and trust environment, additive JSON output, and the prohibition on global proxy, certificate, shell, browser, or operating-system trust mutation.\n",
+    "title": "Standalone host and per-process environment"
+  },
+  "shardHash": "b9c6a163db86f00040c26973573d56989111cf84735ef2d63bfdc0cc37bffcaa",
+  "specVersion": "1.9.0"
+}

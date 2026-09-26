@@ -1,0 +1,23 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire_witness_core::exchange",
+          "kind": "module"
+        }
+      }
+    ],
+    "specId": "002-exchange-record-and-normalization",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "e45c7cb5b4fa10fbbebe81767e68aae80246fe5b0128a20d420ad71071ee7521"
+}

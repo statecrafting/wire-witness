@@ -1,0 +1,25 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire-witness-proxy",
+          "kind": "crate"
+        }
+      }
+    ],
+    "specId": "004-allowlisted-capture-proxy",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "dfc2240ad4d9d41bc6636e4f4faf4d2900b3388fecbb0d443f4771f07cf75465"
+}

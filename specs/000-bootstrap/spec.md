@@ -1,0 +1,44 @@
+---
+id: "000-bootstrap"
+title: "Bootstrap spec system"
+# Written as a draft by statecraft-cli init: ratifying a spec, setting
+# its status to approved, is the owner's act and never a tool's.
+status: draft
+# This spec defines what a spec is; it owns no code, so there is nothing
+# to implement. `n-a` keeps `registry plan` from offering it (spec 042).
+implementation: n-a
+created: "2026-09-26"
+summary: >
+  Foundational contract: authored truth lives only in markdown (+ YAML
+  frontmatter); machine-consumable truth is compiler-emitted JSON only;
+  every artifact is a deterministic function of (config, file contents);
+  a typed authority graph governs who-owns-what.
+origin:
+  retroactive: true   # authority held since before the graph existed
+unamendable:
+  - "markdown-truth-boundary"
+  - "json-truth-boundary"
+  - "determinism-requirement"
+  - "typed-authority-graph"
+  - "refusal-rule"
+---
+
+# 000: Bootstrap spec system
+
+This is the spec that defines what a spec *is*. Customize it for your
+repository, then author ordinary specs under your specs directory. Each
+compilation unit links back here (or to a more specific spec) via
+`[package.metadata.spec-spine].spec` in its manifest, a `// Spec:` comment
+header, or a spec's ownership edge.
+
+## 1. The authoring / derived boundary
+
+Humans author markdown; the compiler owns the JSON. Never hand-edit a
+derived artifact.
+
+## 2. The typed authority graph
+
+Specs declare typed edges (`establishes`, `extends`, `refines`,
+`supersedes`, `amends`, `co_authority`, `constrains`, `references`) and
+the units they own (file / section / symbol / directory / crate / module).
+Authority is derived by walking the graph.

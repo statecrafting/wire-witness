@@ -1,0 +1,9 @@
+{
+  "mapping": {
+    "implementingPaths": [],
+    "specId": "000-bootstrap",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "3d088ec8afb968f1dc1025fe2ea7ade24fdf13b63177f3b121635e8a4dc267e6"
+}
