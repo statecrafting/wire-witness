@@ -15,6 +15,7 @@ license = "Apache-2.0"
 repository = "https://github.com/statecrafting/wire-witness"
 
 [workspace.dependencies]
+action-gate-core = { version = "=0.2.0", default-features = false }
 wire-witness-core = { path = "crates/wire-witness-core" }
 wire-witness-proxy = { path = "crates/wire-witness-proxy" }
 
