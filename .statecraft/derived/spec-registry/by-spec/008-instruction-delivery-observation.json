@@ -11,6 +11,11 @@
         "id": "wire_witness_core::instruction_observation",
         "kind": "module",
         "planned": true
+      },
+      {
+        "id": "wire_witness_cli::instruction_observation",
+        "kind": "module",
+        "planned": true
       }
     ],
     "id": "008-instruction-delivery-observation",
@@ -26,7 +31,7 @@
         "anchor": "3-2-predeclared-comparison-plan",
         "id": "I-2",
         "kind": "invariant",
-        "text": "The comparison target and matching mode are supplied before observation and are never inferred from repository state, filenames, prompt meaning, or nearby text."
+        "text": "The comparison target, normalized component selector, and matching mode are supplied before observation and are never inferred from repository state, filenames, prompt meaning, or nearby text."
       },
       {
         "anchor": "3-3-three-state-result",
@@ -38,7 +43,7 @@
         "anchor": "3-4-durable-result",
         "id": "R-2",
         "kind": "requirement",
-        "text": "The durable result binds the target digest and length, exchange digest, component identity, match count, completeness, and findings without retaining target or observed instruction bytes."
+        "text": "The durable result binds the target digest and length, exchange digest, selected component identity and digest, match count, completeness, and findings without retaining target or observed instruction bytes."
       },
       {
         "anchor": "verification",
@@ -51,17 +56,17 @@
       }
     ],
     "sectionDigests": {
-      "008-instruction-delivery-observation": "fbd954a450a0bcea905011651dbb62a65347b55d6b072d915164411ef7187826",
+      "008-instruction-delivery-observation": "a12e958854040940080d0514a78063a32054a0b7ab62ae15188f3e3fdfb17122",
       "1-purpose": "31733963bdfb54f421b23f1a1a575e189aa7951802ad7936f340692a48aa9312",
-      "2-territory": "1f738f9e59c0e68519744bce9ecbaa213a0e3ea1d07fe0bba882e55705d8614a",
+      "2-territory": "fefa8c9340cbc05a6589b4ca866f99ff02a2d4ec631c80f68dd45afb6c539389",
       "3-1-observation-not-qualification": "9dcbc1199e044bf436115a6d51f88439e5b1628ea967f329be2f6db21e3be503",
-      "3-2-predeclared-comparison-plan": "bdb9e6ce8e530a09af2ab2f491024b311ce10fa4e21350e3ccc3669d84532d0a",
+      "3-2-predeclared-comparison-plan": "db78fdee2494ff69087f8a49bb59555418b7c3f9786536604790dead877b63ce",
       "3-3-three-state-result": "e419d9fe79a9f2f5b84a40ca6f2fe5633293d0cac81630b89e4bc6425674c195",
-      "3-4-durable-result": "6fdf1f5687d1984b0e187f995e35a9c6234ef150a9867786ce55443abe6d6a7f",
-      "3-behavior": "4be6783d28ee9f70f171df0d1bdcc9346a16a1ff5eef9ab193366713f656e12e",
+      "3-4-durable-result": "faef168ccd21792734f533929f7698eaecc1828eaff8edaca1fb6d8f17ba939c",
+      "3-behavior": "98d34df251af4dfc594629abafa5d4ba22cd8dc3ebcc7093e4563f092b9d17e7",
       "4-observable-negative-cases": "7bdada3aa14ae7a821196d4fec39c05dfa7146e33830092bca3eac840227862f",
       "5-out-of-scope": "a42d7dd442b052aa211b6512633c3592d5c3fbaa6ddf71dd653efc40b660e44c",
-      "verification": "62a87caac98e977bec7fa63310565bb8d6e8de33ba933fcdedc61c0e0d456211"
+      "verification": "d47653a202dce680536c7a4881e1314dfcdc9f48c207a9c9235ad1e40688259c"
     },
     "sectionHeadings": [
       "008: Instruction delivery observation",
@@ -81,6 +86,6 @@
     "summary": "Defines a content-gated, offline comparison that reports whether exact operator-supplied instruction bytes were observed in a complete outbound provider request, without turning one observation into adapter qualification, policy, or authority.\n",
     "title": "Instruction delivery observation"
   },
-  "shardHash": "e7320688ac16de5e3aef806507e9dbb466da858d695376fa5b54ebd817554fba",
+  "shardHash": "7230cd0b69d7218e534a9f446402040ee99a07f0f023537911c074253bc2118a",
   "specVersion": "1.9.0"
 }

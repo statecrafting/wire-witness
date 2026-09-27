@@ -175,5 +175,5 @@ of scope.
 grep -qF 'status: draft' specs/007-repository-constitution-principles/spec.md
 grep -qF 'implementation: deferred' specs/007-repository-constitution-principles/spec.md
 grep -qF 'Replace this section with your first principle.' standards/spec/constitution.md
-git diff --quiet -- standards/spec/constitution.md
+git diff --quiet origin/main HEAD -- standards/spec/constitution.md
 ```

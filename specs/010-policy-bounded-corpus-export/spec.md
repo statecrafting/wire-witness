@@ -11,10 +11,13 @@ summary: >
   train on, admit, or evaluate the captured material.
 establishes:
   - { kind: module, id: "wire_witness_core::corpus_export", planned: true }
+  - { kind: module, id: "wire_witness_cli::corpus_export", planned: true }
 depends_on:
   - "002-exchange-record-and-normalization"
   - "003-redaction-custody-and-retention"
   - "005-binding-and-sidecar-protocol"
+  - "006-standalone-host"
+  - "008-instruction-delivery-observation"
   - "009-usage-and-cost-summaries"
 obligations:
   - id: "I-1"
@@ -52,16 +55,20 @@ whether the testimony may be used or what a replay means.
 
 ## 2. Territory
 
-This spec owns the planned pure `wire_witness_core::corpus_export` module and
-schema `wire-witness.corpus/1`. The module validates an externally supplied
-export decision, selects already governed testimony, constructs canonical
-manifest bytes, and describes how retained artifacts are materialized.
+This spec owns the planned pure `wire_witness_core::corpus_export` module, the
+planned `wire_witness_cli::corpus_export` custody integration, and schema
+`wire-witness.corpus/1`. The core module validates the structure and binding of
+an externally supplied policy receipt, selects already governed testimony, and
+constructs canonical manifest bytes. The CLI integration materializes eligible
+retained artifacts without redefining policy or custody.
 
 Spec 002 owns exchange records. Spec 003 owns retention, redaction, custody,
 expiry, and erasure. Spec 005 owns attempt binding and capture closure. Spec
-009 owns optional measurement summaries. Rustev owns conversion to any Rustev
-replay schema, replay scope and equivalence, execution, comparison, and
-evaluation. Statecraft owns evidence admission and run policy.
+006 owns host lifecycle and filesystem operations. Spec 008 owns optional
+instruction observations, and spec 009 owns optional measurement summaries.
+Rustev owns conversion to any Rustev replay schema, replay scope and
+equivalence, execution, comparison, and evaluation. Statecraft owns evidence
+admission and run policy.
 
 ## 3. Behavior
 
@@ -71,15 +78,18 @@ Export begins only from an explicit request naming:
 
 1. a stable export id and exact producer identity;
 2. one or more exact attempt bindings and capture digests;
-3. an external policy-decision id, decision digest, decision time, and
-   authorizing principal;
+3. an external policy receipt with decision schema, decision id, digest,
+   decision time, asserted authorizing principal, verifier identity,
+   verification outcome, and exact permitted source and materialization scope;
 4. permitted materialization modes and a maximum export lifetime; and
 5. configured limits on bindings, records, artifacts, and total bytes.
 
-The witness validates and records that request but does not interpret a policy
-name as permission. An absent, malformed, expired, or mismatched decision
-refuses export. A valid export records only that the named external decision
-was supplied and satisfied the declared structural constraints. It does not
+The witness validates and records the receipt's structure, digest, binding,
+scope, and expiry but does not authenticate its asserted principal or interpret
+a policy name as permission. An absent, malformed, expired, scope-mismatched,
+or non-allow receipt refuses export. A structurally valid export records only
+that the attributed external receipt was supplied and satisfied the declared
+constraints. It does not establish that the external decision was correct or
 grant retention, disclosure, replay, training, evidence admission, provider
 access, or evaluation authority.
 
@@ -109,13 +119,19 @@ corrupt custody record refuses the export. A known absent or expired source may
 appear only as an explicit gap when the export request permits incomplete
 output. No gap is silently omitted.
 
+The export expiry is no later than the request's maximum lifetime, the policy
+receipt expiry, and the earliest expiry of any embedded or externally
+referenced artifact. Export never extends a source deadline. A source expiring
+during construction becomes a gap or refusal under the immutable request; it
+is not emitted with a newly extended deadline.
+
 ### 3.3 Export manifest
 
 `wire-witness.corpus/1` contains:
 
 1. export id, creation time, expiry, producer identity, and construction;
-2. the external policy-decision identity and digest, without embedding secret
-   policy inputs;
+2. the attributed external policy-receipt fields and digest, without embedding
+   secret policy inputs;
 3. each exact attempt binding and capture-manifest digest;
 4. an ordered entry for every selected exchange with sequence, exchange
    digest, schema, byte length, retention mode, expiry, completeness, and
@@ -186,4 +202,5 @@ out of scope.
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine index check --fail-on-unresolved
 test ! -e crates/wire-witness-core/src/corpus_export.rs
+test ! -e crates/wire-witness-cli/src/corpus_export.rs
 ```

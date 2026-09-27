@@ -12,6 +12,15 @@
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
+          "id": "wire_witness_cli::instruction_observation",
+          "kind": "module"
+        }
+      },
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
           "id": "wire_witness_core::instruction_observation",
           "kind": "module"
         }
@@ -21,5 +30,5 @@
     "specStatus": "draft"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "e7320688ac16de5e3aef806507e9dbb466da858d695376fa5b54ebd817554fba"
+  "shardHash": "7230cd0b69d7218e534a9f446402040ee99a07f0f023537911c074253bc2118a"
 }

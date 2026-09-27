@@ -25,7 +25,7 @@ obligations:
     anchor: "3-2-input-set-and-order"
   - id: "R-1"
     kind: requirement
-    text: "Usage is aggregated only within identical provider field path, unit, numeric representation, and attribution, while incompatible entries remain separate ordered groups."
+    text: "Usage and cost are aggregated only within identical provider, meaning, unit, numeric construction, and attribution keys, while incompatible entries remain separate deterministically ordered groups."
     anchor: "3-3-aggregation-rules"
   - id: "R-2"
     kind: requirement
@@ -113,16 +113,25 @@ remain separate groups even if their display names look similar. Missing usage
 does not contribute zero; the group records observed, absent, and unknown
 exchange counts separately.
 
-Reported costs group only by provider field path, currency or unit, and source
-attribution. Estimated costs additionally group by rate-table identity,
-currency, input field set, and estimator construction. Estimates from
-different rate tables are never summed into one number. Unknown cost remains a
-counted unknown with reasons.
+Reported costs group by provider family, currency or unit, numeric
+construction, and source attribution. Estimated costs additionally group by
+provider family, rate-table identity, currency, input field set, and estimator
+construction. Estimates from different rate tables are never summed into one
+number. Unknown cost remains a counted unknown with reasons. The arithmetic
+construction and configured precision limit are identities in every numeric
+group, so a later implementation change cannot silently alter a total.
 
 Requested identities and served identities are separate ordered inventories.
 Each entry carries its observed count and disclosure class. A requested model
 never fills a missing served identity, and variation is reported rather than
 collapsed into a preferred identity.
+
+Every request-count group, numeric group, identity entry, and unknown-reason
+entry is ordered by the lexicographic bytes of its canonical group key.
+Source findings remain ordered by exchange sequence and then their order in
+the source record. Summary-construction findings follow a closed production
+order. Caller input order, hash-map iteration, and locale never affect summary
+bytes.
 
 ### 3.4 Summary schema
 

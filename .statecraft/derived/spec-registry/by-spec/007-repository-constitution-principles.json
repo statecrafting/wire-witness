@@ -78,7 +78,7 @@
       }
     ],
     "sectionDigests": {
-      "007-repository-constitution-principles": "fbc9fd9b33869bc10315985108f2adbbd70eebe73bb7aa4af36170cfb94fb0bc",
+      "007-repository-constitution-principles": "47085301a7dafe358138feb5f8ccf7b59c1f0f392fe63144a64c2f5b16ca22ed",
       "1-purpose": "bca4fd48aa8131e9bf05d2f132891fd1b70c60ae1324d2f3e41c230a94953788",
       "2-territory": "ceb6b5e82be497712b275aadcf887a300185ca28aacaca9570379da870afa5a4",
       "3-1-activation-boundary": "eea6caf9a5d1cb595dae8e43ffe8ed29e134e6b88222a6268ae19f49b2c7d1a9",
@@ -88,7 +88,7 @@
       "5-observable-negative-cases": "348f951194fdfee58467b4ee06c7cb3b19e8e0cc8d6b5a459872202a032cf341",
       "6-out-of-scope": "a29476034c928c92ec2ee60f5e9c304c019fde86a9ff95045c38f2c5a370fdf8",
       "ix-supervised-binding-is-supplied-exactly": "b66a0d428df9120486fb4241e7de07bc32050bfe7ba86fd1d1b6bcd9d071c1c9",
-      "verification": "36a880a66cfe6490add066ceef2e960045f3c3af7d9a3392a92d81b5516991b9",
+      "verification": "526e7849a8ef8e5067dad2fafd8ec58acd001dcd73f13792a40ea2ecd9e5ebf3",
       "vi-testimony-never-grants-authority": "69a10b3001654676614d0a639766fb194473e28e403b41248797cc1567146ec3",
       "vii-secrets-are-reduced-before-durable-custody": "3238d979070a268c2dff4b2c670e2305ca580bef8968a695aa90d3f558ce1a5b",
       "viii-capture-never-mutates-ambient-trust-or-routing": "fcf052e8ee0c43d228d225079390c92be1f7a953f5b324abc7c51cde5788e1d1",
@@ -118,6 +118,6 @@
     "summary": "Proposes six wire-witness-specific constitution principles covering testimony, secret custody, ambient-system mutation, exact supervised binding, lifecycle claims, and explicit incomplete or residual-risk states. The principles remain inactive until owner approval and the governed standing-constitution edit.\n",
     "title": "Repository constitution principles"
   },
-  "shardHash": "8a2eb028abc89120d4c579a30f1969a6fe0579a3c23ee507b81a47dc944c547f",
+  "shardHash": "11b348e055f242a30c26003f55038b68f450960034ceaff579c81a5b96d61bd3",
   "specVersion": "1.9.0"
 }

@@ -318,9 +318,10 @@ the approved authority graph and current local evidence.
   accepted witness path and explicit provider authority.
 - **Primary disposition:** new local draft required.
 - **Evidence and rationale:** exact target selection, three-state presence,
-  component completeness, and content-free durable results are reusable
-  producer behavior. One result remains testimony and cannot become adapter
-  qualification or policy authority by itself.
+  unique normalized-component resolution, component completeness, and
+  content-free durable results are reusable producer behavior. One result
+  remains testimony and cannot become adapter qualification or policy
+  authority by itself.
 - **Dependencies or conditions:** implemented capture and custody contracts,
   exact adapter and producer identities, a predeclared comparison plan, and
   separate provider and spending authority for a live measurement.
@@ -340,10 +341,10 @@ the approved authority graph and current local evidence.
   admission, and Statecraft findings remain pending.
 - **Primary disposition:** new local draft required.
 - **Evidence and rationale:** deterministic grouping, source-preserving decimal
-  addition, identity inventories, gap handling, and an ordered input manifest
-  are reusable producer behavior. Statecraft interpretation remains consumer
-  work and cannot treat an estimate as a charge or a summary as spending
-  authority.
+  addition, canonical group ordering, identity inventories, gap handling, and
+  an ordered input manifest are reusable producer behavior. Statecraft
+  interpretation remains consumer work and cannot treat an estimate as a
+  charge or a summary as spending authority.
 - **Dependencies or conditions:** implemented exchange and binding contracts,
   then Statecraft evidence admission and policy-permitted consumer use.
 - **Spec created this session:** yes, `009-usage-and-cost-summaries`.
@@ -363,9 +364,10 @@ the approved authority graph and current local evidence.
   remain pending.
 - **Primary disposition:** new local draft required.
 - **Evidence and rationale:** deterministic selection, source identity,
-  materialization, gaps, bounds, and retention preservation are reusable
-  producer behavior. Replay schema, equivalence, execution, comparison, and
-  evaluation remain explicitly Rustev-owned.
+  attributed policy receipts, materialization, expiry, gaps, bounds, and
+  retention preservation are reusable producer behavior. Replay schema,
+  equivalence, execution, comparison, and evaluation remain explicitly
+  Rustev-owned.
 - **Dependencies or conditions:** implementation of the producer draft, an
   explicit external policy decision, eligible unexpired testimony, and a
   Rustev-owned transformer operating under its own authority.

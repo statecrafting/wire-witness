@@ -11,6 +11,7 @@ summary: >
   qualification, policy, or authority.
 establishes:
   - { kind: module, id: "wire_witness_core::instruction_observation", planned: true }
+  - { kind: module, id: "wire_witness_cli::instruction_observation", planned: true }
 depends_on:
   - "002-exchange-record-and-normalization"
   - "003-redaction-custody-and-retention"
@@ -22,7 +23,7 @@ obligations:
     anchor: "3-1-observation-not-qualification"
   - id: "I-2"
     kind: invariant
-    text: "The comparison target and matching mode are supplied before observation and are never inferred from repository state, filenames, prompt meaning, or nearby text."
+    text: "The comparison target, normalized component selector, and matching mode are supplied before observation and are never inferred from repository state, filenames, prompt meaning, or nearby text."
     anchor: "3-2-predeclared-comparison-plan"
   - id: "R-1"
     kind: requirement
@@ -30,7 +31,7 @@ obligations:
     anchor: "3-3-three-state-result"
   - id: "R-2"
     kind: requirement
-    text: "The durable result binds the target digest and length, exchange digest, component identity, match count, completeness, and findings without retaining target or observed instruction bytes."
+    text: "The durable result binds the target digest and length, exchange digest, selected component identity and digest, match count, completeness, and findings without retaining target or observed instruction bytes."
     anchor: "3-4-durable-result"
   - id: "V-1"
     kind: verification
@@ -52,15 +53,18 @@ about every request, an undocumented harness contract, or provider behavior.
 ## 2. Territory
 
 This spec owns the planned pure
-`wire_witness_core::instruction_observation` module and schema
-`wire-witness.instruction-observation/1`. The host may supply transient bytes
-to the module, but the module performs no file access, provider call, transport
-capture, durable write, policy decision, or adapter qualification.
+`wire_witness_core::instruction_observation` module, the planned
+`wire_witness_cli::instruction_observation` host integration, and schema
+`wire-witness.instruction-observation/1`. The CLI acquires the explicitly named
+target before child spawn and supplies transient bytes to the pure module. The
+module performs no file access, provider call, transport capture, durable
+write, policy decision, or adapter qualification.
 
 Spec 002 continues to own provider request normalization and exchange digests.
-Spec 003 owns retention and redaction. Spec 006 owns host-side acquisition of
-an explicitly named comparison target. A consumer owns any conclusion drawn
-from the resulting testimony.
+Spec 003 owns retention and redaction. Spec 006 owns the host lifecycle,
+child-spawn boundary, and result rendering that this spec extends with a
+predeclared comparison plan. A consumer owns any conclusion drawn from the
+resulting testimony.
 
 ## 3. Behavior
 
@@ -83,8 +87,8 @@ Before the child starts, the operator supplies a comparison plan with:
 1. a stable probe name;
 2. the exact UTF-8 target bytes held transiently in protected process memory;
 3. `file-bytes-sha256` digest and byte length derived from those bytes;
-4. an exact request component selector, such as one decoded system-instruction
-   text field; and
+4. an exact normalized request component selector containing provider family,
+   API surface, component kind, component index, and text-part index; and
 5. matching mode `exact-contiguous-utf8-v1`.
 
 The target is never inferred from the working directory, repository, an
@@ -96,6 +100,10 @@ selector refuses before child spawn.
 Comparison operates on the decoded component produced by the exact provider
 normalizer. It does not search raw JSON serialization, HTTP headers, response
 content, unrelated messages, tool output, or every retained byte by default.
+The selector must resolve to exactly one string component in the identified
+exchange. No component, more than one component, a non-string component, or an
+unsupported selector produces `unknown`; the witness never broadens the search
+to obtain a present result.
 
 ### 3.3 Three-state result
 
@@ -124,10 +132,12 @@ The durable `wire-witness.instruction-observation/1` record contains:
 
 1. the exchange binding, sequence, and exchange digest;
 2. probe name, target digest, target byte length, selector, and matching mode;
-3. result status, match count, and decoded-component byte offsets when known;
-4. request and selected-component completeness;
-5. the exact normalizer and witness producer identities; and
-6. ordered findings and unknown reasons.
+3. selected-component decoded-byte digest and length when the component is
+   complete and uniquely resolved;
+4. result status, match count, and decoded-component byte offsets when known;
+5. request and selected-component completeness;
+6. the exact normalizer and witness producer identities; and
+7. ordered findings and unknown reasons.
 
 The durable record never contains the target bytes, matched bytes, surrounding
 text, a reconstructed instruction document, credentials, or provider response
@@ -163,4 +173,5 @@ scope.
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine index check --fail-on-unresolved
 test ! -e crates/wire-witness-core/src/instruction_observation.rs
+test ! -e crates/wire-witness-cli/src/instruction_observation.rs
 ```
