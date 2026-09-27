@@ -1,0 +1,24 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire_witness_core::custody",
+          "kind": "module"
+        }
+      }
+    ],
+    "specId": "003-redaction-custody-and-retention",
+    "specStatus": "approved"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "49a4609ac5cb0910f509342936d85d8d793494e75f90589a6e6e7455f8f12245"
+}

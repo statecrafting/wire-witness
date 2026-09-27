@@ -1,0 +1,100 @@
+{
+  "record": {
+    "created": "2026-09-26",
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention"
+    ],
+    "establishes": [
+      {
+        "id": "wire-witness-proxy",
+        "kind": "crate"
+      }
+    ],
+    "id": "004-allowlisted-capture-proxy",
+    "implementation": "pending",
+    "interfaceReferences": [
+      {
+        "corpus": "statecraft-cli",
+        "digest": "sha256:093f082dca2183c398957c9ee306937f14a202db9634bf2d3a23529720652c13",
+        "obtained": "2026-09-26",
+        "rationale": "Keep child-facing parsers outside the trusted supervisor and within its confinement contract.",
+        "sections": [
+          {
+            "anchor": "3-18-the-protected-evidence-boundary",
+            "digest": "sha256:0901cb23659e66ff19b8f9745025c1ccf99b069a7f364f076a25fbc6ae68d101"
+          }
+        ],
+        "spec": "004-execution-adapter"
+      }
+    ],
+    "obligations": [
+      {
+        "anchor": "3-1-routing-and-interception",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "Only an exact capture-allowlist authority is TLS-intercepted; authentication endpoints and every other authority are tunneled without inspection."
+      },
+      {
+        "anchor": "3-3-transparent-streams",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Transport forwarding preserves ordering, framing, half-close behavior, and backpressure; capture work never creates an unbounded buffer."
+      },
+      {
+        "anchor": "3-2-protocol-ownership",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "CONNECT, TLS, HTTP/1.1, HTTP/2, SSE, and WebSocket parsing are owned by the sidecar proxy process, not by the trusted supervisor."
+      },
+      {
+        "anchor": "3-4-bounded-observation",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "Unknown events remain unknown and malformed input is a finding while opaque forwarding continues when transport safety permits."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/004-allowlisted-capture-proxy/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The draft compiles, the planned proxy crate is recorded, and the Statecraft confinement pin verifies."
+      }
+    ],
+    "sectionDigests": {
+      "004-allowlisted-capture-proxy-and-transparent-streams": "73ec5def325f607fec3b11dee164e31b0afc221739cb25a973f3e824dcb7c627",
+      "1-purpose": "af3249fca33ad2abcb46bf73ae976ad72c3d013671f450be5cb149449ceabe20",
+      "2-territory": "447028361b6258f83fb3ec410c499fa7bdee89e64ca46b388bfca194cb5a454f",
+      "3-1-routing-and-interception": "131e3b06e86779b043445ea8466bb52416824f1ab9df06dc4fde59b88961202f",
+      "3-2-protocol-ownership": "b83793181abb59f23a676761af74a19d9fa9bb6f8e499404bb2e2f03a00b8d15",
+      "3-3-transparent-streams": "2385453e948a96be5514e34130226f668b83d64b6adf25cbd03278d7b29ccb67",
+      "3-4-bounded-observation": "c366ded7d9c699851344ebf6ee3672173d9163a561f232083371f839ef225129",
+      "3-behavior": "96a0656366e49b261759114a8179f13bc50d30b85850cd59dba986a13673ce73",
+      "4-observable-negative-cases": "05f3ad25da8dbb2e8b45e14bef77344907a8381c5f55c45a58791af305dc063d",
+      "5-out-of-scope": "d960253a5a81e51f613982aca69faa8d35bc97dfa32a49873af30af640341429",
+      "verification": "0daa9220ca1a179000eabb6a7daee16845aef400bf3e3d952c97aff7eb2c54ea"
+    },
+    "sectionHeadings": [
+      "004: Allowlisted capture proxy and transparent streams",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Routing and interception",
+      "3.2 Protocol ownership",
+      "3.3 Transparent streams",
+      "3.4 Bounded observation",
+      "4. Observable negative cases",
+      "5. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/004-allowlisted-capture-proxy/spec.md",
+    "status": "approved",
+    "summary": "Defines the per-attempt proxy that intercepts only explicitly allowlisted provider hosts, tunnels authentication endpoints and every other host without inspection, and transparently handles CONNECT, TLS, HTTP/1.1, HTTP/2, SSE, and WebSocket traffic with bounded parsing and backpressure.\n",
+    "title": "Allowlisted capture proxy and transparent streams"
+  },
+  "shardHash": "a81e9cf0d7312b31b328b945ea752cf34ef7a09d2b9997775b927343d8955465",
+  "specVersion": "1.9.0"
+}

@@ -1,0 +1,10 @@
+{
+  "package": {
+    "kind": "rust-lib",
+    "name": "wire-witness-core",
+    "path": "crates/wire-witness-core",
+    "specRef": "001-boundaries-and-authority"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "d7c4523511ea239ea154e894478c82c4f2832ec4daccbc5fe5a67f0799b88ed8"
+}

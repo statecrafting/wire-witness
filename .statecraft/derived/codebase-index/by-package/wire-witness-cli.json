@@ -1,0 +1,10 @@
+{
+  "package": {
+    "kind": "rust-lib",
+    "name": "wire-witness-cli",
+    "path": "crates/wire-witness-cli",
+    "specRef": "006-standalone-host"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "5dfc74d84bc7d5ecb63f71b656591471932335520b66b76d155544bd051a8850"
+}

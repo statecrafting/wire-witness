@@ -1,0 +1,131 @@
+{
+  "record": {
+    "created": "2026-09-26",
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "004-allowlisted-capture-proxy"
+    ],
+    "establishes": [
+      {
+        "id": "wire_witness_cli::sidecar_protocol",
+        "kind": "module",
+        "planned": true
+      }
+    ],
+    "id": "005-binding-and-sidecar-protocol",
+    "implementation": "pending",
+    "interfaceReferences": [
+      {
+        "corpus": "statecraft-cli",
+        "digest": "sha256:3ad363a4354d0277f2e3b4d862c144a597f14f0a471d150cb1c295bfbaab56c6",
+        "obtained": "2026-09-26",
+        "rationale": "Bind the sidecar lifetime to Statecraft's durable effect identity and fold.",
+        "sections": [
+          {
+            "anchor": "3-3-the-run-record",
+            "digest": "sha256:4216112648ad63a3214ec6017c03ab08756cec1e76433325058c425d181e9c25"
+          },
+          {
+            "anchor": "3-3-1-effect-identity-and-one-to-one-closing",
+            "digest": "sha256:fe9215ff1d25660f0740dd4be1546a3ee2b3c18baad2cd8bbfd582d14fbca8e4"
+          },
+          {
+            "anchor": "3-6-recovery-and-reconciliation",
+            "digest": "sha256:50b88facefc2e4c69037b3f006fd9a464949c47498ed59d2b30ea066291d9bae"
+          }
+        ],
+        "spec": "003-work-and-run-semantics"
+      },
+      {
+        "corpus": "statecraft-cli",
+        "digest": "sha256:74c24c29a40445928316dc32dacb13b1d27f5a79798fabbb47954eb2b488cdae",
+        "obtained": "2026-09-26",
+        "rationale": "Produce a typed evidence reference while leaving admission to Statecraft.",
+        "sections": [
+          {
+            "anchor": "3-5-the-four-evidence-dimensions-and-admission",
+            "digest": "sha256:1bac6db45b909e5e000096d6d0144a3687d06b92d2b3cbc60ee3e9a442c76e92"
+          },
+          {
+            "anchor": "3-7-bytes-digests-and-constructions",
+            "digest": "sha256:036391834465af64e01765a99107b3d82a5c86da67dca644259b37dd685a119e"
+          },
+          {
+            "anchor": "3-13-the-reference",
+            "digest": "sha256:e30e651e7d26a7558370958a20ea58c9a2475461bbe1573921c721c0e14c64f3"
+          }
+        ],
+        "spec": "005-acceptance-and-evidence"
+      }
+    ],
+    "obligations": [
+      {
+        "anchor": "3-1-attemptbinding",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "A supervised sidecar repeats the supplied run id, attempt, and effect id unchanged and never infers or mints any member."
+      },
+      {
+        "anchor": "3-4-evidence-envelope-boundary",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "The witness emits testimony and an evidence reference but never admits it, changes policy, or writes the Statecraft intent or outcome."
+      },
+      {
+        "anchor": "3-3-bracketed-lifetime",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "The terminal sidecar message carries capture completeness and digest, allowing the supervisor to close the exact bracketed effect."
+      },
+      {
+        "anchor": "3-2-versioned-stdio",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "Unknown JSON fields are ignored and preserved where relayed, but an unknown message type or malformed line is a protocol finding and never success."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/005-binding-and-sidecar-protocol/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The draft compiles, the planned sidecar protocol module is recorded, and both Statecraft interface pins verify."
+      }
+    ],
+    "sectionDigests": {
+      "005-attempt-binding-and-stdio-sidecar-protocol": "e570d01210192ffbf86d286cffff3c7023d62127c59e3568b0d6e10e0dcb341b",
+      "1-purpose": "73dcffb47424ff87d45d8ca2a41d5939b6a4f3dae62a3598c15be63efe386d34",
+      "2-territory": "0e3468ae8970f692faaf760cbc249394dd18f08611e72747473c81327ad432b5",
+      "3-1-attemptbinding": "68aafeb66bf494eda066bff13eb506fce5f9a8b3777505a74d98ec09fa8e11ca",
+      "3-2-versioned-stdio": "d64434f79125e34a81f99f23670275a9d7946a02df05d34b8deee56e10fca8ec",
+      "3-3-bracketed-lifetime": "b40040b08f584f275ea4f52b4281378c23fd365c783e888fb957acf81cd9c5f1",
+      "3-4-evidence-envelope-boundary": "f9fc1f6171b7fd157397a32b9ff1e711da66c7e6edce56401738e85c9794ab20",
+      "3-behavior": "ddcaa2011fe91be4354219a928b2396df9797cba4994bbbc90ad05dd0c966ccf",
+      "4-observable-negative-cases": "3af960c54db7d220ebd2634dca73472813ea4ffbaf579b39f05b8914af5738cc",
+      "5-out-of-scope": "2e6f785c025ba4b4dbc426f7bad3886bec6dc62a9c1440808318ddc04838cd81",
+      "verification": "52252586b56b216c6b3564fb65b16c1b4b35d681953a8742d1552e08de6ae50d"
+    },
+    "sectionHeadings": [
+      "005: Attempt binding and stdio sidecar protocol",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 `AttemptBinding`",
+      "3.2 Versioned stdio",
+      "3.3 Bracketed lifetime",
+      "3.4 Evidence envelope boundary",
+      "4. Observable negative cases",
+      "5. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/005-binding-and-sidecar-protocol/spec.md",
+    "status": "approved",
+    "summary": "Defines the immutable AttemptBinding supplied by Statecraft, the versioned stdio protocol for one sidecar per attempt, capture-digest closure of the bracketed effect, and statecraft/wire-exchange/v1 testimony for admission by the host rather than by the witness.\n",
+    "title": "Attempt binding and stdio sidecar protocol"
+  },
+  "shardHash": "7605e8d3eb8671e10f5fc56b7504bfdd6c4a6c31022b68b1b1b6cef69969e0c4",
+  "specVersion": "1.9.0"
+}

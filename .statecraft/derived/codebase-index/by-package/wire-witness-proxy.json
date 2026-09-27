@@ -1,0 +1,10 @@
+{
+  "package": {
+    "kind": "rust-lib",
+    "name": "wire-witness-proxy",
+    "path": "crates/wire-witness-proxy",
+    "specRef": "004-allowlisted-capture-proxy"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "ba1ea5750db0d49a05af5f41fe3a531a87b7bb1873d3cbc6f034b60a49e14aff"
+}

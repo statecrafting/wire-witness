@@ -1,0 +1,22 @@
+# Spec: 001-boundaries-and-authority owns this manifest.
+[workspace]
+resolver = "3"
+members = [
+  "crates/wire-witness-core",
+  "crates/wire-witness-proxy",
+  "crates/wire-witness-cli",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "Apache-2.0"
+repository = "https://github.com/statecrafting/wire-witness"
+
+[workspace.dependencies]
+wire-witness-core = { path = "crates/wire-witness-core" }
+wire-witness-proxy = { path = "crates/wire-witness-proxy" }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
