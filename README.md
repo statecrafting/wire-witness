@@ -9,8 +9,10 @@ retention, structured and detector-backed redaction, and pure custody metadata.
 The proxy crate implements exact allowlist routing, strict CONNECT and TLS
 identity checks, bounded queues, and bounded SSE, HTTP/2, and WebSocket framing.
 The CLI crate implements the strict versioned sidecar protocol, immutable
-attempt binding, ordered terminal state, and byte-bound evidence references.
-Filesystem custody and standalone host behavior remains pending under spec 006.
+attempt binding, ordered terminal state, byte-bound evidence references,
+unsupervised session identity, child-only environment overlays, direct child
+spawning, mode-0600 filesystem custody, cleanup findings, and common result
+rendering.
 
 ## Setup gaps
 

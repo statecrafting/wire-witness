@@ -1,8 +1,8 @@
 //! Standalone and supervised host boundary.
 //!
-//! Sidecar and process-host behavior belongs to specs 005 and 006 and is not
-//! implemented by the workspace-layout unit.
+//! Specs 005 and 006 own the sidecar protocol and standalone process host.
 
 #![forbid(unsafe_code)]
 
 pub mod sidecar_protocol;
+pub mod standalone_host;
