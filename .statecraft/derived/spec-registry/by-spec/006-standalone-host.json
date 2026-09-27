@@ -12,10 +12,15 @@
       {
         "id": "wire-witness-cli",
         "kind": "crate"
+      },
+      {
+        "anchor": "standalone-host",
+        "file": "crates/wire-witness-cli/src/standalone_host.rs",
+        "kind": "section"
       }
     ],
     "id": "006-standalone-host",
-    "implementation": "pending",
+    "implementation": "complete",
     "interfaceReferences": [
       {
         "corpus": "statecraft-cli",
@@ -84,21 +89,21 @@
           "specs/006-standalone-host/spec.md"
         ],
         "kind": "verification",
-        "text": "The draft compiles, the planned CLI crate is recorded, and both Statecraft interface pins verify."
+        "text": "The standalone host tests pass, its source is indexed, and both Statecraft interface pins verify."
       }
     ],
     "sectionDigests": {
-      "006-standalone-host-and-per-process-environment": "8886c6a82593a3ee6943fab0d040e2a8846e04282b35779d7c9dcbe7e4d1a2d8",
+      "006-standalone-host-and-per-process-environment": "13ec0e038b95188f008bc3d0cbed0ea7b60fd2e9222574f3815fcae36c41723f",
       "1-purpose": "c62cd1d05146e0ee3abed9234ba01e3da416ba162cdbfee8977a120a56c3d6e1",
-      "2-territory": "418169fa573322d347f023a21a2e9c02f0217f36db08860075c8d0981bba65a9",
+      "2-territory": "8858b4e9eccb1c6c88a57771312892f0e5a21921495f0e92260b5d2b6184f859",
       "3-1-command-surface": "5d0f958a95962ae03655493e7a27e3803172d1042a30b101b5438e6df6268261",
       "3-2-unsupervised-identity": "c204911a1ed71a44594f353f6aa96a2f57865d3994acd4cc323a0185a386b2b8",
       "3-3-child-only-environment": "efb5c6a2f55e969b251276e3535f663cde4cae3ce2924290422b16f25e99503b",
       "3-4-results-and-exits": "aa4b74a57efc009a488b22c07014bf11dbbba1bd152fbfe8111e9715b09e9eb1",
       "3-behavior": "c062003cbadb27d68fb2f5c42f1d852eccaab070353c494720e1f2dabd4d27aa",
       "4-observable-negative-cases": "0bfced76d2dd94b1a9bf9049099e947ac064068577a980fc01b0f4a10b4f1035",
-      "5-out-of-scope": "9c13fcb9dde9213263a424f4e507693ea50cd6cf0e95b910be579b1c52b6851c",
-      "verification": "df2e364cb3808e7bf67052be24aa630e3d579e722aef15e08a88756d5b60fb86"
+      "5-out-of-scope": "485f324dce12524e66ed4c91caf23f047376a86202f9d2fc6316340f71982c4b",
+      "verification": "f5ba779aa837a988abb8937b081e9650639d0a1b3c480369691dc70e09891b6e"
     },
     "sectionHeadings": [
       "006: Standalone host and per-process environment",
@@ -118,6 +123,6 @@
     "summary": "Defines the standalone CLI, unsupervised session identity, child-only proxy and trust environment, additive JSON output, and the prohibition on global proxy, certificate, shell, browser, or operating-system trust mutation.\n",
     "title": "Standalone host and per-process environment"
   },
-  "shardHash": "72bcefa3e636a4bc4f3b5ee2f5792bbc5480dd383444b7a166f6cb1b62b5c221",
+  "shardHash": "c9dcf12b2411f13ee69901bfb19a2b7b91a989b7080f9874f228a9820a4af19b",
   "specVersion": "1.9.0"
 }

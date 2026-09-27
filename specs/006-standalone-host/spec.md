@@ -2,7 +2,7 @@
 id: "006-standalone-host"
 title: "Standalone host and per-process environment"
 status: approved
-implementation: pending
+implementation: complete
 created: "2026-09-26"
 summary: >
   Defines the standalone CLI, unsupervised session identity, child-only proxy
@@ -10,6 +10,7 @@ summary: >
   proxy, certificate, shell, browser, or operating-system trust mutation.
 establishes:
   - { kind: crate, id: "wire-witness-cli" }
+  - { kind: section, file: "crates/wire-witness-cli/src/standalone_host.rs", anchor: "standalone-host" }
 depends_on:
   - "001-boundaries-and-authority"
   - "002-exchange-record-and-normalization"
@@ -56,7 +57,7 @@ obligations:
     anchor: "3-4-results-and-exits"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, the planned CLI crate is recorded, and both Statecraft interface pins verify."
+    text: "The standalone host tests pass, its source is indexed, and both Statecraft interface pins verify."
     anchor: "verification"
     inputs:
       - "specs/006-standalone-host/spec.md"
@@ -72,7 +73,7 @@ configuration.
 
 ## 2. Territory
 
-This spec owns the planned `wire-witness-cli` crate and its two hosts. It may
+This spec owns the `wire-witness-cli` crate and its two hosts. It may
 depend on core and proxy. It contains argument parsing, process spawning,
 filesystem custody, clocks, randomness, and rendering, but no second copy of
 normalization, redaction, transport, or admission rules.
@@ -172,13 +173,13 @@ witness.
 ## 5. Out of scope
 
 Shell activation, daemon-wide proxying, browser installation, global CA trust,
-transparent packet capture, a hosted service, publication, deployment, and
-product implementation are out of scope.
+transparent packet capture, a hosted service, publication, and deployment are
+out of scope.
 
 ## Verification
 
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine interface verify --spec 006 --export statecraft-cli=/Users/bart/DevWork/statecraft-cli
-test ! -d crates
+cargo test -p wire-witness-cli --locked
 ```
