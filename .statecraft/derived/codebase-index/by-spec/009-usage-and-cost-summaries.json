@@ -1,0 +1,24 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "002-exchange-record-and-normalization",
+      "005-binding-and-sidecar-protocol"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire_witness_core::measurement_summary",
+          "kind": "module"
+        }
+      }
+    ],
+    "specId": "009-usage-and-cost-summaries",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "68ef8f7f659b0e9b68489e1256d4ba177b768464390eaad3a5267cddd48423d1"
+}

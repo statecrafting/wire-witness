@@ -38,8 +38,8 @@ and size 17,283 bytes.
 | Primary disposition | Count |
 |---|---:|
 | Implementation under an existing spec | 5 |
-| New local draft required | 2 |
-| External-corpus work | 8 |
+| New local draft required | 3 |
+| External-corpus work | 7 |
 | Repository or release operation | 3 |
 | Conditional experiment or qualification | 1 |
 | **Total** | **19** |
@@ -330,20 +330,24 @@ the approved authority graph and current local evidence.
 
 ### 17. Supply wire measurements to Statecraft cost and provider findings.
 
-- **Owning corpus or repository:** statecraft-cli findings and decision work;
-  wire-witness supplies testimony under approved spec 002.
-- **Existing governing spec:** wire-witness spec 002 for labeled usage, cost,
-  and requested versus served identity; Statecraft owns F-06 and F-07 and must
-  own admission and interpretation.
-- **Current lifecycle:** deferred pending implemented capture and Statecraft
-  evidence admission. No measurement is observed or admitted.
-- **Primary disposition:** external-corpus work.
-- **Evidence and rationale:** the producer schema already carries the required
-  facts. Turning them into Statecraft findings is consumer work and cannot
-  treat an estimate as a charge or measurement as spending authority.
-- **Dependencies or conditions:** wire-witness implementation, Statecraft spec
-  014, policy-permitted admitted evidence, and exact source attribution.
-- **Spec created this session:** no.
+- **Owning corpus or repository:** wire-witness owns deterministic producer
+  summaries; statecraft-cli owns evidence admission, findings, interpretation,
+  scheduling, and spending authority.
+- **Existing governing spec:** approved wire-witness spec 002 defines each
+  exchange measurement. Draft spec `009-usage-and-cost-summaries` adds the
+  missing binding-level aggregation contract without changing Statecraft's
+  F-06 or F-07 authority.
+- **Current lifecycle:** draft producer contract; implementation, observation,
+  admission, and Statecraft findings remain pending.
+- **Primary disposition:** new local draft required.
+- **Evidence and rationale:** deterministic grouping, source-preserving decimal
+  addition, identity inventories, gap handling, and an ordered input manifest
+  are reusable producer behavior. Statecraft interpretation remains consumer
+  work and cannot treat an estimate as a charge or a summary as spending
+  authority.
+- **Dependencies or conditions:** implemented exchange and binding contracts,
+  then Statecraft evidence admission and policy-permitted consumer use.
+- **Spec created this session:** yes, `009-usage-and-cost-summaries`.
 
 ### 18. Use captured exchanges as Rustev replay input.
 
@@ -392,7 +396,10 @@ the approved authority graph and current local evidence.
 3. Codex instruction-delivery observation has a local draft contract in spec
    008. Live measurement and any adapter-wide qualification remain separate
    conditional acts.
-4. Rustev replay, Statecraft supervision and admission, Statecraft setup
+4. Binding-level usage and cost summarization has a local draft contract in
+   spec 009. Admission, cost findings, scheduling, and spending authority
+   remain Statecraft-owned.
+5. Rustev replay, Statecraft supervision and admission, Statecraft setup
    repair, and remote desired state remain in their owning corpora.
-5. Passing local validation does not change any lifecycle beyond drafted and
+6. Passing local validation does not change any lifecycle beyond drafted and
    locally validated for the files created here.
