@@ -67,17 +67,6 @@
       "written_at": "2026-09-26T19:58:05Z"
     },
     {
-      "path": "Makefile",
-      "class": "managed",
-      "source": {
-        "kind": "template",
-        "identity": "statecraft-setup:github-actions-rust@9"
-      },
-      "digest": "ea5ddb6e3c3efd6313cf1e2a4b156f8fd472dc2fc5fc5ede9e33b59f67227478",
-      "bytes": 378,
-      "written_at": "2026-09-26T19:58:05Z"
-    },
-    {
       "path": "scripts/statecraft/ai-review.sh",
       "class": "managed",
       "source": {
@@ -119,17 +108,6 @@
       },
       "digest": "eea387a5462e29bfae2973e770e5ecdc73b1066db4b8891c65ae11814c2717d4",
       "bytes": 2056,
-      "written_at": "2026-09-26T19:58:05Z"
-    },
-    {
-      "path": "spec-spine.toml",
-      "class": "adopted",
-      "source": {
-        "kind": "template",
-        "identity": "statecraft-governance"
-      },
-      "digest": "29fcc32aae8e6ae927c95d45854f89e5eac094da094c8326f7f00f7e1c8162ca",
-      "bytes": 5503,
       "written_at": "2026-09-26T19:58:05Z"
     },
     {
@@ -237,6 +215,20 @@
       "reason": "repository-specific pin and index configuration",
       "at": "2026-09-26T19:56:33Z",
       "manifest_before": "2338949918d40dd4de67b4317a8d9bddc86ac37249ef4e02834047b23207db76"
+    },
+    {
+      "id": "8b48872464191cf62f2ee37de8e8549605461df10b93c316c280fc532abaec20",
+      "path": "Makefile",
+      "from": "managed",
+      "to": "user",
+      "digest": "ea5ddb6e3c3efd6313cf1e2a4b156f8fd472dc2fc5fc5ede9e33b59f67227478",
+      "bytes": 378,
+      "producer": "spec-spine-core@0.27.0",
+      "operator": "Bart",
+      "operator_provenance": "operator-supplied",
+      "reason": "repository-owned implementation workflow",
+      "at": "2026-09-27T00:19:01Z",
+      "manifest_before": "8c6aa6b1d9e06c0ca9949c687afd69a8dde6269c686c3459f32a2593eac110b8"
     }
   ]
 }
