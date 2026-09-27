@@ -10,7 +10,7 @@ summary: >
   without inspection, and transparently handles CONNECT, TLS, HTTP/1.1,
   HTTP/2, SSE, and WebSocket traffic with bounded parsing and backpressure.
 establishes:
-  - { kind: crate, id: "wire-witness-proxy", planned: true }
+  - { kind: crate, id: "wire-witness-proxy" }
 depends_on:
   - "001-boundaries-and-authority"
   - "002-exchange-record-and-normalization"

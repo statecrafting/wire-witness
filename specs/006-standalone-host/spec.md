@@ -9,7 +9,7 @@ summary: >
   and trust environment, additive JSON output, and the prohibition on global
   proxy, certificate, shell, browser, or operating-system trust mutation.
 establishes:
-  - { kind: crate, id: "wire-witness-cli", planned: true }
+  - { kind: crate, id: "wire-witness-cli" }
 depends_on:
   - "001-boundaries-and-authority"
   - "002-exchange-record-and-normalization"

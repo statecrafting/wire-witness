@@ -2,7 +2,7 @@
 id: "001-boundaries-and-authority"
 title: "Boundaries, authority, and dependency layout"
 status: approved
-implementation: pending
+implementation: complete
 created: "2026-09-26"
 summary: >
   Defines wire-witness as a library plus isolated hosts that capture provider
@@ -14,7 +14,8 @@ establishes:
   - "Cargo.lock"
   - "Makefile"
   - "scripts/check-authored-content.sh"
-  - { kind: crate, id: "wire-witness-core", planned: true }
+  - "scripts/check-boundaries.sh"
+  - { kind: crate, id: "wire-witness-core" }
 depends_on:
   - "000-bootstrap"
 obligations:
@@ -32,12 +33,13 @@ obligations:
     anchor: "3-4-dependency-rules"
   - id: "V-1"
     kind: verification
-    text: "The corpus gate and authored-content check hold while all product crates remain planned and absent."
+    text: "The corpus gate, authored-content check, and exact three-crate dependency boundary all pass."
     anchor: "verification"
     inputs:
       - "specs/001-boundaries-and-authority/spec.md"
       - "Cargo.toml"
       - "scripts/check-authored-content.sh"
+      - "scripts/check-boundaries.sh"
 ---
 
 # 001: Boundaries, authority, and dependency layout
@@ -139,13 +141,12 @@ No crate directory or source file is created in this session.
 
 ## Verification
 
-Acceptance for this draft is declarative: no product implementation exists.
-The governance files are owned, the three-crate layout is explicit, and the
-planned core claim is accepted only if the pinned index represents it without
-requiring an empty crate.
+Acceptance proves the workspace layout and dependency direction without adding
+behavior assigned to later specs.
 
 ```verify:cli
 make gate
 scripts/check-authored-content.sh
-test ! -d crates
+scripts/check-boundaries.sh
+cargo test --workspace --locked
 ```

@@ -5,10 +5,19 @@
       "002-exchange-record-and-normalization",
       "003-redaction-custody-and-retention"
     ],
-    "implementingPaths": [],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-proxy",
+        "source": "multiple"
+      }
+    ],
     "resolvedUnits": [
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-proxy"
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -21,5 +30,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "976237061793c71b839255e5e137c91121c202ed2fcd78ed88a781357999641e"
+  "shardHash": "a81e9cf0d7312b31b328b945ea752cf34ef7a09d2b9997775b927343d8955465"
 }

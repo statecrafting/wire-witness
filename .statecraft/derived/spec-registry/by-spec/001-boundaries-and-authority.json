@@ -22,13 +22,16 @@
         "path": "scripts/check-authored-content.sh"
       },
       {
+        "kind": "file",
+        "path": "scripts/check-boundaries.sh"
+      },
+      {
         "id": "wire-witness-core",
-        "kind": "crate",
-        "planned": true
+        "kind": "crate"
       }
     ],
     "id": "001-boundaries-and-authority",
-    "implementation": "pending",
+    "implementation": "complete",
     "obligations": [
       {
         "anchor": "3-1-testimony-never-authority",
@@ -54,14 +57,15 @@
         "inputs": [
           "specs/001-boundaries-and-authority/spec.md",
           "Cargo.toml",
-          "scripts/check-authored-content.sh"
+          "scripts/check-authored-content.sh",
+          "scripts/check-boundaries.sh"
         ],
         "kind": "verification",
-        "text": "The corpus gate and authored-content check hold while all product crates remain planned and absent."
+        "text": "The corpus gate, authored-content check, and exact three-crate dependency boundary all pass."
       }
     ],
     "sectionDigests": {
-      "001-boundaries-authority-and-dependency-layout": "bd0d27e4a141c4edc8aa42d0e29680c72a18da297df93016aa9e4f3d097c3fc0",
+      "001-boundaries-authority-and-dependency-layout": "0d39f3353ec514d522958eb6a27b915a8a5145a588cea5ab0af7be307b4dbd0f",
       "1-purpose": "7858e6b44877bdd0d2c7eb81a99180e6ef064eec342b97be1c8e5485025f5dcb",
       "2-territory": "b25d75cebc7bb98a216426a32690a34aa3dc86509656a12d200eaee48d0fe883",
       "3-1-testimony-never-authority": "8c0ac107c92c85f8289d55ff293022b7de64ef23b3d557c607d11a72d55af99b",
@@ -72,7 +76,7 @@
       "3-behavior": "abd63fd23a8e9c188f9b717c03d8179c28169667d4f2ffeff6fd73f597036cd3",
       "4-out-of-scope": "4fde6c7ef8cdbe56131f20da7a0c4c1034823b4d5bfc644773d4837b7d80a30a",
       "5-observable-negative-cases": "241720af069b2ac0d13b58606e066413f13841e9b0b9de87ef2ed75e97bde6bd",
-      "verification": "bc3c343c9ed44851bf3a430212d03be199d475201c984a52dd20b0cd1ae9d915"
+      "verification": "c1171d9ad818cc6e9058813ef132b8c06fe5722510532f98a2284e12cf6c72e7"
     },
     "sectionHeadings": [
       "001: Boundaries, authority, and dependency layout",
@@ -93,6 +97,6 @@
     "summary": "Defines wire-witness as a library plus isolated hosts that capture provider wire exchanges and produce testimony without granting authority. Assigns ecosystem responsibilities, fixes the three-crate dependency layout, and reserves captured-output training, hosting, and publication to the owner.\n",
     "title": "Boundaries, authority, and dependency layout"
   },
-  "shardHash": "ba5dd3902ea5133a694fe9a373a867474a1d66e31108291ed26c6de18e0ec02a",
+  "shardHash": "12ae12bd0c2924d44575d17d9be05f5a803f7d56ffbb3db82a7babda33605c89",
   "specVersion": "1.9.0"
 }

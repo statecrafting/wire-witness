@@ -7,10 +7,19 @@
       "004-allowlisted-capture-proxy",
       "005-binding-and-sidecar-protocol"
     ],
-    "implementingPaths": [],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-cli",
+        "source": "multiple"
+      }
+    ],
     "resolvedUnits": [
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli"
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -23,5 +32,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "da95faf61b0566c144c2a7be5319b7e299813fee9a990b4f00dd960b9123335d"
+  "shardHash": "72bcefa3e636a4bc4f3b5ee2f5792bbc5480dd383444b7a166f6cb1b62b5c221"
 }
