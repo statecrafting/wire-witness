@@ -2,7 +2,7 @@
 id: "004-allowlisted-capture-proxy"
 title: "Allowlisted capture proxy and transparent streams"
 status: approved
-implementation: pending
+implementation: complete
 created: "2026-09-26"
 summary: >
   Defines the per-attempt proxy that intercepts only explicitly allowlisted
@@ -11,6 +11,7 @@ summary: >
   HTTP/2, SSE, and WebSocket traffic with bounded parsing and backpressure.
 establishes:
   - { kind: crate, id: "wire-witness-proxy" }
+  - { kind: section, file: "crates/wire-witness-proxy/src/lib.rs", anchor: "allowlisted-capture-proxy" }
 depends_on:
   - "001-boundaries-and-authority"
   - "002-exchange-record-and-normalization"
@@ -43,7 +44,7 @@ obligations:
     anchor: "3-4-bounded-observation"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, the planned proxy crate is recorded, and the Statecraft confinement pin verifies."
+    text: "The proxy implementation tests pass, its source is indexed, and the Statecraft confinement pin verifies."
     anchor: "verification"
     inputs:
       - "specs/004-allowlisted-capture-proxy/spec.md"
@@ -159,12 +160,12 @@ unrelated process as a capture client, or share a CA across attempts.
 
 Transparent kernel interception, packet capture, QUIC and HTTP/3, provider
 traffic in this drafting session, global proxy configuration, DNS policy,
-supervisor implementation, and product implementation are out of scope.
+and supervisor implementation are out of scope.
 
 ## Verification
 
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine interface verify --spec 004 --export statecraft-cli=/Users/bart/DevWork/statecraft-cli
-test ! -d crates
+cargo test -p wire-witness-proxy --locked
 ```

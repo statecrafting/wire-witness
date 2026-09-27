@@ -9,6 +9,10 @@
       {
         "path": "crates/wire-witness-proxy",
         "source": "multiple"
+      },
+      {
+        "path": "crates/wire-witness-proxy/src/lib.rs",
+        "source": "spec-edge"
       }
     ],
     "resolvedUnits": [
@@ -24,11 +28,29 @@
           "id": "wire-witness-proxy",
           "kind": "crate"
         }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-proxy/src/lib.rs",
+            "span": {
+              "endLine": 701,
+              "startLine": 7
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "allowlisted-capture-proxy",
+          "file": "crates/wire-witness-proxy/src/lib.rs",
+          "kind": "section"
+        }
       }
     ],
     "specId": "004-allowlisted-capture-proxy",
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "a81e9cf0d7312b31b328b945ea752cf34ef7a09d2b9997775b927343d8955465"
+  "shardHash": "9f5edbc9772ba73b0b8f0fda2f90a2e6a24e8473f9b9264b42d6e19bec0f3540"
 }

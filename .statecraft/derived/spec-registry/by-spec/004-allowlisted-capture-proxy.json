@@ -10,10 +10,15 @@
       {
         "id": "wire-witness-proxy",
         "kind": "crate"
+      },
+      {
+        "anchor": "allowlisted-capture-proxy",
+        "file": "crates/wire-witness-proxy/src/lib.rs",
+        "kind": "section"
       }
     ],
     "id": "004-allowlisted-capture-proxy",
-    "implementation": "pending",
+    "implementation": "complete",
     "interfaceReferences": [
       {
         "corpus": "statecraft-cli",
@@ -61,11 +66,11 @@
           "specs/004-allowlisted-capture-proxy/spec.md"
         ],
         "kind": "verification",
-        "text": "The draft compiles, the planned proxy crate is recorded, and the Statecraft confinement pin verifies."
+        "text": "The proxy implementation tests pass, its source is indexed, and the Statecraft confinement pin verifies."
       }
     ],
     "sectionDigests": {
-      "004-allowlisted-capture-proxy-and-transparent-streams": "73ec5def325f607fec3b11dee164e31b0afc221739cb25a973f3e824dcb7c627",
+      "004-allowlisted-capture-proxy-and-transparent-streams": "16d01515a918f95c58e1f5c7a6f3e0f3c09f721ab7adee9e952be0e27a35579a",
       "1-purpose": "af3249fca33ad2abcb46bf73ae976ad72c3d013671f450be5cb149449ceabe20",
       "2-territory": "447028361b6258f83fb3ec410c499fa7bdee89e64ca46b388bfca194cb5a454f",
       "3-1-routing-and-interception": "131e3b06e86779b043445ea8466bb52416824f1ab9df06dc4fde59b88961202f",
@@ -74,8 +79,8 @@
       "3-4-bounded-observation": "c366ded7d9c699851344ebf6ee3672173d9163a561f232083371f839ef225129",
       "3-behavior": "96a0656366e49b261759114a8179f13bc50d30b85850cd59dba986a13673ce73",
       "4-observable-negative-cases": "05f3ad25da8dbb2e8b45e14bef77344907a8381c5f55c45a58791af305dc063d",
-      "5-out-of-scope": "d960253a5a81e51f613982aca69faa8d35bc97dfa32a49873af30af640341429",
-      "verification": "0daa9220ca1a179000eabb6a7daee16845aef400bf3e3d952c97aff7eb2c54ea"
+      "5-out-of-scope": "71d06ac7799a7fe90260dbca0359aa62f836e6988e9e4a32a0fad901bbf3f7bc",
+      "verification": "69285bd76aac045e02e8140fe5bbbdbe31e835a14dbd90678fc3e5456045b65e"
     },
     "sectionHeadings": [
       "004: Allowlisted capture proxy and transparent streams",
@@ -95,6 +100,6 @@
     "summary": "Defines the per-attempt proxy that intercepts only explicitly allowlisted provider hosts, tunnels authentication endpoints and every other host without inspection, and transparently handles CONNECT, TLS, HTTP/1.1, HTTP/2, SSE, and WebSocket traffic with bounded parsing and backpressure.\n",
     "title": "Allowlisted capture proxy and transparent streams"
   },
-  "shardHash": "a81e9cf0d7312b31b328b945ea752cf34ef7a09d2b9997775b927343d8955465",
+  "shardHash": "39bfd4d7607665200729a6bb8ef9dfd4a8be7eed97bd1def05555cd75216521f",
   "specVersion": "1.9.0"
 }
