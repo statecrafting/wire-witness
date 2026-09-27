@@ -1,0 +1,58 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "004-allowlisted-capture-proxy",
+      "005-binding-and-sidecar-protocol"
+    ],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-cli",
+        "source": "multiple"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/standalone_host.rs",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire-witness-cli",
+          "kind": "crate"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/standalone_host.rs",
+            "span": {
+              "endLine": 841,
+              "startLine": 5
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "standalone-host",
+          "file": "crates/wire-witness-cli/src/standalone_host.rs",
+          "kind": "section"
+        }
+      }
+    ],
+    "specId": "006-standalone-host",
+    "specStatus": "approved"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "1b9766120ffcf02ae98c8b7f860ea13d320462379171c82e6d2fe9c85e5772c1"
+}

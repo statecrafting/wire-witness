@@ -1,0 +1,53 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "004-allowlisted-capture-proxy"
+    ],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-cli/src/sidecar_protocol.rs",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/sidecar_protocol.rs"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire_witness_cli::sidecar_protocol",
+          "kind": "module"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/sidecar_protocol.rs",
+            "span": {
+              "endLine": 789,
+              "startLine": 5
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "binding-and-sidecar-protocol",
+          "file": "crates/wire-witness-cli/src/sidecar_protocol.rs",
+          "kind": "section"
+        }
+      }
+    ],
+    "specId": "005-binding-and-sidecar-protocol",
+    "specStatus": "approved"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "f0fcc79767ad3d2342378a21b41f72f094efdcb015dc876489df2b726ffdb0fb"
+}

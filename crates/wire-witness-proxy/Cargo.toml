@@ -1,0 +1,16 @@
+[package]
+name = "wire-witness-proxy"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[package.metadata.spec-spine]
+spec = "004-allowlisted-capture-proxy"
+
+[dependencies]
+wire-witness-core.workspace = true
+
+[lints]
+workspace = true

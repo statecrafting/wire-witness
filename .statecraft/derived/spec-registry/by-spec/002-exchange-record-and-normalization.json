@@ -1,0 +1,120 @@
+{
+  "record": {
+    "created": "2026-09-26",
+    "dependsOn": [
+      "001-boundaries-and-authority"
+    ],
+    "establishes": [
+      {
+        "anchor": "exchange-record-and-normalization",
+        "file": "crates/wire-witness-core/src/exchange.rs",
+        "kind": "section"
+      }
+    ],
+    "id": "002-exchange-record-and-normalization",
+    "implementation": "complete",
+    "interfaceReferences": [
+      {
+        "corpus": "rustev",
+        "digest": "sha256:d7c70bac7cf82e627e7cb3c19eb6aee842e95b78ba0c61555314e2d2f62c6e35",
+        "obtained": "2026-09-26",
+        "rationale": "Align the witness record with Rustev while keeping ownership here.",
+        "sections": [
+          {
+            "anchor": "3-1-authority-and-provenance",
+            "digest": "sha256:ed94499ca9b4687dcf509ff71a84e04e2613cb6c6b804a9d96cf22c70743022c"
+          },
+          {
+            "anchor": "3-7-model-and-served-identity",
+            "digest": "sha256:8bd763356721271561156a685ba43b2e32965328eae516d91446eb54696c85ef"
+          },
+          {
+            "anchor": "3-8-cost-and-privacy",
+            "digest": "sha256:28f1ade8823b560b6d053bd7f68cfc90558102088826743dc5bf55e1bea27f57"
+          },
+          {
+            "anchor": "3-9-exchange-records-and-replay",
+            "digest": "sha256:bd689328c829ce1bbfa5751c7e453d0f2bd8f3996428f87ea3d28487bdea642e"
+          }
+        ],
+        "spec": "009-remote-adapter-protocol"
+      },
+      {
+        "corpus": "canonical-keysort-json",
+        "digest": "sha256:77a7ada646fc7d36463746ee9449ff0973a991afe3926a1581e3a796862b6216",
+        "obtained": "2026-09-26",
+        "rationale": "Pin the canonical byte construction used before hashing records.",
+        "spec": "000-canonical-keysort-json-bootstrap"
+      }
+    ],
+    "obligations": [
+      {
+        "anchor": "3-1-testimony-and-schema",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "An exchange is testimony only; provider and harness statements remain attributed claims and never become authority."
+      },
+      {
+        "anchor": "3-3-identity-usage-and-cost",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Requested identity and served identity are separate fields, and unknown is an explicit value that is never filled from another identity."
+      },
+      {
+        "anchor": "3-4-provider-normalization",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Unknown provider event types are preserved as unknown and malformed provider input produces a finding rather than a normalized success."
+      },
+      {
+        "anchor": "3-5-canonical-bytes-and-digests",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "Canonical exchange bytes use canonical-keysort-json followed by SHA-256 under a named construction."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/002-exchange-record-and-normalization/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The implementation tests pass, its module is indexed, and both producer interface pins verify from the named local exports."
+      }
+    ],
+    "sectionDigests": {
+      "002-exchange-record-and-provider-normalization": "844460ce666f6281e41d76c030cea188716433c717c784f288894fce292484e9",
+      "1-purpose": "2479af81ac3e2ddc1518bb75c5ebf10454d863f9054efc314a3b4234f3d14a71",
+      "2-territory": "d600be176ade09c32ae834c6d9e700209e0d46a94049f6b2e47b9a3f7fcf23ab",
+      "3-1-testimony-and-schema": "fbf216c2e300d48cb91491a8172b54d095885576466e1e7ba56c312fd0b7ccd3",
+      "3-2-presence-absence-and-completeness": "cc590daac1ca2abe87eee6940d7fe93e7eb3c91bde7978bcad073ffdfaef70f9",
+      "3-3-identity-usage-and-cost": "a1bdd20d8f3d73b15faec9949d29a3b2194f41d1a15bf40e751e64f2d916067b",
+      "3-4-provider-normalization": "f60dc963727ebb86f34849181b8ec0dfd0816917a809f73892724791ea0f3c7b",
+      "3-5-canonical-bytes-and-digests": "3d5cb3695ced26f374009e20e62c0d6679ef31d21e24a3e392304ff4b2f6056c",
+      "3-behavior": "7686bc7840ea4cb8c9d04c9f653d95764eb439b81d5949e6fd0d9d65266271be",
+      "4-observable-negative-cases": "b86aedcb95a166ede41c7dd65496695e2b28cde5331d2959230b7f1ae1c33e2c",
+      "5-out-of-scope": "53c1f9c9bff29b493f5854451ff029861dc9c4e63ab11f2cdbaa5eec9b895d06",
+      "verification": "2a9f4353ae790289b8b469a0064f0515c631d6eff831b705e178e4aea409adb0"
+    },
+    "sectionHeadings": [
+      "002: Exchange record and provider normalization",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Testimony and schema",
+      "3.2 Presence, absence, and completeness",
+      "3.3 Identity, usage, and cost",
+      "3.4 Provider normalization",
+      "3.5 Canonical bytes and digests",
+      "4. Observable negative cases",
+      "5. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/002-exchange-record-and-normalization/spec.md",
+    "status": "approved",
+    "summary": "Defines wire-witness.exchange/1, the canonical testimony produced from one observed provider exchange, and lossless normalization rules for Anthropic and OpenAI request, response, streaming, identity, usage, and cost fields.\n",
+    "title": "Exchange record and provider normalization"
+  },
+  "shardHash": "210604581f8aab409b5a262d39a56a01cf561eaaeb29af2ddf99a7bc4c3031a7",
+  "specVersion": "1.9.0"
+}

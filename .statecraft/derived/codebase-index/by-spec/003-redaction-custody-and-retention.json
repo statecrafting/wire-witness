@@ -1,0 +1,38 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization"
+    ],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-core/src/custody.rs",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/custody.rs",
+            "span": {
+              "endLine": 567,
+              "startLine": 5
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "redaction-custody-and-retention",
+          "file": "crates/wire-witness-core/src/custody.rs",
+          "kind": "section"
+        }
+      }
+    ],
+    "specId": "003-redaction-custody-and-retention",
+    "specStatus": "approved"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "2c1ea1f9625313202740a94a87f3cecb18dfa790ec94afb975c8c0a35f86c3c2"
+}

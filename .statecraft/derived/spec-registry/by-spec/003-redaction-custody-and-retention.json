@@ -1,0 +1,108 @@
+{
+  "record": {
+    "created": "2026-09-26",
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization"
+    ],
+    "establishes": [
+      {
+        "anchor": "redaction-custody-and-retention",
+        "file": "crates/wire-witness-core/src/custody.rs",
+        "kind": "section"
+      }
+    ],
+    "id": "003-redaction-custody-and-retention",
+    "implementation": "complete",
+    "interfaceReferences": [
+      {
+        "corpus": "action-gate",
+        "digest": "sha256:dec12d328ecaa0f5cc0bac62001f4c370f63ead8b588da241bed8ad818c6de98",
+        "obtained": "2026-09-26",
+        "rationale": "Reuse the released family credential detector without copying its rules.",
+        "sections": [
+          {
+            "anchor": "3-1-the-registry",
+            "digest": "sha256:430b25b103f7bc3defe0727e40d6be577aa6d069d2325fe2a592a0fab61cc23d"
+          },
+          {
+            "anchor": "3-2-findings-and-offsets",
+            "digest": "sha256:4f60c7fb4d44fba1e33689bb437aac2fc03f444ee6d887980d6e51128cce2abe"
+          },
+          {
+            "anchor": "3-3-redaction-safe-reporting",
+            "digest": "sha256:f159c80ef6256e4f239080a349120dba859722d279a5c76147d7fbadd0a885f0"
+          }
+        ],
+        "spec": "001-secret-detector-parity"
+      }
+    ],
+    "obligations": [
+      {
+        "anchor": "3-2-redaction-before-custody",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "Authorization headers, API keys, cookies, OAuth exchange bodies, and detected credentials are removed before any durable write."
+      },
+      {
+        "anchor": "3-4-ephemeral-ca-custody",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Each attempt has a fresh CA private key held only in witness memory; only a certificate path is exposed to the child."
+      },
+      {
+        "anchor": "3-1-retention-modes",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Metadata-only is the default and every output records requested and effective retention."
+      },
+      {
+        "anchor": "3-3-durable-custody",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "Every durable output is created with mode 0600 and is never made visible at its final path before redaction and complete write."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/003-redaction-custody-and-retention/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The custody implementation tests pass, its source is indexed, and the action-gate detector pin verifies."
+      }
+    ],
+    "sectionDigests": {
+      "003-redaction-custody-and-retention": "92815f6d018a2ef109abdf454b54f1264ebd6ad1d039686351753e80926b0d5d",
+      "1-purpose": "943d375b0e0014974f9c8f3904f9ba3bade35e0a7deb4b144797ce185b6f9109",
+      "2-territory": "3c6a15e7c0516d7fa7f6abe943b6bd477d68452b7a295a89edb05afc8d330b5c",
+      "3-1-retention-modes": "e786af7a30c269f4eee8dfc296ba8306ad9fac24bc5a44ce778a0287ff46f68b",
+      "3-2-redaction-before-custody": "3a4913bff457d1cb1333e249ca7badbc24c855900e81d86225cab5f3edcda892",
+      "3-3-durable-custody": "c37e5251fb4ba7043e25e37aa79665c7b726eaa08245282d339358448f0407f2",
+      "3-4-ephemeral-ca-custody": "c0a7abf14a5e505c5297d919feb2dcdbad9d9af4d565d3c807dedadb7500e571",
+      "3-behavior": "1ac268941ee6fabd1db4f5535161c5ecba7aac2df0a9a03152c54ab611adb9a8",
+      "4-observable-negative-cases": "d5e661e2f4e7937cc96dac5440bda1696c3f8010b300682620c1d0a92f22c227",
+      "5-out-of-scope": "3667da4999c091eb11a0b811f932f7e5aa1bb416abdab4a9739f350510261ea6",
+      "verification": "2d68630c6002e28f287c79556fd0094b4ade5f6ce7916660a1df2260fca7c0fe"
+    },
+    "sectionHeadings": [
+      "003: Redaction, custody, and retention",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Retention modes",
+      "3.2 Redaction before custody",
+      "3.3 Durable custody",
+      "3.4 Ephemeral CA custody",
+      "4. Observable negative cases",
+      "5. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/003-redaction-custody-and-retention/spec.md",
+    "status": "approved",
+    "summary": "Defines metadata-only default retention, explicit content capture, mandatory credential removal before durable writes, per-attempt custody, 0600 outputs, and a fresh memory-only CA private key for every capture attempt.\n",
+    "title": "Redaction, custody, and retention"
+  },
+  "shardHash": "86ba7b2ee74b02726fbc8b48e7f44f8f7ceb7492365196c7622c854afff54642",
+  "specVersion": "1.9.0"
+}

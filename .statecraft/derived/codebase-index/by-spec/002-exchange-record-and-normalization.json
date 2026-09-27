@@ -1,0 +1,37 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority"
+    ],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-core/src/exchange.rs",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/exchange.rs",
+            "span": {
+              "endLine": 1347,
+              "startLine": 5
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "exchange-record-and-normalization",
+          "file": "crates/wire-witness-core/src/exchange.rs",
+          "kind": "section"
+        }
+      }
+    ],
+    "specId": "002-exchange-record-and-normalization",
+    "specStatus": "approved"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "39b3940e769df686a746c84722015a2cf195175495a3be4498d9a57c14f46568"
+}
