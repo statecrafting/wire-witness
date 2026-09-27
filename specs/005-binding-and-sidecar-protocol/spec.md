@@ -2,7 +2,7 @@
 id: "005-binding-and-sidecar-protocol"
 title: "Attempt binding and stdio sidecar protocol"
 status: approved
-implementation: pending
+implementation: complete
 created: "2026-09-26"
 summary: >
   Defines the immutable AttemptBinding supplied by Statecraft, the versioned
@@ -10,7 +10,8 @@ summary: >
   bracketed effect, and statecraft/wire-exchange/v1 testimony for admission by
   the host rather than by the witness.
 establishes:
-  - { kind: module, id: "wire_witness_cli::sidecar_protocol", planned: true }
+  - { kind: module, id: "wire_witness_cli::sidecar_protocol" }
+  - { kind: section, file: "crates/wire-witness-cli/src/sidecar_protocol.rs", anchor: "binding-and-sidecar-protocol" }
 depends_on:
   - "001-boundaries-and-authority"
   - "002-exchange-record-and-normalization"
@@ -60,7 +61,7 @@ obligations:
     anchor: "3-2-versioned-stdio"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, the planned sidecar protocol module is recorded, and both Statecraft interface pins verify."
+    text: "The sidecar protocol tests pass, its source is indexed, and both Statecraft interface pins verify."
     anchor: "verification"
     inputs:
       - "specs/005-binding-and-sidecar-protocol/spec.md"
@@ -76,7 +77,7 @@ returns testimony tied to the identity it received.
 
 ## 2. Territory
 
-This spec owns the planned `wire_witness_cli::sidecar_protocol` module and its
+This spec owns the `wire_witness_cli::sidecar_protocol` module and its
 JSON message types. It does not own Statecraft record types, spawn policy,
 evidence admission, or run outcome policy.
 
@@ -185,14 +186,13 @@ Unknown or unperformed checks stay unknown in their own dimensions.
 
 ## 5. Out of scope
 
-Statecraft implementation, policy configuration, signing roots, product
-implementation, automatic reconciliation, publication, and deployment are out
-of scope.
+Statecraft implementation, policy configuration, signing roots, automatic
+reconciliation, publication, and deployment are out of scope.
 
 ## Verification
 
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine interface verify --spec 005 --export statecraft-cli=/Users/bart/DevWork/statecraft-cli
-test ! -d crates
+cargo test -p wire-witness-cli --locked
 ```

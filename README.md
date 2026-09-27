@@ -8,8 +8,9 @@ SHA-256 digest construction. It also implements metadata-only default
 retention, structured and detector-backed redaction, and pure custody metadata.
 The proxy crate implements exact allowlist routing, strict CONNECT and TLS
 identity checks, bounded queues, and bounded SSE, HTTP/2, and WebSocket framing.
-Filesystem custody, sidecar, and standalone host behavior remains pending under
-specs 005 and 006.
+The CLI crate implements the strict versioned sidecar protocol, immutable
+attempt binding, ordered terminal state, and byte-bound evidence references.
+Filesystem custody and standalone host behavior remains pending under spec 006.
 
 ## Setup gaps
 
