@@ -9,5 +9,8 @@ repository.workspace = true
 [package.metadata.spec-spine]
 spec = "001-boundaries-and-authority"
 
+[dependencies]
+action-gate-core.workspace = true
+
 [lints]
 workspace = true

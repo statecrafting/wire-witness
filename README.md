@@ -4,8 +4,10 @@
 It produces testimony, never authority. The approved specification corpus and
 three-crate workspace are present. The pure core implements the
 `wire-witness.exchange/1` record, provider normalization, canonical JSON, and
-SHA-256 digest construction. Capture, custody, proxy, sidecar, and standalone
-host behavior remains pending under specs 003 through 006.
+SHA-256 digest construction. It also implements metadata-only default
+retention, structured and detector-backed redaction, and pure custody metadata.
+Live capture, filesystem custody, proxy, sidecar, and standalone host behavior
+remains pending under specs 004 through 006.
 
 ## Setup gaps
 

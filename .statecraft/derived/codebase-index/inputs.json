@@ -13,22 +13,22 @@
       "contentHash": "ffd92e17af94ee0235099c078c89ea63ed6cb468d0eb656d25b5314a1272fed6"
     },
     "Cargo.lock": {
-      "contentHash": "3a939338a07da6a5d1580651ba8e1fe32670f38f38919a578bd7f337050ce70f"
+      "contentHash": "bbe2ea965699aba035fbfa5fafaebdd63919e2ce943898952b25d8c72edabc3c"
     },
     "Cargo.toml": {
-      "contentHash": "121fa6a0f5750e8f6a351eabbbc7feabb81b42d4901dd5900500a66fad3c3f00"
+      "contentHash": "54dff9573e716aed9909c277bd303a4e3b6d067fa8c3d8d3735fa73f5530a8c0"
     },
     "Makefile": {
       "contentHash": "b43835689c3912a1a13dc460424efeb67d747f6950c0a552de8a5a955e26bf2d"
     },
     "README.md": {
-      "contentHash": "1577f038e91fee349803359ac50e36ed5c645d73d71fdb6a09fd2370fb289bd3"
+      "contentHash": "c24408b532c1c793cf950755db92aa40bcae5d72af055dcd4fb91effb8f568e1"
     },
     "scripts/check-authored-content.sh": {
       "contentHash": "f2c927c4718351e804bb3b02ae250bf32b058d94b850570a63254a8fb9db5c20"
     },
     "scripts/check-boundaries.sh": {
-      "contentHash": "a774b2955734488933e9fcde098bc0f89e4c9754392be42ee051595442152393"
+      "contentHash": "27e20040a51c6cc0bb54e2adb8217c9feabd0241408d4f5ff723be6797032283"
     },
     "scripts/statecraft/ai-review.sh": {
       "contentHash": "eaf3f3e1847517793b734adb476050fbc6f7e6723212b53e23ad3faa727b9deb"

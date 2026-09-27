@@ -2,14 +2,14 @@
 id: "003-redaction-custody-and-retention"
 title: "Redaction, custody, and retention"
 status: approved
-implementation: pending
+implementation: complete
 created: "2026-09-26"
 summary: >
   Defines metadata-only default retention, explicit content capture, mandatory
   credential removal before durable writes, per-attempt custody, 0600 outputs,
   and a fresh memory-only CA private key for every capture attempt.
 establishes:
-  - { kind: module, id: "wire_witness_core::custody", planned: true }
+  - { kind: section, file: "crates/wire-witness-core/src/custody.rs", anchor: "redaction-custody-and-retention" }
 depends_on:
   - "001-boundaries-and-authority"
   - "002-exchange-record-and-normalization"
@@ -45,7 +45,7 @@ obligations:
     anchor: "3-3-durable-custody"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, the planned custody module is recorded, and the action-gate detector pin verifies."
+    text: "The custody implementation tests pass, its source is indexed, and the action-gate detector pin verifies."
     anchor: "verification"
     inputs:
       - "specs/003-redaction-custody-and-retention/spec.md"
@@ -61,7 +61,7 @@ and the private key used for interception never becomes an artifact.
 
 ## 2. Territory
 
-This spec owns the planned `wire_witness_core::custody` module: pure retention
+This spec owns the `wire_witness_core::custody` module: pure retention
 classification, redaction decisions, findings, and custody metadata. The proxy
 owns live byte transport and the CLI owns filesystem operations. Both consume
 the decisions defined here without redefining them.
@@ -164,13 +164,13 @@ posture is sufficient to start.
 ## 5. Out of scope
 
 Long-term archive administration, backup deletion, external key management,
-global certificate installation, secrets inspection, publication, and product
-implementation are out of scope.
+global certificate installation, secrets inspection, and publication are out
+of scope.
 
 ## Verification
 
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine interface verify --spec 003 --export action-gate=/Users/bart/DevWork/action-gate
-test ! -d crates
+cargo test -p wire-witness-core --locked
 ```

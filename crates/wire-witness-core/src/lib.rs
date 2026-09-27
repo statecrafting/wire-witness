@@ -5,4 +5,5 @@
 
 #![forbid(unsafe_code)]
 
+pub mod custody;
 pub mod exchange;
