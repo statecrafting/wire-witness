@@ -3,7 +3,7 @@ id: "000-bootstrap"
 title: "Bootstrap spec system"
 # Written as a draft by statecraft-cli init: ratifying a spec, setting
 # its status to approved, is the owner's act and never a tool's.
-status: draft
+status: approved
 # This spec defines what a spec is; it owns no code, so there is nothing
 # to implement. `n-a` keeps `registry plan` from offering it (spec 042).
 implementation: n-a

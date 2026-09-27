@@ -1,7 +1,7 @@
 ---
 id: "003-redaction-custody-and-retention"
 title: "Redaction, custody, and retention"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-26"
 summary: >

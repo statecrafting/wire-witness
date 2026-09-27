@@ -89,10 +89,10 @@
       "Verification"
     ],
     "specPath": "specs/001-boundaries-and-authority/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Defines wire-witness as a library plus isolated hosts that capture provider wire exchanges and produce testimony without granting authority. Assigns ecosystem responsibilities, fixes the three-crate dependency layout, and reserves captured-output training, hosting, and publication to the owner.\n",
     "title": "Boundaries, authority, and dependency layout"
   },
-  "shardHash": "9f025a0e501d3c0099e44e963a1fa7ba1e97feb2d365d574a93e48c93115c4f8",
+  "shardHash": "ba5dd3902ea5133a694fe9a373a867474a1d66e31108291ed26c6de18e0ec02a",
   "specVersion": "1.9.0"
 }

@@ -20,8 +20,8 @@
       }
     ],
     "specId": "006-standalone-host",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "b9c6a163db86f00040c26973573d56989111cf84735ef2d63bfdc0cc37bffcaa"
+  "shardHash": "da95faf61b0566c144c2a7be5319b7e299813fee9a990b4f00dd960b9123335d"
 }

@@ -17,8 +17,8 @@
       }
     ],
     "specId": "003-redaction-custody-and-retention",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "74fecaf65afbd51384ff2847a842b944e1faadd68c48d063b2cc1941bfcf663f"
+  "shardHash": "49a4609ac5cb0910f509342936d85d8d793494e75f90589a6e6e7455f8f12245"
 }

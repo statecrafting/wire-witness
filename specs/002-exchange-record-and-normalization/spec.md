@@ -1,7 +1,7 @@
 ---
 id: "002-exchange-record-and-normalization"
 title: "Exchange record and provider normalization"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-26"
 summary: >

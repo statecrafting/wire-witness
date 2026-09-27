@@ -122,10 +122,10 @@
       "Verification"
     ],
     "specPath": "specs/005-binding-and-sidecar-protocol/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Defines the immutable AttemptBinding supplied by Statecraft, the versioned stdio protocol for one sidecar per attempt, capture-digest closure of the bracketed effect, and statecraft/wire-exchange/v1 testimony for admission by the host rather than by the witness.\n",
     "title": "Attempt binding and stdio sidecar protocol"
   },
-  "shardHash": "a8195055f0efc508abf86c7fbf86f577cce5556d12d8f3dfe67fd486a988f65d",
+  "shardHash": "7605e8d3eb8671e10f5fc56b7504bfdd6c4a6c31022b68b1b1b6cef69969e0c4",
   "specVersion": "1.9.0"
 }

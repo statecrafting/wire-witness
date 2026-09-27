@@ -16,8 +16,8 @@
       }
     ],
     "specId": "002-exchange-record-and-normalization",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "e45c7cb5b4fa10fbbebe81767e68aae80246fe5b0128a20d420ad71071ee7521"
+  "shardHash": "9d4752dbe72a9f86676b27d039ec90fe0b5393e323d6278c03290f64bd714cff"
 }

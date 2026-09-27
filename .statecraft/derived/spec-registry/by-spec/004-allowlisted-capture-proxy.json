@@ -92,10 +92,10 @@
       "Verification"
     ],
     "specPath": "specs/004-allowlisted-capture-proxy/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Defines the per-attempt proxy that intercepts only explicitly allowlisted provider hosts, tunnels authentication endpoints and every other host without inspection, and transparently handles CONNECT, TLS, HTTP/1.1, HTTP/2, SSE, and WebSocket traffic with bounded parsing and backpressure.\n",
     "title": "Allowlisted capture proxy and transparent streams"
   },
-  "shardHash": "dfc2240ad4d9d41bc6636e4f4faf4d2900b3388fecbb0d443f4771f07cf75465",
+  "shardHash": "976237061793c71b839255e5e137c91121c202ed2fcd78ed88a781357999641e",
   "specVersion": "1.9.0"
 }

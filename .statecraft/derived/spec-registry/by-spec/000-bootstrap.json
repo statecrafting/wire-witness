@@ -17,7 +17,7 @@
       "2. The typed authority graph"
     ],
     "specPath": "specs/000-bootstrap/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Foundational contract: authored truth lives only in markdown (+ YAML frontmatter); machine-consumable truth is compiler-emitted JSON only; every artifact is a deterministic function of (config, file contents); a typed authority graph governs who-owns-what.\n",
     "title": "Bootstrap spec system",
     "unamendable": [
@@ -28,6 +28,6 @@
       "refusal-rule"
     ]
   },
-  "shardHash": "3d088ec8afb968f1dc1025fe2ea7ade24fdf13b63177f3b121635e8a4dc267e6",
+  "shardHash": "49cf38fcea5556cc3d5670f3a829f781bf7ad9b16a452e2f327a6b53fbec722a",
   "specVersion": "1.9.0"
 }

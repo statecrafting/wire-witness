@@ -18,8 +18,8 @@
       }
     ],
     "specId": "004-allowlisted-capture-proxy",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "dfc2240ad4d9d41bc6636e4f4faf4d2900b3388fecbb0d443f4771f07cf75465"
+  "shardHash": "976237061793c71b839255e5e137c91121c202ed2fcd78ed88a781357999641e"
 }

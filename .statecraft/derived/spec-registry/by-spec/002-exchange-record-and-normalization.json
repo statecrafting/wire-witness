@@ -111,10 +111,10 @@
       "Verification"
     ],
     "specPath": "specs/002-exchange-record-and-normalization/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Defines wire-witness.exchange/1, the canonical testimony produced from one observed provider exchange, and lossless normalization rules for Anthropic and OpenAI request, response, streaming, identity, usage, and cost fields.\n",
     "title": "Exchange record and provider normalization"
   },
-  "shardHash": "e45c7cb5b4fa10fbbebe81767e68aae80246fe5b0128a20d420ad71071ee7521",
+  "shardHash": "9d4752dbe72a9f86676b27d039ec90fe0b5393e323d6278c03290f64bd714cff",
   "specVersion": "1.9.0"
 }

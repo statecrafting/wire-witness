@@ -1,7 +1,7 @@
 ---
 id: "004-allowlisted-capture-proxy"
 title: "Allowlisted capture proxy and transparent streams"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-26"
 summary: >

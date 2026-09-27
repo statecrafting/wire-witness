@@ -1,7 +1,7 @@
 ---
 id: "005-binding-and-sidecar-protocol"
 title: "Attempt binding and stdio sidecar protocol"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-26"
 summary: >

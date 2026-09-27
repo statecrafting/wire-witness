@@ -1,7 +1,7 @@
 ---
 id: "006-standalone-host"
 title: "Standalone host and per-process environment"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-26"
 summary: >

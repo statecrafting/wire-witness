@@ -1,7 +1,7 @@
 ---
 id: "001-boundaries-and-authority"
 title: "Boundaries, authority, and dependency layout"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-26"
 summary: >
