@@ -1,0 +1,77 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "003-redaction-custody-and-retention",
+      "005-binding-and-sidecar-protocol",
+      "006-standalone-host"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "ix-supervised-binding-is-supplied-exactly",
+          "file": "standards/spec/constitution.md",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "vi-testimony-never-grants-authority",
+          "file": "standards/spec/constitution.md",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "vii-secrets-are-reduced-before-durable-custody",
+          "file": "standards/spec/constitution.md",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "viii-capture-never-mutates-ambient-trust-or-routing",
+          "file": "standards/spec/constitution.md",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "x-lifecycle-and-evidence-claims-remain-precise",
+          "file": "standards/spec/constitution.md",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "xi-absence-incompleteness-and-residual-risk-remain-explicit",
+          "file": "standards/spec/constitution.md",
+          "kind": "section"
+        }
+      }
+    ],
+    "specId": "007-repository-constitution-principles",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "8a2eb028abc89120d4c579a30f1969a6fe0579a3c23ee507b81a47dc944c547f"
+}

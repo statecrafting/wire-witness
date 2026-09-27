@@ -1,0 +1,123 @@
+{
+  "record": {
+    "created": "2026-09-26",
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "003-redaction-custody-and-retention",
+      "005-binding-and-sidecar-protocol",
+      "006-standalone-host"
+    ],
+    "establishes": [
+      {
+        "anchor": "vi-testimony-never-grants-authority",
+        "file": "standards/spec/constitution.md",
+        "kind": "section",
+        "planned": true
+      },
+      {
+        "anchor": "vii-secrets-are-reduced-before-durable-custody",
+        "file": "standards/spec/constitution.md",
+        "kind": "section",
+        "planned": true
+      },
+      {
+        "anchor": "viii-capture-never-mutates-ambient-trust-or-routing",
+        "file": "standards/spec/constitution.md",
+        "kind": "section",
+        "planned": true
+      },
+      {
+        "anchor": "ix-supervised-binding-is-supplied-exactly",
+        "file": "standards/spec/constitution.md",
+        "kind": "section",
+        "planned": true
+      },
+      {
+        "anchor": "x-lifecycle-and-evidence-claims-remain-precise",
+        "file": "standards/spec/constitution.md",
+        "kind": "section",
+        "planned": true
+      },
+      {
+        "anchor": "xi-absence-incompleteness-and-residual-risk-remain-explicit",
+        "file": "standards/spec/constitution.md",
+        "kind": "section",
+        "planned": true
+      }
+    ],
+    "id": "007-repository-constitution-principles",
+    "implementation": "deferred",
+    "obligations": [
+      {
+        "anchor": "3-1-activation-boundary",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "Approval of this spec, not draft authorship, is the authority required before its proposed text can become standing constitution text."
+      },
+      {
+        "anchor": "3-2-proposed-normative-text",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "The activated constitution states that witness testimony grants no authority and that supervised identity is supplied exactly rather than inferred."
+      },
+      {
+        "anchor": "3-2-proposed-normative-text",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "The activated constitution requires redaction before durable custody, forbids ambient-system mutation, and reports lifecycle, absence, incompleteness, and residual risk precisely."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/007-repository-constitution-principles/spec.md",
+          "standards/spec/constitution.md"
+        ],
+        "kind": "verification",
+        "text": "The draft compiles with six planned section claims while the standing constitution remains unchanged and therefore inactive."
+      }
+    ],
+    "sectionDigests": {
+      "007-repository-constitution-principles": "fbc9fd9b33869bc10315985108f2adbbd70eebe73bb7aa4af36170cfb94fb0bc",
+      "1-purpose": "bca4fd48aa8131e9bf05d2f132891fd1b70c60ae1324d2f3e41c230a94953788",
+      "2-territory": "ceb6b5e82be497712b275aadcf887a300185ca28aacaca9570379da870afa5a4",
+      "3-1-activation-boundary": "eea6caf9a5d1cb595dae8e43ffe8ed29e134e6b88222a6268ae19f49b2c7d1a9",
+      "3-2-proposed-normative-text": "c0c67c36aa6946aba9bba6c50950b04974b412c33c4cd5617a66bf3f3ec9dc94",
+      "3-behavior": "6d42952927c97b3630d96171223d63107095118afbe289908fc2bf1eee90baf0",
+      "4-authority-boundaries": "8f638fcb8728e4f81b24c544bc06a1372185402008b7af14d090a40810010ddc",
+      "5-observable-negative-cases": "348f951194fdfee58467b4ee06c7cb3b19e8e0cc8d6b5a459872202a032cf341",
+      "6-out-of-scope": "a29476034c928c92ec2ee60f5e9c304c019fde86a9ff95045c38f2c5a370fdf8",
+      "ix-supervised-binding-is-supplied-exactly": "b66a0d428df9120486fb4241e7de07bc32050bfe7ba86fd1d1b6bcd9d071c1c9",
+      "verification": "36a880a66cfe6490add066ceef2e960045f3c3af7d9a3392a92d81b5516991b9",
+      "vi-testimony-never-grants-authority": "69a10b3001654676614d0a639766fb194473e28e403b41248797cc1567146ec3",
+      "vii-secrets-are-reduced-before-durable-custody": "3238d979070a268c2dff4b2c670e2305ca580bef8968a695aa90d3f558ce1a5b",
+      "viii-capture-never-mutates-ambient-trust-or-routing": "fcf052e8ee0c43d228d225079390c92be1f7a953f5b324abc7c51cde5788e1d1",
+      "x-lifecycle-and-evidence-claims-remain-precise": "dc581c50d7c688a9c2e8c6554448a88ab6c4ebd9ea5168a49d3b22089ba7afa7",
+      "xi-absence-incompleteness-and-residual-risk-remain-explicit": "91cb71d6d0f7c6d9123bdd49434180a6e32395c2a53fca4935246716567d0611"
+    },
+    "sectionHeadings": [
+      "007: Repository constitution principles",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Activation boundary",
+      "3.2 Proposed normative text",
+      "VI. Testimony never grants authority",
+      "VII. Secrets are reduced before durable custody",
+      "VIII. Capture never mutates ambient trust or routing",
+      "IX. Supervised binding is supplied exactly",
+      "X. Lifecycle and evidence claims remain precise",
+      "XI. Absence, incompleteness, and residual risk remain explicit",
+      "4. Authority boundaries",
+      "5. Observable negative cases",
+      "6. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/007-repository-constitution-principles/spec.md",
+    "status": "draft",
+    "summary": "Proposes six wire-witness-specific constitution principles covering testimony, secret custody, ambient-system mutation, exact supervised binding, lifecycle claims, and explicit incomplete or residual-risk states. The principles remain inactive until owner approval and the governed standing-constitution edit.\n",
+    "title": "Repository constitution principles"
+  },
+  "shardHash": "8a2eb028abc89120d4c579a30f1969a6fe0579a3c23ee507b81a47dc944c547f",
+  "specVersion": "1.9.0"
+}
