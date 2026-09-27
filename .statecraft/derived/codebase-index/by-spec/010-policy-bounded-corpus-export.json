@@ -1,0 +1,26 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "005-binding-and-sidecar-protocol",
+      "009-usage-and-cost-summaries"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire_witness_core::corpus_export",
+          "kind": "module"
+        }
+      }
+    ],
+    "specId": "010-policy-bounded-corpus-export",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "eac0aeeb6479d1a6f5e08fef1c2e75d9037e8b22f000bd307c659eed606e8879"
+}

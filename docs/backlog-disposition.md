@@ -7,13 +7,15 @@ and size 17,283 bytes.
 
 ## Evidence baseline
 
-- Approved wire-witness corpus base: signed commit
-  `ebfca9bb2cfd4f0436c710644fca888b8e3d166b`, tree
-  `b51ae0631f098cceb8e40973c13b677b444c491f`.
-- Retained implementation worktree: clean signed commit
-  `28bdf77e743ba1e12107ba4917be350537a9eec2`, one descendant of the corpus
-  base. It marks spec 001 implementation complete and contains the three-crate
-  boundary implementation. Specs 002 through 006 remain pending there.
+- Current merged base: `origin/main` at
+  `360ce30126121b75b8241b0b70096cc51e5ed7d4`, tree
+  `624fa1b7c64418d52f5da6fc8576471c35c5d974`. The same tree was verified on
+  signed implementation tip `90e0673452d257b4124eae6aad037924157f0981`.
+- Approved specs 001 through 006 have `implementation: complete` on that base.
+  Their three-crate implementation, declared acceptance, repository gates,
+  and merged PR are present. This evidence does not establish a release,
+  publication, deployment, adoption, provider observation, admission, or
+  consumer qualification.
 - Pinned governance tool: repository-local `spec-spine 0.27.0`, matching
   `required_version = "=0.27.0"`.
 - The approved registry at the base contains specs 000 through 006. All seven
@@ -37,9 +39,9 @@ and size 17,283 bytes.
 
 | Primary disposition | Count |
 |---|---:|
-| Implementation under an existing spec | 5 |
-| New local draft required | 3 |
-| External-corpus work | 7 |
+| Implemented under an existing spec | 5 |
+| New local draft required | 4 |
+| External-corpus work | 6 |
 | Repository or release operation | 3 |
 | Conditional experiment or qualification | 1 |
 | **Total** | **19** |
@@ -54,19 +56,17 @@ the approved authority graph and current local evidence.
 - **Owning corpus or repository:** wire-witness.
 - **Existing governing spec:** approved spec
   `002-exchange-record-and-normalization`.
-- **Current lifecycle:** approved contract; implementation pending at the
-  approved-corpus base and retained implementation HEAD. Not implemented,
-  locally tested, CI-tested, merged, released, published, adopted, observed,
-  admitted, or qualified.
-- **Primary disposition:** implementation under an existing spec.
+- **Current lifecycle:** approved, implemented, locally tested, CI-tested, and
+  merged on the current base. Not released, published, adopted, observed,
+  admitted, or consumer-qualified.
+- **Primary disposition:** implemented under an existing spec.
 - **Evidence and rationale:** spec 002 already owns the planned
   `wire_witness_core::exchange` module and defines the schema, identity,
   usage, cost, normalization, completeness, canonicalization, and negative
   cases named by the backlog. A second product spec would duplicate approved
   authority.
-- **Dependencies or conditions:** begin from the retained descendant where
-  spec 001 is complete, then implement and validate spec 002 with its current
-  Rustev and canonical-keysort-json pins.
+- **Dependencies or conditions:** later release or consumer work must preserve
+  the exact Rustev and canonical-keysort-json interface pins.
 - **Spec created this session:** no.
 
 ### 2. Feature 003: implement redaction, custody, and retention.
@@ -74,15 +74,16 @@ the approved authority graph and current local evidence.
 - **Owning corpus or repository:** wire-witness.
 - **Existing governing spec:** approved spec
   `003-redaction-custody-and-retention`.
-- **Current lifecycle:** approved contract; implementation pending. No local
-  implementation or later lifecycle evidence was found.
-- **Primary disposition:** implementation under an existing spec.
+- **Current lifecycle:** approved, implemented, locally tested, CI-tested, and
+  merged on the current base. No release or later lifecycle evidence is
+  claimed.
+- **Primary disposition:** implemented under an existing spec.
 - **Evidence and rationale:** spec 003 already owns the planned custody module
   and governs default metadata-only retention, pre-persistence redaction,
   mode-0600 atomic custody, fresh per-attempt CA handling, and the backlog's
   negative cases. The action-gate interface pin verified current.
-- **Dependencies or conditions:** implemented specs 001 and 002, exact
-  action-gate interface verification, and offline deterministic acceptance.
+- **Dependencies or conditions:** later release or consumer work must preserve
+  exact action-gate interface verification and custody guarantees.
 - **Spec created this session:** no.
 
 ### 3. Feature 004: implement the allowlisted capture proxy.
@@ -90,16 +91,16 @@ the approved authority graph and current local evidence.
 - **Owning corpus or repository:** wire-witness.
 - **Existing governing spec:** approved spec
   `004-allowlisted-capture-proxy`.
-- **Current lifecycle:** approved contract; implementation pending. The proxy
-  crate exists only as the boundary shell on the retained implementation
-  branch.
-- **Primary disposition:** implementation under an existing spec.
+- **Current lifecycle:** approved, implemented, locally tested, CI-tested, and
+  merged on the current base. No release or later lifecycle evidence is
+  claimed.
+- **Primary disposition:** implemented under an existing spec.
 - **Evidence and rationale:** spec 004 already owns the proxy crate and exact
   authority routing, hostile-protocol isolation, bounded streaming,
   backpressure, completeness, and loopback-only behavior. Its Statecraft
   interface reference verified current.
-- **Dependencies or conditions:** implemented specs 001 through 003 and local
-  fake-transport acceptance only.
+- **Dependencies or conditions:** later qualification must preserve the
+  allowlist boundary and begin with local fake-transport acceptance.
 - **Spec created this session:** no.
 
 ### 4. Feature 005: implement exact binding and the sidecar protocol.
@@ -107,30 +108,31 @@ the approved authority graph and current local evidence.
 - **Owning corpus or repository:** wire-witness.
 - **Existing governing spec:** approved spec
   `005-binding-and-sidecar-protocol`.
-- **Current lifecycle:** approved contract; implementation pending. No local
-  sidecar-protocol implementation or later lifecycle evidence was found.
-- **Primary disposition:** implementation under an existing spec.
+- **Current lifecycle:** approved, implemented, locally tested, CI-tested, and
+  merged on the current base. No release, Statecraft adoption, or later
+  lifecycle evidence is claimed.
+- **Primary disposition:** implemented under an existing spec.
 - **Evidence and rationale:** spec 005 already owns the planned protocol module
   and governs exact `AttemptBinding`, ordered newline-delimited JSON lifecycle,
   digest-only notices, terminal closure, incomplete states, and the testimony
   versus admission boundary. Its Statecraft interface references verified.
-- **Dependencies or conditions:** implemented specs 001 through 004. A later
-  Statecraft adoption does not block local protocol implementation.
+- **Dependencies or conditions:** a later Statecraft adoption remains a
+  separate consumer act.
 - **Spec created this session:** no.
 
 ### 5. Feature 006: implement the standalone and sidecar hosts.
 
 - **Owning corpus or repository:** wire-witness.
 - **Existing governing spec:** approved spec `006-standalone-host`.
-- **Current lifecycle:** approved contract; implementation pending. The CLI
-  crate is only the boundary shell on the retained implementation branch.
-- **Primary disposition:** implementation under an existing spec.
+- **Current lifecycle:** approved, implemented, locally tested, CI-tested, and
+  merged on the current base. No release or runtime qualification is claimed.
+- **Primary disposition:** implemented under an existing spec.
 - **Evidence and rationale:** spec 006 already owns the CLI crate and both host
   modes, unsupervised identity, child-only proxy and additional-CA settings,
   cleanup findings, separate child and witness results, and the refusal to
   mutate global configuration.
-- **Dependencies or conditions:** implemented specs 001 through 005 and
-  offline runtime-specific fixtures.
+- **Dependencies or conditions:** later qualification begins with offline
+  runtime-specific fixtures and requires separate live authority.
 - **Spec created this session:** no.
 
 ### 6. Fix: integrate and qualify Statecraft's transfer-aware init repair.
@@ -245,16 +247,14 @@ the approved authority graph and current local evidence.
 
 - **Owning corpus or repository:** wire-witness.
 - **Existing governing spec:** approved specs 001 through 006.
-- **Current lifecycle:** spec 001 is implemented and locally tested on the
-  retained signed implementation branch; specs 002 through 006 are approved
-  with implementation pending. No aggregate completion is claimed.
+- **Current lifecycle:** complete, locally tested, CI-tested, and merged on the
+  current base. No release, publication, deployment, or adoption is claimed.
 - **Primary disposition:** repository or release operation.
 - **Evidence and rationale:** this is orchestration of work already divided by
   the approved dependency graph, not an independently reviewable product
   contract. New feature specs would duplicate authority.
-- **Dependencies or conditions:** implement one approved spec at a time on the
-  retained branch, preserve signed additive history, and run each declared
-  acceptance plus repository gates.
+- **Dependencies or conditions:** any follow-on release or adoption must bind
+  the exact merged tree and preserve the existing validation evidence.
 - **Spec created this session:** no.
 
 ### 13. Run final aggregate verification on the completed campaign.
@@ -262,14 +262,13 @@ the approved authority graph and current local evidence.
 - **Owning corpus or repository:** wire-witness.
 - **Existing governing spec:** the combined acceptance obligations of approved
   specs 001 through 006 and repository gates.
-- **Current lifecycle:** not started because specs 002 through 006 remain
-  pending. No aggregate evidence record exists.
+- **Current lifecycle:** completed locally and in CI for the merged candidate.
+  The merged tree matches the verified implementation tip tree.
 - **Primary disposition:** repository or release operation.
 - **Evidence and rationale:** an aggregate run verifies a completed candidate;
   it does not create new product behavior. Its output is evidence, not a spec.
-- **Dependencies or conditions:** complete all local implementation units,
-  then run exact-base coupling, all declared acceptance, full offline gates,
-  signatures, and clean-tree checks.
+- **Dependencies or conditions:** rerun against any changed release candidate;
+  the existing result applies only to the exact merged tree.
 - **Spec created this session:** no.
 
 ### 14. Publish and integrate wire-witness under separate owner authority.
@@ -278,9 +277,9 @@ the approved authority graph and current local evidence.
   channels.
 - **Existing governing spec:** no new product spec is needed; approved feature
   specs and repository governance constrain the artifact.
-- **Current lifecycle:** not started. Local approved specifications and one
-  implementation commit do not establish push, PR, CI, merge, release,
-  publication, or consumer qualification.
+- **Current lifecycle:** branch push, PR, CI, and merge are complete. Release,
+  publication, deployment, adoption, and consumer qualification remain
+  unclaimed.
 - **Primary disposition:** repository or release operation.
 - **Evidence and rationale:** push, review, merge, release, publication, and a
   registry-only consumer test are lifecycle acts over an exact candidate.
@@ -351,23 +350,26 @@ the approved authority graph and current local evidence.
 
 ### 18. Use captured exchanges as Rustev replay input.
 
-- **Owning corpus or repository:** Rustev for replay transformation and
-  evaluation; wire-witness for already-governed testimony production.
-- **Existing governing spec:** Rustev approved specs
+- **Owning corpus or repository:** wire-witness for an immutable producer
+  export manifest; Rustev for transformation, replay, and evaluation.
+- **Existing governing spec:** approved wire-witness specs 002, 003, and 005
+  govern the source testimony. Draft specs 009 and
+  `010-policy-bounded-corpus-export` define optional summaries and the missing
+  policy-bounded export contract. Rustev approved specs
   `004-evaluation-and-replay`, `006-cli-surface`, and
-  `009-remote-adapter-protocol`; wire-witness spec 002 defines its producer
-  record.
-- **Current lifecycle:** Rustev has approved replay authority and local
-  implementation history, but this cross-product transformation is deferred
-  until a policy-permitted admitted capture corpus exists. No such corpus was
-  inspected or created.
-- **Primary disposition:** external-corpus work.
-- **Evidence and rationale:** replay semantics and decision authority are
-  explicitly Rustev-owned. wire-witness must not acquire evaluator authority
-  merely because it produced source testimony.
-- **Dependencies or conditions:** exact compatible interfaces, admitted and
-  retention-permitted testimony, and Rustev-owned transformation acceptance.
-- **Spec created this session:** no.
+  `009-remote-adapter-protocol` retain consumer authority.
+- **Current lifecycle:** draft producer contract; implementation, an admitted
+  and retention-permitted corpus, transformation, replay, and evaluation all
+  remain pending.
+- **Primary disposition:** new local draft required.
+- **Evidence and rationale:** deterministic selection, source identity,
+  materialization, gaps, bounds, and retention preservation are reusable
+  producer behavior. Replay schema, equivalence, execution, comparison, and
+  evaluation remain explicitly Rustev-owned.
+- **Dependencies or conditions:** implementation of the producer draft, an
+  explicit external policy decision, eligible unexpired testimony, and a
+  Rustev-owned transformer operating under its own authority.
+- **Spec created this session:** yes, `010-policy-bounded-corpus-export`.
 
 ### 19. Conditional fix: repair cross-corpus interface pinning only on proof.
 
@@ -390,16 +392,18 @@ the approved authority graph and current local evidence.
 
 1. Specs 002 through 006 are not duplicated. Their approved territory matches
    the five backlog feature descriptions.
-2. Spec 007 is the only new wire-witness-owned draft. Its complete proposed
-   constitutional text is reviewable, but the standing constitution remains
-   generic and unchanged until owner approval.
+2. Spec 007 contains reviewable proposed constitutional text, but the standing
+   constitution remains generic and unchanged until owner approval.
 3. Codex instruction-delivery observation has a local draft contract in spec
    008. Live measurement and any adapter-wide qualification remain separate
    conditional acts.
 4. Binding-level usage and cost summarization has a local draft contract in
    spec 009. Admission, cost findings, scheduling, and spending authority
    remain Statecraft-owned.
-5. Rustev replay, Statecraft supervision and admission, Statecraft setup
-   repair, and remote desired state remain in their owning corpora.
-6. Passing local validation does not change any lifecycle beyond drafted and
+5. Policy-bounded corpus export has a local producer draft in spec 010.
+   Rustev retains transformation, replay, comparison, and evaluation
+   authority, while Statecraft retains evidence admission and run policy.
+6. Statecraft supervision and admission, Statecraft setup repair, and remote
+   desired state remain in their owning corpora.
+7. Passing local validation does not change any lifecycle beyond drafted and
    locally validated for the files created here.
