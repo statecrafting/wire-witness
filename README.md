@@ -1,9 +1,11 @@
 # wire-witness
 
 `wire-witness` captures provider wire exchanges and produces evidence claims.
-It produces testimony, never authority. The repository currently contains a
-draft specification corpus and managed project setup only. It contains no
-product implementation.
+It produces testimony, never authority. The approved specification corpus and
+three-crate workspace are present. The pure core implements the
+`wire-witness.exchange/1` record, provider normalization, canonical JSON, and
+SHA-256 digest construction. Capture, custody, proxy, sidecar, and standalone
+host behavior remains pending under specs 003 through 006.
 
 ## Setup gaps
 

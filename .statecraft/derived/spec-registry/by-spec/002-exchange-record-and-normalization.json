@@ -6,13 +6,13 @@
     ],
     "establishes": [
       {
-        "id": "wire_witness_core::exchange",
-        "kind": "module",
-        "planned": true
+        "anchor": "exchange-record-and-normalization",
+        "file": "crates/wire-witness-core/src/exchange.rs",
+        "kind": "section"
       }
     ],
     "id": "002-exchange-record-and-normalization",
-    "implementation": "pending",
+    "implementation": "complete",
     "interfaceReferences": [
       {
         "corpus": "rustev",
@@ -79,13 +79,13 @@
           "specs/002-exchange-record-and-normalization/spec.md"
         ],
         "kind": "verification",
-        "text": "The draft compiles, its planned module is recorded, and both producer interface pins verify from the named local exports."
+        "text": "The implementation tests pass, its module is indexed, and both producer interface pins verify from the named local exports."
       }
     ],
     "sectionDigests": {
-      "002-exchange-record-and-provider-normalization": "546079f87948ffeb99baa321338c24a94f725572a3284e55d9eeca43dc5f7f9c",
+      "002-exchange-record-and-provider-normalization": "844460ce666f6281e41d76c030cea188716433c717c784f288894fce292484e9",
       "1-purpose": "2479af81ac3e2ddc1518bb75c5ebf10454d863f9054efc314a3b4234f3d14a71",
-      "2-territory": "6084f6f67bd0457521a2e70e8cf3d5538f3f3701aef0a86ede5d7919d86a55de",
+      "2-territory": "d600be176ade09c32ae834c6d9e700209e0d46a94049f6b2e47b9a3f7fcf23ab",
       "3-1-testimony-and-schema": "fbf216c2e300d48cb91491a8172b54d095885576466e1e7ba56c312fd0b7ccd3",
       "3-2-presence-absence-and-completeness": "cc590daac1ca2abe87eee6940d7fe93e7eb3c91bde7978bcad073ffdfaef70f9",
       "3-3-identity-usage-and-cost": "a1bdd20d8f3d73b15faec9949d29a3b2194f41d1a15bf40e751e64f2d916067b",
@@ -93,8 +93,8 @@
       "3-5-canonical-bytes-and-digests": "3d5cb3695ced26f374009e20e62c0d6679ef31d21e24a3e392304ff4b2f6056c",
       "3-behavior": "7686bc7840ea4cb8c9d04c9f653d95764eb439b81d5949e6fd0d9d65266271be",
       "4-observable-negative-cases": "b86aedcb95a166ede41c7dd65496695e2b28cde5331d2959230b7f1ae1c33e2c",
-      "5-out-of-scope": "95ccafa405526ec8c31e5b1fd3d949d0b285a0a8e79539ad4d3cdd18cc738f08",
-      "verification": "c3156148cfe86390e13cf12354482e7a48fd773eca9828019e5eb3f0365b9336"
+      "5-out-of-scope": "53c1f9c9bff29b493f5854451ff029861dc9c4e63ab11f2cdbaa5eec9b895d06",
+      "verification": "2a9f4353ae790289b8b469a0064f0515c631d6eff831b705e178e4aea409adb0"
     },
     "sectionHeadings": [
       "002: Exchange record and provider normalization",
@@ -115,6 +115,6 @@
     "summary": "Defines wire-witness.exchange/1, the canonical testimony produced from one observed provider exchange, and lossless normalization rules for Anthropic and OpenAI request, response, streaming, identity, usage, and cost fields.\n",
     "title": "Exchange record and provider normalization"
   },
-  "shardHash": "9d4752dbe72a9f86676b27d039ec90fe0b5393e323d6278c03290f64bd714cff",
+  "shardHash": "210604581f8aab409b5a262d39a56a01cf561eaaeb29af2ddf99a7bc4c3031a7",
   "specVersion": "1.9.0"
 }

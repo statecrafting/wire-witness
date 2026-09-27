@@ -1,6 +1,8 @@
 //! Pure testimony types and transformations.
 //!
-//! Provider normalization, redaction, and digest behavior are introduced by
-//! later specifications. This crate intentionally starts without dependencies.
+//! This crate deliberately performs no I/O and reads no clock. Hosts supply
+//! observed bytes and all identities explicitly.
 
 #![forbid(unsafe_code)]
+
+pub mod exchange;

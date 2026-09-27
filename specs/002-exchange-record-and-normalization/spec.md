@@ -2,14 +2,14 @@
 id: "002-exchange-record-and-normalization"
 title: "Exchange record and provider normalization"
 status: approved
-implementation: pending
+implementation: complete
 created: "2026-09-26"
 summary: >
   Defines wire-witness.exchange/1, the canonical testimony produced from one
   observed provider exchange, and lossless normalization rules for Anthropic
   and OpenAI request, response, streaming, identity, usage, and cost fields.
 establishes:
-  - { kind: module, id: "wire_witness_core::exchange", planned: true }
+  - { kind: section, file: "crates/wire-witness-core/src/exchange.rs", anchor: "exchange-record-and-normalization" }
 depends_on:
   - "001-boundaries-and-authority"
 interface_references:
@@ -51,7 +51,7 @@ obligations:
     anchor: "3-5-canonical-bytes-and-digests"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, its planned module is recorded, and both producer interface pins verify from the named local exports."
+    text: "The implementation tests pass, its module is indexed, and both producer interface pins verify from the named local exports."
     anchor: "verification"
     inputs:
       - "specs/002-exchange-record-and-normalization/spec.md"
@@ -68,7 +68,7 @@ effect.
 
 ## 2. Territory
 
-This spec owns the planned `wire_witness_core::exchange` module. The module
+This spec owns the `wire_witness_core::exchange` module. The module
 contains the `wire-witness.exchange/1` types and pure normalization and
 canonical-byte functions. It performs no transport, storage, clock, or policy
 work. Specs 003 and 005 separately own redaction, custody, and host binding.
@@ -194,13 +194,12 @@ identify, but spec 003 controls whether the bytes themselves may be retained.
 ## 5. Out of scope
 
 Transport interception, durable storage, provider calls, evidence admission,
-answer evaluation, pricing authority, publication, and implementation are out
-of scope for this draft.
+answer evaluation, pricing authority, and publication are out of scope.
 
 ## Verification
 
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine interface verify --spec 002 --export rustev=/Users/bart/DevWork/rustev --export canonical-keysort-json=/Users/bart/DevWork/canonical-keysort-json
-test ! -d crates
+cargo test -p wire-witness-core --locked
 ```
