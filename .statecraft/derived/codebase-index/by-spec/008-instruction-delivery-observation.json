@@ -1,0 +1,25 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "006-standalone-host"
+    ],
+    "implementingPaths": [],
+    "resolvedUnits": [
+      {
+        "locations": [],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "id": "wire_witness_core::instruction_observation",
+          "kind": "module"
+        }
+      }
+    ],
+    "specId": "008-instruction-delivery-observation",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "e7320688ac16de5e3aef806507e9dbb466da858d695376fa5b54ebd817554fba"
+}

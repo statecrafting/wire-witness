@@ -38,10 +38,10 @@ and size 17,283 bytes.
 | Primary disposition | Count |
 |---|---:|
 | Implementation under an existing spec | 5 |
-| New local draft required | 1 |
+| New local draft required | 2 |
 | External-corpus work | 8 |
 | Repository or release operation | 3 |
-| Conditional experiment or qualification | 2 |
+| Conditional experiment or qualification | 1 |
 | **Total** | **19** |
 
 No entry is classified merely from its checkbox. Each disposition below uses
@@ -307,22 +307,26 @@ the approved authority graph and current local evidence.
 
 ### 16. Measure Codex instruction delivery with a witnessed session.
 
-- **Owning corpus or repository:** cross-repository qualification using
-  wire-witness as the evidence producer; the measured adapter or harness owns
-  any resulting compatibility claim.
-- **Existing governing spec:** approved wire-witness specs 002 through 006
-  already govern capture, custody, binding, and host behavior. No durable
-  wire-witness measurement contract is missing.
-- **Current lifecycle:** deferred; not observed or qualified. It requires an
+- **Owning corpus or repository:** wire-witness owns the bounded observation
+  record; the measured adapter or harness owns any broader compatibility or
+  qualification claim.
+- **Existing governing spec:** approved specs 002, 003, and 006 govern the
+  captured request, content posture, and host. Draft spec
+  `008-instruction-delivery-observation` adds the missing exact comparison and
+  result contract without changing those authorities.
+- **Current lifecycle:** draft contract; implementation and any live
+  observation remain pending. A provider-bound measurement still requires an
   accepted witness path and explicit provider authority.
-- **Primary disposition:** conditional experiment or qualification.
-- **Evidence and rationale:** the question concerns one observed provider-bound
-  session, not a reusable new wire-witness feature. A result remains testimony
-  and cannot become adapter qualification or policy authority by itself.
-- **Dependencies or conditions:** implemented and accepted witness path,
-  explicit provider and spending authority where applicable, exact adapter
-  identity, and a predeclared measurement protocol.
-- **Spec created this session:** no.
+- **Primary disposition:** new local draft required.
+- **Evidence and rationale:** exact target selection, three-state presence,
+  component completeness, and content-free durable results are reusable
+  producer behavior. One result remains testimony and cannot become adapter
+  qualification or policy authority by itself.
+- **Dependencies or conditions:** implemented capture and custody contracts,
+  exact adapter and producer identities, a predeclared comparison plan, and
+  separate provider and spending authority for a live measurement.
+- **Spec created this session:** yes,
+  `008-instruction-delivery-observation`.
 
 ### 17. Supply wire measurements to Statecraft cost and provider findings.
 
@@ -385,9 +389,9 @@ the approved authority graph and current local evidence.
 2. Spec 007 is the only new wire-witness-owned draft. Its complete proposed
    constitutional text is reviewable, but the standing constitution remains
    generic and unchanged until owner approval.
-3. Codex instruction-delivery measurement needs no new local product spec:
-   existing capture and custody contracts are sufficient, and the remaining
-   work is a conditional qualification.
+3. Codex instruction-delivery observation has a local draft contract in spec
+   008. Live measurement and any adapter-wide qualification remain separate
+   conditional acts.
 4. Rustev replay, Statecraft supervision and admission, Statecraft setup
    repair, and remote desired state remain in their owning corpora.
 5. Passing local validation does not change any lifecycle beyond drafted and
