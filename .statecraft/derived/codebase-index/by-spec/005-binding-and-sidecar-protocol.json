@@ -6,15 +6,42 @@
       "003-redaction-custody-and-retention",
       "004-allowlisted-capture-proxy"
     ],
-    "implementingPaths": [],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-cli/src/sidecar_protocol.rs",
+        "source": "spec-edge"
+      }
+    ],
     "resolvedUnits": [
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/sidecar_protocol.rs"
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
           "id": "wire_witness_cli::sidecar_protocol",
           "kind": "module"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/sidecar_protocol.rs",
+            "span": {
+              "endLine": 789,
+              "startLine": 5
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "binding-and-sidecar-protocol",
+          "file": "crates/wire-witness-cli/src/sidecar_protocol.rs",
+          "kind": "section"
         }
       }
     ],
@@ -22,5 +49,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "7605e8d3eb8671e10f5fc56b7504bfdd6c4a6c31022b68b1b1b6cef69969e0c4"
+  "shardHash": "f0fcc79767ad3d2342378a21b41f72f094efdcb015dc876489df2b726ffdb0fb"
 }

@@ -4,3 +4,5 @@
 //! implemented by the workspace-layout unit.
 
 #![forbid(unsafe_code)]
+
+pub mod sidecar_protocol;

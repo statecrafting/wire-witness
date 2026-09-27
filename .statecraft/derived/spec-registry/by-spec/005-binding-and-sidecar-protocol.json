@@ -10,12 +10,16 @@
     "establishes": [
       {
         "id": "wire_witness_cli::sidecar_protocol",
-        "kind": "module",
-        "planned": true
+        "kind": "module"
+      },
+      {
+        "anchor": "binding-and-sidecar-protocol",
+        "file": "crates/wire-witness-cli/src/sidecar_protocol.rs",
+        "kind": "section"
       }
     ],
     "id": "005-binding-and-sidecar-protocol",
-    "implementation": "pending",
+    "implementation": "complete",
     "interfaceReferences": [
       {
         "corpus": "statecraft-cli",
@@ -92,21 +96,21 @@
           "specs/005-binding-and-sidecar-protocol/spec.md"
         ],
         "kind": "verification",
-        "text": "The draft compiles, the planned sidecar protocol module is recorded, and both Statecraft interface pins verify."
+        "text": "The sidecar protocol tests pass, its source is indexed, and both Statecraft interface pins verify."
       }
     ],
     "sectionDigests": {
-      "005-attempt-binding-and-stdio-sidecar-protocol": "e570d01210192ffbf86d286cffff3c7023d62127c59e3568b0d6e10e0dcb341b",
+      "005-attempt-binding-and-stdio-sidecar-protocol": "463e46da41b0ad2a4a91e9d27bec09b210f218b29b1a3e84b4f78bd25a28386b",
       "1-purpose": "73dcffb47424ff87d45d8ca2a41d5939b6a4f3dae62a3598c15be63efe386d34",
-      "2-territory": "0e3468ae8970f692faaf760cbc249394dd18f08611e72747473c81327ad432b5",
+      "2-territory": "a23d512a098650f51c9a871dc8816c7101d1b6dae3e387ad997e3b6ce3c4e27f",
       "3-1-attemptbinding": "68aafeb66bf494eda066bff13eb506fce5f9a8b3777505a74d98ec09fa8e11ca",
       "3-2-versioned-stdio": "d64434f79125e34a81f99f23670275a9d7946a02df05d34b8deee56e10fca8ec",
       "3-3-bracketed-lifetime": "b40040b08f584f275ea4f52b4281378c23fd365c783e888fb957acf81cd9c5f1",
       "3-4-evidence-envelope-boundary": "f9fc1f6171b7fd157397a32b9ff1e711da66c7e6edce56401738e85c9794ab20",
       "3-behavior": "ddcaa2011fe91be4354219a928b2396df9797cba4994bbbc90ad05dd0c966ccf",
       "4-observable-negative-cases": "3af960c54db7d220ebd2634dca73472813ea4ffbaf579b39f05b8914af5738cc",
-      "5-out-of-scope": "2e6f785c025ba4b4dbc426f7bad3886bec6dc62a9c1440808318ddc04838cd81",
-      "verification": "52252586b56b216c6b3564fb65b16c1b4b35d681953a8742d1552e08de6ae50d"
+      "5-out-of-scope": "a76887e3a8966a1b37f8c9edd18f2b0ea698310ff6bd3231ee3b9dc3bccb880a",
+      "verification": "2571947b9d655d82509208b17d8e8d8f8d6ee8e5de2554ff3104f6ce8eb881bc"
     },
     "sectionHeadings": [
       "005: Attempt binding and stdio sidecar protocol",
@@ -126,6 +130,6 @@
     "summary": "Defines the immutable AttemptBinding supplied by Statecraft, the versioned stdio protocol for one sidecar per attempt, capture-digest closure of the bracketed effect, and statecraft/wire-exchange/v1 testimony for admission by the host rather than by the witness.\n",
     "title": "Attempt binding and stdio sidecar protocol"
   },
-  "shardHash": "7605e8d3eb8671e10f5fc56b7504bfdd6c4a6c31022b68b1b1b6cef69969e0c4",
+  "shardHash": "ae12eabd4da259e539456c7a6c3f047a9311fa25afb3de46159a2934a987cfea",
   "specVersion": "1.9.0"
 }
