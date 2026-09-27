@@ -1,0 +1,94 @@
+{
+  "record": {
+    "created": "2026-09-27",
+    "dependsOn": [
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "005-binding-and-sidecar-protocol",
+      "006-standalone-host",
+      "008-instruction-delivery-observation",
+      "009-usage-and-cost-summaries"
+    ],
+    "establishes": [
+      {
+        "id": "wire_witness_core::corpus_export",
+        "kind": "module",
+        "planned": true
+      },
+      {
+        "id": "wire_witness_cli::corpus_export",
+        "kind": "module",
+        "planned": true
+      }
+    ],
+    "id": "010-policy-bounded-corpus-export",
+    "implementation": "pending",
+    "obligations": [
+      {
+        "anchor": "3-1-export-authority",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "An export records an external policy decision and exact source identities but never grants retention, disclosure, replay, training, evidence admission, or evaluation authority."
+      },
+      {
+        "anchor": "3-2-source-eligibility",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Export never resurrects erased or expired content, broadens effective retention, removes redaction findings, or represents an incomplete source set as complete."
+      },
+      {
+        "anchor": "3-3-export-manifest",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "The canonical manifest binds every selected capture, exchange, observation, summary, and included artifact by exact identity, digest, length, retention posture, completeness, and ordered findings."
+      },
+      {
+        "anchor": "3-4-materialization-and-bounds",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "Digest-only, embedded, and external-reference entries are explicit and bounded, and any missing, expired, corrupt, foreign, or unauthorized input refuses export or remains an explicit gap."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/010-policy-bounded-corpus-export/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
+      }
+    ],
+    "sectionDigests": {
+      "010-policy-bounded-corpus-export": "64e6aeb07148ce759f8e77c72e419fa2342d39e63925f6917771884cf3b3eba3",
+      "1-purpose": "6328af7a89e589c740cbc68f8da027933c0d4494778804d758cdaabf2e2a341c",
+      "2-territory": "0caa700dbf7a97702e78ffef114137767118c6ee7b48a5b4a93196fe58b3fcc2",
+      "3-1-export-authority": "2f7199b53488ca4f233bbcc0b35118b61a610813c19e2d40a968e1622aba950a",
+      "3-2-source-eligibility": "09b1f6f47829483a516b95b9c78e72cc12e5b38db33475077d20739267b10003",
+      "3-3-export-manifest": "ef77ce1dc8567125c414830045f988ad8b1d2d49a0d71f30290ac98804745ec5",
+      "3-4-materialization-and-bounds": "f36c760fbcda3ca7f3e22b21f12f42ceef66d41e77452015143e4d7c1afbbd6f",
+      "3-behavior": "dd300813b0a4283c96a8d7849de52cbb4a05c3e0bc6034cd54dae3df28c36906",
+      "4-observable-negative-cases": "50a6166644f9216f8dbe6d2e5dfdce2b2461b65ddb612b504ca69ea78a99cd17",
+      "5-out-of-scope": "7f67e12e24d9cc4a4da731b79aa1c5f45a93e7e1f65c5696806c015f20eadfff",
+      "verification": "76833ea57785c0f45cf306725b2320f641b4cd76d80870ada6e52184d6522212"
+    },
+    "sectionHeadings": [
+      "010: Policy-bounded corpus export",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Export authority",
+      "3.2 Source eligibility",
+      "3.3 Export manifest",
+      "3.4 Materialization and bounds",
+      "4. Observable negative cases",
+      "5. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/010-policy-bounded-corpus-export/spec.md",
+    "status": "draft",
+    "summary": "Defines an immutable, bounded export manifest for policy-permitted wire testimony, preserving binding, retention, completeness, redaction, and artifact identity without granting permission to retain, disclose, replay, train on, admit, or evaluate the captured material.\n",
+    "title": "Policy-bounded corpus export"
+  },
+  "shardHash": "69955b210210b53cd76eee9f3311841e0493a29bca39ae25c7df1cb665855b2c",
+  "specVersion": "1.9.0"
+}
