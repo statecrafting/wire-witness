@@ -46,6 +46,12 @@
         "text": "The durable result binds the target digest and length, exchange digest, selected component identity and digest, match count, completeness, and findings without retaining target or observed instruction bytes."
       },
       {
+        "anchor": "3-5-request-component-decoding",
+        "id": "R-3",
+        "kind": "requirement",
+        "text": "Request components are decoded by this spec's own closed decoder over the complete outbound request body, which neither changes wire-witness.exchange/1 nor searches a component that mandatory redaction touched."
+      },
+      {
         "anchor": "verification",
         "id": "V-1",
         "inputs": [
@@ -56,15 +62,16 @@
       }
     ],
     "sectionDigests": {
-      "008-instruction-delivery-observation": "a12e958854040940080d0514a78063a32054a0b7ab62ae15188f3e3fdfb17122",
+      "008-instruction-delivery-observation": "74f811323d6bb1130cafd4bfa0a9b1fbe7f1f5c3470bc2aeee4da7c9c45cefc1",
       "1-purpose": "31733963bdfb54f421b23f1a1a575e189aa7951802ad7936f340692a48aa9312",
-      "2-territory": "fefa8c9340cbc05a6589b4ca866f99ff02a2d4ec631c80f68dd45afb6c539389",
+      "2-territory": "7656546759def05a6551e5fe8ee050036d5d0b330f298611a50de1a71cb913f3",
       "3-1-observation-not-qualification": "9dcbc1199e044bf436115a6d51f88439e5b1628ea967f329be2f6db21e3be503",
-      "3-2-predeclared-comparison-plan": "db78fdee2494ff69087f8a49bb59555418b7c3f9786536604790dead877b63ce",
+      "3-2-predeclared-comparison-plan": "6416d498c871a8f1b596a2f0277d7d2a293427f9642b004ac0752545c763bd88",
       "3-3-three-state-result": "e419d9fe79a9f2f5b84a40ca6f2fe5633293d0cac81630b89e4bc6425674c195",
-      "3-4-durable-result": "faef168ccd21792734f533929f7698eaecc1828eaff8edaca1fb6d8f17ba939c",
-      "3-behavior": "98d34df251af4dfc594629abafa5d4ba22cd8dc3ebcc7093e4563f092b9d17e7",
-      "4-observable-negative-cases": "7bdada3aa14ae7a821196d4fec39c05dfa7146e33830092bca3eac840227862f",
+      "3-4-durable-result": "b4259427f174940cddd5bd45f6f02e53087d2ca3f7818e0714be35b4fca1e203",
+      "3-5-request-component-decoding": "9a3c562dfe751e6a656244cdf9d1c0f6ea080e6806c9237cffa93fdd520c1de0",
+      "3-behavior": "e6514e290ce3ad8e277828173299607875dee801b38130ecaaf0371ea7bee5bb",
+      "4-observable-negative-cases": "a4a7d0e01f66c9c005a28c5701d7c9a6467ee9779f46cdebdde2ab1ff73443ab",
       "5-out-of-scope": "a42d7dd442b052aa211b6512633c3592d5c3fbaa6ddf71dd653efc40b660e44c",
       "verification": "d47653a202dce680536c7a4881e1314dfcdc9f48c207a9c9235ad1e40688259c"
     },
@@ -77,6 +84,7 @@
       "3.2 Predeclared comparison plan",
       "3.3 Three-state result",
       "3.4 Durable result",
+      "3.5 Request-component decoding",
       "4. Observable negative cases",
       "5. Out of scope",
       "Verification"
@@ -86,6 +94,6 @@
     "summary": "Defines a content-gated, offline comparison that reports whether exact operator-supplied instruction bytes were observed in a complete outbound provider request, without turning one observation into adapter qualification, policy, or authority.\n",
     "title": "Instruction delivery observation"
   },
-  "shardHash": "7230cd0b69d7218e534a9f446402040ee99a07f0f023537911c074253bc2118a",
+  "shardHash": "7c3f42063d1cb2ae8b88141ed3998dfe623e314018d8ac459cad15283afb235c",
   "specVersion": "1.9.0"
 }
