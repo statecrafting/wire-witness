@@ -95,8 +95,8 @@ and any gap.
 
 ### 3.3 Aggregation rules
 
-Request counts group by observed provider family, API surface, transport, and
-authority. Unknown values form explicit groups and are never filled from
+Request counts group by observed provider family, API surface (the exchange's
+transport operation and request path), transport protocol, and authority. Unknown values form explicit groups and are never filled from
 another record.
 
 Usage values may be added only when all of these match exactly:
@@ -107,19 +107,17 @@ Usage values may be added only when all of these match exactly:
 - numeric representation and scale rules; and
 - source attribution.
 
-Decimal addition is exact and rejects non-finite, exponent-overflow, or
-configured precision-limit input. Values with different meanings or units
+Decimal addition uses the fixed construction in section 3.5 and rejects
+non-finite, exponent, or out-of-range input. Values with different meanings or units
 remain separate groups even if their display names look similar. Missing usage
 does not contribute zero; the group records observed, absent, and unknown
 exchange counts separately.
 
 Reported costs group by provider family, currency or unit, numeric
 construction, and source attribution. Estimated costs additionally group by
-provider family, rate-table identity, currency, input field set, and estimator
-construction. Estimates from different rate tables are never summed into one
+provider family, rate-table identity, currency, and usage-input set. Estimates from different rate tables are never summed into one
 number. Unknown cost remains a counted unknown with reasons. The arithmetic
-construction and configured precision limit are identities in every numeric
-group, so a later implementation change cannot silently alter a total.
+construction is an identity in every numeric group, so a later implementation change cannot silently alter a total.
 
 Requested identities and served identities are separate ordered inventories.
 Each entry carries its observed count and disclosure class. A requested model
@@ -144,7 +142,8 @@ bytes.
 5. reported-cost and estimated-cost groups kept separate;
 6. requested and served identity inventories;
 7. complete, incomplete, and absent capture counts plus ordered findings; and
-8. producer, normalizer, estimator, and rate-table identities used.
+8. the summary producer identity, the arithmetic construction, and the
+   rate-table identities used.
 
 The summary can be formed from metadata-only records. It contains no prompt,
 message, tool schema, response content, credential, raw header, or retained
@@ -154,6 +153,22 @@ Canonical bytes use canonical-keysort-json. The input-manifest digest uses
 `wire-witness.measurement-inputs/1+keysort-json+sha256`; the summary digest uses
 `wire-witness.measurement-summary/1+keysort-json+sha256`. Each digest is
 carried beside the bytes it identifies.
+
+### 3.5 Arithmetic construction and source identities
+
+Numeric groups use `decimal-exact-v1`: each value is the provider's decimal
+text, parsed without floating point, with at most 38 significant digits and a
+scale of at most 18; sums are exact under the same bounds. A value or sum
+outside those bounds, or text that is not a plain optional-sign decimal, is
+excluded from the total and counted as an unknown with a finding. The bounds
+are fixed by this construction name rather than configured, so changing them
+means a new construction name.
+
+The exchange record carries a rate-table identity for an estimate but no
+separate estimator or normalizer identity, and this spec does not invent one.
+The rate-table identity is the estimate's source identity. Each exchange
+carries one cost variant, so it contributes to exactly one of the reported,
+estimated, or unknown cost groups.
 
 ## 4. Observable negative cases
 

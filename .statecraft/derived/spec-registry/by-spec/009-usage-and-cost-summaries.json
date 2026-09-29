@@ -50,14 +50,15 @@
       }
     ],
     "sectionDigests": {
-      "009-usage-and-cost-summaries": "983e385d60e5590036ae8372d8ab33868395d14a7da47edade164ecedb6a6b94",
+      "009-usage-and-cost-summaries": "b7bef777641e8ebd414bbcf633aa53fb05284faf97e225a848398aac24f54466",
       "1-purpose": "7bfa6d2967825d965fc18cece083fe06fd054bcc8519273bcb033c60225ef7b7",
       "2-territory": "88ef20de549a9623f1c0fb5c20949ab6974a8657b600649635b75aacb152119e",
       "3-1-summary-authority": "986ec465a03763e5f25174761f19360feda26235319d113ab446a03e24154307",
       "3-2-input-set-and-order": "189fe0a93650e8fa25e4b705fd212de781f933c735edee38d9655cff2f51702e",
-      "3-3-aggregation-rules": "aed4a7baa7515339cee335cb594a77f6e296bb1d03bfb9d8a1087a0ab7101b1e",
-      "3-4-summary-schema": "d0140cee82973ed86dd93e464cd3f9e061bfb455f072a5df37263a9129fef9cf",
-      "3-behavior": "9bcb6b0f73bfc0cf9e811f77e4ae450dace14bab1f8acce7dc83198f94a1f1bb",
+      "3-3-aggregation-rules": "4249249b3bd56479731faf5c58d651ae6277b2368a19d3269ebf4e67115433a9",
+      "3-4-summary-schema": "d446e7376e37611e4aba2d048186d5bba18ea117a08001b5cf7475352b1cf85c",
+      "3-5-arithmetic-construction-and-source-identities": "2050aa044360ca688f51b501d869cde76cff45cdba326d3f6cd0a549df392563",
+      "3-behavior": "e26aee9cee16346dd4e64930fa233a19c293a99ed6b26cd4ad13da2e4fb1fa29",
       "4-observable-negative-cases": "7b807cacb47e61ba868a97a1bb5dd7336ceee7d725f0dcbf43b51aca0b1d711f",
       "5-out-of-scope": "33c572820c2792848fc8ac7b4bd4f3f6406e931057a9c746a93e6e48f63a07ef",
       "verification": "2179b6484af7ba39f20859b171da706bc1c9d290253a2c528ed19179dafdd93b"
@@ -71,6 +72,7 @@
       "3.2 Input set and order",
       "3.3 Aggregation rules",
       "3.4 Summary schema",
+      "3.5 Arithmetic construction and source identities",
       "4. Observable negative cases",
       "5. Out of scope",
       "Verification"
@@ -80,6 +82,6 @@
     "summary": "Defines a deterministic binding-level summary of observed request counts, provider-attributed usage, reported cost, labeled estimates, identity variation, completeness, and gaps without converting testimony into a charge, quota decision, budget, or provider qualification.\n",
     "title": "Usage and cost summaries"
   },
-  "shardHash": "9a8f14f82b1c2c21449eee67033bbfd5ea81730da82d627377396da8e7c52d5a",
+  "shardHash": "de5873a7db5320745fd1c2adc2280e359746645990153ffbc66d438c318630b8",
   "specVersion": "1.9.0"
 }
