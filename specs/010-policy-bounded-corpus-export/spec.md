@@ -17,8 +17,6 @@ depends_on:
   - "003-redaction-custody-and-retention"
   - "005-binding-and-sidecar-protocol"
   - "006-standalone-host"
-  - "008-instruction-delivery-observation"
-  - "009-usage-and-cost-summaries"
 obligations:
   - id: "I-1"
     kind: invariant
@@ -36,6 +34,10 @@ obligations:
     kind: requirement
     text: "Digest-only, embedded, and external-reference entries are explicit and bounded, and any missing, expired, corrupt, foreign, or unauthorized input refuses export or remains an explicit gap."
     anchor: "3-4-materialization-and-bounds"
+  - id: "R-3"
+    kind: requirement
+    text: "The only accepted policy input is a wire-witness.export-policy-receipt/1 envelope whose closed fields are validated structurally, and instruction-observation or measurement-summary entries are accepted only when the producing build implements their exact schema version."
+    anchor: "3-5-policy-receipt-envelope"
   - id: "V-1"
     kind: verification
     text: "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
@@ -66,6 +68,8 @@ Spec 002 owns exchange records. Spec 003 owns retention, redaction, custody,
 expiry, and erasure. Spec 005 owns attempt binding and capture closure. Spec
 006 owns host lifecycle and filesystem operations. Spec 008 owns optional
 instruction observations, and spec 009 owns optional measurement summaries.
+Neither is a dependency: this spec can be built and used before either exists,
+and section 3.5 says how their entries are admitted once they do.
 Rustev owns conversion to any Rustev replay schema, replay scope and
 equivalence, execution, comparison, and evaluation. Statecraft owns evidence
 admission and run policy.
@@ -78,9 +82,7 @@ Export begins only from an explicit request naming:
 
 1. a stable export id and exact producer identity;
 2. one or more exact attempt bindings and capture digests;
-3. an external policy receipt with decision schema, decision id, digest,
-   decision time, asserted authorizing principal, verifier identity,
-   verification outcome, and exact permitted source and materialization scope;
+3. an external policy receipt in the envelope defined in section 3.5;
 4. permitted materialization modes and a maximum export lifetime; and
 5. configured limits on bindings, records, artifacts, and total bytes.
 
@@ -176,6 +178,34 @@ copying. Exceeding a binding, entry, artifact, per-artifact, or total-byte
 limit refuses before final installation and leaves no partial export at the
 final path. Embedded content is never downgraded to an external reference or
 silently dropped to make an export fit.
+
+### 3.5 Policy-receipt envelope
+
+The witness defines the shape of the receipt it accepts, not the policy that
+produced it. The only accepted input is `wire-witness.export-policy-receipt/1`,
+a canonical-keysort-json object with exactly these fields:
+
+| Field | Content |
+|---|---|
+| `schema` | The literal `wire-witness.export-policy-receipt/1`. |
+| `decision_schema` | The external policy system's own decision schema name, recorded and never interpreted. |
+| `decision_id` | The external decision's stable id. |
+| `decision_digest` | `sha256:` hex over the external decision bytes, which the witness does not read. |
+| `decided_at` and `expires_at` | RFC 3339 UTC times; `expires_at` is required. |
+| `outcome` | `allow` or `deny`. |
+| `asserted_principal` | The authorizing principal as the receipt asserts it, not authenticated here. |
+| `verifier` | The identity that verified the external decision, and its `verification_outcome`. |
+| `scope` | The exact permitted binding and capture digests, source kinds, and materialization modes. |
+
+An unknown field, a missing field, a second schema version, a non-`allow`
+outcome, an expired receipt, or a request outside `scope` refuses export. The
+receipt's own digest under `wire-witness.export-policy-receipt/1+keysort-json+sha256`
+is recorded in the manifest.
+
+An `instruction-observation` or `measurement-summary` entry is accepted only
+when the producing build implements that exact schema version. Otherwise a selected entry of that
+kind is an explicit `unsupported-source-version` gap, and refuses export when
+incomplete output is not permitted.
 
 ## 4. Observable negative cases
 
