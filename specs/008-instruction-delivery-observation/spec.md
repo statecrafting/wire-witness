@@ -109,9 +109,10 @@ found after capture. The plan is immutable for the attempt. Duplicate probe
 names, a digest mismatch, invalid UTF-8, an empty target, or an unsupported
 selector refuses before child spawn. A selector is unsupported when its
 provider family, operation, and component kind are not a row of the table in
-section 3.5; that check needs no request body. Whether its indexes resolve to a
-text part is known only after decoding, so a supported selector that resolves
-to an image, file, or other non-text part produces `unknown`, never a refusal.
+section 3.5; that check needs no request body. Whether the named component and
+text part exist is known only after decoding, so a supported selector whose
+component or text part is not present in the request produces `unknown`, never
+a refusal.
 
 Comparison operates on the decoded component produced by the request-component
 decoder in section 3.5. It does not search raw JSON serialization, HTTP headers, response
@@ -185,9 +186,9 @@ array position 2. A component index is the position in the named array,
 counting every element whatever its content.
 
 A selected component is the JSON string at that location, decoded from its
-JSON escape form to UTF-8 bytes. Non-text blocks, tool definitions, tool
-results addressed as other kinds, image or file parts, and any key outside the
-table are never selectable. Adding a shape is a later spec's change, not a
+JSON escape form to UTF-8 bytes. Image, file, tool-use, and tool-result blocks,
+tool definitions, and any key outside the table are never selectable, and they
+are not counted by a text-part index. Adding a shape is a later spec's change, not a
 decoder inference.
 
 The comparison runs in the host on the transient pre-redaction decode, after
@@ -208,9 +209,9 @@ mandatory redaction would have removed.
 | Redaction changes bytes inside the selected component | `unknown` with `redaction-intersects-component`; the witness does not search a lossy representation and claim absence. |
 | A similar paraphrase appears | Absent under exact-byte matching; semantic similarity is not inferred. |
 | The same target appears twice | Present with count two and both decoded-component offsets. |
-| A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest is recorded. |
+| A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |
 | The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
-| A supported selector's indexes resolve to an image part | `unknown` with a non-text-component reason; no other part is searched. |
+| A supported selector's text-part index exceeds the text parts present, for example because the rest are images | `unknown` with a component-absent reason; no other part is searched. |
 | One successful session is presented as a CLI guarantee | Refused by the authority boundary; the record describes one exchange only. |
 
 ## 5. Out of scope
