@@ -211,6 +211,14 @@ outcome, a `verification_outcome` other than `verified`, an expired receipt, or 
 receipt's own digest under `wire-witness.export-policy-receipt/1+keysort-json+sha256`
 is recorded in the manifest.
 
+Expiry is judged against the export's creation time, one value the host reads
+from its own UTC wall clock before construction starts and supplies to the pure
+core, which reads no clock. That same value is the manifest's creation time,
+and every expiry comparison in this spec uses it. The witness makes no trusted
+time claim: a host whose clock is wrong or controlled by an adversary produces
+a manifest whose recorded creation time shows what was judged, and a consumer
+that needs trusted time checks it against its own source.
+
 An `instruction-observation` entry is accepted only when the producing build
 implements `wire-witness.instruction-observation/1`, and a `measurement-summary`
 entry only when it implements `wire-witness.measurement-summary/1`. Those are
