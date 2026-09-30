@@ -10,7 +10,7 @@
 # features: the coupling gate's built-in bypass floor is compiled into
 # the binary, so two versions can judge the same diff differently.
 # Cargo semantics: a bare version is a caret range, `=` is exact.
-required_version = "=0.27.0"
+required_version = "=0.28.0"
 
 [manifest]
 # Drives the Cargo `[package.metadata.spec-spine].spec` and package.json `"spec-spine".spec` reads.
@@ -61,6 +61,7 @@ npm_workspaces = ["package.json", "pnpm-workspace.yaml"]
 extra_hashed_inputs = [
   "standards/**/*",
   ".github/workflows/**/*",
+  ".claude/settings.json",
   "docs/**/*",
   "scripts/**/*",
   "README.md",
