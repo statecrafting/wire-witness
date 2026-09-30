@@ -175,7 +175,10 @@ means a new construction name.
 
 The exchange record carries a rate-table identity for an estimate but no
 separate estimator or normalizer identity, and this spec does not invent one.
-The rate-table identity is the estimate's source identity. Each exchange
+The rate-table identity is the estimate's source identity: two estimates
+under the same rate-table identity are grouped together, so an estimator that
+computes differently from the same prices must publish a distinct rate-table
+identity. Each exchange
 carries one cost variant, so it contributes to exactly one of the reported,
 estimated, or unknown cost groups.
 
