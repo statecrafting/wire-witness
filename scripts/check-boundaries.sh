@@ -26,7 +26,7 @@ assert_set() {
   fi
 }
 
-printf '%s\n' 'action-gate-core' 'wire-witness-core' > "$scratch/core.expected"
+printf '%s\n' 'action-gate-core' 'wire-witness-core' 'zeroize' > "$scratch/core.expected"
 printf '%s\n' 'wire-witness-core' 'wire-witness-proxy' > "$scratch/proxy.expected"
 printf '%s\n' 'wire-witness-cli' 'wire-witness-core' 'wire-witness-proxy' > "$scratch/cli.expected"
 

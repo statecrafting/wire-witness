@@ -7,3 +7,6 @@
 
 pub mod custody;
 pub mod exchange;
+// region: instruction-observation-module-export
+pub mod instruction_observation;
+// endregion

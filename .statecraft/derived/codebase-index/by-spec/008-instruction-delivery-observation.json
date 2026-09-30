@@ -5,24 +5,190 @@
       "003-redaction-custody-and-retention",
       "006-standalone-host"
     ],
-    "implementingPaths": [],
+    "implementingPaths": [
+      {
+        "path": "Cargo.lock",
+        "source": "spec-edge"
+      },
+      {
+        "path": "Cargo.toml",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/instruction_observation.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/lib.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/standalone_host.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-core/Cargo.toml",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-core/src/instruction_observation.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-core/src/lib.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "scripts/check-boundaries.sh",
+        "source": "spec-edge"
+      }
+    ],
     "resolvedUnits": [
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/instruction_observation.rs",
+            "span": {
+              "endLine": 170,
+              "startLine": 5
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
-          "id": "wire_witness_cli::instruction_observation",
-          "kind": "module"
+          "anchor": "instruction-delivery-observation",
+          "file": "crates/wire-witness-cli/src/instruction_observation.rs",
+          "kind": "section"
         }
       },
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/instruction_observation.rs",
+            "span": {
+              "endLine": 1181,
+              "startLine": 5
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
-          "id": "wire_witness_core::instruction_observation",
-          "kind": "module"
+          "anchor": "instruction-delivery-observation",
+          "file": "crates/wire-witness-core/src/instruction_observation.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "Cargo.lock"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "kind": "file",
+          "path": "Cargo.lock"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/standalone_host.rs"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "kind": "file",
+          "path": "crates/wire-witness-cli/src/standalone_host.rs"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "scripts/check-boundaries.sh"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "kind": "file",
+          "path": "scripts/check-boundaries.sh"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "Cargo.toml",
+            "span": {
+              "endLine": 22,
+              "startLine": 17
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "workspace.dependencies",
+          "file": "Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/lib.rs",
+            "span": {
+              "endLine": 9,
+              "startLine": 7
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "instruction-observation-module-export",
+          "file": "crates/wire-witness-cli/src/lib.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/Cargo.toml",
+            "span": {
+              "endLine": 15,
+              "startLine": 12
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "dependencies",
+          "file": "crates/wire-witness-core/Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/lib.rs",
+            "span": {
+              "endLine": 12,
+              "startLine": 10
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "instruction-observation-module-export",
+          "file": "crates/wire-witness-core/src/lib.rs",
+          "kind": "section"
         }
       }
     ],
@@ -30,5 +196,5 @@
     "specStatus": "draft"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "2832fb3dd06457ac2c094661aacfb96db9637f8e71245cee416b5ffecae58151"
+  "shardHash": "868d8493057fdffa724fa3c6982dc7dd46c308c1888b1d70ef7b51d7aa02ff7b"
 }

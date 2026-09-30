@@ -4,5 +4,8 @@
 
 #![forbid(unsafe_code)]
 
+// region: instruction-observation-module-export
+pub mod instruction_observation;
+// endregion
 pub mod sidecar_protocol;
 pub mod standalone_host;

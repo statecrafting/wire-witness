@@ -15,8 +15,10 @@ use std::os::unix::fs::OpenOptionsExt;
 
 use wire_witness_core::custody::RetentionMode;
 use wire_witness_core::exchange::{JsonValue, ProviderFamily, canonical_json_bytes};
+use wire_witness_core::instruction_observation::ComparisonPlan;
 use wire_witness_proxy::{ApplicationProtocol, Authority, CaptureAuthority, ProxyConfig};
 
+use crate::instruction_observation::{InstructionProbeSource, ProbeLoadError, load_plans};
 use crate::sidecar_protocol::StartAuthority;
 
 pub const RESULT_SCHEMA: &str = "wire-witness.result/1";
@@ -127,6 +129,7 @@ pub fn parse_arguments(arguments: &[String]) -> Result<CliCommand, HostError> {
             output_directory: output_directory
                 .ok_or(HostError::Usage("output-directory-required"))?,
             trust: trust.ok_or(HostError::Usage("trust-mechanism-required"))?,
+            instruction_probes: Vec::new(),
             program,
             arguments: arguments[position + 2..].to_vec(),
         },
@@ -224,6 +227,7 @@ pub struct RunRequest {
     pub content_opt_in: bool,
     pub output_directory: PathBuf,
     pub trust: TrustMechanism,
+    pub instruction_probes: Vec<InstructionProbeSource>,
     pub program: String,
     pub arguments: Vec<String>,
 }
@@ -397,6 +401,7 @@ pub trait AttemptRuntime {
         &mut self,
         request: &RunRequest,
         binding: &UnsupervisedBinding,
+        instruction_plans: Vec<ComparisonPlan>,
     ) -> Result<PreparedAttempt, HostError>;
 
     fn close(self) -> Result<ClosedCapture, HostError>;
@@ -480,6 +485,7 @@ impl HostResult {
 pub enum HostError {
     Usage(&'static str),
     Precondition(&'static str),
+    InstructionProbe(ProbeLoadError),
     RandomnessUnavailable,
     Custody(String),
     Spawn(String),
@@ -490,7 +496,7 @@ impl HostError {
     pub const fn exit(&self) -> HostExit {
         match self {
             Self::Usage(_) => HostExit::Usage,
-            Self::Precondition(_) => HostExit::Refused,
+            Self::Precondition(_) | Self::InstructionProbe(_) => HostExit::Refused,
             Self::RandomnessUnavailable | Self::Custody(_) | Self::Spawn(_) => HostExit::Unexpected,
         }
     }
@@ -501,8 +507,10 @@ pub fn run<R: AttemptRuntime>(
     mut runtime: R,
 ) -> Result<HostResult, HostError> {
     request.validate()?;
+    let instruction_plans =
+        load_plans(&request.instruction_probes).map_err(HostError::InstructionProbe)?;
     let binding = UnsupervisedBinding::generate()?;
-    let prepared = runtime.prepare(request, &binding)?;
+    let prepared = runtime.prepare(request, &binding, instruction_plans)?;
     let child = ChildEnvironment::new(
         &prepared.proxy,
         &prepared.certificate_or_bundle,
@@ -627,6 +635,7 @@ mod tests {
             content_opt_in: false,
             output_directory,
             trust: TrustMechanism::NodeExtraCaCerts,
+            instruction_probes: Vec::new(),
             program: "/usr/bin/true".into(),
             arguments: Vec::new(),
         }
@@ -737,6 +746,7 @@ mod tests {
     struct FakeRuntime {
         directory: PathBuf,
         prepared: bool,
+        expected_plans: usize,
     }
 
     impl AttemptRuntime for FakeRuntime {
@@ -744,8 +754,10 @@ mod tests {
             &mut self,
             _request: &RunRequest,
             binding: &UnsupervisedBinding,
+            instruction_plans: Vec<ComparisonPlan>,
         ) -> Result<PreparedAttempt, HostError> {
             assert_eq!(binding.session_id.len(), 32);
+            assert_eq!(instruction_plans.len(), self.expected_plans);
             self.prepared = true;
             let certificate = self.directory.join("ca.pem");
             write_private_file_new(&certificate, b"certificate")?;
@@ -778,12 +790,52 @@ mod tests {
             FakeRuntime {
                 directory: directory.clone(),
                 prepared: false,
+                expected_plans: 0,
             },
         )
         .unwrap();
         assert_eq!(result.child_exit, ChildExit::Code(0));
         assert_eq!(result.capture, CaptureState::Complete);
         assert!(!directory.join("ca.pem").exists());
+        fs::remove_dir(directory).unwrap();
+    }
+
+    #[test]
+    fn instruction_plans_are_loaded_before_runtime_prepare() {
+        use wire_witness_core::exchange::sha256_hex;
+        use wire_witness_core::instruction_observation::{ComponentKind, ComponentSelector};
+
+        let directory = std::env::temp_dir().join(format!(
+            "wire-witness-instruction-host-test-{}",
+            std::process::id()
+        ));
+        fs::create_dir_all(&directory).unwrap();
+        let target_path = directory.join("instruction.txt");
+        fs::write(&target_path, b"exact instruction").unwrap();
+        let mut request = request(directory.clone());
+        request.instruction_probes.push(InstructionProbeSource {
+            probe_name: "primary".into(),
+            target_path: target_path.clone(),
+            target_digest: sha256_hex(b"exact instruction"),
+            selector: ComponentSelector {
+                provider: ProviderFamily::OpenAi,
+                operation: "POST /v1/responses".into(),
+                kind: ComponentKind::Instructions,
+                component_index: 0,
+                text_part_index: 0,
+            },
+        });
+        let result = run(
+            &request,
+            FakeRuntime {
+                directory: directory.clone(),
+                prepared: false,
+                expected_plans: 1,
+            },
+        )
+        .unwrap();
+        assert_eq!(result.child_exit, ChildExit::Code(0));
+        fs::remove_file(target_path).unwrap();
         fs::remove_dir(directory).unwrap();
     }
 
