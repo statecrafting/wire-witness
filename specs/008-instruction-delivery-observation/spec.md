@@ -211,6 +211,7 @@ mandatory redaction would have removed.
 | The same target appears twice | Present with count two and both decoded-component offsets. |
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |
 | The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
+| A supported selector's component index exceeds the components present | `unknown` with a component-absent reason; no other component is searched. |
 | A supported selector's text-part index exceeds the text parts present, for example because the rest are images | `unknown` with a component-absent reason; no other part is searched. |
 | One successful session is presented as a CLI guarantee | Refused by the authority boundary; the record describes one exchange only. |
 

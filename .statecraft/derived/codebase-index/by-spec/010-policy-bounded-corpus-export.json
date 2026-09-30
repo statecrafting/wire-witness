@@ -25,11 +25,37 @@
           "id": "wire_witness_core::corpus_export",
           "kind": "module"
         }
+      },
+      {
+        "locations": [
+          {
+            "file": "specs/008-instruction-delivery-observation/spec.md"
+          }
+        ],
+        "ownership": false,
+        "sourceField": "references",
+        "unit": {
+          "kind": "file",
+          "path": "specs/008-instruction-delivery-observation/spec.md"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "specs/009-usage-and-cost-summaries/spec.md"
+          }
+        ],
+        "ownership": false,
+        "sourceField": "references",
+        "unit": {
+          "kind": "file",
+          "path": "specs/009-usage-and-cost-summaries/spec.md"
+        }
       }
     ],
     "specId": "010-policy-bounded-corpus-export",
     "specStatus": "draft"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "70434d20f2d24fa38632ac826988ab15102421fb5e9a8d3af67dba1a2f47e3d3"
+  "shardHash": "d9a6c9fd1a2a1434df0639373f3f8653e5e4f78d454907d4b36e70166c72296b"
 }

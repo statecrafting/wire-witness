@@ -17,6 +17,10 @@ depends_on:
   - "003-redaction-custody-and-retention"
   - "005-binding-and-sidecar-protocol"
   - "006-standalone-host"
+references:
+  # Section 3.5 admits these specs' schema versions by exact name without depending on them.
+  - { unit: { kind: file, path: "specs/008-instruction-delivery-observation/spec.md" }, role: context }
+  - { unit: { kind: file, path: "specs/009-usage-and-cost-summaries/spec.md" }, role: context }
 obligations:
   - id: "I-1"
     kind: invariant
@@ -197,12 +201,12 @@ a canonical-keysort-json object with exactly these fields:
 | `asserted_principal` | The authorizing principal as the receipt asserts it, not authenticated here. |
 | `verifier` | The identity string of whatever verified the external decision, recorded and not authenticated here. |
 | `verification_outcome` | `verified`, `unverified`, or `failed`, as the verifier reports it. |
-| `scope` | An object with exactly three arrays: `bindings`, each an exact attempt binding with its capture digest; `source_kinds`, drawn from `exchange`, `instruction-observation`, and `measurement-summary`; and `materialization_modes`, drawn from the three modes in section 3.4. |
+| `scope` | An object with exactly three non-empty arrays: `bindings`, each an exact attempt binding with its capture digest; `source_kinds`, drawn from `exchange`, `instruction-observation`, and `measurement-summary`; and `materialization_modes`, drawn from the three modes in section 3.4. |
 
 The rule is closed at every level: an unknown or missing field in the envelope
 or inside `scope`, a value in `scope.source_kinds` or
 `scope.materialization_modes` outside the values listed above, a duplicate
-array entry, a second schema version, a non-`allow`
+array entry, an empty array, a `schema` value other than the literal above, a non-`allow`
 outcome, a `verification_outcome` other than `verified`, an expired receipt, or a request outside `scope` refuses export. The
 receipt's own digest under `wire-witness.export-policy-receipt/1+keysort-json+sha256`
 is recorded in the manifest.
