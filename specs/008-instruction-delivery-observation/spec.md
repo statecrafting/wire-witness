@@ -179,6 +179,11 @@ or operation is not listed below, produces `unknown` with a closed reason.
 | OpenAI `POST /v1/responses` | `input` | 0 for a string `input`; the position in the `input` array otherwise | 0 for string content; the position among text content parts for an array |
 | OpenAI `POST /v1/chat/completions` | `message` | position in `messages` | 0 for string `content`; the position among `text` parts for an array |
 
+Every index is zero-based. A text-part index is an ordinal among the text
+parts only: in `[image, text, text]` the second text block is text-part 1, not
+array position 2. A component index is the position in the named array,
+counting every element whatever its content.
+
 A selected component is the JSON string at that location, decoded from its
 JSON escape form to UTF-8 bytes. Non-text blocks, tool definitions, tool
 results addressed as other kinds, image or file parts, and any key outside the
