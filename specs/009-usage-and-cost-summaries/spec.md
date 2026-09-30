@@ -108,8 +108,8 @@ Usage values may be added only when all of these match exactly:
 - source attribution.
 
 Decimal addition uses the fixed construction in section 3.5, which counts
-non-finite, scientific-notation, or out-of-range input as an unknown rather
-than a value. Values with different meanings or units
+non-finite, malformed, or out-of-range input as an unknown rather than a
+value. Values with different meanings or units
 remain separate groups even if their display names look similar. Missing usage
 does not contribute zero; the group records observed, absent, and unknown
 exchange counts separately.
@@ -157,11 +157,13 @@ carried beside the bytes it identifies.
 
 ### 3.5 Arithmetic construction and source identities
 
-Numeric groups use `decimal-exact-v1`: each value is the provider's decimal
-text, parsed without floating point, with at most 38 significant digits and a
-scale of at most 18; sums are exact under the same bounds. A value or sum
-outside those bounds, or text that is not a plain optional-sign decimal, is
-excluded from the total and counted as an unknown with a finding. The bounds
+Numeric groups use `decimal-exact-v1`: each value is the provider's number
+text, parsed without floating point as an optional sign, decimal digits, an
+optional fraction, and an optional decimal exponent (`1.5e6` is exactly
+1500000). After the exponent is applied the value has at most 38 significant
+digits and a scale of at most 18; sums are exact under the same bounds. A value
+or sum outside those bounds, `NaN`, an infinity, or text that is not a JSON
+number is excluded from the total and counted as an unknown with a finding. The bounds
 are fixed by this construction name rather than configured, so changing them
 means a new construction name.
 

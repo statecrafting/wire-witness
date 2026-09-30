@@ -107,7 +107,11 @@ The target is never inferred from the working directory, repository, an
 `AGENTS.md` filename, a configured import path, similar language, or a digest
 found after capture. The plan is immutable for the attempt. Duplicate probe
 names, a digest mismatch, invalid UTF-8, an empty target, or an unsupported
-selector refuses before child spawn.
+selector refuses before child spawn. A selector is unsupported when its
+provider family, operation, and component kind are not a row of the table in
+section 3.5; that check needs no request body. Whether its indexes resolve to a
+text part is known only after decoding, so a supported selector that resolves
+to an image, file, or other non-text part produces `unknown`, never a refusal.
 
 Comparison operates on the decoded component produced by the request-component
 decoder in section 3.5. It does not search raw JSON serialization, HTTP headers, response
@@ -200,7 +204,8 @@ mandatory redaction would have removed.
 | A similar paraphrase appears | Absent under exact-byte matching; semantic similarity is not inferred. |
 | The same target appears twice | Present with count two and both decoded-component offsets. |
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest is recorded. |
-| The selector names a tool definition or image part | Refused before child spawn as an unsupported selector. |
+| The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
+| A supported selector's indexes resolve to an image part | `unknown` with a non-text-component reason; no other part is searched. |
 | One successful session is presented as a CLI guarantee | Refused by the authority boundary; the record describes one exchange only. |
 
 ## 5. Out of scope

@@ -63,15 +63,15 @@
       }
     ],
     "sectionDigests": {
-      "010-policy-bounded-corpus-export": "c05eb758132d3fee230bad589d709ab2cb356bef9230b3632ae4e250e2510b1f",
+      "010-policy-bounded-corpus-export": "42079c81b4376cc2f3e12f2aa8926aec3501f65ddbb8a8b9126f086938d554e7",
       "1-purpose": "6328af7a89e589c740cbc68f8da027933c0d4494778804d758cdaabf2e2a341c",
       "2-territory": "edbb177a353d7c8aca7e7c2b95871e229312fa5df7005f8340d003243f8bec91",
       "3-1-export-authority": "749796b8c9efaa8989b47537839b4e141269c5f073857222c20a994e497a6854",
       "3-2-source-eligibility": "09b1f6f47829483a516b95b9c78e72cc12e5b38db33475077d20739267b10003",
       "3-3-export-manifest": "ef77ce1dc8567125c414830045f988ad8b1d2d49a0d71f30290ac98804745ec5",
       "3-4-materialization-and-bounds": "f36c760fbcda3ca7f3e22b21f12f42ceef66d41e77452015143e4d7c1afbbd6f",
-      "3-5-policy-receipt-envelope": "4447d7aef1e3e65757a1c583dabd03d08bfab0dbf74adbf4540eb63b5a06ff5d",
-      "3-behavior": "67cb188bce1e80df7cf01d215fae52b0aeae493af4dc02683d9e33ed1a5f0630",
+      "3-5-policy-receipt-envelope": "d6cfa2707aa718e6adcc609485c722d351b68b086d9e4bbb17bc9b05581fd062",
+      "3-behavior": "54650edf640a90a6f47649eda3cd2add9a56e8eabf8b8fde9aa0a1e2f1a7c162",
       "4-observable-negative-cases": "50a6166644f9216f8dbe6d2e5dfdce2b2461b65ddb612b504ca69ea78a99cd17",
       "5-out-of-scope": "7f67e12e24d9cc4a4da731b79aa1c5f45a93e7e1f65c5696806c015f20eadfff",
       "verification": "76833ea57785c0f45cf306725b2320f641b4cd76d80870ada6e52184d6522212"
@@ -95,6 +95,6 @@
     "summary": "Defines an immutable, bounded export manifest for policy-permitted wire testimony, preserving binding, retention, completeness, redaction, and artifact identity without granting permission to retain, disclose, replay, train on, admit, or evaluate the captured material.\n",
     "title": "Policy-bounded corpus export"
   },
-  "shardHash": "3d1b5d6fdc38e194e9add8718dc4f27bc591a8f0aa9723c4c71299426bcf4362",
+  "shardHash": "91c535f78d4b209ceaefe309b97379fdf706943ab3cd4a6a87996b8444d8caa4",
   "specVersion": "1.9.0"
 }
