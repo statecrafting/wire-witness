@@ -196,7 +196,7 @@ mandatory redaction would have removed.
 |---|---|
 | The target appears in a tool result but not the selected system component | `observed-absent` for a complete system component; unrelated components are not searched. |
 | Capture stops before the request completes | `unknown` with the capture-gap reason, never absent. |
-| Redaction changes bytes inside the selected component | `unknown`; the witness does not search a lossy representation and claim absence. |
+| Redaction changes bytes inside the selected component | `unknown` with `redaction-intersects-component`; the witness does not search a lossy representation and claim absence. |
 | A similar paraphrase appears | Absent under exact-byte matching; semantic similarity is not inferred. |
 | The same target appears twice | Present with count two and both decoded-component offsets. |
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest is recorded. |
