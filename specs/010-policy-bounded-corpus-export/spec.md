@@ -199,7 +199,10 @@ a canonical-keysort-json object with exactly these fields:
 | `verification_outcome` | `verified`, `unverified`, or `failed`, as the verifier reports it. |
 | `scope` | An object with exactly three arrays: `bindings`, each an exact attempt binding with its capture digest; `source_kinds`, drawn from `exchange`, `instruction-observation`, and `measurement-summary`; and `materialization_modes`, drawn from the three modes in section 3.4. |
 
-An unknown field, a missing field, a second schema version, a non-`allow`
+The rule is closed at every level: an unknown or missing field in the envelope
+or inside `scope`, a value in `scope.source_kinds` or
+`scope.materialization_modes` outside the values listed above, a duplicate
+array entry, a second schema version, a non-`allow`
 outcome, a `verification_outcome` other than `verified`, an expired receipt, or a request outside `scope` refuses export. The
 receipt's own digest under `wire-witness.export-policy-receipt/1+keysort-json+sha256`
 is recorded in the manifest.
@@ -207,9 +210,10 @@ is recorded in the manifest.
 An `instruction-observation` entry is accepted only when the producing build
 implements `wire-witness.instruction-observation/1`, and a `measurement-summary`
 entry only when it implements `wire-witness.measurement-summary/1`. Those are
-the only versions this spec admits; a later version needs a spec that names it. Otherwise a selected entry of that
-kind is an explicit `unsupported-source-version` gap, and refuses export when
-incomplete output is not permitted.
+the only versions this spec admits; a later version needs a spec that names it.
+A selected entry of either kind that this rule does not accept is an explicit
+`unsupported-source-version` gap, and refuses export when incomplete output is
+not permitted.
 
 ## 4. Observable negative cases
 
