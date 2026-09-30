@@ -50,15 +50,15 @@
       }
     ],
     "sectionDigests": {
-      "009-usage-and-cost-summaries": "e0205c2bc8f6937fe4ee051c35426c69f0b317e9d6e6c1de9d6c1dc6f0eebe69",
+      "009-usage-and-cost-summaries": "839b554566bbd2caa3f04797df649745bd79ceb7aa336d1ddf7c6d012116518d",
       "1-purpose": "7bfa6d2967825d965fc18cece083fe06fd054bcc8519273bcb033c60225ef7b7",
       "2-territory": "88ef20de549a9623f1c0fb5c20949ab6974a8657b600649635b75aacb152119e",
       "3-1-summary-authority": "986ec465a03763e5f25174761f19360feda26235319d113ab446a03e24154307",
       "3-2-input-set-and-order": "189fe0a93650e8fa25e4b705fd212de781f933c735edee38d9655cff2f51702e",
-      "3-3-aggregation-rules": "8668d9de5a9fd294e7f4542dfc940d0bdc37f98152a410cbff312d0eefa80aba",
+      "3-3-aggregation-rules": "952689b00fea487757ab4c290e91eb34c12eb8f7d8082cb27ebb46ab02b57a0f",
       "3-4-summary-schema": "d446e7376e37611e4aba2d048186d5bba18ea117a08001b5cf7475352b1cf85c",
-      "3-5-arithmetic-construction-and-source-identities": "2050aa044360ca688f51b501d869cde76cff45cdba326d3f6cd0a549df392563",
-      "3-behavior": "f516aa1db9d5b1e9cbdc56744f9851cdc05b8fd924822ea5826fdec17363dcfd",
+      "3-5-arithmetic-construction-and-source-identities": "9e3b56245421c1c053c83944d9e61a8e069e15c92a65651d12b2c0ac8869ffcb",
+      "3-behavior": "ab0ed09e6ab3cc7f2fe4aa9ea3563ebe9bf990163e266a15567e5661e40144ee",
       "4-observable-negative-cases": "7b807cacb47e61ba868a97a1bb5dd7336ceee7d725f0dcbf43b51aca0b1d711f",
       "5-out-of-scope": "33c572820c2792848fc8ac7b4bd4f3f6406e931057a9c746a93e6e48f63a07ef",
       "verification": "2179b6484af7ba39f20859b171da706bc1c9d290253a2c528ed19179dafdd93b"
@@ -82,6 +82,6 @@
     "summary": "Defines a deterministic binding-level summary of observed request counts, provider-attributed usage, reported cost, labeled estimates, identity variation, completeness, and gaps without converting testimony into a charge, quota decision, budget, or provider qualification.\n",
     "title": "Usage and cost summaries"
   },
-  "shardHash": "ce1a29dc573e38b3db2c9cf9523bb337a0ab7f078539520b5c5cd34b56cdb762",
+  "shardHash": "d3b1c67d83121bef21a787207375bb876964bdc5bf2b5ccb2d0528bad0e95a3c",
   "specVersion": "1.9.0"
 }
