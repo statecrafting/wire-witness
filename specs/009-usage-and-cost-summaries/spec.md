@@ -107,8 +107,9 @@ Usage values may be added only when all of these match exactly:
 - numeric representation and scale rules; and
 - source attribution.
 
-Decimal addition uses the fixed construction in section 3.5 and rejects
-non-finite, exponent, or out-of-range input. Values with different meanings or units
+Decimal addition uses the fixed construction in section 3.5, which counts
+non-finite, scientific-notation, or out-of-range input as an unknown rather
+than a value. Values with different meanings or units
 remain separate groups even if their display names look similar. Missing usage
 does not contribute zero; the group records observed, absent, and unknown
 exchange counts separately.

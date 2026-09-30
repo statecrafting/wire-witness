@@ -191,7 +191,7 @@ a canonical-keysort-json object with exactly these fields:
 | `decision_schema` | The external policy system's own decision schema name, recorded and never interpreted. |
 | `decision_id` | The external decision's stable id. |
 | `decision_digest` | `sha256:` hex over the external decision bytes, which the witness does not read. |
-| `decided_at` and `expires_at` | RFC 3339 UTC times; `expires_at` is required. |
+| `decided_at` and `expires_at` | RFC 3339 UTC times; both are required. |
 | `outcome` | `allow` or `deny`. |
 | `asserted_principal` | The authorizing principal as the receipt asserts it, not authenticated here. |
 | `verifier` | The identity that verified the external decision, and its `verification_outcome`. |
