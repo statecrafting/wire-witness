@@ -195,16 +195,19 @@ a canonical-keysort-json object with exactly these fields:
 | `expires_at` | RFC 3339 UTC time after which the receipt no longer permits export. |
 | `outcome` | `allow` or `deny`. |
 | `asserted_principal` | The authorizing principal as the receipt asserts it, not authenticated here. |
-| `verifier` | The identity that verified the external decision, and its `verification_outcome`. |
-| `scope` | The exact permitted binding and capture digests, source kinds, and materialization modes. |
+| `verifier` | The identity string of whatever verified the external decision, recorded and not authenticated here. |
+| `verification_outcome` | `verified`, `unverified`, or `failed`, as the verifier reports it. |
+| `scope` | An object with exactly three arrays: `bindings`, each an exact attempt binding with its capture digest; `source_kinds`, drawn from `exchange`, `instruction-observation`, and `measurement-summary`; and `materialization_modes`, drawn from the three modes in section 3.4. |
 
 An unknown field, a missing field, a second schema version, a non-`allow`
-outcome, an expired receipt, or a request outside `scope` refuses export. The
+outcome, a `verification_outcome` other than `verified`, an expired receipt, or a request outside `scope` refuses export. The
 receipt's own digest under `wire-witness.export-policy-receipt/1+keysort-json+sha256`
 is recorded in the manifest.
 
-An `instruction-observation` or `measurement-summary` entry is accepted only
-when the producing build implements that exact schema version. Otherwise a selected entry of that
+An `instruction-observation` entry is accepted only when the producing build
+implements `wire-witness.instruction-observation/1`, and a `measurement-summary`
+entry only when it implements `wire-witness.measurement-summary/1`. Those are
+the only versions this spec admits; a later version needs a spec that names it. Otherwise a selected entry of that
 kind is an explicit `unsupported-source-version` gap, and refuses export when
 incomplete output is not permitted.
 

@@ -161,9 +161,13 @@ Numeric groups use `decimal-exact-v1`: each value is the provider's number
 text, parsed without floating point as an optional sign, decimal digits, an
 optional fraction, and an optional decimal exponent (`1.5e6` is exactly
 1500000). After the exponent is applied the value has at most 38 significant
-digits and a scale of at most 18; sums are exact under the same bounds. A value
-or sum outside those bounds, `NaN`, an infinity, or text that is not a JSON
-number is excluded from the total and counted as an unknown with a finding. The bounds
+digits and a scale of at most 18. Each group is summed in its deterministic
+exchange-sequence order, and the bounds are checked on every addend and on the
+running sum after each addition. A value outside those bounds, `NaN`, an
+infinity, or text that is not a JSON number is excluded from the total and
+counted as an unknown with a finding. A running sum that leaves the bounds
+makes that group's total `unknown` with an overflow finding, and no partial
+total is reported. The bounds
 are fixed by this construction name rather than configured, so changing them
 means a new construction name.
 

@@ -62,15 +62,15 @@
       }
     ],
     "sectionDigests": {
-      "008-instruction-delivery-observation": "f28954de0392434d31792ae5fdf55d64c38022f54f4ceae5b5cb4ca6928478af",
+      "008-instruction-delivery-observation": "56402435d2fec36caf3ce600b52f2f58448be1cebee0b493dfab4f46220efdf2",
       "1-purpose": "31733963bdfb54f421b23f1a1a575e189aa7951802ad7936f340692a48aa9312",
       "2-territory": "7656546759def05a6551e5fe8ee050036d5d0b330f298611a50de1a71cb913f3",
       "3-1-observation-not-qualification": "9dcbc1199e044bf436115a6d51f88439e5b1628ea967f329be2f6db21e3be503",
       "3-2-predeclared-comparison-plan": "c410c54780b351f4adf6f22fe863465c6c0522ba9a5e9ce8d2c087cc5d1580c1",
       "3-3-three-state-result": "e419d9fe79a9f2f5b84a40ca6f2fe5633293d0cac81630b89e4bc6425674c195",
       "3-4-durable-result": "b4259427f174940cddd5bd45f6f02e53087d2ca3f7818e0714be35b4fca1e203",
-      "3-5-request-component-decoding": "9a3c562dfe751e6a656244cdf9d1c0f6ea080e6806c9237cffa93fdd520c1de0",
-      "3-behavior": "92f7e3f6f16d72b084e07421304110b4fabe6f7832c1a20bbfe7ad066805ff10",
+      "3-5-request-component-decoding": "577ac83c67bc823b971bc1a1328e997bd5ff6ab2afcdf888d356ec2d6efc0aed",
+      "3-behavior": "d952dd5bb34b589a9c102132e4719143d55b0b217bb4a575aaa6635f130cc1dc",
       "4-observable-negative-cases": "20c504ec9e65c7102d4e137cd902c769e6c817c49788b4164bfab7db5a5c2ce4",
       "5-out-of-scope": "a42d7dd442b052aa211b6512633c3592d5c3fbaa6ddf71dd653efc40b660e44c",
       "verification": "d47653a202dce680536c7a4881e1314dfcdc9f48c207a9c9235ad1e40688259c"
@@ -94,6 +94,6 @@
     "summary": "Defines a content-gated, offline comparison that reports whether exact operator-supplied instruction bytes were observed in a complete outbound provider request, without turning one observation into adapter qualification, policy, or authority.\n",
     "title": "Instruction delivery observation"
   },
-  "shardHash": "9abe9eae5b26e235ed4edc6cb2263106bd1eed773760e6fd24a4d38148050750",
+  "shardHash": "e31f6424a3ca916e3b7833f526d9c7a88791937303b50393685ce55fec8407d2",
   "specVersion": "1.9.0"
 }
