@@ -178,7 +178,11 @@ separate estimator or normalizer identity, and this spec does not invent one.
 The rate-table identity is the estimate's source identity: two estimates
 under the same rate-table identity are grouped together, so an estimator that
 computes differently from the same prices must publish a distinct rate-table
-identity. Each exchange
+identity. The summary cannot detect an estimator that breaks this rule, because
+the exchange record gives it nothing to compare. It therefore labels every
+estimated-cost total as sound only to the extent its rate-table identity is
+unique, carries that identity beside the total, and never presents an
+estimated total as verified. Each exchange
 carries one cost variant, so it contributes to exactly one of the reported,
 estimated, or unknown cost groups.
 
