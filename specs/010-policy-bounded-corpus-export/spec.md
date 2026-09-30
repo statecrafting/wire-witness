@@ -194,7 +194,7 @@ a canonical-keysort-json object with exactly these fields:
 | `schema` | The literal `wire-witness.export-policy-receipt/1`. |
 | `decision_schema` | The external policy system's own decision schema name, recorded and never interpreted. |
 | `decision_id` | The external decision's stable id. |
-| `decision_digest` | `sha256:` hex over the external decision bytes, which the witness does not read. |
+| `decision_digest` | `sha256:` hex over the external decision bytes, recorded as supplied and not verified here, because the witness does not read those bytes. |
 | `decided_at` | RFC 3339 UTC time the external decision was made. |
 | `expires_at` | RFC 3339 UTC time after which the receipt no longer permits export. |
 | `outcome` | `allow` or `deny`. |
