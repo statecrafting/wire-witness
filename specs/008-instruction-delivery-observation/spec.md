@@ -152,7 +152,8 @@ The durable `wire-witness.instruction-observation/1` record contains:
 2. probe name, target digest, target byte length, selector, and matching mode;
 3. selected-component decoded-byte digest and length when the component is
    complete, uniquely resolved, and untouched by redaction (section 3.5);
-4. result status, match count, and decoded-component byte offsets when known;
+4. result status, and the match count and decoded-component byte offsets when
+   known and the component is untouched by redaction (section 3.5);
 5. request and selected-component completeness;
 6. the request-component decoder and witness producer identities; and
 7. ordered findings and unknown reasons.
