@@ -62,16 +62,16 @@
       }
     ],
     "sectionDigests": {
-      "008-instruction-delivery-observation": "20a1cad50dcb4ca5b63dd9385f1a189e4f6bf8c5a636c481be7b40f1b99215d7",
+      "008-instruction-delivery-observation": "6342448f0b96919c732e69dbfb7fae514df21be1f039ca88b3e38b5910556562",
       "1-purpose": "31733963bdfb54f421b23f1a1a575e189aa7951802ad7936f340692a48aa9312",
       "2-territory": "7656546759def05a6551e5fe8ee050036d5d0b330f298611a50de1a71cb913f3",
       "3-1-observation-not-qualification": "9dcbc1199e044bf436115a6d51f88439e5b1628ea967f329be2f6db21e3be503",
-      "3-2-predeclared-comparison-plan": "f0cbda4f5dfa56bf5401ff8ee8136038660a61bddd426e5d1c94f3eef1a4c832",
+      "3-2-predeclared-comparison-plan": "1fae7ba8a6c242ff04b5216946f266933993f46132b285df33b79e0c0f3680c3",
       "3-3-three-state-result": "e419d9fe79a9f2f5b84a40ca6f2fe5633293d0cac81630b89e4bc6425674c195",
       "3-4-durable-result": "cea662ebb5e04228fc4348e52f88178ed5d9ff7a3999859c312c80871d315c19",
       "3-5-request-component-decoding": "b94981c3e21d10c05ca7f64749ca8f077c235be2a2bac9b27795cd3ef62eb6b7",
-      "3-behavior": "8664d35c0d5cfdecf875c9b3e5a18c5415621376d5f11b1f4dfcdd530daa2164",
-      "4-observable-negative-cases": "b73c4e03d66e98cffc0470cb68c196512048967f5136b6d299bd383974bdc911",
+      "3-behavior": "677802372a358887e9756d7e457e77d4f0e2251147322025b5bbcf680a5e42f7",
+      "4-observable-negative-cases": "68b85ca8f0ad257e75cd55e8b906d6c938c8030ab86386a41ecbd8284fdb837e",
       "5-out-of-scope": "a42d7dd442b052aa211b6512633c3592d5c3fbaa6ddf71dd653efc40b660e44c",
       "verification": "d47653a202dce680536c7a4881e1314dfcdc9f48c207a9c9235ad1e40688259c"
     },
@@ -94,6 +94,6 @@
     "summary": "Defines a content-gated, offline comparison that reports whether exact operator-supplied instruction bytes were observed in a complete outbound provider request, without turning one observation into adapter qualification, policy, or authority.\n",
     "title": "Instruction delivery observation"
   },
-  "shardHash": "ab2dd21b3c85d746009f600d0f85a156d8314eed90b46c3285cf42791eef9c6d",
+  "shardHash": "effccd31254bec19cbd170a959d4a32e1e296c48d2229e52c19edf217ba9a90f",
   "specVersion": "1.9.0"
 }
