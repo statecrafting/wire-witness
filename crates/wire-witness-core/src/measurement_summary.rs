@@ -432,6 +432,21 @@ pub fn summarize(request: SummaryRequest<'_>) -> Result<MeasurementSummary, Summ
 
     source_findings.extend(construction_findings);
 
+    let mut request_counts: Vec<_> = request_counts
+        .into_iter()
+        .map(
+            |((provider, operation, request_path, protocol, authority), count)| RequestCountGroup {
+                provider,
+                operation,
+                request_path,
+                protocol,
+                authority,
+                count,
+            },
+        )
+        .collect();
+    request_counts.sort_by_key(|group| canonical_json_bytes(&request_count_key_json(group)));
+
     Ok(MeasurementSummary {
         binding: request.binding.clone(),
         terminal: request.terminal,
@@ -440,21 +455,7 @@ pub fn summarize(request: SummaryRequest<'_>) -> Result<MeasurementSummary, Summ
         exchange_count,
         ordered_exchange_digests,
         input_manifest_digest,
-        request_counts: request_counts
-            .into_iter()
-            .map(
-                |((provider, operation, request_path, protocol, authority), count)| {
-                    RequestCountGroup {
-                        provider,
-                        operation,
-                        request_path,
-                        protocol,
-                        authority,
-                        count,
-                    }
-                },
-            )
-            .collect(),
+        request_counts,
         usage: finish_numeric(usage, exchange_count),
         reported_cost: finish_numeric(reported_cost, exchange_count),
         estimated_cost: finish_numeric(estimated_cost, exchange_count),
@@ -517,7 +518,7 @@ fn finish_numeric(
     groups: BTreeMap<NumericKey, NumericAccumulator>,
     exchange_count: u64,
 ) -> Vec<NumericGroup> {
-    groups
+    let mut finished: Vec<_> = groups
         .into_iter()
         .map(|(key, value)| NumericGroup {
             provider: key.provider,
@@ -536,7 +537,9 @@ fn finish_numeric(
             absent_exchange_count: exchange_count - value.seen_sequences.len() as u64,
             unknown_value_count: value.unknown_value_count,
         })
-        .collect()
+        .collect();
+    finished.sort_by_key(|group| canonical_json_bytes(&numeric_key_json(group)));
+    finished
 }
 
 fn usage_key(provider: &str, entry: &UsageEntry) -> NumericKey {
@@ -588,7 +591,7 @@ fn add_served_identity(
 }
 
 fn finish_identities(groups: IdentityGroups) -> Vec<IdentityCount> {
-    groups
+    let mut finished: Vec<_> = groups
         .into_iter()
         .map(
             |((identity, disclosure, posture, reason), count)| IdentityCount {
@@ -599,7 +602,9 @@ fn finish_identities(groups: IdentityGroups) -> Vec<IdentityCount> {
                 count,
             },
         )
-        .collect()
+        .collect();
+    finished.sort_by_key(|identity| canonical_json_bytes(&identity_key_json(identity)));
+    finished
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -827,6 +832,16 @@ fn request_count_json(group: &RequestCountGroup) -> JsonValue {
     ])
 }
 
+fn request_count_key_json(group: &RequestCountGroup) -> JsonValue {
+    object([
+        ("authority", string(&group.authority)),
+        ("operation", string(&group.operation)),
+        ("protocol", string(&group.protocol)),
+        ("provider", string(&group.provider)),
+        ("request_path", string(&group.request_path)),
+    ])
+}
+
 fn numeric_json(group: &NumericGroup) -> JsonValue {
     object([
         ("absent_exchange_count", number(group.absent_exchange_count)),
@@ -865,9 +880,58 @@ fn numeric_json(group: &NumericGroup) -> JsonValue {
     ])
 }
 
+fn numeric_key_json(group: &NumericGroup) -> JsonValue {
+    object([
+        ("attribution", string(&group.attribution)),
+        (
+            "field_name",
+            group.field_name.as_deref().map_or(JsonValue::Null, string),
+        ),
+        (
+            "field_path",
+            group.field_path.as_deref().map_or(JsonValue::Null, string),
+        ),
+        ("numeric_construction", string(ARITHMETIC_CONSTRUCTION)),
+        ("provider", string(&group.provider)),
+        (
+            "rate_table_identity",
+            group
+                .rate_table_identity
+                .as_deref()
+                .map_or(JsonValue::Null, string),
+        ),
+        ("unit_or_currency", string(&group.unit_or_currency)),
+        (
+            "usage_inputs",
+            JsonValue::Array(group.usage_inputs.iter().map(string).collect()),
+        ),
+    ])
+}
+
 fn identity_json(identity: &IdentityCount) -> JsonValue {
     object([
         ("count", number(identity.count)),
+        (
+            "disclosure",
+            identity
+                .disclosure
+                .as_deref()
+                .map_or(JsonValue::Null, string),
+        ),
+        (
+            "identity",
+            identity.identity.as_deref().map_or(JsonValue::Null, string),
+        ),
+        ("posture", string(&identity.posture)),
+        (
+            "reason",
+            identity.reason.as_deref().map_or(JsonValue::Null, string),
+        ),
+    ])
+}
+
+fn identity_key_json(identity: &IdentityCount) -> JsonValue {
+    object([
         (
             "disclosure",
             identity

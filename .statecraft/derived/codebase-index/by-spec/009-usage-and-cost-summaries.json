@@ -20,7 +20,7 @@
           {
             "file": "crates/wire-witness-core/src/measurement_summary.rs",
             "span": {
-              "endLine": 1105,
+              "endLine": 1169,
               "startLine": 5
             }
           }
@@ -56,5 +56,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "db53dea854b24b388819f635faf5ce031a0f0aa47386187b4332c8baa3f870c8"
+  "shardHash": "ad2d90d56a9056fba9e59ac81eaa1b06728209c7fc89bb3354214e66d3baf1d4"
 }
