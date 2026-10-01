@@ -48,7 +48,7 @@
           {
             "file": "crates/wire-witness-core/src/corpus_export.rs",
             "span": {
-              "endLine": 1572,
+              "endLine": 1626,
               "startLine": 5
             }
           }
@@ -128,5 +128,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "b86c6da60bb1ccdfc7cc962f0e74b6f62544b4a108f299c11e4f0dae648e9ea3"
+  "shardHash": "3fe097a504e26211d903c252c9d26a7e37d4833dad6bb7e06dd4e743dadc0ed6"
 }

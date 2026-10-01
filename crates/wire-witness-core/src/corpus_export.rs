@@ -362,6 +362,7 @@ pub fn construct_export(request: ExportRequest<'_>) -> Result<CorpusExport, Expo
         verify_source_identity(&source)?;
         if !source_keys.insert((
             binding_bytes(source.binding),
+            source.capture_digest.to_owned(),
             source.kind,
             source.sequence,
             source.claimed_digest.clone(),
@@ -381,7 +382,12 @@ pub fn construct_export(request: ExportRequest<'_>) -> Result<CorpusExport, Expo
             let Some(sequence) = source.sequence else {
                 return Err(ExportError::InvalidRequest);
             };
-            let key = (binding_bytes(source.binding), source.kind, sequence);
+            let key = (
+                binding_bytes(source.binding),
+                source.capture_digest.to_owned(),
+                source.kind,
+                sequence,
+            );
             if !sequence_keys.insert(key) {
                 return Err(ExportError::ConflictingSequence);
             }
@@ -439,6 +445,7 @@ pub fn construct_export(request: ExportRequest<'_>) -> Result<CorpusExport, Expo
             || !valid_identity(artifact.media_type)
             || !artifact_keys.insert((
                 binding_bytes(artifact.binding),
+                artifact.capture_digest.to_owned(),
                 artifact.artifact_id.to_owned(),
             ))
         {
@@ -1276,7 +1283,12 @@ mod tests {
         ]))
     }
 
-    fn receipt(binding: &Binding, capture: &str, outcome: &str, verification: &str) -> Vec<u8> {
+    fn receipt_for_captures(
+        binding: &Binding,
+        captures: &[&str],
+        outcome: &str,
+        verification: &str,
+    ) -> Vec<u8> {
         canonical_json_bytes(&object([
             ("asserted_principal", string("owner:test")),
             ("decided_at", string("2026-10-01T11:00:00Z")),
@@ -1294,10 +1306,17 @@ mod tests {
                 object([
                     (
                         "bindings",
-                        JsonValue::Array(vec![requested_binding_json(&RequestedBinding {
-                            binding: binding.clone(),
-                            capture_digest: capture.into(),
-                        })]),
+                        JsonValue::Array(
+                            captures
+                                .iter()
+                                .map(|capture| {
+                                    requested_binding_json(&RequestedBinding {
+                                        binding: binding.clone(),
+                                        capture_digest: (*capture).into(),
+                                    })
+                                })
+                                .collect(),
+                        ),
                     ),
                     (
                         "materialization_modes",
@@ -1320,6 +1339,10 @@ mod tests {
             ("verification_outcome", string(verification)),
             ("verifier", string("policy-verifier:test")),
         ]))
+    }
+
+    fn receipt(binding: &Binding, capture: &str, outcome: &str, verification: &str) -> Vec<u8> {
+        receipt_for_captures(binding, &[capture], outcome, verification)
     }
 
     fn request<'a>(
@@ -1555,6 +1578,37 @@ mod tests {
             construct_export(request).unwrap_err(),
             ExportError::ConflictingSequence
         );
+    }
+
+    #[test]
+    fn capture_identity_scopes_source_sequences_and_artifact_ids() {
+        let binding = binding();
+        let capture_one = "b".repeat(64);
+        let capture_two = "c".repeat(64);
+        let policy =
+            receipt_for_captures(&binding, &[&capture_one, &capture_two], "allow", "verified");
+        let source = source_bytes(&binding, crate::exchange::SCHEMA);
+        let mut request = request(&binding, &capture_one, &policy, &source, b"artifact");
+        request.bindings.push(RequestedBinding {
+            binding: binding.clone(),
+            capture_digest: capture_two.clone(),
+        });
+
+        let mut second_source = request.sources[0].clone();
+        second_source.capture_digest = &capture_two;
+        request.sources.push(second_source);
+
+        let mut second_artifact = request.artifacts[0].clone();
+        second_artifact.capture_digest = &capture_two;
+        request.artifacts.push(second_artifact);
+
+        let result = construct_export(request).unwrap();
+        assert_eq!(result.manifest.sources.len(), 2);
+        assert_eq!(result.manifest.artifacts.len(), 2);
+        assert_eq!(result.manifest.sources[0].capture_digest, capture_one);
+        assert_eq!(result.manifest.sources[1].capture_digest, capture_two);
+        assert_eq!(result.manifest.artifacts[0].artifact_id, "response-body");
+        assert_eq!(result.manifest.artifacts[1].artifact_id, "response-body");
     }
 
     #[test]
