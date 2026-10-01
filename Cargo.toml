@@ -18,6 +18,7 @@ repository = "https://github.com/statecrafting/wire-witness"
 action-gate-core = { version = "=0.2.0", default-features = false }
 wire-witness-core = { path = "crates/wire-witness-core" }
 wire-witness-proxy = { path = "crates/wire-witness-proxy" }
+zeroize = { version = "1.9.0", default-features = false }
 
 [workspace.lints.rust]
 unsafe_code = "forbid"

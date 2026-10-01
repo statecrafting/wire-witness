@@ -1,17 +1,25 @@
 ---
 id: "008-instruction-delivery-observation"
 title: "Instruction delivery observation"
-status: draft
-implementation: pending
+status: approved
+implementation: complete
 created: "2026-09-27"
 summary: >
   Defines a content-gated, offline comparison that reports whether exact
   operator-supplied instruction bytes were observed in a complete outbound
   provider request, without turning one observation into adapter
   qualification, policy, or authority.
+extends:
+  - { spec: "001-boundaries-and-authority", unit: { kind: section, file: "Cargo.toml", anchor: "workspace.dependencies" }, nature: additive }
+  - { spec: "001-boundaries-and-authority", unit: "Cargo.lock", nature: additive }
+  - { spec: "001-boundaries-and-authority", unit: { kind: section, file: "crates/wire-witness-core/Cargo.toml", anchor: "dependencies" }, nature: additive }
+  - { spec: "001-boundaries-and-authority", unit: { kind: section, file: "crates/wire-witness-core/src/lib.rs", anchor: "instruction-observation-module-export" }, nature: additive }
+  - { spec: "001-boundaries-and-authority", unit: "scripts/check-boundaries.sh", nature: additive }
+  - { spec: "006-standalone-host", unit: { kind: section, file: "crates/wire-witness-cli/src/lib.rs", anchor: "instruction-observation-module-export" }, nature: additive }
+  - { spec: "006-standalone-host", unit: "crates/wire-witness-cli/src/standalone_host.rs", nature: additive }
 establishes:
-  - { kind: module, id: "wire_witness_core::instruction_observation", planned: true }
-  - { kind: module, id: "wire_witness_cli::instruction_observation", planned: true }
+  - { kind: section, file: "crates/wire-witness-core/src/instruction_observation.rs", anchor: "instruction-delivery-observation" }
+  - { kind: section, file: "crates/wire-witness-cli/src/instruction_observation.rs", anchor: "instruction-delivery-observation" }
 depends_on:
   - "002-exchange-record-and-normalization"
   - "003-redaction-custody-and-retention"
@@ -39,7 +47,7 @@ obligations:
     anchor: "3-5-request-component-decoding"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
+    text: "The observation engine and host-side target acquisition tests pass, both owned source sections are indexed, and the repository gate remains clean."
     anchor: "verification"
     inputs:
       - "specs/008-instruction-delivery-observation/spec.md"
@@ -56,9 +64,8 @@ about every request, an undocumented harness contract, or provider behavior.
 
 ## 2. Territory
 
-This spec owns the planned pure
-`wire_witness_core::instruction_observation` module, the planned
-`wire_witness_cli::instruction_observation` host integration, and schema
+This spec owns the pure `wire_witness_core::instruction_observation` module,
+the `wire_witness_cli::instruction_observation` host integration, and schema
 `wire-witness.instruction-observation/1`. The CLI acquires the explicitly named
 target before child spawn and supplies transient bytes to the pure module. The
 module performs no file access, provider call, transport capture, durable
@@ -249,6 +256,6 @@ scope.
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine index check --fail-on-unresolved
-test ! -e crates/wire-witness-core/src/instruction_observation.rs
-test ! -e crates/wire-witness-cli/src/instruction_observation.rs
+cargo test -p wire-witness-core instruction_observation --locked
+cargo test -p wire-witness-cli instruction_observation --locked
 ```
