@@ -79,9 +79,9 @@
       }
     ],
     "sectionDigests": {
-      "010-policy-bounded-corpus-export": "b03a339b004c9967cb43859d343632431d76babc9397cdff5ef81848f2e0b431",
+      "010-policy-bounded-corpus-export": "90f11da5b893853cffbae22c797e9d64cba199492eea70bf97c2c5c4244b0a18",
       "1-purpose": "6328af7a89e589c740cbc68f8da027933c0d4494778804d758cdaabf2e2a341c",
-      "2-territory": "edbb177a353d7c8aca7e7c2b95871e229312fa5df7005f8340d003243f8bec91",
+      "2-territory": "8e6ab502d6ab794e6c2d6c7fe0acf5f1ac4a1a9f3b88d434985a4c3b1fdf4ce0",
       "3-1-export-authority": "749796b8c9efaa8989b47537839b4e141269c5f073857222c20a994e497a6854",
       "3-2-source-eligibility": "09b1f6f47829483a516b95b9c78e72cc12e5b38db33475077d20739267b10003",
       "3-3-export-manifest": "ef77ce1dc8567125c414830045f988ad8b1d2d49a0d71f30290ac98804745ec5",
@@ -111,6 +111,6 @@
     "summary": "Defines an immutable, bounded export manifest for policy-permitted wire testimony, preserving binding, retention, completeness, redaction, and artifact identity without granting permission to retain, disclose, replay, train on, admit, or evaluate the captured material.\n",
     "title": "Policy-bounded corpus export"
   },
-  "shardHash": "31f0e9ec3f931f14e5274740e4f99449b9f93611c02b2974f303d855c16c67b2",
+  "shardHash": "03825d33bc1af0c128b641862df4353238bd6a725649a5c499907ada14389407",
   "specVersion": "1.9.0"
 }

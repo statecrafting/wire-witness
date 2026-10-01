@@ -73,7 +73,9 @@ expiry, and erasure. Spec 005 owns attempt binding and capture closure. Spec
 006 owns host lifecycle and filesystem operations. Spec 008 owns optional
 instruction observations, and spec 009 owns optional measurement summaries.
 Neither is a dependency: this spec can be built and used before either exists,
-and section 3.5 says how their entries are admitted once they do.
+and section 3.5 says how their entries are admitted once they do. The
+frontmatter's `references` entries, spec-spine's non-owning edge, record that
+coupling in the registry without making either a dependency.
 Rustev owns conversion to any Rustev replay schema, replay scope and
 equivalence, execution, comparison, and evaluation. Statecraft owns evidence
 admission and run policy.

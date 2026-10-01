@@ -49,7 +49,7 @@
         "anchor": "3-5-request-component-decoding",
         "id": "R-3",
         "kind": "requirement",
-        "text": "Request components are decoded by this spec's own closed decoder over the complete outbound request body, which neither changes wire-witness.exchange/1 nor searches a component that mandatory redaction touched."
+        "text": "Request components are decoded by this spec's own closed decoder over the complete outbound request body, which never changes wire-witness.exchange/1 and never reports a match, absence, digest, length, or offset for a component that mandatory redaction touched."
       },
       {
         "anchor": "verification",
@@ -62,7 +62,7 @@
       }
     ],
     "sectionDigests": {
-      "008-instruction-delivery-observation": "6342448f0b96919c732e69dbfb7fae514df21be1f039ca88b3e38b5910556562",
+      "008-instruction-delivery-observation": "cc684c2c87251c84393171d50c28b4a1b0a67de372feb3bc274b345a87f49a86",
       "1-purpose": "31733963bdfb54f421b23f1a1a575e189aa7951802ad7936f340692a48aa9312",
       "2-territory": "7656546759def05a6551e5fe8ee050036d5d0b330f298611a50de1a71cb913f3",
       "3-1-observation-not-qualification": "9dcbc1199e044bf436115a6d51f88439e5b1628ea967f329be2f6db21e3be503",
@@ -71,7 +71,7 @@
       "3-4-durable-result": "cea662ebb5e04228fc4348e52f88178ed5d9ff7a3999859c312c80871d315c19",
       "3-5-request-component-decoding": "b94981c3e21d10c05ca7f64749ca8f077c235be2a2bac9b27795cd3ef62eb6b7",
       "3-behavior": "677802372a358887e9756d7e457e77d4f0e2251147322025b5bbcf680a5e42f7",
-      "4-observable-negative-cases": "68b85ca8f0ad257e75cd55e8b906d6c938c8030ab86386a41ecbd8284fdb837e",
+      "4-observable-negative-cases": "6882372e3f1d9d8876d5b273f9620890f6b374e7b9fee79505d5cfab2e17cd3f",
       "5-out-of-scope": "a42d7dd442b052aa211b6512633c3592d5c3fbaa6ddf71dd653efc40b660e44c",
       "verification": "d47653a202dce680536c7a4881e1314dfcdc9f48c207a9c9235ad1e40688259c"
     },
@@ -94,6 +94,6 @@
     "summary": "Defines a content-gated, offline comparison that reports whether exact operator-supplied instruction bytes were observed in a complete outbound provider request, without turning one observation into adapter qualification, policy, or authority.\n",
     "title": "Instruction delivery observation"
   },
-  "shardHash": "effccd31254bec19cbd170a959d4a32e1e296c48d2229e52c19edf217ba9a90f",
+  "shardHash": "f8e2059b1266900fdfaabcfdacff02acc70bb9ddd7ed3a25615fa287cae07967",
   "specVersion": "1.9.0"
 }
