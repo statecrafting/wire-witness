@@ -111,8 +111,9 @@ selector refuses before child spawn. A selector is unsupported when its
 provider family, operation, and component kind are not a row of the table in
 section 3.5; that check needs no request body. Whether the named component and
 text part exist is known only after decoding, so a supported selector whose
-component or text part is not present in the request produces `unknown`, never
-a refusal.
+component is not present produces `unknown` with reason `component-absent`,
+and one whose component exists without the named text part produces `unknown`
+with reason `text-part-absent`; neither is a refusal.
 
 Comparison operates on the decoded component produced by the request-component
 decoder in section 3.5. It does not search raw JSON serialization, HTTP headers, response
@@ -213,7 +214,7 @@ mandatory redaction would have removed.
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |
 | The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
 | A supported selector's component index exceeds the components present | `unknown` with reason `component-absent`; no other component is searched. |
-| A supported selector's text-part index exceeds the text parts present, for example because the rest are images | `unknown` with reason `component-absent`; no other part is searched. |
+| A supported selector's text-part index exceeds the text parts present, for example because the rest are images | `unknown` with reason `text-part-absent`; no other part is searched. |
 | One successful session is presented as a CLI guarantee | Refused by the authority boundary; the record describes one exchange only. |
 
 ## 5. Out of scope

@@ -183,9 +183,12 @@ identity. The summary cannot detect an estimator that breaks this rule, because
 the exchange record gives it nothing to compare. It therefore labels every
 estimated-cost total as sound only to the extent its rate-table identity is
 unique, carries that identity beside the total, and never presents an
-estimated total as verified. Each exchange
-carries one cost variant, so it contributes to exactly one of the reported,
-estimated, or unknown cost groups.
+estimated total as verified. Spec 002 section
+3.3 describes reported, estimated, and unknown cost as separate slots, and the
+current exchange record carries one of them. The summary does not rely on
+that: an exchange contributes each reported or estimated value it carries to
+that value's own group, and counts as an unknown cost only when it carries
+neither.
 
 ## 4. Observable negative cases
 
