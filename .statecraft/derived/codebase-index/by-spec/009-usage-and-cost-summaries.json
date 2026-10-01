@@ -38,8 +38,8 @@
           {
             "file": "crates/wire-witness-core/src/lib.rs",
             "span": {
-              "endLine": 15,
-              "startLine": 13
+              "endLine": 18,
+              "startLine": 16
             }
           }
         ],
@@ -56,5 +56,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "ad2d90d56a9056fba9e59ac81eaa1b06728209c7fc89bb3354214e66d3baf1d4"
+  "shardHash": "167612a66eac2667bacc0fedf68c74518a40361e62d41815613654176b8d88de"
 }

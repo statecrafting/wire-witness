@@ -6,6 +6,9 @@
 #![forbid(unsafe_code)]
 
 pub mod custody;
+// region: corpus-export-module-export
+pub mod corpus_export;
+// endregion
 pub mod exchange;
 // region: instruction-observation-module-export
 pub mod instruction_observation;

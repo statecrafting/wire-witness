@@ -6,24 +6,95 @@
       "005-binding-and-sidecar-protocol",
       "006-standalone-host"
     ],
-    "implementingPaths": [],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-cli/src/corpus_export.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/lib.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-core/src/corpus_export.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-core/src/lib.rs",
+        "source": "spec-edge"
+      }
+    ],
     "resolvedUnits": [
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/corpus_export.rs",
+            "span": {
+              "endLine": 257,
+              "startLine": 5
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
-          "id": "wire_witness_cli::corpus_export",
-          "kind": "module"
+          "anchor": "policy-bounded-corpus-export-host",
+          "file": "crates/wire-witness-cli/src/corpus_export.rs",
+          "kind": "section"
         }
       },
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/corpus_export.rs",
+            "span": {
+              "endLine": 1508,
+              "startLine": 5
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
-          "id": "wire_witness_core::corpus_export",
-          "kind": "module"
+          "anchor": "policy-bounded-corpus-export",
+          "file": "crates/wire-witness-core/src/corpus_export.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/lib.rs",
+            "span": {
+              "endLine": 9,
+              "startLine": 7
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "corpus-export-module-export",
+          "file": "crates/wire-witness-cli/src/lib.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/lib.rs",
+            "span": {
+              "endLine": 11,
+              "startLine": 9
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "corpus-export-module-export",
+          "file": "crates/wire-witness-core/src/lib.rs",
+          "kind": "section"
         }
       },
       {
@@ -57,5 +128,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "d5c1d0a23da0442dd6a8f8eada1a4713b17440c3698d6d7a1ed4a47dde971d54"
+  "shardHash": "26f416d756246c738a0c94ddc57a08b8a0609a4767dd482fc228f0242d7777c2"
 }

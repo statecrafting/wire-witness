@@ -4,6 +4,9 @@
 
 #![forbid(unsafe_code)]
 
+// region: corpus-export-module-export
+pub mod corpus_export;
+// endregion
 // region: instruction-observation-module-export
 pub mod instruction_observation;
 // endregion
