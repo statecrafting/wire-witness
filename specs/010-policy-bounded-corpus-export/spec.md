@@ -244,7 +244,7 @@ not permitted.
 | A receipt carries an unknown field, an empty `scope` array, or an unlisted source kind | Export refuses as a malformed receipt before any source is read. |
 | A well-formed receipt has `outcome: deny` or a `verification_outcome` other than `verified` | Export refuses as not permitted, reported apart from a malformed receipt. |
 | The receipt's `expires_at` is at or before the export's creation time | Export refuses as an expired receipt. |
-| A selected measurement summary uses a schema version this build does not implement | An explicit `unsupported-source-version` gap, or refusal when incomplete output is not permitted. |
+| A selected instruction observation or measurement summary uses a schema version this build does not implement | An explicit `unsupported-source-version` gap, or refusal when incomplete output is not permitted. |
 
 ## 5. Out of scope
 
