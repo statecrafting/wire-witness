@@ -166,8 +166,10 @@ optional fraction, and an optional decimal exponent (`1.5e6` is exactly
 1500000). After the exponent is applied the value has at most 38 significant
 digits and a scale (the number of digits after the decimal point) of at most
 18. Each group is summed in ascending order of
-the exchange records' `sequence` numbers. Section 3.2 refuses a duplicate
-sequence before any summing, so this order is total and has no ties. Independently of that, the bounds are
+the exchange records' `sequence` numbers. A summary covers exactly one
+binding (section 3.2), whose sequence numbers are unique within it, and section
+3.2 refuses a duplicate before any summing, so this order is total and has no
+ties. Independently of that, the bounds are
 always checked on every addend and on the running sum after each addition. A value outside those bounds, `NaN`, an
 infinity, or text that is not a JSON number is excluded from the total and
 counted as an unknown with a finding. A running sum that leaves the bounds
