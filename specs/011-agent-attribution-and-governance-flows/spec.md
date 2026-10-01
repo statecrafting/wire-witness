@@ -1,7 +1,7 @@
 ---
 id: "011-agent-attribution-and-governance-flows"
 title: "Agent attribution is refused and ratification is owner-gated"
-status: draft
+status: approved
 implementation: complete
 created: "2026-09-30"
 summary: >

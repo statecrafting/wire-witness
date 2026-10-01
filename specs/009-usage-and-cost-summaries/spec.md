@@ -1,7 +1,7 @@
 ---
 id: "009-usage-and-cost-summaries"
 title: "Usage and cost summaries"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-27"
 summary: >

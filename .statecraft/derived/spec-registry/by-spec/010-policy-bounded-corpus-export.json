@@ -107,10 +107,10 @@
       "Verification"
     ],
     "specPath": "specs/010-policy-bounded-corpus-export/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Defines an immutable, bounded export manifest for policy-permitted wire testimony, preserving binding, retention, completeness, redaction, and artifact identity without granting permission to retain, disclose, replay, train on, admit, or evaluate the captured material.\n",
     "title": "Policy-bounded corpus export"
   },
-  "shardHash": "1837e21d9924d72e2df8bf617f026e1c77f1ffe736cb25c4226aa94346e1ed86",
+  "shardHash": "d5c1d0a23da0442dd6a8f8eada1a4713b17440c3698d6d7a1ed4a47dde971d54",
   "specVersion": "1.9.0"
 }

@@ -1,7 +1,7 @@
 ---
 id: "010-policy-bounded-corpus-export"
 title: "Policy-bounded corpus export"
-status: draft
+status: approved
 implementation: pending
 created: "2026-09-27"
 summary: >

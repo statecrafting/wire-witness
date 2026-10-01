@@ -17,8 +17,8 @@
       }
     ],
     "specId": "009-usage-and-cost-summaries",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "17c96454d88495b878836fd2755858837c91ef26cb01e0e81c5df04769188f0b"
+  "shardHash": "0968669093073b6d50113493bb2e2bb76b6fc11b015195a28aa5f80216ba45e9"
 }

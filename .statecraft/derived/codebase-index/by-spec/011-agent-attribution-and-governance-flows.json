@@ -42,8 +42,8 @@
       }
     ],
     "specId": "011-agent-attribution-and-governance-flows",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "95e04a3dc8c798b7afebf9efe065d25aaaf412467822613d42aa143625d15e88"
+  "shardHash": "b09c5d9288b5120392cbcdb9ac61495eb324eb7d05e8a143aee4cdbacb9fa56c"
 }
