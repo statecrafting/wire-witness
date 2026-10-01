@@ -221,6 +221,8 @@ mandatory redaction would have removed.
 | Redaction changes bytes inside the selected component | `unknown` with `redaction-intersects-component`; reporting presence, absence, or any component fact would disclose content mandatory redaction suppressed. |
 | A similar paraphrase appears | Absent under exact-byte matching; semantic similarity is not inferred. |
 | The same target appears twice | Present with count two and both decoded-component offsets. |
+| The redaction scan of the request body cannot complete | `unknown` with `redaction-scan-incomplete`; no component digest, length, or offset is recorded. |
+| The selected `instructions` value is an object rather than a string | `unknown` with `component-not-text`; the value is not stringified or searched. |
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |
 | The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
 | A supported selector's component index exceeds the components present | `unknown` with reason `component-absent`; no other component is searched. |
