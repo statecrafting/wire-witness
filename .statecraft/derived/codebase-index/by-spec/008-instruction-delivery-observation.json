@@ -193,8 +193,8 @@
       }
     ],
     "specId": "008-instruction-delivery-observation",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "868d8493057fdffa724fa3c6982dc7dd46c308c1888b1d70ef7b51d7aa02ff7b"
+  "shardHash": "80a9fabb954d2b48d03c8b4d23a422276b08f7f667152ff5b212c013b43190ba"
 }

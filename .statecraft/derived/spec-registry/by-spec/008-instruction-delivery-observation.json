@@ -152,10 +152,10 @@
       "Verification"
     ],
     "specPath": "specs/008-instruction-delivery-observation/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Defines a content-gated, offline comparison that reports whether exact operator-supplied instruction bytes were observed in a complete outbound provider request, without turning one observation into adapter qualification, policy, or authority.\n",
     "title": "Instruction delivery observation"
   },
-  "shardHash": "09d1c1de7c4c1ac044f1ede7af16b34493ee392d06ceef830c812ee365c4d186",
+  "shardHash": "af1b2bde7c3d4805b159bc72f843bcc89d21f955d742f58e2b2f18eded998df3",
   "specVersion": "1.9.0"
 }

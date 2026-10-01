@@ -1,7 +1,7 @@
 ---
 id: "008-instruction-delivery-observation"
 title: "Instruction delivery observation"
-status: draft
+status: approved
 implementation: complete
 created: "2026-09-27"
 summary: >
