@@ -191,8 +191,9 @@ tool definitions, and any key outside the table are never selectable, and they
 are not counted by a text-part index. Adding a shape is a later spec's change, not a
 decoder inference.
 
-The comparison runs in the host on the transient pre-redaction decode, after
-spec 003's mandatory redaction scan of the same request body has completed.
+Order matters here. First, spec 003's mandatory redaction scan of the request
+body completes. Then the host compares against the component decoded from the
+original, unredacted bytes, held only transiently.
 When any redaction replacement's recorded input offset and length intersect
 the selected component's source span, or a scan could not complete, the result
 is `unknown` with reason `redaction-intersects-component` and no component
@@ -211,8 +212,8 @@ mandatory redaction would have removed.
 | The same target appears twice | Present with count two and both decoded-component offsets. |
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |
 | The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
-| A supported selector's component index exceeds the components present | `unknown` with a component-absent reason; no other component is searched. |
-| A supported selector's text-part index exceeds the text parts present, for example because the rest are images | `unknown` with a component-absent reason; no other part is searched. |
+| A supported selector's component index exceeds the components present | `unknown` with reason `component-absent`; no other component is searched. |
+| A supported selector's text-part index exceeds the text parts present, for example because the rest are images | `unknown` with reason `component-absent`; no other part is searched. |
 | One successful session is presented as a CLI guarantee | Refused by the authority boundary; the record describes one exchange only. |
 
 ## 5. Out of scope
