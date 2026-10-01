@@ -50,7 +50,7 @@
       }
     ],
     "sectionDigests": {
-      "009-usage-and-cost-summaries": "512f243baf756e9c671e96ae54c1cd76602f911dc6ad06dace8a7c2356d10e9d",
+      "009-usage-and-cost-summaries": "e0a0732db71ea6383ab3943d04bb8aae0d2b02223b344f43f0906e56f6e25319",
       "1-purpose": "7bfa6d2967825d965fc18cece083fe06fd054bcc8519273bcb033c60225ef7b7",
       "2-territory": "88ef20de549a9623f1c0fb5c20949ab6974a8657b600649635b75aacb152119e",
       "3-1-summary-authority": "986ec465a03763e5f25174761f19360feda26235319d113ab446a03e24154307",
@@ -59,7 +59,7 @@
       "3-4-summary-schema": "d446e7376e37611e4aba2d048186d5bba18ea117a08001b5cf7475352b1cf85c",
       "3-5-arithmetic-construction-and-source-identities": "6226013078d141201c7f74d82e7d1c748920bcb8b35d6fb59a56f93080c3f877",
       "3-behavior": "8ee540f0820b9ee64493bd78c659a358cbde17f52ba9ee93b23e8c1a68cb8024",
-      "4-observable-negative-cases": "7b807cacb47e61ba868a97a1bb5dd7336ceee7d725f0dcbf43b51aca0b1d711f",
+      "4-observable-negative-cases": "13e28df21b9f683fce0a55a05cb53e43e094397a819563d529f937668810fc3e",
       "5-out-of-scope": "33c572820c2792848fc8ac7b4bd4f3f6406e931057a9c746a93e6e48f63a07ef",
       "verification": "2179b6484af7ba39f20859b171da706bc1c9d290253a2c528ed19179dafdd93b"
     },
@@ -82,6 +82,6 @@
     "summary": "Defines a deterministic binding-level summary of observed request counts, provider-attributed usage, reported cost, labeled estimates, identity variation, completeness, and gaps without converting testimony into a charge, quota decision, budget, or provider qualification.\n",
     "title": "Usage and cost summaries"
   },
-  "shardHash": "1f36fbc7215e587e52e2b1342248880d47e81e7ee75708b4121567f7b2adbf94",
+  "shardHash": "236ca7230e90d1791b5855abd71e608fc4c607c5ce040c3f323b0bb651b202ed",
   "specVersion": "1.9.0"
 }
