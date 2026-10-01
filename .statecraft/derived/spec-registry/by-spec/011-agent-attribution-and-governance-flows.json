@@ -68,10 +68,10 @@
       "Verification"
     ],
     "specPath": "specs/011-agent-attribution-and-governance-flows/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Refuses agent attribution and known agent commit identities, suppresses provider attribution at its source, and adopts the two-flow Statecraft profile in which implementation and owner ratification remain separate.\n",
     "title": "Agent attribution is refused and ratification is owner-gated"
   },
-  "shardHash": "95e04a3dc8c798b7afebf9efe065d25aaaf412467822613d42aa143625d15e88",
+  "shardHash": "b09c5d9288b5120392cbcdb9ac61495eb324eb7d05e8a143aee4cdbacb9fa56c",
   "specVersion": "1.9.0"
 }

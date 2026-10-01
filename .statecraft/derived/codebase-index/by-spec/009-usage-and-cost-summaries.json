@@ -4,21 +4,57 @@
       "002-exchange-record-and-normalization",
       "005-binding-and-sidecar-protocol"
     ],
-    "implementingPaths": [],
+    "implementingPaths": [
+      {
+        "path": "crates/wire-witness-core/src/lib.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-core/src/measurement_summary.rs",
+        "source": "spec-edge"
+      }
+    ],
     "resolvedUnits": [
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/measurement_summary.rs",
+            "span": {
+              "endLine": 1169,
+              "startLine": 5
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
-          "id": "wire_witness_core::measurement_summary",
-          "kind": "module"
+          "anchor": "measurement-summary",
+          "file": "crates/wire-witness-core/src/measurement_summary.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-core/src/lib.rs",
+            "span": {
+              "endLine": 18,
+              "startLine": 16
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "measurement-summary-module-export",
+          "file": "crates/wire-witness-core/src/lib.rs",
+          "kind": "section"
         }
       }
     ],
     "specId": "009-usage-and-cost-summaries",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "17c96454d88495b878836fd2755858837c91ef26cb01e0e81c5df04769188f0b"
+  "shardHash": "167612a66eac2667bacc0fedf68c74518a40361e62d41815613654176b8d88de"
 }

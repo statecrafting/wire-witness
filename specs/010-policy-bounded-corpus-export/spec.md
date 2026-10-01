@@ -1,17 +1,20 @@
 ---
 id: "010-policy-bounded-corpus-export"
 title: "Policy-bounded corpus export"
-status: draft
-implementation: pending
+status: approved
+implementation: complete
 created: "2026-09-27"
 summary: >
   Defines an immutable, bounded export manifest for policy-permitted wire
   testimony, preserving binding, retention, completeness, redaction, and
   artifact identity without granting permission to retain, disclose, replay,
   train on, admit, or evaluate the captured material.
+extends:
+  - { spec: "001-boundaries-and-authority", unit: { kind: section, file: "crates/wire-witness-core/src/lib.rs", anchor: "corpus-export-module-export" }, nature: additive }
+  - { spec: "006-standalone-host", unit: { kind: section, file: "crates/wire-witness-cli/src/lib.rs", anchor: "corpus-export-module-export" }, nature: additive }
 establishes:
-  - { kind: module, id: "wire_witness_core::corpus_export", planned: true }
-  - { kind: module, id: "wire_witness_cli::corpus_export", planned: true }
+  - { kind: section, file: "crates/wire-witness-core/src/corpus_export.rs", anchor: "policy-bounded-corpus-export" }
+  - { kind: section, file: "crates/wire-witness-cli/src/corpus_export.rs", anchor: "policy-bounded-corpus-export-host" }
 depends_on:
   - "002-exchange-record-and-normalization"
   - "003-redaction-custody-and-retention"
@@ -44,7 +47,7 @@ obligations:
     anchor: "3-5-policy-receipt-envelope"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
+    text: "The receipt validator, bounded manifest constructor, and exclusive private atomic installer pass their closed-envelope, eligibility, integrity, gap, limit, expiry, and custody tests."
     anchor: "verification"
     inputs:
       - "specs/010-policy-bounded-corpus-export/spec.md"
@@ -261,6 +264,6 @@ out of scope.
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine index check --fail-on-unresolved
-test ! -e crates/wire-witness-core/src/corpus_export.rs
-test ! -e crates/wire-witness-cli/src/corpus_export.rs
+cargo test -p wire-witness-core corpus_export --locked
+cargo test -p wire-witness-cli corpus_export --locked
 ```

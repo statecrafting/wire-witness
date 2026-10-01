@@ -10,7 +10,7 @@
       "contentHash": "a9c72fbedc93a55befd16764bd46a0ab1d9605aed4525d7340a11eb7294a0ec6"
     },
     ".gitignore": {
-      "contentHash": "ab1fa20e3d60be5a6c2d915ff084432a40763aeacf4145ad50e66bdc0452ed08"
+      "contentHash": "4cd011cc5276d3235495645a6018511bc9af008de93853b31e7b597f8c653f03"
     },
     "AGENTS.md": {
       "contentHash": "ffd92e17af94ee0235099c078c89ea63ed6cb468d0eb656d25b5314a1272fed6"
@@ -29,9 +29,6 @@
     },
     "docs/backlog-disposition.md": {
       "contentHash": "cc87befff47184e65f927b2c3996244b1b8dce610591660771dd4866903d1892"
-    },
-    "docs/backlog.md": {
-      "contentHash": "53edc373896224522c4985740fca30872046d14b57d64ebe7c58c46ca726fdf1"
     },
     "scripts/check-authored-content.sh": {
       "contentHash": "ebc061e2bf3cf15ffc70c33a4556ca759800e1ca0f2c3f02d8d914c0624d7b45"

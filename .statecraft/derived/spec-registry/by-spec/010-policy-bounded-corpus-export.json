@@ -9,18 +9,38 @@
     ],
     "establishes": [
       {
-        "id": "wire_witness_core::corpus_export",
-        "kind": "module",
-        "planned": true
+        "anchor": "policy-bounded-corpus-export",
+        "file": "crates/wire-witness-core/src/corpus_export.rs",
+        "kind": "section"
       },
       {
-        "id": "wire_witness_cli::corpus_export",
-        "kind": "module",
-        "planned": true
+        "anchor": "policy-bounded-corpus-export-host",
+        "file": "crates/wire-witness-cli/src/corpus_export.rs",
+        "kind": "section"
+      }
+    ],
+    "extends": [
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "anchor": "corpus-export-module-export",
+          "file": "crates/wire-witness-core/src/lib.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "006-standalone-host",
+        "unit": {
+          "anchor": "corpus-export-module-export",
+          "file": "crates/wire-witness-cli/src/lib.rs",
+          "kind": "section"
+        }
       }
     ],
     "id": "010-policy-bounded-corpus-export",
-    "implementation": "pending",
+    "implementation": "complete",
     "obligations": [
       {
         "anchor": "3-1-export-authority",
@@ -59,7 +79,7 @@
           "specs/010-policy-bounded-corpus-export/spec.md"
         ],
         "kind": "verification",
-        "text": "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
+        "text": "The receipt validator, bounded manifest constructor, and exclusive private atomic installer pass their closed-envelope, eligibility, integrity, gap, limit, expiry, and custody tests."
       }
     ],
     "references": [
@@ -79,7 +99,7 @@
       }
     ],
     "sectionDigests": {
-      "010-policy-bounded-corpus-export": "0b22de2f4bbc4e851054b428f645b616e37244ad2a4a4f1506d3679220f1f78e",
+      "010-policy-bounded-corpus-export": "1a61e05ac0fd4bf185edb76f8651372c0d6c4d3e302ad1ce3857c3b1747f7c5a",
       "1-purpose": "6328af7a89e589c740cbc68f8da027933c0d4494778804d758cdaabf2e2a341c",
       "2-territory": "8e6ab502d6ab794e6c2d6c7fe0acf5f1ac4a1a9f3b88d434985a4c3b1fdf4ce0",
       "3-1-export-authority": "749796b8c9efaa8989b47537839b4e141269c5f073857222c20a994e497a6854",
@@ -90,7 +110,7 @@
       "3-behavior": "acf34fad2767a1a3c46080a46ed19033c6ad41efb0d4afb927a80f98aa6ca5ae",
       "4-observable-negative-cases": "8e2fd98c24fd38c57b58c6d0e17650b7cedbcfd76942aa0ce8cc40da6c5a8fa6",
       "5-out-of-scope": "7f67e12e24d9cc4a4da731b79aa1c5f45a93e7e1f65c5696806c015f20eadfff",
-      "verification": "76833ea57785c0f45cf306725b2320f641b4cd76d80870ada6e52184d6522212"
+      "verification": "aca8be3086f07162c3cf32d4ad2a04e6cfbf41345a9c442e5932e4630b63f577"
     },
     "sectionHeadings": [
       "010: Policy-bounded corpus export",
@@ -107,10 +127,10 @@
       "Verification"
     ],
     "specPath": "specs/010-policy-bounded-corpus-export/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Defines an immutable, bounded export manifest for policy-permitted wire testimony, preserving binding, retention, completeness, redaction, and artifact identity without granting permission to retain, disclose, replay, train on, admit, or evaluate the captured material.\n",
     "title": "Policy-bounded corpus export"
   },
-  "shardHash": "1837e21d9924d72e2df8bf617f026e1c77f1ffe736cb25c4226aa94346e1ed86",
+  "shardHash": "d49bf7206c1bbe5c98bfa30a59fee957ff7577e999b86e21cadc33937f8a7f6b",
   "specVersion": "1.9.0"
 }
