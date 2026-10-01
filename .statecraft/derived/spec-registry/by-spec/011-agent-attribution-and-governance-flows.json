@@ -1,0 +1,77 @@
+{
+  "record": {
+    "created": "2026-09-30",
+    "dependsOn": [
+      "001-boundaries-and-authority"
+    ],
+    "establishes": [
+      {
+        "kind": "file",
+        "path": ".claude/settings.json"
+      }
+    ],
+    "extends": [
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "kind": "file",
+          "path": "scripts/check-authored-content.sh"
+        }
+      }
+    ],
+    "id": "011-agent-attribution-and-governance-flows",
+    "implementation": "complete",
+    "obligations": [
+      {
+        "anchor": "3-1-attribution-and-identity-refusal",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Repository-authored text and commit identities refuse known agent attribution while human identities remain allowed."
+      },
+      {
+        "anchor": "3-2-two-flow-ratification",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "A specification becoming approved requires the owner exception independently of implementation review."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "scripts/check-authored-content.sh",
+          ".claude/settings.json",
+          ".statecraft/setup/github-actions-rust.json"
+        ],
+        "kind": "verification",
+        "text": "The checker self-test and Statecraft profile policy prove attribution refusal, identity refusal, and owner-gated ratification."
+      }
+    ],
+    "sectionDigests": {
+      "011-agent-attribution-is-refused-and-ratification-is-owner-gated": "c19b08f75db8a97dc368d2473cb52a3c4caafb8930f4320fe0c34191dedfada5",
+      "1-purpose": "63b9daf7815d502c01ad51380f520d01f2776fdfcde7f3fd76610dbab4719abf",
+      "2-territory": "18542fb17139ca0ba4f392125c7c5f4b6ca8cc680726fdce74e8b4febf6a9ce8",
+      "3-1-attribution-and-identity-refusal": "a93716025dff5bfebdc1c5498ee539f985efad9249446947da5f3104943585f8",
+      "3-2-two-flow-ratification": "d353b16e17a16af92cfac4f9d045956cef279c8a94afd277d2e4391695642a5f",
+      "3-behavior": "766e23c125358d5068a28dbdeca163ac9a6b63a5457c9cebd5f6ff678733bbe7",
+      "4-out-of-scope": "b0941dd0141b8681d71f61d2a1c0e65d0f1cd72a2e45a1c5b8d7b39c6dd61027",
+      "verification": "040ee9cbc7ed19416e2e26239654147ef36e336da514210d0ab0573b8d19ff1b"
+    },
+    "sectionHeadings": [
+      "011: Agent attribution is refused and ratification is owner-gated",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Attribution and identity refusal",
+      "3.2 Two-flow ratification",
+      "4. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/011-agent-attribution-and-governance-flows/spec.md",
+    "status": "draft",
+    "summary": "Refuses agent attribution and known agent commit identities, suppresses provider attribution at its source, and adopts the two-flow Statecraft profile in which implementation and owner ratification remain separate.\n",
+    "title": "Agent attribution is refused and ratification is owner-gated"
+  },
+  "shardHash": "95e04a3dc8c798b7afebf9efe065d25aaaf412467822613d42aa143625d15e88",
+  "specVersion": "1.9.0"
+}
