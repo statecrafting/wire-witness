@@ -35,7 +35,7 @@ obligations:
     anchor: "3-4-durable-result"
   - id: "R-3"
     kind: requirement
-    text: "Request components are decoded by this spec's own closed decoder over the complete outbound request body, which neither changes wire-witness.exchange/1 nor searches a component that mandatory redaction touched."
+    text: "Request components are decoded by this spec's own closed decoder over the complete outbound request body, which never changes wire-witness.exchange/1 and never reports a match, absence, digest, length, or offset for a component that mandatory redaction touched."
     anchor: "3-5-request-component-decoding"
   - id: "V-1"
     kind: verification
@@ -208,7 +208,7 @@ mandatory redaction would have removed.
 |---|---|
 | The target appears in a tool result but not the selected system component | `observed-absent` for a complete system component; unrelated components are not searched. |
 | Capture stops before the request completes | `unknown` with the capture-gap reason, never absent. |
-| Redaction changes bytes inside the selected component | `unknown` with `redaction-intersects-component`; the witness does not search a lossy representation and claim absence. |
+| Redaction changes bytes inside the selected component | `unknown` with `redaction-intersects-component`; reporting presence, absence, or any component fact would disclose content mandatory redaction suppressed. |
 | A similar paraphrase appears | Absent under exact-byte matching; semantic similarity is not inferred. |
 | The same target appears twice | Present with count two and both decoded-component offsets. |
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |

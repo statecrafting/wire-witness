@@ -50,15 +50,15 @@
       }
     ],
     "sectionDigests": {
-      "009-usage-and-cost-summaries": "e21aa72490d9428cd87f6d95bc4b5d92ce1058fac261e3df0d123694241d5fc5",
+      "009-usage-and-cost-summaries": "9cfbd5465a3ddc30387e086756c33edc59de9afbf9d97c8eb4391c395710d7bd",
       "1-purpose": "7bfa6d2967825d965fc18cece083fe06fd054bcc8519273bcb033c60225ef7b7",
       "2-territory": "88ef20de549a9623f1c0fb5c20949ab6974a8657b600649635b75aacb152119e",
       "3-1-summary-authority": "986ec465a03763e5f25174761f19360feda26235319d113ab446a03e24154307",
       "3-2-input-set-and-order": "189fe0a93650e8fa25e4b705fd212de781f933c735edee38d9655cff2f51702e",
       "3-3-aggregation-rules": "2dae456f7123c0d4eb7d5991f01daec95aac727de12ad0032ac37fd2bf90acf4",
       "3-4-summary-schema": "d446e7376e37611e4aba2d048186d5bba18ea117a08001b5cf7475352b1cf85c",
-      "3-5-arithmetic-construction-and-source-identities": "0f5db7e6af2a845d8760304ca3e45f22c94ff30134000a3112b0f452b1d79496",
-      "3-behavior": "cff1d3c7039bb2885809e155db378da41cbc8bda92ba65db739a4987e706ce1f",
+      "3-5-arithmetic-construction-and-source-identities": "2b90442f0f52184d4249ea6c5ccdc5e61dbd543f55dbc3383a688bad830744fc",
+      "3-behavior": "572f7c834d2d47eb47f693cd8f8dd43d7c1c0310af3ae29f0ff0762e59c40a45",
       "4-observable-negative-cases": "7b807cacb47e61ba868a97a1bb5dd7336ceee7d725f0dcbf43b51aca0b1d711f",
       "5-out-of-scope": "33c572820c2792848fc8ac7b4bd4f3f6406e931057a9c746a93e6e48f63a07ef",
       "verification": "2179b6484af7ba39f20859b171da706bc1c9d290253a2c528ed19179dafdd93b"
@@ -82,6 +82,6 @@
     "summary": "Defines a deterministic binding-level summary of observed request counts, provider-attributed usage, reported cost, labeled estimates, identity variation, completeness, and gaps without converting testimony into a charge, quota decision, budget, or provider qualification.\n",
     "title": "Usage and cost summaries"
   },
-  "shardHash": "5dda615d9f0e137a9e22fc3ebee0367e0b4211676fe86b49835e2ac62b0e93b2",
+  "shardHash": "a19ce82de8dd5ba74288663907fa66b4298aa9e4faa7ad67203d632978039dc0",
   "specVersion": "1.9.0"
 }
