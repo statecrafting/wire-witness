@@ -193,7 +193,9 @@ array position 2. A component index is the position in the named array,
 counting every element whatever its content.
 
 A selected component is the JSON string at that location, decoded from its
-JSON escape form to UTF-8 bytes. Image, file, tool-use, and tool-result blocks,
+JSON escape form to UTF-8 bytes. Its source span is the byte range of that JSON
+string token in the raw request body, from its opening quote through its
+closing quote, found by walking the JSON structure. Image, file, tool-use, and tool-result blocks,
 tool definitions, and any key outside the table are never selectable, and they
 are not counted by a text-part index. A selected location that holds a value
 of the wrong JSON type, such as a non-string `instructions` or a `content` that
