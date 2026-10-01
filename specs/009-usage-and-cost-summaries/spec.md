@@ -117,8 +117,8 @@ exchange counts separately.
 Reported costs group by provider family, currency or unit, numeric
 construction, and source attribution. Estimated costs additionally group by
 provider family, rate-table identity, currency, and usage-input set, which is
-the estimate's recorded `usage_inputs` list sorted by bytes with duplicates
-removed. Estimates from different rate tables are never summed into one
+the estimate's recorded `usage_inputs` list with duplicates removed, sorted by
+the lexicographic order of each entry's UTF-8 bytes. Estimates from different rate tables are never summed into one
 number. Unknown cost remains a counted unknown with reasons. The arithmetic
 construction is an identity in every numeric group, so a later implementation change cannot silently alter a total.
 
