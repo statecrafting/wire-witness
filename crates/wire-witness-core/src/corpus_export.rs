@@ -191,7 +191,6 @@ pub enum ExportError {
     ConflictingSequence,
     IneligibleArtifact(&'static str),
     UnsupportedSourceVersion,
-    IncompleteNotPermitted,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq)]
@@ -544,9 +543,6 @@ pub fn construct_export(request: ExportRequest<'_>) -> Result<CorpusExport, Expo
     artifacts.sort_by(artifact_order);
     gaps.sort_by(gap_order);
     let complete = gaps.is_empty();
-    if !complete && !request.allow_incomplete {
-        return Err(ExportError::IncompleteNotPermitted);
-    }
     let mut bindings = request.bindings;
     bindings.sort_by_key(binding_key);
     let manifest = CorpusManifest {
@@ -614,19 +610,10 @@ fn validate_limits(request: &ExportRequest<'_>) -> Result<(), ExportError> {
     if request.artifacts.len() as u64 > limits.max_artifacts {
         return Err(ExportError::LimitExceeded("artifacts"));
     }
-    let mut embedded_bytes = 0u64;
     for artifact in &request.artifacts {
         if artifact.claimed_length > limits.max_artifact_bytes {
             return Err(ExportError::LimitExceeded("artifact-bytes"));
         }
-        if artifact.mode == MaterializationMode::Embedded {
-            embedded_bytes = embedded_bytes
-                .checked_add(artifact.claimed_length)
-                .ok_or(ExportError::LimitExceeded("total-bytes"))?;
-        }
-    }
-    if embedded_bytes > limits.max_total_bytes {
-        return Err(ExportError::LimitExceeded("total-bytes"));
     }
     Ok(())
 }
@@ -1469,6 +1456,26 @@ mod tests {
         assert_eq!(result.manifest.gaps.len(), 2);
         assert!(result.manifest.sources.is_empty());
         assert!(result.manifest.artifacts.is_empty());
+    }
+
+    #[test]
+    fn ineligible_embedded_bytes_do_not_consume_the_export_limit() {
+        let binding = binding();
+        let capture = "b".repeat(64);
+        let policy = receipt(&binding, &capture, "allow", "verified");
+        let source = source_bytes(&binding, crate::exchange::SCHEMA);
+        let mut request = request(&binding, &capture, &policy, &source, b"artifact");
+        request.allow_incomplete = true;
+        request.artifacts[0].erased = true;
+        request.artifacts[0].claimed_length = 90_000;
+        request.limits.max_artifact_bytes = 100_000;
+        request.limits.max_total_bytes = 50_000;
+
+        let result = construct_export(request).unwrap();
+        assert!(!result.manifest.complete);
+        assert!(result.manifest.artifacts.is_empty());
+        assert_eq!(result.manifest.gaps[0].reason, "erased");
+        assert!(result.manifest_bytes.len() < 50_000);
     }
 
     #[test]
