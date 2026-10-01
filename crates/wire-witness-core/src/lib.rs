@@ -10,3 +10,6 @@ pub mod exchange;
 // region: instruction-observation-module-export
 pub mod instruction_observation;
 // endregion
+// region: measurement-summary-module-export
+pub mod measurement_summary;
+// endregion

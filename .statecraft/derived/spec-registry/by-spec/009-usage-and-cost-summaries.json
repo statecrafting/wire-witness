@@ -7,13 +7,24 @@
     ],
     "establishes": [
       {
-        "id": "wire_witness_core::measurement_summary",
-        "kind": "module",
-        "planned": true
+        "anchor": "measurement-summary",
+        "file": "crates/wire-witness-core/src/measurement_summary.rs",
+        "kind": "section"
+      }
+    ],
+    "extends": [
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "anchor": "measurement-summary-module-export",
+          "file": "crates/wire-witness-core/src/lib.rs",
+          "kind": "section"
+        }
       }
     ],
     "id": "009-usage-and-cost-summaries",
-    "implementation": "pending",
+    "implementation": "complete",
     "obligations": [
       {
         "anchor": "3-1-summary-authority",
@@ -46,11 +57,11 @@
           "specs/009-usage-and-cost-summaries/spec.md"
         ],
         "kind": "verification",
-        "text": "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
+        "text": "The deterministic summary engine passes its exact arithmetic, ordering, validation, gap, attribution, and canonicalization tests."
       }
     ],
     "sectionDigests": {
-      "009-usage-and-cost-summaries": "40db2496f6bddbe841d86642e473a230a725b7026085b348f74c0d63eb370660",
+      "009-usage-and-cost-summaries": "2cd1a61a12b7c08f2e909adc4d789db820b08cf944560db4e1fdd157364a205f",
       "1-purpose": "7bfa6d2967825d965fc18cece083fe06fd054bcc8519273bcb033c60225ef7b7",
       "2-territory": "88ef20de549a9623f1c0fb5c20949ab6974a8657b600649635b75aacb152119e",
       "3-1-summary-authority": "986ec465a03763e5f25174761f19360feda26235319d113ab446a03e24154307",
@@ -61,7 +72,7 @@
       "3-behavior": "8ee540f0820b9ee64493bd78c659a358cbde17f52ba9ee93b23e8c1a68cb8024",
       "4-observable-negative-cases": "7ae2f615ea96d4186dbb1a9e3f5f00d8ddd872668ee99a1fe081070a4e1afc14",
       "5-out-of-scope": "33c572820c2792848fc8ac7b4bd4f3f6406e931057a9c746a93e6e48f63a07ef",
-      "verification": "2179b6484af7ba39f20859b171da706bc1c9d290253a2c528ed19179dafdd93b"
+      "verification": "cbdaec6e5b7880658f959ee2d6af736d385d07097715d34cca3bc24595940fbd"
     },
     "sectionHeadings": [
       "009: Usage and cost summaries",
@@ -82,6 +93,6 @@
     "summary": "Defines a deterministic binding-level summary of observed request counts, provider-attributed usage, reported cost, labeled estimates, identity variation, completeness, and gaps without converting testimony into a charge, quota decision, budget, or provider qualification.\n",
     "title": "Usage and cost summaries"
   },
-  "shardHash": "0968669093073b6d50113493bb2e2bb76b6fc11b015195a28aa5f80216ba45e9",
+  "shardHash": "b78739389d5bbf9b633e2b916d721f1b2755add0d5607b0ef356b676e59cce9a",
   "specVersion": "1.9.0"
 }

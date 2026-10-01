@@ -2,15 +2,17 @@
 id: "009-usage-and-cost-summaries"
 title: "Usage and cost summaries"
 status: approved
-implementation: pending
+implementation: complete
 created: "2026-09-27"
 summary: >
   Defines a deterministic binding-level summary of observed request counts,
   provider-attributed usage, reported cost, labeled estimates, identity
   variation, completeness, and gaps without converting testimony into a
   charge, quota decision, budget, or provider qualification.
+extends:
+  - { spec: "001-boundaries-and-authority", unit: { kind: section, file: "crates/wire-witness-core/src/lib.rs", anchor: "measurement-summary-module-export" }, nature: additive }
 establishes:
-  - { kind: module, id: "wire_witness_core::measurement_summary", planned: true }
+  - { kind: section, file: "crates/wire-witness-core/src/measurement_summary.rs", anchor: "measurement-summary" }
 depends_on:
   - "002-exchange-record-and-normalization"
   - "005-binding-and-sidecar-protocol"
@@ -33,7 +35,7 @@ obligations:
     anchor: "3-4-summary-schema"
   - id: "V-1"
     kind: verification
-    text: "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
+    text: "The deterministic summary engine passes its exact arithmetic, ordering, validation, gap, attribution, and canonicalization tests."
     anchor: "verification"
     inputs:
       - "specs/009-usage-and-cost-summaries/spec.md"
@@ -224,5 +226,5 @@ scope.
 ```verify:cli
 ./.tooling/bin/spec-spine check --fail-on-warn
 ./.tooling/bin/spec-spine index check --fail-on-unresolved
-test ! -e crates/wire-witness-core/src/measurement_summary.rs
+cargo test -p wire-witness-core measurement_summary --locked
 ```
