@@ -109,7 +109,8 @@ found after capture. The plan is immutable for the attempt. Duplicate probe
 names, a digest mismatch, invalid UTF-8, an empty target, or an unsupported
 selector refuses before child spawn. A selector is unsupported when its
 provider family, operation, and component kind are not a row of the table in
-section 3.5; that check needs no request body. Whether the named component and
+section 3.5, or when it names an index the row fixes ("always 0") with any
+other value; that check needs no request body. Whether the named component and
 text part exist is known only after decoding, so a supported selector whose
 component is not present produces `unknown` with reason `component-absent`,
 and one whose component exists without the named text part produces `unknown`
