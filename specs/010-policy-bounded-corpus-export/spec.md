@@ -206,10 +206,13 @@ a canonical-keysort-json object with exactly these fields:
 The rule is closed at every level: an unknown or missing field in the envelope
 or inside `scope`, a value in `scope.source_kinds` or
 `scope.materialization_modes` outside the values listed above, a duplicate
-array entry, an empty array, a `schema` value other than the literal above, a non-`allow`
+array entry, an empty array, a `schema` value other than the literal above, a `deny`
 outcome, a `verification_outcome` other than `verified`, an expired receipt, or a request outside `scope` refuses export. The
 receipt's own digest under `wire-witness.export-policy-receipt/1+keysort-json+sha256`
-is recorded in the manifest.
+is recorded in the manifest. A structural failure and a well-formed receipt
+that does not permit the export are reported as distinct refusal reasons:
+`deny`, `unverified`, and `failed` are valid values that refuse as policy,
+not as malformed input.
 
 Expiry is judged against the export's creation time, one value the host reads
 from its own UTC wall clock before construction starts and supplies to the pure
@@ -238,6 +241,10 @@ not permitted.
 | The policy decision permits disclosure but not training | Export records the decision; it does not infer or grant training permission. |
 | An external reference points to unavailable bytes | The reference remains testimony about identity, not proof of current availability. |
 | Rustev accepts a transformed replay bundle | That is a Rustev lifecycle fact and does not upgrade the wire-witness export. |
+| A receipt carries an unknown field, an empty `scope` array, or an unlisted source kind | Export refuses as a malformed receipt before any source is read. |
+| A well-formed receipt has `outcome: deny` or a `verification_outcome` other than `verified` | Export refuses as not permitted, reported apart from a malformed receipt. |
+| The receipt's `expires_at` is at or before the export's creation time | Export refuses as an expired receipt. |
+| A selected measurement summary uses a schema version this build does not implement | An explicit `unsupported-source-version` gap, or refusal when incomplete output is not permitted. |
 
 ## 5. Out of scope
 
