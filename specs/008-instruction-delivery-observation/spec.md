@@ -189,8 +189,14 @@ counting every element whatever its content.
 A selected component is the JSON string at that location, decoded from its
 JSON escape form to UTF-8 bytes. Image, file, tool-use, and tool-result blocks,
 tool definitions, and any key outside the table are never selectable, and they
-are not counted by a text-part index. Adding a shape is a later spec's change, not a
-decoder inference.
+are not counted by a text-part index. A selected location that holds a value
+of the wrong JSON type, such as a non-string `instructions` or a `content` that
+is neither a string nor an array, produces `unknown` with reason
+`component-not-text`.
+
+The decoder defined by this table is named `request-components-v1`, and that
+name is the decoder identity recorded in the durable result. Adding a shape is
+a later spec's change and a new decoder name, not a decoder inference.
 
 Order matters here. First, spec 003's mandatory redaction scan of the request
 body completes. Then the host compares against the component decoded from the
