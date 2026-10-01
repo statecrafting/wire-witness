@@ -207,7 +207,8 @@ name is the decoder identity recorded in the durable result. Adding a shape is
 a later spec's change and a new decoder name, not a decoder inference.
 
 Order matters here, and the comparison runs last. First, spec 003's mandatory
-redaction scan of the request body completes. Second, the host checks the
+redaction scan of the request body completes and records its replacement
+offsets; the original bytes the decoder walks are not modified by it. Second, the host checks the
 recorded replacement offsets against the selected component's source span,
 without reading the component's bytes. When any replacement's offset and
 length intersect that span, the result is `unknown` with reason

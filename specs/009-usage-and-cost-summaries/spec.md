@@ -203,6 +203,7 @@ neither.
 
 | Case | Expected |
 |---|---|
+| A group's running sum leaves the decimal-exact-v1 bounds | The group's total is `unknown` with an overflow finding; no partial total is reported, and its presence counts remain. |
 | A provider value has a scale above 18 | Excluded from its group's total and counted as an unknown with a finding; the total is visibly partial, never silently low. |
 | One exchange sequence is missing | Summary completeness is `incomplete` with the exact gap; no zero-valued exchange is invented. |
 | Two providers use the field name `input_tokens` with different units | Separate usage groups; the values are not summed together. |
