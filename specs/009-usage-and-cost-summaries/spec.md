@@ -95,8 +95,8 @@ and any gap.
 
 ### 3.3 Aggregation rules
 
-Request counts group by observed provider family, API surface, transport, and
-authority. Unknown values form explicit groups and are never filled from
+Request counts group by observed provider family, API surface (the exchange's
+transport operation and request path), transport protocol, and authority. Unknown values form explicit groups and are never filled from
 another record.
 
 Usage values may be added only when all of these match exactly:
@@ -107,19 +107,21 @@ Usage values may be added only when all of these match exactly:
 - numeric representation and scale rules; and
 - source attribution.
 
-Decimal addition is exact and rejects non-finite, exponent-overflow, or
-configured precision-limit input. Values with different meanings or units
+Decimal addition uses the fixed construction in section 3.5, which counts
+non-finite, malformed, or out-of-range input as an unknown rather than a
+value. Values with different meanings or units
 remain separate groups even if their display names look similar. Missing usage
 does not contribute zero; the group records observed, absent, and unknown
 exchange counts separately.
 
 Reported costs group by provider family, currency or unit, numeric
 construction, and source attribution. Estimated costs additionally group by
-provider family, rate-table identity, currency, input field set, and estimator
-construction. Estimates from different rate tables are never summed into one
+provider family, rate-table identity, currency, and usage-input set, which is
+the estimate's recorded `usage_inputs` list with duplicates removed, sorted by
+the lexicographic order of each entry's UTF-8 bytes. Every entry is a string in
+`wire-witness.exchange/1`, so no serialization rule is needed. Estimates from different rate tables are never summed into one
 number. Unknown cost remains a counted unknown with reasons. The arithmetic
-construction and configured precision limit are identities in every numeric
-group, so a later implementation change cannot silently alter a total.
+construction is an identity in every numeric group, so a later implementation change cannot silently alter a total.
 
 Requested identities and served identities are separate ordered inventories.
 Each entry carries its observed count and disclosure class. A requested model
@@ -144,7 +146,8 @@ bytes.
 5. reported-cost and estimated-cost groups kept separate;
 6. requested and served identity inventories;
 7. complete, incomplete, and absent capture counts plus ordered findings; and
-8. producer, normalizer, estimator, and rate-table identities used.
+8. the summary producer identity, the arithmetic construction, and the
+   rate-table identities used.
 
 The summary can be formed from metadata-only records. It contains no prompt,
 message, tool schema, response content, credential, raw header, or retained
@@ -155,10 +158,53 @@ Canonical bytes use canonical-keysort-json. The input-manifest digest uses
 `wire-witness.measurement-summary/1+keysort-json+sha256`. Each digest is
 carried beside the bytes it identifies.
 
+### 3.5 Arithmetic construction and source identities
+
+Numeric groups use `decimal-exact-v1`: each value is the provider's number
+text, parsed without floating point as an optional sign, decimal digits, an
+optional fraction, and an optional decimal exponent (`1.5e6` is exactly
+1500000). After the exponent is applied the value has at most 38 significant
+digits and a scale (the number of digits after the decimal point) of at most
+18. Each group is summed in ascending order of
+the exchange records' `sequence` numbers. A summary covers exactly one
+binding (section 3.2), whose sequence numbers are unique within it, and section
+3.2 refuses a duplicate before any summing, so this order is total and has no
+ties. Independently of that, the bounds are
+always checked on every addend and on the running sum after each addition. A value outside those bounds, `NaN`, an
+infinity, or text that is not a JSON number is excluded from the total and
+counted as an unknown with a finding. A running sum that leaves the bounds
+makes that group's total `unknown` with an overflow finding, and no partial
+total is reported. A group in which no value was included has total `unknown`,
+never zero, so an all-unknown group stays distinct from one that sums to zero. The bounds
+are fixed by this construction name rather than configured, so changing them
+means a new construction name.
+
+The exchange record carries a rate-table identity for an estimate but no
+separate estimator or normalizer identity, and this spec does not invent one.
+A summary therefore cannot name the normalizer behind its inputs; its ordered
+exchange-digest manifest is the link back to the records, and normalizer
+attribution needs a later change to `wire-witness.exchange/1`, not to this
+summary.
+The rate-table identity is the estimate's source identity: two estimates
+under the same rate-table identity are grouped together, so an estimator that
+computes differently from the same prices must publish a distinct rate-table
+identity. The summary cannot detect an estimator that breaks this rule, because
+the exchange record gives it nothing to compare. It therefore labels every
+estimated-cost total as sound only to the extent its rate-table identity is
+unique, carries that identity beside the total, and never presents an
+estimated total as verified. Spec 002 section
+3.3 describes reported, estimated, and unknown cost as separate slots, and the
+current exchange record carries one of them. The summary does not rely on
+that: an exchange contributes each reported or estimated value it carries to
+that value's own group, and counts as an unknown cost only when it carries
+neither.
+
 ## 4. Observable negative cases
 
 | Case | Expected |
 |---|---|
+| A group's running sum leaves the decimal-exact-v1 bounds | The group's total is `unknown` with an overflow finding; no partial total is reported, and its presence counts remain. |
+| A provider value has a scale above 18 | Excluded from its group's total and counted as an unknown with a finding; the total is visibly partial, never silently low. |
 | One exchange sequence is missing | Summary completeness is `incomplete` with the exact gap; no zero-valued exchange is invented. |
 | Two providers use the field name `input_tokens` with different units | Separate usage groups; the values are not summed together. |
 | Two estimates use different rate-table identities | Separate estimated-cost groups. |

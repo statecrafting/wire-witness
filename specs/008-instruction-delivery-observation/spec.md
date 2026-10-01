@@ -33,6 +33,10 @@ obligations:
     kind: requirement
     text: "The durable result binds the target digest and length, exchange digest, selected component identity and digest, match count, completeness, and findings without retaining target or observed instruction bytes."
     anchor: "3-4-durable-result"
+  - id: "R-3"
+    kind: requirement
+    text: "Request components are decoded by this spec's own closed decoder over the complete outbound request body, which never changes wire-witness.exchange/1 and never reports a match, absence, digest, length, or offset for a component that mandatory redaction touched."
+    anchor: "3-5-request-component-decoding"
   - id: "V-1"
     kind: verification
     text: "The draft compiles, its planned pure-core module resolves, and no implementation file is introduced."
@@ -60,7 +64,16 @@ target before child spawn and supplies transient bytes to the pure module. The
 module performs no file access, provider call, transport capture, durable
 write, policy decision, or adapter qualification.
 
-Spec 002 continues to own provider request normalization and exchange digests.
+The module also owns the closed request-component decoder in section 3.5. That
+decoder is new surface: spec 002's `wire-witness.exchange/1` records identity,
+usage, cost, transport, and response events, and has no request-component
+model. The decoder does not add fields to that schema, alter its canonical
+bytes, or change its digest construction; it reads the exchange's provider
+family and transport operation only to choose a decoding shape.
+
+Spec 002 continues to own the exchange record, provider request and response
+normalization outside the selectable components defined here, and exchange
+digests.
 Spec 003 owns retention and redaction. Spec 006 owns the host lifecycle,
 child-spawn boundary, and result rendering that this spec extends with a
 predeclared comparison plan. A consumer owns any conclusion drawn from the
@@ -95,10 +108,17 @@ The target is never inferred from the working directory, repository, an
 `AGENTS.md` filename, a configured import path, similar language, or a digest
 found after capture. The plan is immutable for the attempt. Duplicate probe
 names, a digest mismatch, invalid UTF-8, an empty target, or an unsupported
-selector refuses before child spawn.
+selector refuses before child spawn. A selector is unsupported when its
+provider family, operation, and component kind are not a row of the table in
+section 3.5, or when it names an index the row fixes ("always 0") with any
+other value; that check needs no request body. Whether the named component and
+text part exist is known only after decoding, so a supported selector whose
+component is not present produces `unknown` with reason `component-absent`,
+and one whose component exists without the named text part produces `unknown`
+with reason `text-part-absent`; neither is a refusal.
 
-Comparison operates on the decoded component produced by the exact provider
-normalizer. It does not search raw JSON serialization, HTTP headers, response
+Comparison operates on the decoded component produced by the request-component
+decoder in section 3.5. It does not search raw JSON serialization, HTTP headers, response
 content, unrelated messages, tool output, or every retained byte by default.
 The selector must resolve to exactly one string component in the identified
 exchange. No component, more than one component, a non-string component, or an
@@ -133,10 +153,12 @@ The durable `wire-witness.instruction-observation/1` record contains:
 1. the exchange binding, sequence, and exchange digest;
 2. probe name, target digest, target byte length, selector, and matching mode;
 3. selected-component decoded-byte digest and length when the component is
-   complete and uniquely resolved;
-4. result status, match count, and decoded-component byte offsets when known;
+   complete, uniquely resolved, and untouched by redaction, meaning the scan
+   completed and no replacement intersects its source span (section 3.5);
+4. result status, and the match count and decoded-component byte offsets when
+   known and the component is untouched by redaction as item 3 defines it;
 5. request and selected-component completeness;
-6. the exact normalizer and witness producer identities; and
+6. the request-component decoder and witness producer identities; and
 7. ordered findings and unknown reasons.
 
 The durable record never contains the target bytes, matched bytes, surrounding
@@ -149,15 +171,70 @@ Canonical bytes use canonical-keysort-json and the named construction
 `wire-witness.instruction-observation/1+keysort-json+sha256`. The record digest
 is carried beside the bytes it identifies.
 
+### 3.5 Request-component decoding
+
+The decoder accepts only a complete, identity-encoded outbound JSON request
+body. A compressed, truncated, or malformed body, or one whose provider family
+or operation is not listed below, produces `unknown` with a closed reason.
+
+| Provider family and operation | Component kind | Component index | Text-part index |
+|---|---|---|---|
+| Anthropic `POST /v1/messages` | `system` | always 0 | 0 for a string `system`; the position among text parts for an array |
+| Anthropic `POST /v1/messages` | `message` | position in `messages` | 0 for string `content`; the position among text parts for an array |
+| OpenAI `POST /v1/responses` | `instructions` | always 0 | always 0; only a string value is supported, and an array or object value is `component-not-text` |
+| OpenAI `POST /v1/responses` | `input` | 0 for a string `input`; the position in the `input` array otherwise | 0 for string content; the position among text parts for an array |
+| OpenAI `POST /v1/chat/completions` | `message` | position in `messages` | 0 for string `content`; the position among text parts for an array |
+
+A text part is an array element whose `type` is the row's text discriminant:
+`"text"` for Anthropic messages and OpenAI chat completions, and
+`"input_text"` for OpenAI responses. Every index is zero-based. A text-part
+index is an ordinal among the text parts only: in `[image, text, text]` the second text block is text-part 1, not
+array position 2. A component index is the position in the named array,
+counting every element whatever its content.
+
+A selected component is the JSON string at that location, decoded from its
+JSON escape form to UTF-8 bytes. Its source span is the byte range of that JSON
+string token in the raw request body, from its opening quote through its
+closing quote, found by walking the JSON structure. Image, file, tool-use, and tool-result blocks,
+tool definitions, and any key outside the table are never selectable, and they
+are not counted by a text-part index. A selected location that holds a value
+of the wrong JSON type, such as a non-string `instructions` or a `content` that
+is neither a string nor an array, produces `unknown` with reason
+`component-not-text`.
+
+The decoder defined by this table is named `request-components-v1`, and that
+name is the decoder identity recorded in the durable result. Adding a shape is
+a later spec's change and a new decoder name, not a decoder inference.
+
+Order matters here, and the comparison runs last. First, spec 003's mandatory
+redaction scan of the request body completes and records its replacement
+offsets; the original bytes the decoder walks are not modified by it. Second, the host checks the
+recorded replacement offsets against the selected component's source span,
+without reading the component's bytes. When any replacement's offset and
+length intersect that span, the result is `unknown` with reason
+`redaction-intersects-component`; when the scan could not complete, it is
+`unknown` with reason `redaction-scan-incomplete`. In both cases the comparison
+never runs, and no component digest, length, or offset is recorded. Only
+otherwise does the host compare against the component decoded from the
+original bytes, held transiently. Those bytes are then the same before and
+after redaction, so the durable result carries nothing
+mandatory redaction would have removed.
+
 ## 4. Observable negative cases
 
 | Case | Expected |
 |---|---|
 | The target appears in a tool result but not the selected system component | `observed-absent` for a complete system component; unrelated components are not searched. |
 | Capture stops before the request completes | `unknown` with the capture-gap reason, never absent. |
-| Redaction changes bytes inside the selected component | `unknown`; the witness does not search a lossy representation and claim absence. |
+| Redaction changes bytes inside the selected component | `unknown` with `redaction-intersects-component`; reporting presence, absence, or any component fact would disclose content mandatory redaction suppressed. |
 | A similar paraphrase appears | Absent under exact-byte matching; semantic similarity is not inferred. |
 | The same target appears twice | Present with count two and both decoded-component offsets. |
+| The redaction scan of the request body cannot complete | `unknown` with `redaction-scan-incomplete`; no component digest, length, or offset is recorded. |
+| The selected `instructions` value is an array or object rather than a string | `unknown` with `component-not-text`; the value is not stringified or searched. |
+| A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |
+| The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
+| A supported selector's component index exceeds the components present | `unknown` with reason `component-absent`; no other component is searched. |
+| A supported selector's text-part index exceeds the text parts present, for example because the rest are images | `unknown` with reason `text-part-absent`; no other part is searched. |
 | One successful session is presented as a CLI guarantee | Refused by the authority boundary; the record describes one exchange only. |
 
 ## 5. Out of scope
