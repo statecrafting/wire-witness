@@ -209,7 +209,7 @@ The rule is closed at every level: an unknown or missing field in the envelope
 or inside `scope`, a value in `scope.source_kinds` or
 `scope.materialization_modes` outside the values listed above, a duplicate
 array entry (two entries with identical canonical-keysort-json bytes), an empty array, a `schema` value other than the literal above, a
-`decided_at` later than `expires_at`, a `deny`
+`decided_at` later than `expires_at` or than the export's creation time, a `deny`
 outcome, a `verification_outcome` other than `verified`, an expired receipt, or a request outside `scope` refuses export. The
 receipt's own digest under `wire-witness.export-policy-receipt/1+keysort-json+sha256`
 is recorded in the manifest. A structural failure and a well-formed receipt

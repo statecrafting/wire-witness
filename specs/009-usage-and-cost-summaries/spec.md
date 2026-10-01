@@ -172,7 +172,8 @@ always checked on every addend and on the running sum after each addition. A val
 infinity, or text that is not a JSON number is excluded from the total and
 counted as an unknown with a finding. A running sum that leaves the bounds
 makes that group's total `unknown` with an overflow finding, and no partial
-total is reported. The bounds
+total is reported. A group in which no value was included has total `unknown`,
+never zero, so an all-unknown group stays distinct from one that sums to zero. The bounds
 are fixed by this construction name rather than configured, so changing them
 means a new construction name.
 
