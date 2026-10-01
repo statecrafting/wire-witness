@@ -165,8 +165,8 @@ text, parsed without floating point as an optional sign, decimal digits, an
 optional fraction, and an optional decimal exponent (`1.5e6` is exactly
 1500000). After the exponent is applied the value has at most 38 significant
 digits and a scale (the number of digits after the decimal point) of at most
-18. Each group is summed in its deterministic
-exchange-sequence order, and the bounds are checked on every addend and on the
+18. Each group is summed in ascending order of
+the exchange records' `sequence` numbers, the order section 3.2 validates, and the bounds are checked on every addend and on the
 running sum after each addition. A value outside those bounds, `NaN`, an
 infinity, or text that is not a JSON number is excluded from the total and
 counted as an unknown with a finding. A running sum that leaves the bounds
