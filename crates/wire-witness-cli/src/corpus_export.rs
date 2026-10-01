@@ -23,6 +23,13 @@ pub struct InstallReceipt {
     pub byte_length: u64,
     pub digest: String,
     pub digest_construction: &'static str,
+    pub findings: Vec<InstallFinding>,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum InstallFinding {
+    TemporaryCleanupFailed(io::ErrorKind),
+    DirectorySyncFailed(io::ErrorKind),
 }
 
 #[derive(Debug)]
@@ -77,7 +84,7 @@ pub fn install_export(path: &Path, export: &CorpusExport) -> Result<InstallRecei
     }
 
     let (temporary_path, mut temporary) = create_private_temporary(parent, file_name)?;
-    let write_result = (|| {
+    let publish_result = (|| {
         #[cfg(unix)]
         {
             temporary.set_permissions(fs::Permissions::from_mode(0o600))?;
@@ -93,21 +100,30 @@ pub fn install_export(path: &Path, export: &CorpusExport) -> Result<InstallRecei
                 InstallError::Io(error)
             }
         })?;
-        fs::remove_file(&temporary_path).map_err(InstallError::Io)?;
-        File::open(parent)
-            .and_then(|directory| directory.sync_all())
-            .map_err(InstallError::Io)?;
         Ok(())
     })();
-    if write_result.is_err() {
+    if publish_result.is_err() {
         let _ = fs::remove_file(&temporary_path);
-        return write_result.map(|()| unreachable!());
+        return publish_result.map(|()| unreachable!());
+    }
+
+    // The exclusive hard link above is the publication point. Once it exists,
+    // returning an error would make a successful install unreachable to the
+    // caller because a retry must refuse to overwrite it. Report subsequent
+    // cleanup and directory-durability failures with the successful receipt.
+    let mut findings = Vec::new();
+    if let Err(error) = fs::remove_file(&temporary_path) {
+        findings.push(InstallFinding::TemporaryCleanupFailed(error.kind()));
+    }
+    if let Err(error) = File::open(parent).and_then(|directory| directory.sync_all()) {
+        findings.push(InstallFinding::DirectorySyncFailed(error.kind()));
     }
     Ok(InstallReceipt {
         path: path.to_owned(),
         byte_length: export.manifest_bytes.len() as u64,
         digest: export.manifest_digest.clone(),
         digest_construction: DIGEST_CONSTRUCTION,
+        findings,
     })
 }
 
@@ -213,6 +229,7 @@ mod tests {
         let receipt = install_export(&path, &export).unwrap();
         assert_eq!(fs::read(&path).unwrap(), export.manifest_bytes);
         assert_eq!(receipt.digest, export.manifest_digest);
+        assert!(receipt.findings.is_empty());
         #[cfg(unix)]
         assert_eq!(
             fs::metadata(&path).unwrap().permissions().mode() & 0o777,

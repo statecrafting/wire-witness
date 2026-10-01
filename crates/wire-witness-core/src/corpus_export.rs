@@ -382,11 +382,9 @@ pub fn construct_export(request: ExportRequest<'_>) -> Result<CorpusExport, Expo
             let Some(sequence) = source.sequence else {
                 return Err(ExportError::InvalidRequest);
             };
-            if source.kind == SourceKind::Exchange {
-                let key = (binding_bytes(source.binding), sequence);
-                if !sequence_keys.insert(key) {
-                    return Err(ExportError::ConflictingSequence);
-                }
+            let key = (binding_bytes(source.binding), source.kind, sequence);
+            if !sequence_keys.insert(key) {
+                return Err(ExportError::ConflictingSequence);
             }
         } else if source.sequence.is_some() {
             return Err(ExportError::InvalidRequest);
@@ -1490,6 +1488,65 @@ mod tests {
         assert_eq!(
             construct_export(artifact).unwrap_err(),
             ExportError::InvalidArtifactDigest
+        );
+    }
+
+    #[test]
+    fn conflicting_instruction_observations_refuse_per_binding_and_sequence() {
+        let binding = binding();
+        let capture = "b".repeat(64);
+        let policy = receipt(&binding, &capture, "allow", "verified");
+        let exchange_digest_one = "c".repeat(64);
+        let exchange_digest_two = "d".repeat(64);
+        let observation_one = canonical_json_bytes(&object([
+            ("binding", binding_json(&binding)),
+            ("exchange_digest", string(&exchange_digest_one)),
+            ("schema", string(crate::instruction_observation::SCHEMA)),
+            ("sequence", number(1)),
+        ]));
+        let observation_two = canonical_json_bytes(&object([
+            ("binding", binding_json(&binding)),
+            ("exchange_digest", string(&exchange_digest_two)),
+            ("schema", string(crate::instruction_observation::SCHEMA)),
+            ("sequence", number(1)),
+        ]));
+        let source = source_bytes(&binding, crate::exchange::SCHEMA);
+        let mut request = request(&binding, &capture, &policy, &source, b"artifact");
+        request.sources = vec![
+            SourceInput {
+                binding: &binding,
+                capture_digest: &capture,
+                kind: SourceKind::InstructionObservation,
+                schema: crate::instruction_observation::SCHEMA,
+                sequence: Some(1),
+                claimed_digest: digest(&observation_one),
+                claimed_length: observation_one.len() as u64,
+                canonical_bytes: &observation_one,
+                retention: RetentionMode::MetadataOnly,
+                expires_at: None,
+                completeness: SourceCompleteness::Complete,
+                findings: Vec::new(),
+                source_exchange_manifest: vec![exchange_digest_one],
+            },
+            SourceInput {
+                binding: &binding,
+                capture_digest: &capture,
+                kind: SourceKind::InstructionObservation,
+                schema: crate::instruction_observation::SCHEMA,
+                sequence: Some(1),
+                claimed_digest: digest(&observation_two),
+                claimed_length: observation_two.len() as u64,
+                canonical_bytes: &observation_two,
+                retention: RetentionMode::MetadataOnly,
+                expires_at: None,
+                completeness: SourceCompleteness::Complete,
+                findings: Vec::new(),
+                source_exchange_manifest: vec![exchange_digest_two],
+            },
+        ];
+        assert_eq!(
+            construct_export(request).unwrap_err(),
+            ExportError::ConflictingSequence
         );
     }
 
