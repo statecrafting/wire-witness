@@ -180,7 +180,7 @@ or operation is not listed below, produces `unknown` with a closed reason.
 |---|---|---|---|
 | Anthropic `POST /v1/messages` | `system` | always 0 | 0 for a string `system`; the position among `text` blocks for an array |
 | Anthropic `POST /v1/messages` | `message` | position in `messages` | 0 for string `content`; the position among `text` blocks for an array |
-| OpenAI `POST /v1/responses` | `instructions` | always 0 | always 0; only a string value is supported |
+| OpenAI `POST /v1/responses` | `instructions` | always 0 | always 0; only a string value is supported, and an array or object value is `component-not-text` |
 | OpenAI `POST /v1/responses` | `input` | 0 for a string `input`; the position in the `input` array otherwise | 0 for string content; the position among text content parts for an array |
 | OpenAI `POST /v1/chat/completions` | `message` | position in `messages` | 0 for string `content`; the position among `text` parts for an array |
 
@@ -201,15 +201,17 @@ The decoder defined by this table is named `request-components-v1`, and that
 name is the decoder identity recorded in the durable result. Adding a shape is
 a later spec's change and a new decoder name, not a decoder inference.
 
-Order matters here. First, spec 003's mandatory redaction scan of the request
-body completes. Then the host compares against the component decoded from the
-original, unredacted bytes, held only transiently.
-When any redaction replacement's recorded input offset and length intersect
-the selected component's source span, the result is `unknown` with reason
-`redaction-intersects-component`. When the scan could not complete, the result
-is `unknown` with reason `redaction-scan-incomplete`. In both cases no
-component digest, length, or offset is recorded. Otherwise the component's bytes are the
-same before and after redaction, so the durable result carries nothing
+Order matters here, and the comparison runs last. First, spec 003's mandatory
+redaction scan of the request body completes. Second, the host checks the
+recorded replacement offsets against the selected component's source span,
+without reading the component's bytes. When any replacement's offset and
+length intersect that span, the result is `unknown` with reason
+`redaction-intersects-component`; when the scan could not complete, it is
+`unknown` with reason `redaction-scan-incomplete`. In both cases the comparison
+never runs, and no component digest, length, or offset is recorded. Only
+otherwise does the host compare against the component decoded from the
+original bytes, held transiently. Those bytes are then the same before and
+after redaction, so the durable result carries nothing
 mandatory redaction would have removed.
 
 ## 4. Observable negative cases
@@ -222,7 +224,7 @@ mandatory redaction would have removed.
 | A similar paraphrase appears | Absent under exact-byte matching; semantic similarity is not inferred. |
 | The same target appears twice | Present with count two and both decoded-component offsets. |
 | The redaction scan of the request body cannot complete | `unknown` with `redaction-scan-incomplete`; no component digest, length, or offset is recorded. |
-| The selected `instructions` value is an object rather than a string | `unknown` with `component-not-text`; the value is not stringified or searched. |
+| The selected `instructions` value is an array or object rather than a string | `unknown` with `component-not-text`; the value is not stringified or searched. |
 | A secret detector fires inside the selected system prompt | `unknown` with `redaction-intersects-component`; no component digest, length, or offset is recorded. |
 | The selector names a component kind outside section 3.5's table, such as tool definitions | Refused before child spawn as an unsupported selector. |
 | A supported selector's component index exceeds the components present | `unknown` with reason `component-absent`; no other component is searched. |
