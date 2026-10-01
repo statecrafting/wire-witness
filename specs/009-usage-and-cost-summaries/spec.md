@@ -178,6 +178,10 @@ means a new construction name.
 
 The exchange record carries a rate-table identity for an estimate but no
 separate estimator or normalizer identity, and this spec does not invent one.
+A summary therefore cannot name the normalizer behind its inputs; its ordered
+exchange-digest manifest is the link back to the records, and normalizer
+attribution needs a later change to `wire-witness.exchange/1`, not to this
+summary.
 The rate-table identity is the estimate's source identity: two estimates
 under the same rate-table identity are grouped together, so an estimator that
 computes differently from the same prices must publish a distinct rate-table

@@ -204,9 +204,10 @@ Order matters here. First, spec 003's mandatory redaction scan of the request
 body completes. Then the host compares against the component decoded from the
 original, unredacted bytes, held only transiently.
 When any redaction replacement's recorded input offset and length intersect
-the selected component's source span, or a scan could not complete, the result
-is `unknown` with reason `redaction-intersects-component` and no component
-digest, length, or offset is recorded. Otherwise the component's bytes are the
+the selected component's source span, the result is `unknown` with reason
+`redaction-intersects-component`. When the scan could not complete, the result
+is `unknown` with reason `redaction-scan-incomplete`. In both cases no
+component digest, length, or offset is recorded. Otherwise the component's bytes are the
 same before and after redaction, so the durable result carries nothing
 mandatory redaction would have removed.
 
