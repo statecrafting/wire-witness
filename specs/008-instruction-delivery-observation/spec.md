@@ -71,8 +71,9 @@ model. The decoder does not add fields to that schema, alter its canonical
 bytes, or change its digest construction; it reads the exchange's provider
 family and transport operation only to choose a decoding shape.
 
-Spec 002 continues to own the exchange record, provider response
-normalization, and exchange digests.
+Spec 002 continues to own the exchange record, provider request and response
+normalization outside the selectable components defined here, and exchange
+digests.
 Spec 003 owns retention and redaction. Spec 006 owns the host lifecycle,
 child-spawn boundary, and result rendering that this spec extends with a
 predeclared comparison plan. A consumer owns any conclusion drawn from the
@@ -178,14 +179,16 @@ or operation is not listed below, produces `unknown` with a closed reason.
 
 | Provider family and operation | Component kind | Component index | Text-part index |
 |---|---|---|---|
-| Anthropic `POST /v1/messages` | `system` | always 0 | 0 for a string `system`; the position among `text` blocks for an array |
-| Anthropic `POST /v1/messages` | `message` | position in `messages` | 0 for string `content`; the position among `text` blocks for an array |
+| Anthropic `POST /v1/messages` | `system` | always 0 | 0 for a string `system`; the position among text parts for an array |
+| Anthropic `POST /v1/messages` | `message` | position in `messages` | 0 for string `content`; the position among text parts for an array |
 | OpenAI `POST /v1/responses` | `instructions` | always 0 | always 0; only a string value is supported, and an array or object value is `component-not-text` |
-| OpenAI `POST /v1/responses` | `input` | 0 for a string `input`; the position in the `input` array otherwise | 0 for string content; the position among text content parts for an array |
-| OpenAI `POST /v1/chat/completions` | `message` | position in `messages` | 0 for string `content`; the position among `text` parts for an array |
+| OpenAI `POST /v1/responses` | `input` | 0 for a string `input`; the position in the `input` array otherwise | 0 for string content; the position among text parts for an array |
+| OpenAI `POST /v1/chat/completions` | `message` | position in `messages` | 0 for string `content`; the position among text parts for an array |
 
-Every index is zero-based. A text-part index is an ordinal among the text
-parts only: in `[image, text, text]` the second text block is text-part 1, not
+A text part is an array element whose `type` is the row's text discriminant:
+`"text"` for Anthropic messages and OpenAI chat completions, and
+`"input_text"` for OpenAI responses. Every index is zero-based. A text-part
+index is an ordinal among the text parts only: in `[image, text, text]` the second text block is text-part 1, not
 array position 2. A component index is the position in the named array,
 counting every element whatever its content.
 
