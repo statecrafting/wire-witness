@@ -1,0 +1,15 @@
+{
+  "mapping": {
+    "amends": [
+      "011-agent-attribution-and-governance-flows"
+    ],
+    "dependsOn": [
+      "011-agent-attribution-and-governance-flows"
+    ],
+    "implementingPaths": [],
+    "specId": "012-profile-13-engine-location",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "7b19caa95c059e58ec3afca1be71f4b8e1063032bc62408e9c2b7c74abeda053"
+}

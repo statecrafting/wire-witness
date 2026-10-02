@@ -1,0 +1,36 @@
+{
+  "record": {
+    "amends": [
+      "011-agent-attribution-and-governance-flows"
+    ],
+    "amendsVerification": [
+      "011-agent-attribution-and-governance-flows"
+    ],
+    "created": "2026-10-02",
+    "dependsOn": [
+      "011-agent-attribution-and-governance-flows"
+    ],
+    "id": "012-profile-13-engine-location",
+    "implementation": "complete",
+    "sectionDigests": {
+      "012-profile-13-uses-the-repository-local-engine-in-bin": "9ab9b796fb24e172fea06612b2e6cc28db36de1784c55f374c419b767271802f",
+      "1-purpose": "c4fbd877c1e3b4d76c651021ec12ddce69eb19e3f1ac9ad973ffd345fb482a15",
+      "2-territory": "12fc53f3707b74d2b053af4ccc4936e622e04b8f9fb317b2586d14deb9b412eb",
+      "3-behavior": "591869bee8af898003ccd1ee52f13b3a3883bfef8ae264f943ca6952ec94aa8a",
+      "verification": "fe77a71ce9dbeec22da74edad8fb03298e61884ab7cf3bdeab8efa4fa8697235"
+    },
+    "sectionHeadings": [
+      "012: Profile 13 uses the repository-local engine in .bin",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "Verification"
+    ],
+    "specPath": "specs/012-profile-13-engine-location/spec.md",
+    "status": "draft",
+    "summary": "Adopts Statecraft profile revision 13 with the existing exact engine pin, and replaces revision 12 acceptance with the recorded revision 13 identity.\n",
+    "title": "Profile 13 uses the repository-local engine in .bin"
+  },
+  "shardHash": "7b19caa95c059e58ec3afca1be71f4b8e1063032bc62408e9c2b7c74abeda053",
+  "specVersion": "1.9.0"
+}
