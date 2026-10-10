@@ -1,0 +1,16 @@
+{
+  "mapping": {
+    "amends": [
+      "005-binding-and-sidecar-protocol"
+    ],
+    "dependsOn": [
+      "005-binding-and-sidecar-protocol",
+      "012-profile-13-engine-location"
+    ],
+    "implementingPaths": [],
+    "specId": "016-binding-verification-engine",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "69d25ae77132fd29a9014fe326b5a68074d9897ee5a2b2dcec5a54bc80af8aa2"
+}

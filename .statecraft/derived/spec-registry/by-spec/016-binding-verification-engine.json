@@ -1,0 +1,39 @@
+{
+  "record": {
+    "amends": [
+      "005-binding-and-sidecar-protocol"
+    ],
+    "amendsVerification": [
+      "005-binding-and-sidecar-protocol"
+    ],
+    "created": "2026-10-10",
+    "dependsOn": [
+      "005-binding-and-sidecar-protocol",
+      "012-profile-13-engine-location"
+    ],
+    "id": "016-binding-verification-engine",
+    "implementation": "n-a",
+    "sectionDigests": {
+      "016-binding-protocol-verification-uses-the-repository-local-engine": "ce329aaa6d7fa86b9bb12259640fbcf7116d1b0fb7bc059bebfcd5a5e2e6abb5",
+      "1-purpose": "4e055eb9bb4175762f8dd7b948b7b723352df0c7ccdc99e87667b598a5eef0dc",
+      "2-territory": "9da2f816cc3851b7e11c823c1bac0dfd31fdad79089dc7f38df265e7b346df04",
+      "3-behavior": "2663aaafc2da4f24f2c46e8dc61a14ece9e19697637b1320a2486e61d7afe38f",
+      "4-out-of-scope": "42e990d85bbac4c3c84b662c7cf7fc8ad923878a1b8b4e1b37eb5a0ba5f1630e",
+      "verification": "2c4557f6a836c640ac064750ed310eb7f5f179d9be90e8e9ac5b234929af8317"
+    },
+    "sectionHeadings": [
+      "016: Binding protocol verification uses the repository-local engine",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "4. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/016-binding-verification-engine/spec.md",
+    "status": "draft",
+    "summary": "Replaces spec 005 acceptance commands with their profile 13 engine paths, preserving its approved source and pinned interface section digests.\n",
+    "title": "Binding protocol verification uses the repository-local engine"
+  },
+  "shardHash": "69d25ae77132fd29a9014fe326b5a68074d9897ee5a2b2dcec5a54bc80af8aa2",
+  "specVersion": "1.9.0"
+}
