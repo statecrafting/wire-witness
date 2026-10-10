@@ -34,8 +34,8 @@
           {
             "file": "crates/wire-witness-proxy/src/lib.rs",
             "span": {
-              "endLine": 701,
-              "startLine": 7
+              "endLine": 705,
+              "startLine": 11
             }
           }
         ],
@@ -52,5 +52,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "9f5edbc9772ba73b0b8f0fda2f90a2e6a24e8473f9b9264b42d6e19bec0f3540"
+  "shardHash": "d3bed1d92f454122488b8065efd70a23fcf0b7c5cb3ced9bc66fea575409af7f"
 }

@@ -27,7 +27,10 @@ assert_set() {
 }
 
 printf '%s\n' 'action-gate-core' 'wire-witness-core' 'zeroize' > "$scratch/core.expected"
-printf '%s\n' 'wire-witness-core' 'wire-witness-proxy' > "$scratch/proxy.expected"
+# Spec 013 adds the live runtime's transport stack to the proxy, never to the
+# core or through the CLI's normal edges.
+printf '%s\n' 'brotli-decompressor' 'flate2' 'rcgen' 'rustls' 'rustls-native-certs' 'sha2' 'time' \
+  'wire-witness-core' 'wire-witness-proxy' > "$scratch/proxy.expected"
 printf '%s\n' 'wire-witness-cli' 'wire-witness-core' 'wire-witness-proxy' > "$scratch/cli.expected"
 
 assert_set wire-witness-core "$scratch/core.expected"

@@ -311,11 +311,16 @@ impl ChildEnvironment {
             return Err(HostError::Precondition("invalid-trust-path"));
         }
         let endpoint = format!("http://{}", proxy.canonical());
+        // An inherited bypass list would let the child reach a capture
+        // authority without the witness (spec 013, section 3.6), so the
+        // overlay names an empty one; unlisted hosts are tunneled unchanged.
         let mut values = BTreeMap::from([
             ("HTTP_PROXY".into(), endpoint.clone()),
             ("HTTPS_PROXY".into(), endpoint.clone()),
+            ("NO_PROXY".into(), String::new()),
             ("http_proxy".into(), endpoint.clone()),
             ("https_proxy".into(), endpoint),
+            ("no_proxy".into(), String::new()),
         ]);
         let trust_name = match trust {
             TrustMechanism::NodeExtraCaCerts => "NODE_EXTRA_CA_CERTS",
@@ -687,6 +692,8 @@ mod tests {
             environment.values().get("NODE_EXTRA_CA_CERTS").unwrap(),
             "/attempt/ca.pem"
         );
+        assert_eq!(environment.values().get("NO_PROXY").unwrap(), "");
+        assert_eq!(environment.values().get("no_proxy").unwrap(), "");
         assert_eq!(std::env::var_os("NODE_EXTRA_CA_CERTS"), parent_value);
         assert_eq!(
             ChildEnvironment::new(

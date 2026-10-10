@@ -16,6 +16,13 @@ repository = "https://github.com/statecrafting/wire-witness"
 
 [workspace.dependencies]
 action-gate-core = { version = "=0.2.0", default-features = false }
+brotli-decompressor = { version = "5", default-features = false, features = ["std"] }
+flate2 = { version = "1", default-features = false, features = ["rust_backend"] }
+rcgen = { version = "0.13", default-features = false, features = ["crypto", "pem", "ring"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+rustls-native-certs = "0.8"
+sha2 = { version = "0.10", default-features = false }
+time = { version = "0.3", default-features = false, features = ["std"] }
 wire-witness-core = { path = "crates/wire-witness-core" }
 wire-witness-proxy = { path = "crates/wire-witness-proxy" }
 zeroize = { version = "1.9.0", default-features = false }

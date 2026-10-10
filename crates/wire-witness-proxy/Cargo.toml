@@ -10,6 +10,13 @@ repository.workspace = true
 spec = "004-allowlisted-capture-proxy"
 
 [dependencies]
+brotli-decompressor.workspace = true
+flate2.workspace = true
+rcgen.workspace = true
+rustls.workspace = true
+rustls-native-certs.workspace = true
+sha2.workspace = true
+time.workspace = true
 wire-witness-core.workspace = true
 
 [lints]

@@ -1,0 +1,208 @@
+{
+  "record": {
+    "created": "2026-10-04",
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "004-allowlisted-capture-proxy",
+      "006-standalone-host"
+    ],
+    "establishes": [
+      {
+        "anchor": "live-capture-runtime",
+        "file": "crates/wire-witness-proxy/src/live.rs",
+        "kind": "section"
+      },
+      {
+        "anchor": "live-attempt-runtime",
+        "file": "crates/wire-witness-cli/src/live_runtime.rs",
+        "kind": "section"
+      },
+      {
+        "anchor": "wire-witness-executable",
+        "file": "crates/wire-witness-cli/src/main.rs",
+        "kind": "section"
+      },
+      {
+        "anchor": "live-capture-acceptance",
+        "file": "crates/wire-witness-cli/tests/live_capture.rs",
+        "kind": "section"
+      },
+      {
+        "anchor": "executable-acceptance",
+        "file": "crates/wire-witness-cli/tests/executable.rs",
+        "kind": "section"
+      }
+    ],
+    "extends": [
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "anchor": "workspace.dependencies",
+          "file": "Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "kind": "file",
+          "path": "Cargo.lock"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "kind": "file",
+          "path": "scripts/check-boundaries.sh"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "004-allowlisted-capture-proxy",
+        "unit": {
+          "anchor": "dependencies",
+          "file": "crates/wire-witness-proxy/Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "004-allowlisted-capture-proxy",
+        "unit": {
+          "anchor": "live-capture-runtime-module-export",
+          "file": "crates/wire-witness-proxy/src/lib.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "006-standalone-host",
+        "unit": {
+          "kind": "file",
+          "path": "crates/wire-witness-cli/Cargo.toml"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "006-standalone-host",
+        "unit": {
+          "anchor": "live-runtime-module-export",
+          "file": "crates/wire-witness-cli/src/lib.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "006-standalone-host",
+        "unit": {
+          "kind": "file",
+          "path": "crates/wire-witness-cli/src/standalone_host.rs"
+        }
+      }
+    ],
+    "id": "013-live-loopback-capture-runtime",
+    "implementation": "complete",
+    "obligations": [
+      {
+        "anchor": "3-2-attempt-preparation-and-ephemeral-trust",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "The attempt CA private key is generated after the attempt begins, held only by the running proxy, and never serialized, written, logged, or sent; only its certificate reaches a file."
+      },
+      {
+        "anchor": "3-3-listener-and-routing",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Only an exact capture-allowlist authority is TLS-intercepted; every other CONNECT is an opaque tunnel and every plain request is forwarded without capture."
+      },
+      {
+        "anchor": "3-7-exchange-records",
+        "id": "I-3",
+        "kind": "invariant",
+        "text": "No durable output carries a request or response body, a header value, a query string, or the CA key; records hold metadata, digests, counts, and normalized identities only."
+      },
+      {
+        "anchor": "3-5-http-1-1-relay-and-bounded-observation",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "The HTTP/1.1 relay forwards every byte verbatim and in order, refuses ambiguous framing by closing the connection, and stops structured capture at a fixed bound while forwarding continues."
+      },
+      {
+        "anchor": "3-6-child-environment-bypass",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "The child overlay names an empty proxy bypass list, so an inherited NO_PROXY cannot route a capture authority around the witness."
+      },
+      {
+        "anchor": "3-8-capture-manifest-and-capture-state",
+        "id": "R-3",
+        "kind": "requirement",
+        "text": "The capture manifest is installed last, lists every recorded exchange by digest, and reports capture as absent or incomplete whenever the evidence does not support complete."
+      },
+      {
+        "anchor": "3-1-the-executable",
+        "id": "R-4",
+        "kind": "requirement",
+        "text": "The wire-witness executable maps spec 006's parse, host sequence, rendering, and exit vocabulary onto this runtime, and refuses the sidecar command until its host exists."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/013-live-loopback-capture-runtime/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The relay, decoding, record, install, and executable tests pass, the fake-provider end-to-end capture passes, and the dependency boundary holds."
+      }
+    ],
+    "sectionDigests": {
+      "013-live-loopback-capture-runtime-and-the-wire-witness-executable": "0aebd11a8ad4bceafea0ef87324beb5149c60ac73e091b8a9d54597ea242b48e",
+      "1-purpose": "11c75e88b8cecf9336f32a77eba497c1bc00aa82491486e3bbfae2cddea92b82",
+      "2-territory": "bafed19ace4a0689db8b0c60e5aed39c61ee0f1128ec2f919b4a524c8d53d599",
+      "3-1-the-executable": "b40317062f13e506fb39ae653a6ad786413bfd0fa5741e96074956dacc228da4",
+      "3-2-attempt-preparation-and-ephemeral-trust": "c0f64e36c975614ddb6ff3604752b489fe622a5e0dc9a302a7fb336d3aed9956",
+      "3-3-listener-and-routing": "a75022c2c9e07906222ccb92320c607885db8645a816c5a635b254c9c5d5dc66",
+      "3-4-tls-interception": "faeb01d044fa2a1c382682ee89d579a34e91631da3ff4e685911d49400ec620b",
+      "3-5-http-1-1-relay-and-bounded-observation": "63673d558b3efd602f69c146976994b02c3aab0194355fff435852057c57bee5",
+      "3-6-child-environment-bypass": "af1286610c1d0419f664bc1ae93f6191a42fbffea768a3df190be93dd12beffe",
+      "3-7-exchange-records": "cecab310b9295d8bf384f33927623c6ff9c413586e359b6f4936baaaedbedbad",
+      "3-8-capture-manifest-and-capture-state": "f13a1aaf1f86793fa707bbde19aa3d4201027b29c03cbfc16a41be0eab011291",
+      "3-9-provider-trust": "3f62fc573127502ca3fe60349e6d653f5db4668685dcca589acda34e9e32763c",
+      "3-behavior": "51136e0aa789b859d743c70694f4ec19abaf50228da0f76cd1f1eb0f2519f272",
+      "4-observable-negative-cases": "06d66f3df598d5be1ee02c7a80040f819415a156b380dd885074fa291759f667",
+      "5-residual-risks": "74ee0201ca868f4a23a583edb63778d1736f4646fc489e788819e80205b9fd9b",
+      "6-out-of-scope": "5de48cf590013c29530e9141819a25a7f5b03078a376ecd2bb3fcf8418bc43ef",
+      "verification": "5c0c2ad05274853ab5057d5b1aa96b9e12b9d2416bf3badfff34063d5d3b5cd7"
+    },
+    "sectionHeadings": [
+      "013: Live loopback capture runtime and the wire-witness executable",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 The executable",
+      "3.2 Attempt preparation and ephemeral trust",
+      "3.3 Listener and routing",
+      "3.4 TLS interception",
+      "3.5 HTTP/1.1 relay and bounded observation",
+      "3.6 Child environment bypass",
+      "3.7 Exchange records",
+      "3.8 Capture manifest and capture state",
+      "3.9 Provider trust",
+      "4. Observable negative cases",
+      "5. Residual risks",
+      "6. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/013-live-loopback-capture-runtime/spec.md",
+    "status": "approved",
+    "summary": "Supplies the I/O shell that specs 003, 004, and 006 describe but the workspace did not contain: the wire-witness executable, a per-attempt loopback listener, a fresh in-memory CA, exact-allowlist TLS interception, an HTTP/1.1 relay that forwards verbatim and observes within bounds, redacted exchange records, and a capture manifest. It names every protocol and retention path it does not yet implement and refuses or reports them.\n",
+    "title": "Live loopback capture runtime and the wire-witness executable"
+  },
+  "shardHash": "b0ff4cc5de6420f4a8f426c5078b3b0b113c7a9ffd7895de0e9b257b6f1e4e48",
+  "specVersion": "1.9.0"
+}
