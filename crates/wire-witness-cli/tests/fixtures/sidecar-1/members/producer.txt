@@ -1,0 +1,7 @@
+attemptBindingSchema
+executableDigest
+interface
+name
+releaseChannel
+terminalSchema
+version

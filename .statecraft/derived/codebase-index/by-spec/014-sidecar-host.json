@@ -20,11 +20,31 @@
         "source": "spec-edge"
       },
       {
+        "path": "crates/wire-witness-cli/src/main.rs",
+        "source": "spec-edge"
+      },
+      {
         "path": "crates/wire-witness-cli/src/producer_identity.rs",
         "source": "spec-edge"
       },
       {
+        "path": "crates/wire-witness-cli/src/sidecar_host.rs",
+        "source": "spec-edge"
+      },
+      {
         "path": "crates/wire-witness-cli/src/wire_exchange.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/tests/executable.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/tests/fixtures/sidecar-1/",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/tests/sidecar_host.rs",
         "source": "spec-edge"
       },
       {
@@ -36,9 +56,22 @@
       {
         "locations": [
           {
+            "file": "crates/wire-witness-cli/tests/fixtures/sidecar-1/"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "kind": "directory",
+          "path": "crates/wire-witness-cli/tests/fixtures/sidecar-1/"
+        }
+      },
+      {
+        "locations": [
+          {
             "file": "crates/wire-witness-cli/src/lib.rs",
             "span": {
-              "endLine": 19,
+              "endLine": 20,
               "startLine": 16
             }
           }
@@ -72,6 +105,24 @@
       {
         "locations": [
           {
+            "file": "crates/wire-witness-cli/src/sidecar_host.rs",
+            "span": {
+              "endLine": 764,
+              "startLine": 6
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "sidecar-host",
+          "file": "crates/wire-witness-cli/src/sidecar_host.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
             "file": "crates/wire-witness-cli/src/wire_exchange.rs",
             "span": {
               "endLine": 387,
@@ -90,6 +141,24 @@
       {
         "locations": [
           {
+            "file": "crates/wire-witness-cli/tests/sidecar_host.rs",
+            "span": {
+              "endLine": 887,
+              "startLine": 9
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "sidecar-host-acceptance",
+          "file": "crates/wire-witness-cli/tests/sidecar_host.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
             "file": "crates/wire-witness-cli/src/live_runtime.rs",
             "span": {
               "endLine": 1310,
@@ -102,6 +171,42 @@
         "unit": {
           "anchor": "live-attempt-runtime",
           "file": "crates/wire-witness-cli/src/live_runtime.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/main.rs",
+            "span": {
+              "endLine": 111,
+              "startLine": 8
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "wire-witness-executable",
+          "file": "crates/wire-witness-cli/src/main.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/tests/executable.rs",
+            "span": {
+              "endLine": 56,
+              "startLine": 6
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "executable-acceptance",
+          "file": "crates/wire-witness-cli/tests/executable.rs",
           "kind": "section"
         }
       },
@@ -128,5 +233,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "146dc5251790840bf11aebd6a5cfd09d2422b2ee6469c8aa9654f524197320dc"
+  "shardHash": "a57d6f4cedb29479d509889b7d450c0208b67321835cbda01b975f2955649aa3"
 }

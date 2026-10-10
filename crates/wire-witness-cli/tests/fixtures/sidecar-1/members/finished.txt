@@ -1,0 +1,13 @@
+binding
+capture_digest
+completeness
+end_disposition
+evidence_reference
+exchange_count
+finding_count
+gaps
+manifest_path
+producer
+protocol
+reason
+type

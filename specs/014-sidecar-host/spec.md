@@ -2,7 +2,7 @@
 id: "014-sidecar-host"
 title: "The wire-witness.sidecar/1 stdio host"
 status: approved
-implementation: in-progress
+implementation: complete
 created: "2026-10-10"
 summary: >
   Implements `wire-witness sidecar` over the spec 005 protocol and the spec 013
@@ -13,12 +13,17 @@ summary: >
 amends:
   - "013-live-loopback-capture-runtime"
 extends:
+  - { spec: "013-live-loopback-capture-runtime", unit: { kind: section, file: "crates/wire-witness-cli/src/main.rs", anchor: "wire-witness-executable" }, nature: additive }
   - { spec: "013-live-loopback-capture-runtime", unit: { kind: section, file: "crates/wire-witness-cli/src/live_runtime.rs", anchor: "live-attempt-runtime" }, nature: additive }
   - { spec: "013-live-loopback-capture-runtime", unit: { kind: section, file: "crates/wire-witness-proxy/src/live.rs", anchor: "live-capture-runtime" }, nature: additive }
+  - { spec: "013-live-loopback-capture-runtime", unit: { kind: section, file: "crates/wire-witness-cli/tests/executable.rs", anchor: "executable-acceptance" }, nature: additive }
 establishes:
   - { kind: section, file: "crates/wire-witness-cli/src/lib.rs", anchor: "sidecar-host-module-export" }
+  - { kind: section, file: "crates/wire-witness-cli/src/sidecar_host.rs", anchor: "sidecar-host" }
   - { kind: section, file: "crates/wire-witness-cli/src/wire_exchange.rs", anchor: "wire-exchange-manifest" }
   - { kind: section, file: "crates/wire-witness-cli/src/producer_identity.rs", anchor: "producer-identity" }
+  - { kind: section, file: "crates/wire-witness-cli/tests/sidecar_host.rs", anchor: "sidecar-host-acceptance" }
+  - { kind: directory, path: "crates/wire-witness-cli/tests/fixtures/sidecar-1/" }
 depends_on:
   - "002-exchange-record-and-normalization"
   - "003-redaction-custody-and-retention"
