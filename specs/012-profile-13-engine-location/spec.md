@@ -1,7 +1,7 @@
 ---
 id: "012-profile-13-engine-location"
 title: "Profile 13 uses the repository-local engine in .bin"
-status: draft
+status: approved
 implementation: complete
 created: "2026-10-02"
 summary: >

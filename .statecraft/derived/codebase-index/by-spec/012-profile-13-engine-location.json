@@ -8,8 +8,8 @@
     ],
     "implementingPaths": [],
     "specId": "012-profile-13-engine-location",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "7b19caa95c059e58ec3afca1be71f4b8e1063032bc62408e9c2b7c74abeda053"
+  "shardHash": "f24c0192ddab01027d47c03b81d667c10dddb467b8fa2fa116d43169a07f0541"
 }
