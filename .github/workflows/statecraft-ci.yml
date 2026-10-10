@@ -1,5 +1,5 @@
-# Rendered by Statecraft from profile github-actions-rust revision 13
-# (identity 6167a12e110b30ec27d37909344c7de0178ba477d5ad1ab91a0053430a89e17b). A managed file and a member of this
+# Rendered by Statecraft from profile github-actions-rust revision 15
+# (identity 97fb592673c429309bbfabd93c4c8e48fdccc84b7e74fbf5df35b93a37a4086d). A managed file and a member of this
 # repository's authority set: an edit here changes the gate that judges every
 # pull request, and `statecraft doctor` names it. The policy the aggregate gate
 # enforces is .statecraft/setup/github-actions-rust.json, read at the base.
@@ -82,7 +82,7 @@ jobs:
           elif ! jq -e '.authority_rule' "${work}/policy.json" > /dev/null; then
             echo "the base's policy predates revision 5: ci-gate reports an authority change and does not block it"
           else
-            { jq -r '.files[].path, (.parameters.authored_content // empty)' "${work}/policy.json"; echo "$policy"; } | sort -u > "${work}/set"
+            { jq -r '.files[].path, (.parameters.authored_content // empty), (.parameters.code.script // empty)' "${work}/policy.json"; echo "$policy"; } | sort -u > "${work}/set"
             git diff --name-only "${BASE_SHA}...${HEAD_SHA}" | sort -u > "${work}/changed"
             { comm -12 "${work}/set" "${work}/changed"; grep '^scripts/statecraft/' "${work}/changed" || true; grep '^\.github/workflows/' "${work}/changed" || true; } | sort -u > "${work}/touched"
             if [ -s "${work}/touched" ]; then
@@ -275,13 +275,17 @@ jobs:
           RATIFICATION: ${{ needs.governance.outputs.ratification }}
         run: echo "owner exception approved for a pull request whose review was ${RESULT} (authority change ${AUTHORITY_CHANGE}, ratification ${RATIFICATION})"
 
+  wire-witness-boundaries:
+    name: wire-witness-boundaries
+    uses: ./.github/workflows/wire-witness-boundaries.yml
+
   # Revision 7: every job the project declares in ci.extra_required_jobs is a
   # call of its own reusable workflow, needed here and required by the policy
   # exactly as the profile's jobs are: failed, cancelled and skipped all block.
   ci-gate:
     name: ci-gate
     if: always()
-    needs: [governance, code, ai-review, review-exception]
+    needs: [governance, code, ai-review, review-exception, wire-witness-boundaries]
     runs-on: ubuntu-latest
     # Read-only: on merge_group the gate reads the recorded review (the
     # entry's pull request, its runs, their jobs and the evidence artifact).

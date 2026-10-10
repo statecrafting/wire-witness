@@ -1,0 +1,35 @@
+{
+  "record": {
+    "created": "2026-10-10",
+    "dependsOn": [
+      "017-profile-15-and-required-boundary-checks",
+      "016-binding-verification-engine"
+    ],
+    "id": "018-spec-spine-029-adoption-prerequisites",
+    "implementation": "deferred",
+    "sectionDigests": {
+      "018-adopt-spec-spine-0-29-after-the-statecraft-producer-prerequisite": "315ca63e5ad37292b311c6931cfd29bdc4c7cebc4635df262e092e25a2147433",
+      "1-purpose": "7395a28492d35899d783e1cbc53b8776927351fcbd5f0277e48d680eb63ff03e",
+      "2-territory": "2e5047ec6a8ad763e508fd1c300a2f9aad35181c5c34e08997819360da16acd3",
+      "3-behavior": "b5f78d5581372c5ec8b968c8447cb6e4cb1f53345cf1418e152d0c872d76f38c",
+      "4-probe-evidence": "0ec24c4114128a077f31f481020b1db3ad9e5f323ea779ed5f134cc28fa414e2",
+      "5-out-of-scope": "338c95ef8ead2c29672ee38f3908251aedbeafd9dbd0e0209c3669c534b5b711",
+      "verification": "46bb81c2e08eeff2363d047df0b0d7b84f0620decf177415bc3fd964a60e4ab2"
+    },
+    "sectionHeadings": [
+      "018: Adopt spec-spine 0.29 after the Statecraft producer prerequisite",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "4. Probe evidence",
+      "5. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/018-spec-spine-029-adoption-prerequisites/spec.md",
+    "status": "draft",
+    "summary": "Defines the evidence and producer prerequisites for adopting the newest published spec-spine without bypassing Statecraft pin-migration refusal or treating interface drift as compatible by assumption.\n",
+    "title": "Adopt spec-spine 0.29 after the Statecraft producer prerequisite"
+  },
+  "shardHash": "a5366486881dc3475db8afc4d226f4429ce36365d1c07c7be308135393713df6",
+  "specVersion": "1.9.0"
+}

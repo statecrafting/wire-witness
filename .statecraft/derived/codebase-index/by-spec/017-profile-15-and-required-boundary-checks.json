@@ -1,0 +1,88 @@
+{
+  "mapping": {
+    "amends": [
+      "012-profile-13-engine-location"
+    ],
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "011-agent-attribution-and-governance-flows",
+      "012-profile-13-engine-location"
+    ],
+    "implementingPaths": [
+      {
+        "path": ".github/workflows/wire-witness-boundaries.yml",
+        "source": "spec-edge"
+      },
+      {
+        "path": "Makefile",
+        "source": "spec-edge"
+      },
+      {
+        "path": "README.md",
+        "source": "spec-edge"
+      },
+      {
+        "path": "docs/codebase-audit-2026-10-10.md",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": ".github/workflows/wire-witness-boundaries.yml"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "kind": "file",
+          "path": ".github/workflows/wire-witness-boundaries.yml"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "docs/codebase-audit-2026-10-10.md"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "kind": "file",
+          "path": "docs/codebase-audit-2026-10-10.md"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "Makefile"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "refines",
+        "unit": {
+          "kind": "file",
+          "path": "Makefile"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "README.md"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "refines",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      }
+    ],
+    "specId": "017-profile-15-and-required-boundary-checks",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "da04c214eacf1b97aedfd9f9150a9131d5a3faa6284cf85a10d78defbb4cfcfe"
+}

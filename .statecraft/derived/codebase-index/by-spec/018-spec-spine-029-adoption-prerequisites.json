@@ -1,0 +1,13 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "017-profile-15-and-required-boundary-checks",
+      "016-binding-verification-engine"
+    ],
+    "implementingPaths": [],
+    "specId": "018-spec-spine-029-adoption-prerequisites",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "a5366486881dc3475db8afc4d226f4429ce36365d1c07c7be308135393713df6"
+}
