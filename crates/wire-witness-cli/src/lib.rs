@@ -10,5 +10,8 @@ pub mod corpus_export;
 // region: instruction-observation-module-export
 pub mod instruction_observation;
 // endregion
+// region: live-runtime-module-export
+pub mod live_runtime;
+// endregion
 pub mod sidecar_protocol;
 pub mod standalone_host;

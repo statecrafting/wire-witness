@@ -4,6 +4,10 @@
 
 #![forbid(unsafe_code)]
 
+// region: live-capture-runtime-module-export
+pub mod live;
+// endregion
+
 // region: allowlisted-capture-proxy
 
 use std::collections::{BTreeMap, BTreeSet, VecDeque};

@@ -36,7 +36,7 @@
           {
             "file": "crates/wire-witness-cli/src/standalone_host.rs",
             "span": {
-              "endLine": 893,
+              "endLine": 900,
               "startLine": 5
             }
           }
@@ -54,5 +54,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "f687f1527a63171096de2107bc2b8643d94711f2a3724485ead3c60a0489555c"
+  "shardHash": "be796dd08dec2eb9a5f2a388d5fff68e4e6aafafa049ca7bc121416b2320473e"
 }

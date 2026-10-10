@@ -1,0 +1,285 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "004-allowlisted-capture-proxy",
+      "006-standalone-host"
+    ],
+    "implementingPaths": [
+      {
+        "path": "Cargo.lock",
+        "source": "spec-edge"
+      },
+      {
+        "path": "Cargo.toml",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/Cargo.toml",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/lib.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/live_runtime.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/main.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/src/standalone_host.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/tests/executable.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-cli/tests/live_capture.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-proxy/Cargo.toml",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-proxy/src/lib.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "crates/wire-witness-proxy/src/live.rs",
+        "source": "spec-edge"
+      },
+      {
+        "path": "scripts/check-boundaries.sh",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/live_runtime.rs",
+            "span": {
+              "endLine": 950,
+              "startLine": 6
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "live-attempt-runtime",
+          "file": "crates/wire-witness-cli/src/live_runtime.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/main.rs",
+            "span": {
+              "endLine": 74,
+              "startLine": 7
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "wire-witness-executable",
+          "file": "crates/wire-witness-cli/src/main.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/tests/executable.rs",
+            "span": {
+              "endLine": 54,
+              "startLine": 5
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "executable-acceptance",
+          "file": "crates/wire-witness-cli/tests/executable.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/tests/live_capture.rs",
+            "span": {
+              "endLine": 399,
+              "startLine": 7
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "live-capture-acceptance",
+          "file": "crates/wire-witness-cli/tests/live_capture.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-proxy/src/live.rs",
+            "span": {
+              "endLine": 1877,
+              "startLine": 6
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "anchor": "live-capture-runtime",
+          "file": "crates/wire-witness-proxy/src/live.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "Cargo.lock"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "kind": "file",
+          "path": "Cargo.lock"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/Cargo.toml"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "kind": "file",
+          "path": "crates/wire-witness-cli/Cargo.toml"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/standalone_host.rs"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "kind": "file",
+          "path": "crates/wire-witness-cli/src/standalone_host.rs"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "scripts/check-boundaries.sh"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "kind": "file",
+          "path": "scripts/check-boundaries.sh"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "Cargo.toml",
+            "span": {
+              "endLine": 29,
+              "startLine": 17
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "workspace.dependencies",
+          "file": "Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-cli/src/lib.rs",
+            "span": {
+              "endLine": 15,
+              "startLine": 13
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "live-runtime-module-export",
+          "file": "crates/wire-witness-cli/src/lib.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-proxy/Cargo.toml",
+            "span": {
+              "endLine": 21,
+              "startLine": 12
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "dependencies",
+          "file": "crates/wire-witness-proxy/Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "crates/wire-witness-proxy/src/lib.rs",
+            "span": {
+              "endLine": 9,
+              "startLine": 7
+            }
+          }
+        ],
+        "ownership": true,
+        "sourceField": "extends",
+        "unit": {
+          "anchor": "live-capture-runtime-module-export",
+          "file": "crates/wire-witness-proxy/src/lib.rs",
+          "kind": "section"
+        }
+      }
+    ],
+    "specId": "013-live-loopback-capture-runtime",
+    "specStatus": "approved"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "847b6d34c8618e27c67e9e5af50e33c7dc517a8f5a746ec8e78f7e54be1ef645"
+}
