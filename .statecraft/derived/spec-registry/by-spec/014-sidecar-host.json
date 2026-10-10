@@ -1,0 +1,151 @@
+{
+  "record": {
+    "amends": [
+      "013-live-loopback-capture-runtime"
+    ],
+    "created": "2026-10-10",
+    "dependsOn": [
+      "002-exchange-record-and-normalization",
+      "003-redaction-custody-and-retention",
+      "005-binding-and-sidecar-protocol",
+      "006-standalone-host",
+      "013-live-loopback-capture-runtime"
+    ],
+    "establishes": [
+      {
+        "anchor": "sidecar-host-module-export",
+        "file": "crates/wire-witness-cli/src/lib.rs",
+        "kind": "section"
+      },
+      {
+        "anchor": "wire-exchange-manifest",
+        "file": "crates/wire-witness-cli/src/wire_exchange.rs",
+        "kind": "section"
+      },
+      {
+        "anchor": "producer-identity",
+        "file": "crates/wire-witness-cli/src/producer_identity.rs",
+        "kind": "section"
+      }
+    ],
+    "extends": [
+      {
+        "nature": "additive",
+        "spec": "013-live-loopback-capture-runtime",
+        "unit": {
+          "anchor": "live-attempt-runtime",
+          "file": "crates/wire-witness-cli/src/live_runtime.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "013-live-loopback-capture-runtime",
+        "unit": {
+          "anchor": "live-capture-runtime",
+          "file": "crates/wire-witness-proxy/src/live.rs",
+          "kind": "section"
+        }
+      }
+    ],
+    "id": "014-sidecar-host",
+    "implementation": "in-progress",
+    "obligations": [
+      {
+        "anchor": "3-2-start-and-binding-validation",
+        "id": "I-1",
+        "kind": "invariant",
+        "text": "The sidecar validates the supplied AttemptBinding before it creates a CA, a listener, or any file, and repeats its three values byte for byte on every stdout message and in the wire-exchange manifest."
+      },
+      {
+        "anchor": "3-4-notices-and-stdout-discipline",
+        "id": "I-2",
+        "kind": "invariant",
+        "text": "Stdout carries only wire-witness.sidecar/1 messages with identities, counts, codes, and digests; no header value, body, query string, credential, or CA key reaches stdout, stderr, or any file."
+      },
+      {
+        "anchor": "3-5-closing-custody-and-the-terminal-message",
+        "id": "I-3",
+        "kind": "invariant",
+        "text": "The sidecar never admits evidence, decides a run outcome, writes a Statecraft record, or reports success it did not observe; every unknown, absent, and incomplete state stays explicit."
+      },
+      {
+        "anchor": "3-3-ready",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Exactly one ready precedes exchange and finding notices, and exactly one finished message ends a session that reached ready; a session refused before ready writes nothing to stdout and exits 2."
+      },
+      {
+        "anchor": "3-6-the-statecraft-wire-exchange-v1-manifest",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "The statecraft/wire-exchange/v1 manifest contains exactly the members of section 3.6, keeps requested and served identities, provider-testimony usage, estimate state, attestation, retention, and redaction as separate facts, and is installed last."
+      },
+      {
+        "anchor": "3-7-producer-identity-and-schema-versions",
+        "id": "R-3",
+        "kind": "requirement",
+        "text": "The producer identity names the exact version, executable digest, interface wire-witness.sidecar/1, AttemptBinding schema 1, terminal schema 1, evidence schema 1, and release channel, and the same values appear in ready, finished, and the manifest."
+      },
+      {
+        "anchor": "3-8-compatibility-rollback-and-qualification",
+        "id": "R-4",
+        "kind": "requirement",
+        "text": "Every release carries the sidecar-1 compatibility fixtures, its rollback identity, and per-platform qualification records; a change that breaks a fixture requires a new interface major."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/014-sidecar-host/spec.md"
+        ],
+        "kind": "verification",
+        "text": "The sidecar host, manifest, identity, and fixture tests pass, including the end-to-end supervised capture against a local fake provider and every section 4 negative case."
+      }
+    ],
+    "sectionDigests": {
+      "014-the-wire-witness-sidecar-1-stdio-host": "fc051c7761eece6526d8f4640ec4508c15c29a94a10cbf310594b4a9e7bb1350",
+      "1-purpose": "b445d4bbb48bc8de99f88cf25b74ef2ce7932626972d200a11f96fb7d5ed368b",
+      "2-territory": "ee8b292981e34181256c6cf18ce6efa1008bc6f5de30981aa8700244a307ace5",
+      "3-1-the-commands": "fbb9f32f0e95ff0cb2dd3fd67bb415c46cefa374014d194c126853e5a5054b08",
+      "3-2-start-and-binding-validation": "da50d6adb90bb5e9e6d6ed4508e66485a1540819683d1c1578b0c4bcee9a1fb0",
+      "3-3-ready": "4e06c9409518e2cd06af9e8ee2bd6658d84b0e5955b3f9d48aea9d4c34a7acf9",
+      "3-4-notices-and-stdout-discipline": "5965e47edb1f944d933a57fde221804ce9b4a62e9bf9640ca626e23ef2e6f484",
+      "3-5-closing-custody-and-the-terminal-message": "64ab263b5a29072a3794aa3f6b66228147d6f10343f6b94c5a2241522c324afd",
+      "3-6-the-statecraft-wire-exchange-v1-manifest": "a7c3d15c97c77cf2f490af61b15038e36c7a53c18503763938cd77e84cb1cbc0",
+      "3-7-producer-identity-and-schema-versions": "c50373cbe6f643bd992888515bb11f4a619b57aa63b85bd0f6f0871dd524566c",
+      "3-8-compatibility-rollback-and-qualification": "c5d52e9ba8f20fdb7652d76cf448723e58cc7490a46f87fb41db896eb8efd691",
+      "3-9-confinement-inputs": "7bbec2904d81c64dedf7eff18e35db704225fea496e5735a62b1b53b9a00b247",
+      "3-behavior": "1e4c56325ade4151ce587f84afd9926c42a956c1059a5711d2a7d723166cffe5",
+      "4-observable-negative-cases": "4f3f2d3f8e3575364270b06a5b5d530038f1f8359a5c55f77a6f1a90993055aa",
+      "5-residual-risks": "0059f61b79c8825f21a987cee158d6a63afff013abe7e38c19b74afcf38db7f1",
+      "6-out-of-scope": "aeed55db79794c0b7a0cdb2065da3f43502b26fdf1f7d4cd7250a59bb1b9cc47",
+      "verification": "e51868cecba05b09fa3b488ade244f5c746a2cd8d491373a855aa2748699405c"
+    },
+    "sectionHeadings": [
+      "014: The wire-witness.sidecar/1 stdio host",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 The commands",
+      "3.2 Start and binding validation",
+      "3.3 Ready",
+      "3.4 Notices and stdout discipline",
+      "3.5 Closing custody and the terminal message",
+      "3.6 The `statecraft/wire-exchange/v1` manifest",
+      "3.7 Producer identity and schema versions",
+      "3.8 Compatibility, rollback, and qualification",
+      "3.9 Confinement inputs",
+      "4. Observable negative cases",
+      "5. Residual risks",
+      "6. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/014-sidecar-host/spec.md",
+    "status": "approved",
+    "summary": "Implements `wire-witness sidecar` over the spec 005 protocol and the spec 013 live runtime: one supervised attempt per process, exact AttemptBinding and terminal schema versions, a statecraft/wire-exchange/v1 manifest with a fixed member set, a producer identity Statecraft can pin, and the compatibility, rollback, and qualification records a release must carry.\n",
+    "title": "The wire-witness.sidecar/1 stdio host"
+  },
+  "shardHash": "eb611ac2da6ac5301226cef2f9ed92749e929f431c1d396ea787a2d3c67b67c9",
+  "specVersion": "1.9.0"
+}
