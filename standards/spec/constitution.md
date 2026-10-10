@@ -54,14 +54,52 @@ blessed: it is what a later spec is written against.
 
 ---
 
-## VI onward: the principles of the system you are specifying
+## VI. Testimony never grants authority
 
-Principles I through V govern the corpus and come from spec-spine. Number your
-own from VI. They govern the system your corpus describes, and they bind every
-spec equally. Keep them few. Freeze the ones you could not recover from by
-naming their anchors in the bootstrap spec's `unamendable` list.
+wire-witness records attributed observations and custody facts. A witness
+record, digest, finding, attestation, confidence, provider statement, or
+successful check never authorizes an effect, admits evidence, changes policy,
+establishes correctness, or decides acceptance. Each consumer supplies and
+records its own authority.
 
-Replace this section with your first principle.
+## VII. Secrets are reduced before durable custody
+
+Captured material is secret-grade until redaction proves otherwise. Credentials
+and configured secret-detector findings are removed before any durable sink,
+diagnostic, protocol message, log, panic, or recovery artifact can receive
+content. Content that cannot be safely decoded, inspected, and redacted within
+configured bounds is reduced to metadata and a finding rather than persisted.
+
+## VIII. Capture never mutates ambient trust or routing
+
+Capture authority is confined to the explicitly started attempt and its child
+process tree. wire-witness never changes a global proxy, trust store, shell,
+browser, Git configuration, package-manager configuration, or operating-system
+setting. A runtime without a safe child-only additional-CA mechanism is
+unsupported and refuses before child spawn.
+
+## IX. Supervised binding is supplied exactly
+
+A supervised binding is an input from the supervisor, not a correlation
+result. Every run id, attempt number, and effect id is validated and repeated
+byte for byte. Time, process ancestry, working directory, connection order,
+provider identifiers, repository state, or content never substitute for a
+missing or invalid binding.
+
+## X. Lifecycle and evidence claims remain precise
+
+Specified, drafted, approved, implemented, locally tested, CI-tested, merged,
+released, published, adopted, observed, admitted, and qualified are separate
+claims. One never implies another. A green local command proves only the exact
+command, inputs, checkout, and environment it judged.
+
+## XI. Absence, incompleteness, and residual risk remain explicit
+
+Known, unknown, absent, incomplete, and deferred are distinct states and are
+never collapsed into success or zero. Missing observations, capture gaps,
+redaction downgrade, cleanup residue, confinement limits, unsupported
+transports, and unperformed checks remain visible to consumers. A summary may
+not erase a lower-level limitation or residual risk.
 
 ---
 

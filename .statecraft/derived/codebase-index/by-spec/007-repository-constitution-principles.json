@@ -6,10 +6,23 @@
       "005-binding-and-sidecar-protocol",
       "006-standalone-host"
     ],
-    "implementingPaths": [],
+    "implementingPaths": [
+      {
+        "path": "standards/spec/constitution.md",
+        "source": "spec-edge"
+      }
+    ],
     "resolvedUnits": [
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "standards/spec/constitution.md",
+            "span": {
+              "endLine": 88,
+              "startLine": 81
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -19,7 +32,15 @@
         }
       },
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "standards/spec/constitution.md",
+            "span": {
+              "endLine": 64,
+              "startLine": 57
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -29,7 +50,15 @@
         }
       },
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "standards/spec/constitution.md",
+            "span": {
+              "endLine": 72,
+              "startLine": 65
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -39,7 +68,15 @@
         }
       },
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "standards/spec/constitution.md",
+            "span": {
+              "endLine": 80,
+              "startLine": 73
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -49,7 +86,15 @@
         }
       },
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "standards/spec/constitution.md",
+            "span": {
+              "endLine": 95,
+              "startLine": 89
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -59,7 +104,15 @@
         }
       },
       {
-        "locations": [],
+        "locations": [
+          {
+            "file": "standards/spec/constitution.md",
+            "span": {
+              "endLine": 105,
+              "startLine": 96
+            }
+          }
+        ],
         "ownership": true,
         "sourceField": "establishes",
         "unit": {
@@ -70,8 +123,8 @@
       }
     ],
     "specId": "007-repository-constitution-principles",
-    "specStatus": "draft"
+    "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "11b348e055f242a30c26003f55038b68f450960034ceaff579c81a5b96d61bd3"
+  "shardHash": "b5406f11aae008974dd4d6c83ea610f4fc26097db7cd3663cde023a5e979d319"
 }
