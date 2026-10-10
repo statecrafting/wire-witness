@@ -421,11 +421,31 @@ impl LiveProxy {
         limits: LiveLimits,
         sink: SyncSender<ObservedExchange>,
     ) -> Result<Self, LiveError> {
-        let limits = limits.validate()?;
-        let crypto = Arc::new(rustls::crypto::ring::default_provider());
-        let client = client_config(&crypto, trust)?;
         let listener = TcpListener::bind((std::net::Ipv4Addr::LOCALHOST, 0))
             .map_err(|error| LiveError::Listener(error.kind()))?;
+        Self::start_on(listener, config, ca, trust, limits, sink)
+    }
+
+    /// Starts the proxy on a listener the caller already bound, so a
+    /// supervisor can fix the endpoint before the attempt begins. Only a
+    /// loopback listener is accepted.
+    pub fn start_on(
+        listener: TcpListener,
+        config: ProxyConfig,
+        ca: EphemeralCa,
+        trust: ProviderTrust,
+        limits: LiveLimits,
+        sink: SyncSender<ObservedExchange>,
+    ) -> Result<Self, LiveError> {
+        let limits = limits.validate()?;
+        let bound = listener
+            .local_addr()
+            .map_err(|error| LiveError::Listener(error.kind()))?;
+        if !bound.ip().is_loopback() {
+            return Err(LiveError::Listener(io::ErrorKind::AddrNotAvailable));
+        }
+        let crypto = Arc::new(rustls::crypto::ring::default_provider());
+        let client = client_config(&crypto, trust)?;
         listener
             .set_nonblocking(true)
             .map_err(|error| LiveError::Listener(error.kind()))?;
@@ -462,6 +482,24 @@ impl LiveProxy {
     pub fn authority(&self) -> Authority {
         Authority::parse(&self.local.to_string())
             .expect("a bound IPv4 loopback address is an authority")
+    }
+
+    /// The bound loopback socket address.
+    #[must_use]
+    pub const fn local_address(&self) -> SocketAddr {
+        self.local
+    }
+
+    /// Findings recorded so far, from position `start` on, in recorded
+    /// order. A caller that remembers how many it has read sees each once.
+    #[must_use]
+    pub fn findings_since(&self, start: usize) -> Vec<LiveFinding> {
+        self.shared
+            .findings
+            .lock()
+            .unwrap_or_else(PoisonError::into_inner)
+            .get(start..)
+            .map_or_else(Vec::new, <[LiveFinding]>::to_vec)
     }
 
     /// Stops accepting, waits up to `grace` for open connections to end, and

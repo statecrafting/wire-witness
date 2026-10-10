@@ -5,22 +5,24 @@
 
 // region: live-attempt-runtime
 
+use std::collections::BTreeSet;
 use std::fs::{self, DirBuilder};
+use std::net::{SocketAddr, TcpListener};
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 use std::sync::atomic::{AtomicBool, Ordering};
-use std::sync::mpsc::{self, Receiver, RecvTimeoutError};
+use std::sync::mpsc::{self, Receiver, RecvTimeoutError, Sender};
 use std::thread::{self, JoinHandle};
 use std::time::{Duration, SystemTime};
 
 #[cfg(unix)]
 use std::os::unix::fs::DirBuilderExt;
 
-use wire_witness_core::custody::{HeaderField, RetentionMode, redact_headers};
+use wire_witness_core::custody::{HeaderField, RedactionCategory, RetentionMode, redact_headers};
 use wire_witness_core::exchange::{
     Binding, Completeness, Cost, DIGEST_CONSTRUCTION, ExchangeRecord, Finding, IncompleteReason,
-    JsonValue, Normalization, Presence, RetentionState, TransportMetadata, canonical_json_bytes,
-    normalize_provider_json, normalize_sse,
+    JsonValue, Normalization, Presence, RetentionState, TransportMetadata, UsageEntry,
+    canonical_json_bytes, normalize_provider_json, normalize_sse,
 };
 use wire_witness_core::instruction_observation::ComparisonPlan;
 use wire_witness_proxy::live::{
@@ -55,7 +57,7 @@ struct Running {
     writer: JoinHandle<WriterOutcome>,
     finish: Arc<AtomicBool>,
     attempt: PathBuf,
-    binding: UnsupervisedBinding,
+    binding: Binding,
     requested: RetentionMode,
     effective: RetentionMode,
     findings: Vec<HostFinding>,
@@ -63,19 +65,41 @@ struct Running {
 
 #[derive(Default)]
 struct WriterOutcome {
-    entries: Vec<ManifestEntry>,
+    entries: Vec<InstalledExchange>,
     missing: Vec<u64>,
     observed: u64,
     incomplete: u64,
     findings: Vec<HostFinding>,
 }
 
-struct ManifestEntry {
-    sequence: u64,
-    path: String,
-    digest: String,
-    byte_length: u64,
-    completeness: &'static str,
+/// One installed exchange record, with the normalized facts a supervisor's
+/// evidence manifest repeats. It carries no header value, body, or query.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub struct InstalledExchange {
+    pub sequence: u64,
+    /// Path relative to the attempt directory.
+    pub path: String,
+    /// Lowercase hex SHA-256 of the installed record bytes.
+    pub digest: String,
+    pub byte_length: u64,
+    pub completeness: &'static str,
+    pub authority: String,
+    pub protocol: &'static str,
+    pub requested_model: Presence<String>,
+    pub served_model: Presence<String>,
+    pub usage: Vec<UsageEntry>,
+    /// Spec 003 class names of the values removed from this exchange.
+    pub redaction_classes: BTreeSet<&'static str>,
+}
+
+/// What the runtime reports to a supervising host while an attempt runs.
+#[derive(Clone, Debug, Eq, PartialEq)]
+pub enum RuntimeEvent {
+    Exchange(InstalledExchange),
+    Finding {
+        code: String,
+        authority: Option<String>,
+    },
 }
 
 impl LiveRuntime {
@@ -140,7 +164,9 @@ impl LiveRuntime {
         let finish = Arc::new(AtomicBool::new(false));
         let writer_finish = Arc::clone(&finish);
         let writer_directory = attempt.join(EXCHANGES_DIRECTORY);
-        let writer_binding = binding.clone();
+        let writer_binding = Binding::Unsupervised {
+            session_id: binding.session_id.clone(),
+        };
         let writer = thread::Builder::new()
             .name("wire-witness-writer".into())
             .spawn(move || {
@@ -151,6 +177,7 @@ impl LiveRuntime {
                     requested,
                     effective,
                     &writer_finish,
+                    None,
                 )
             })
             .map_err(|error| HostError::Custody(error.kind().to_string()))?;
@@ -169,7 +196,9 @@ impl LiveRuntime {
                 writer,
                 finish,
                 attempt: attempt.to_path_buf(),
-                binding: binding.clone(),
+                binding: Binding::Unsupervised {
+                    session_id: binding.session_id.clone(),
+                },
                 requested,
                 effective,
                 findings,
@@ -224,7 +253,7 @@ impl AttemptRuntime for LiveRuntime {
             .writer
             .join()
             .map_err(|_| HostError::Custody("exchange-writer-failed".into()))?;
-        Ok(close_capture(
+        let closed = close_capture(
             &running.config,
             &running.attempt,
             &running.binding,
@@ -233,25 +262,51 @@ impl AttemptRuntime for LiveRuntime {
             running.findings,
             &summary,
             outcome,
-        ))
+            &[],
+        );
+        Ok(ClosedCapture {
+            capture: closed.capture,
+            exchange_count: closed.observed,
+            manifest_path: closed
+                .manifest_path
+                .map(|path| path.to_string_lossy().into_owned()),
+            findings: closed.findings,
+        })
     }
+}
+
+/// The result of closing an attempt's custody.
+struct Closed {
+    capture: CaptureState,
+    reason: Option<&'static str>,
+    gaps: BTreeSet<String>,
+    manifest_path: Option<PathBuf>,
+    observed: u64,
+    dropped: u64,
+    missing: u64,
+    exchanges: Vec<InstalledExchange>,
+    findings: Vec<HostFinding>,
+    /// Findings that arose at or after close, which no event reported.
+    closing_findings: Vec<RuntimeEvent>,
 }
 
 #[allow(clippy::too_many_arguments)]
 fn close_capture(
     config: &ProxyConfig,
     attempt: &Path,
-    binding: &UnsupervisedBinding,
+    binding: &Binding,
     requested: RetentionMode,
     effective: RetentionMode,
     mut findings: Vec<HostFinding>,
     summary: &LiveSummary,
     mut outcome: WriterOutcome,
-) -> ClosedCapture {
+    supervisor_gaps: &[&str],
+) -> Closed {
     let capture_affected = summary
         .findings
         .iter()
         .any(|finding| affects_capture(config, finding));
+    let mut closing_findings = Vec::new();
     findings.extend(summary.findings.iter().map(|finding| HostFinding {
         code: finding.code.into(),
         detail: finding.authority.as_ref().map_or_else(
@@ -260,6 +315,7 @@ fn close_capture(
         ),
     }));
     if summary.open_connections > 0 {
+        closing_findings.push(closing_finding("connections-open-at-close"));
         findings.push(HostFinding {
             code: "connections-open-at-close".into(),
             detail: format!(
@@ -269,6 +325,7 @@ fn close_capture(
         });
     }
     if summary.counters.dropped_exchanges > 0 {
+        closing_findings.push(closing_finding("sink-backpressure"));
         findings.push(HostFinding {
             code: "sink-backpressure".into(),
             detail: format!(
@@ -279,19 +336,29 @@ fn close_capture(
     }
     findings.extend(std::mem::take(&mut outcome.findings));
 
+    let mut gaps: BTreeSet<String> = supervisor_gaps
+        .iter()
+        .map(|gap| (*gap).to_owned())
+        .collect();
+    for (present, gap) in [
+        (outcome.incomplete > 0, "exchange-incomplete"),
+        (!outcome.missing.is_empty(), "record-not-installed"),
+        (summary.counters.dropped_exchanges > 0, "sink-backpressure"),
+        (summary.open_connections > 0, "connections-open-at-close"),
+        (capture_affected, "capture-finding"),
+    ] {
+        if present {
+            gaps.insert(gap.to_owned());
+        }
+    }
     let (capture, reason) = if requested == RetentionMode::Disabled {
         (CaptureState::Absent, Some("disabled"))
     } else if outcome.observed == 0 && summary.counters.dropped_exchanges == 0 {
         (CaptureState::Absent, Some("no-exchange-observed"))
-    } else if outcome.incomplete > 0
-        || !outcome.missing.is_empty()
-        || summary.counters.dropped_exchanges > 0
-        || summary.open_connections > 0
-        || capture_affected
-    {
-        (CaptureState::Incomplete, None)
-    } else {
+    } else if gaps.is_empty() {
         (CaptureState::Complete, None)
+    } else {
+        (CaptureState::Incomplete, None)
     };
 
     let manifest = manifest_json(
@@ -299,8 +366,10 @@ fn close_capture(
     );
     let bytes = canonical_json_bytes(&manifest);
     let (capture, manifest_path) = match install_private(attempt, MANIFEST_FILE, &bytes) {
-        Ok(path) => (capture, Some(path.to_string_lossy().into_owned())),
+        Ok(path) => (capture, Some(path)),
         Err(error) => {
+            gaps.insert("manifest-not-installed".into());
+            closing_findings.push(closing_finding("manifest-not-installed"));
             findings.push(HostFinding {
                 code: "manifest-not-installed".into(),
                 detail: error,
@@ -315,11 +384,24 @@ fn close_capture(
             )
         }
     };
-    ClosedCapture {
+    Closed {
         capture,
-        exchange_count: outcome.observed,
+        reason,
+        gaps,
         manifest_path,
+        observed: outcome.observed,
+        dropped: summary.counters.dropped_exchanges,
+        missing: outcome.missing.len() as u64,
+        exchanges: outcome.entries,
         findings,
+        closing_findings,
+    }
+}
+
+fn closing_finding(code: &str) -> RuntimeEvent {
+    RuntimeEvent::Finding {
+        code: code.to_owned(),
+        authority: None,
     }
 }
 
@@ -336,7 +418,7 @@ fn affects_capture(config: &ProxyConfig, finding: &LiveFinding) -> bool {
 
 #[allow(clippy::too_many_arguments)]
 fn manifest_json(
-    binding: &UnsupervisedBinding,
+    binding: &Binding,
     requested: RetentionMode,
     effective: RetentionMode,
     capture: &CaptureState,
@@ -352,13 +434,7 @@ fn manifest_json(
     };
     let counters = summary.counters;
     object([
-        (
-            "binding",
-            object([
-                ("kind", string("unsupervised")),
-                ("session_id", string(&binding.session_id)),
-            ]),
-        ),
+        ("binding", manifest_binding(binding)),
         (
             "capture",
             object([
@@ -456,14 +532,39 @@ fn manifest_json(
     ])
 }
 
+fn manifest_binding(binding: &Binding) -> JsonValue {
+    match binding {
+        Binding::Unsupervised { session_id } => object([
+            ("kind", string("unsupervised")),
+            ("session_id", string(session_id)),
+        ]),
+        Binding::Supervised {
+            run_id,
+            attempt,
+            effect_id,
+        } => object([
+            ("attempt", number(u64::from(*attempt))),
+            ("effect_id", string(effect_id)),
+            ("kind", string("supervised")),
+            ("run_id", string(run_id)),
+        ]),
+    }
+}
+
 fn write_exchanges(
     receiver: &Receiver<ObservedExchange>,
     directory: &Path,
-    binding: &UnsupervisedBinding,
+    binding: &Binding,
     requested: RetentionMode,
     effective: RetentionMode,
     finish: &AtomicBool,
+    events: Option<&Sender<RuntimeEvent>>,
 ) -> WriterOutcome {
+    let report = |event: RuntimeEvent| {
+        if let Some(events) = events {
+            let _ = events.send(event);
+        }
+    };
     let mut outcome = WriterOutcome::default();
     let mut sequence = ExchangeSequence::default();
     loop {
@@ -478,27 +579,45 @@ fn write_exchanges(
             continue;
         }
         let Ok(number) = sequence.next_sequence() else {
+            report(closing_finding("exchange-sequence-overflow"));
             outcome.findings.push(HostFinding {
                 code: "exchange-sequence-overflow".into(),
                 detail: "no further sequence numbers".into(),
             });
             break;
         };
-        let record = exchange_record(binding, number, &observed, requested, effective);
+        let record = exchange_record_for(binding, number, &observed, requested, effective);
         if record.completeness != Completeness::Complete {
             outcome.incomplete += 1;
         }
         let bytes = record.canonical_bytes();
         let name = format!("exchange-{number:020}.json");
         match install_private(directory, &name, &bytes) {
-            Ok(_) => outcome.entries.push(ManifestEntry {
-                sequence: number,
-                path: format!("{EXCHANGES_DIRECTORY}/{name}"),
-                digest: record.digest(),
-                byte_length: bytes.len() as u64,
-                completeness: completeness_name(&record.completeness),
-            }),
+            Ok(_) => {
+                let installed = InstalledExchange {
+                    sequence: number,
+                    path: format!("{EXCHANGES_DIRECTORY}/{name}"),
+                    digest: record.digest(),
+                    byte_length: bytes.len() as u64,
+                    completeness: completeness_name(&record.completeness),
+                    authority: record.transport.authority.clone(),
+                    protocol: observed.protocol,
+                    requested_model: record.requested_identity.clone(),
+                    served_model: match &record.served_identity {
+                        Presence::Known(served) => Presence::Known(served.identity.clone()),
+                        Presence::Absent => Presence::Absent,
+                        Presence::Unknown { reason } => Presence::Unknown {
+                            reason: reason.clone(),
+                        },
+                    },
+                    usage: record.usage.clone(),
+                    redaction_classes: redaction_classes(&observed),
+                };
+                report(RuntimeEvent::Exchange(installed.clone()));
+                outcome.entries.push(installed);
+            }
             Err(error) => {
+                report(closing_finding("sink-failed"));
                 outcome.missing.push(number);
                 outcome.findings.push(HostFinding {
                     code: "sink-failed".into(),
@@ -518,12 +637,51 @@ const fn completeness_name(completeness: &Completeness) -> &'static str {
     }
 }
 
+/// The spec 003 classes of the values a record omits for this exchange.
+fn redaction_classes(observed: &ObservedExchange) -> BTreeSet<&'static str> {
+    let (_, request) = redact_headers(&header_fields(&observed.request_headers));
+    let (_, response) = redact_headers(&header_fields(&observed.response_headers));
+    let mut classes: BTreeSet<&'static str> = request
+        .iter()
+        .chain(&response)
+        .map(|record| match record.category {
+            RedactionCategory::SensitiveHeader => "sensitive-header",
+            RedactionCategory::SensitiveField => "sensitive-field",
+            RedactionCategory::DetectedCredential => "detected-credential",
+        })
+        .collect();
+    if observed.target.contains('?') {
+        classes.insert("query-string");
+    }
+    classes
+}
+
 /// Builds the `wire-witness.exchange/1` record for one observed exchange.
 /// Normalization is spec 002's; this function only places its results and
 /// records what the transport and capture tap could not establish.
 #[must_use]
 pub fn exchange_record(
     binding: &UnsupervisedBinding,
+    sequence: u64,
+    observed: &ObservedExchange,
+    requested: RetentionMode,
+    effective: RetentionMode,
+) -> ExchangeRecord {
+    exchange_record_for(
+        &Binding::Unsupervised {
+            session_id: binding.session_id.clone(),
+        },
+        sequence,
+        observed,
+        requested,
+        effective,
+    )
+}
+
+/// [`exchange_record`] for either binding kind.
+#[must_use]
+pub fn exchange_record_for(
+    binding: &Binding,
     sequence: u64,
     observed: &ObservedExchange,
     requested: RetentionMode,
@@ -613,9 +771,7 @@ pub fn exchange_record(
     merge(&response, "response", &mut completeness, &mut findings);
 
     ExchangeRecord {
-        binding: Binding::Unsupervised {
-            session_id: binding.session_id.clone(),
-        },
+        binding: binding.clone(),
         sequence,
         transport: TransportMetadata {
             protocol: observed.protocol.into(),
@@ -752,7 +908,207 @@ fn header_fields(headers: &[(String, String)]) -> Vec<HeaderField> {
         .collect()
 }
 
-fn create_private_directory(path: &Path) -> Result<(), HostError> {
+/// Everything one supervised attempt needs, validated by its host before the
+/// runtime starts. The directory exists, is private, and is empty; the
+/// listener is bound to loopback; the CA was generated for this attempt.
+pub struct SupervisedSetup {
+    pub binding: Binding,
+    pub config: ProxyConfig,
+    pub directory: PathBuf,
+    pub listener: TcpListener,
+    pub ca: EphemeralCa,
+    pub requested: RetentionMode,
+    pub trust: ProviderTrust,
+    pub limits: LiveLimits,
+    pub grace: Duration,
+}
+
+/// A running supervised attempt: the spec 013 proxy and record writer with
+/// a supervised binding, reporting installed records and findings as they
+/// happen.
+pub struct SupervisedRuntime {
+    running: Running,
+    grace: Duration,
+    proxy_findings_read: usize,
+}
+
+/// A closed supervised attempt.
+#[derive(Debug)]
+pub struct SupervisedClosure {
+    pub capture: CaptureState,
+    /// Why capture is absent, when it is.
+    pub reason: Option<&'static str>,
+    /// Every reason capture is not complete, sorted.
+    pub gaps: BTreeSet<String>,
+    /// The installed spec 013 capture manifest.
+    pub manifest_path: Option<PathBuf>,
+    pub observed: u64,
+    pub dropped: u64,
+    /// Records that were built but could not be installed.
+    pub missing: u64,
+    pub exchanges: Vec<InstalledExchange>,
+    pub findings: Vec<HostFinding>,
+    /// Findings that arose during close and were reported by no event:
+    /// late proxy findings and the closing assessments.
+    pub closing_findings: Vec<RuntimeEvent>,
+}
+
+impl SupervisedRuntime {
+    /// Starts the proxy on the supplied listener and the record writer under
+    /// the supplied directory. Installed records and writer findings are
+    /// sent on the returned receiver.
+    pub fn start(setup: SupervisedSetup) -> Result<(Self, Receiver<RuntimeEvent>), HostError> {
+        let requested = setup.requested;
+        let mut findings = Vec::new();
+        let effective = if requested == RetentionMode::Content {
+            findings.push(HostFinding {
+                code: "content-retention-unavailable".into(),
+                detail:
+                    "the live runtime retains metadata only; effective retention is metadata-only"
+                        .into(),
+            });
+            RetentionMode::MetadataOnly
+        } else {
+            requested
+        };
+        let exchanges = setup.directory.join(EXCHANGES_DIRECTORY);
+        create_private_directory(&exchanges)?;
+        let (sender, receiver) = mpsc::sync_channel(setup.limits.sink_capacity);
+        let (events, reported) = mpsc::channel();
+        let finish = Arc::new(AtomicBool::new(false));
+        let writer_finish = Arc::clone(&finish);
+        let writer_binding = setup.binding.clone();
+        let writer = thread::Builder::new()
+            .name("wire-witness-writer".into())
+            .spawn(move || {
+                write_exchanges(
+                    &receiver,
+                    &exchanges,
+                    &writer_binding,
+                    requested,
+                    effective,
+                    &writer_finish,
+                    Some(&events),
+                )
+            })
+            .map_err(|error| HostError::Custody(error.kind().to_string()))?;
+        let proxy = match LiveProxy::start_on(
+            setup.listener,
+            setup.config.clone(),
+            setup.ca,
+            setup.trust,
+            setup.limits,
+            sender,
+        ) {
+            Ok(proxy) => proxy,
+            Err(error) => {
+                finish.store(true, Ordering::SeqCst);
+                let _ = writer.join();
+                return Err(live_error(error));
+            }
+        };
+        Ok((
+            Self {
+                running: Running {
+                    proxy,
+                    config: setup.config,
+                    writer,
+                    finish,
+                    attempt: setup.directory,
+                    binding: setup.binding,
+                    requested,
+                    effective,
+                    findings,
+                },
+                grace: setup.grace,
+                proxy_findings_read: 0,
+            },
+            reported,
+        ))
+    }
+
+    #[must_use]
+    pub const fn endpoint(&self) -> SocketAddr {
+        self.running.proxy.local_address()
+    }
+
+    #[must_use]
+    pub const fn effective_retention(&self) -> RetentionMode {
+        self.running.effective
+    }
+
+    /// Findings the runtime recorded before any traffic, such as an
+    /// unavailable retention mode.
+    #[must_use]
+    pub fn initial_findings(&self) -> Vec<RuntimeEvent> {
+        self.running
+            .findings
+            .iter()
+            .map(|finding| closing_finding(&finding.code))
+            .collect()
+    }
+
+    /// Proxy findings recorded since the previous call, in recorded order.
+    pub fn new_proxy_findings(&mut self) -> Vec<RuntimeEvent> {
+        let fresh = self.running.proxy.findings_since(self.proxy_findings_read);
+        self.proxy_findings_read += fresh.len();
+        fresh.into_iter().map(proxy_event).collect()
+    }
+
+    /// Stops the proxy within the grace period, joins the writer, and
+    /// installs the spec 013 capture manifest. `supervisor_gaps` are the
+    /// host's own reasons the capture cannot be complete.
+    pub fn close(self, supervisor_gaps: &[&str]) -> Result<SupervisedClosure, HostError> {
+        let running = self.running;
+        let summary = running.proxy.stop(self.grace);
+        running.finish.store(true, Ordering::SeqCst);
+        let outcome = running
+            .writer
+            .join()
+            .map_err(|_| HostError::Custody("exchange-writer-failed".into()))?;
+        let late: Vec<RuntimeEvent> = summary
+            .findings
+            .iter()
+            .skip(self.proxy_findings_read)
+            .cloned()
+            .map(proxy_event)
+            .collect();
+        let closed = close_capture(
+            &running.config,
+            &running.attempt,
+            &running.binding,
+            running.requested,
+            running.effective,
+            running.findings,
+            &summary,
+            outcome,
+            supervisor_gaps,
+        );
+        let mut closing_findings = late;
+        closing_findings.extend(closed.closing_findings);
+        Ok(SupervisedClosure {
+            capture: closed.capture,
+            reason: closed.reason,
+            gaps: closed.gaps,
+            manifest_path: closed.manifest_path,
+            observed: closed.observed,
+            dropped: closed.dropped,
+            missing: closed.missing,
+            exchanges: closed.exchanges,
+            findings: closed.findings,
+            closing_findings,
+        })
+    }
+}
+
+fn proxy_event(finding: LiveFinding) -> RuntimeEvent {
+    RuntimeEvent::Finding {
+        code: finding.code.to_owned(),
+        authority: finding.authority,
+    }
+}
+
+pub(crate) fn create_private_directory(path: &Path) -> Result<(), HostError> {
     let mut builder = DirBuilder::new();
     #[cfg(unix)]
     builder.mode(0o700);
@@ -763,7 +1119,11 @@ fn create_private_directory(path: &Path) -> Result<(), HostError> {
 
 /// Writes a complete mode-0600 file under a temporary name and installs it at
 /// a new final path. An existing final path is never replaced.
-fn install_private(directory: &Path, name: &str, bytes: &[u8]) -> Result<PathBuf, String> {
+pub(crate) fn install_private(
+    directory: &Path,
+    name: &str,
+    bytes: &[u8],
+) -> Result<PathBuf, String> {
     let temporary = directory.join(format!(".{name}.partial"));
     let final_path = directory.join(name);
     write_private_file_new(&temporary, bytes).map_err(|error| format!("{error:?}"))?;
