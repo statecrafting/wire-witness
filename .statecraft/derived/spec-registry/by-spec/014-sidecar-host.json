@@ -18,6 +18,11 @@
         "kind": "section"
       },
       {
+        "anchor": "sidecar-host",
+        "file": "crates/wire-witness-cli/src/sidecar_host.rs",
+        "kind": "section"
+      },
+      {
         "anchor": "wire-exchange-manifest",
         "file": "crates/wire-witness-cli/src/wire_exchange.rs",
         "kind": "section"
@@ -26,9 +31,27 @@
         "anchor": "producer-identity",
         "file": "crates/wire-witness-cli/src/producer_identity.rs",
         "kind": "section"
+      },
+      {
+        "anchor": "sidecar-host-acceptance",
+        "file": "crates/wire-witness-cli/tests/sidecar_host.rs",
+        "kind": "section"
+      },
+      {
+        "kind": "directory",
+        "path": "crates/wire-witness-cli/tests/fixtures/sidecar-1/"
       }
     ],
     "extends": [
+      {
+        "nature": "additive",
+        "spec": "013-live-loopback-capture-runtime",
+        "unit": {
+          "anchor": "wire-witness-executable",
+          "file": "crates/wire-witness-cli/src/main.rs",
+          "kind": "section"
+        }
+      },
       {
         "nature": "additive",
         "spec": "013-live-loopback-capture-runtime",
@@ -46,10 +69,19 @@
           "file": "crates/wire-witness-proxy/src/live.rs",
           "kind": "section"
         }
+      },
+      {
+        "nature": "additive",
+        "spec": "013-live-loopback-capture-runtime",
+        "unit": {
+          "anchor": "executable-acceptance",
+          "file": "crates/wire-witness-cli/tests/executable.rs",
+          "kind": "section"
+        }
       }
     ],
     "id": "014-sidecar-host",
-    "implementation": "in-progress",
+    "implementation": "complete",
     "obligations": [
       {
         "anchor": "3-2-start-and-binding-validation",
@@ -146,6 +178,6 @@
     "summary": "Implements `wire-witness sidecar` over the spec 005 protocol and the spec 013 live runtime: one supervised attempt per process, exact AttemptBinding and terminal schema versions, a statecraft/wire-exchange/v1 manifest with a fixed member set, a producer identity Statecraft can pin, and the compatibility, rollback, and qualification records a release must carry.\n",
     "title": "The wire-witness.sidecar/1 stdio host"
   },
-  "shardHash": "eb611ac2da6ac5301226cef2f9ed92749e929f431c1d396ea787a2d3c67b67c9",
+  "shardHash": "baa3359e9610c348ca9e959f3392f7ffd88ab33f7284786bb9792e34d891b0eb",
   "specVersion": "1.9.0"
 }

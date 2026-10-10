@@ -1,6 +1,7 @@
 //! The `wire-witness` executable's refusal paths and exit vocabulary.
 //!
-//! Governed by spec 013, live loopback capture runtime.
+//! Governed by spec 013, live loopback capture runtime; spec 014 replaced the
+//! sidecar refusal with its host.
 
 // region: executable-acceptance
 
@@ -9,6 +10,7 @@ use std::process::Command;
 fn witness(arguments: &[&str]) -> (i32, String) {
     let output = Command::new(env!("CARGO_BIN_EXE_wire-witness"))
         .args(arguments)
+        .stdin(std::process::Stdio::null())
         .output()
         .unwrap();
     (
@@ -45,10 +47,10 @@ fn run_without_a_capture_authority_refuses_before_spawn() {
 }
 
 #[test]
-fn sidecar_is_refused_until_its_host_exists() {
+fn sidecar_without_a_start_message_is_refused_before_ready() {
     let (code, stderr) = witness(&["sidecar"]);
     assert_eq!(code, 2);
-    assert!(stderr.contains("sidecar-host-not-implemented"));
+    assert!(stderr.contains("start-missing"));
 }
 
 // endregion

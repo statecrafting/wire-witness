@@ -15,6 +15,7 @@ pub mod live_runtime;
 // endregion
 // region: sidecar-host-module-export
 pub mod producer_identity;
+pub mod sidecar_host;
 pub mod wire_exchange;
 // endregion
 pub mod sidecar_protocol;

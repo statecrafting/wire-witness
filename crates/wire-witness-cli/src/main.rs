@@ -2,7 +2,8 @@
 //!
 //! Governed by spec 013, live loopback capture runtime. Parsing, the host
 //! sequence, rendering, and the exit vocabulary are spec 006's; this file
-//! only connects them to the live runtime.
+//! only connects them to the live runtime. Spec 014 adds the sidecar host and
+//! the producer identity command.
 
 // region: wire-witness-executable
 
@@ -10,11 +11,13 @@ use std::io::{self, Write};
 use std::process::ExitCode;
 
 use wire_witness_cli::live_runtime::LiveRuntime;
+use wire_witness_cli::producer_identity::ProducerIdentity;
+use wire_witness_cli::sidecar_host::{HostOptions, run_session};
 use wire_witness_cli::standalone_host::{
     CliCommand, HostError, OutputFormat, parse_arguments, run,
 };
 
-const USAGE: &str = "usage: wire-witness run --capture HOST:PORT,PROVIDER,PROTOCOLS [--auth-tunnel HOST:PORT,PROVIDER,PROTOCOLS]... --output DIR --trust node-extra-ca-certs|aws-ca-bundle|existing-roots-bundle [--retention metadata-only|content|disabled] [--json] -- PROGRAM [ARGS...]\n       wire-witness sidecar";
+const USAGE: &str = "usage: wire-witness run --capture HOST:PORT,PROVIDER,PROTOCOLS [--auth-tunnel HOST:PORT,PROVIDER,PROTOCOLS]... --output DIR --trust node-extra-ca-certs|aws-ca-bundle|existing-roots-bundle [--retention metadata-only|content|disabled] [--json] -- PROGRAM [ARGS...]\n       wire-witness sidecar\n       wire-witness identity [--json]";
 
 fn main() -> ExitCode {
     let mut arguments = Vec::new();
@@ -24,12 +27,24 @@ fn main() -> ExitCode {
             Err(_) => return refuse(&HostError::Usage("argument-not-utf8")),
         }
     }
+    if arguments.first().map(String::as_str) == Some("identity") {
+        return identity(&arguments[1..]);
+    }
     let command = match parse_arguments(&arguments) {
         Ok(command) => command,
         Err(error) => return refuse(&error),
     };
     match command {
-        CliCommand::Sidecar => refuse(&HostError::Precondition("sidecar-host-not-implemented")),
+        CliCommand::Sidecar => {
+            let exit = run_session(
+                io::stdin(),
+                &mut io::stdout().lock(),
+                &mut io::stderr().lock(),
+                &HostOptions::system(),
+                &ProducerIdentity::current(),
+            );
+            ExitCode::from(exit.code())
+        }
         CliCommand::Run { request, output } => match run(&request, LiveRuntime::system()) {
             Ok(result) => {
                 let rendered = match output {
@@ -53,6 +68,28 @@ fn main() -> ExitCode {
             Err(error) => refuse(&error),
         },
     }
+}
+
+fn identity(options: &[String]) -> ExitCode {
+    let identity = ProducerIdentity::current();
+    let rendered = match options {
+        [] => identity.human().into_bytes(),
+        [json] if json == "--json" => {
+            let mut bytes = identity.json_bytes();
+            bytes.push(b'\n');
+            bytes
+        }
+        _ => return refuse(&HostError::Usage("identity-takes-only-json")),
+    };
+    let mut stdout = io::stdout().lock();
+    if stdout
+        .write_all(&rendered)
+        .and_then(|()| stdout.flush())
+        .is_err()
+    {
+        return ExitCode::from(4);
+    }
+    ExitCode::SUCCESS
 }
 
 fn refuse(error: &HostError) -> ExitCode {
