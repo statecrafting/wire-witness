@@ -27,10 +27,10 @@
       "Verification"
     ],
     "specPath": "specs/012-profile-13-engine-location/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Adopts Statecraft profile revision 13 with the existing exact engine pin, and replaces revision 12 acceptance with the recorded revision 13 identity.\n",
     "title": "Profile 13 uses the repository-local engine in .bin"
   },
-  "shardHash": "7b19caa95c059e58ec3afca1be71f4b8e1063032bc62408e9c2b7c74abeda053",
+  "shardHash": "f24c0192ddab01027d47c03b81d667c10dddb467b8fa2fa116d43169a07f0541",
   "specVersion": "1.9.0"
 }
