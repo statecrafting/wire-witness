@@ -10,7 +10,7 @@
       "contentHash": "751ee64a102096bf4418632cf16517b18bd185c1b087ae825fc1aea37c138f33"
     },
     ".github/workflows/wire-witness-boundaries.yml": {
-      "contentHash": "a44d780d5e98f58eae7cb1b8c49663f01730854c79b72bd7bbfe0f49c062c132"
+      "contentHash": "286e22d2ab99f9dd559a5fbb7850aed34dcccf5210fd9fb6854accb013f50e1a"
     },
     ".gitignore": {
       "contentHash": "60e3ba6cf69005bf93228c1475b25b57efad55e18b85abf05705a60cc151f75c"
@@ -34,7 +34,7 @@
       "contentHash": "cc87befff47184e65f927b2c3996244b1b8dce610591660771dd4866903d1892"
     },
     "docs/codebase-audit-2026-10-10.md": {
-      "contentHash": "8dc279f178af946824dfbfad9e43f070cc81515b296a0f8f975137d233147029"
+      "contentHash": "f14b110073b374bf95d331bf8bc83bb99c04105290d62359ef0bf0316501fd3a"
     },
     "scripts/check-authored-content.sh": {
       "contentHash": "ebc061e2bf3cf15ffc70c33a4556ca759800e1ca0f2c3f02d8d914c0624d7b45"

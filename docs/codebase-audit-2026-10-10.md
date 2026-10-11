@@ -182,3 +182,9 @@ matched that commit byte for byte before recording `status: approved`. No
 requirements or verification commands changed in the ratification commit.
 Protected GitHub Environment approval and upstream producer merge remain
 separate delivery requirements.
+
+The latest hosted review cleared the superseded-verification finding. Its
+remaining operational concern was addressed by explicitly installing the
+`rust-toolchain.toml` channel with the minimal profile and caching Rust
+toolchains by runner platform and pin-file digest in the boundary workflow.
+The existing approved pinned-toolchain requirement is unchanged.
