@@ -1,0 +1,70 @@
+{
+  "mapping": {
+    "amends": [
+      "017-profile-15-and-required-boundary-checks"
+    ],
+    "dependsOn": [
+      "017-profile-15-and-required-boundary-checks",
+      "016-binding-verification-engine"
+    ],
+    "implementingPaths": [
+      {
+        "path": "README.md",
+        "source": "spec-edge"
+      },
+      {
+        "path": "docs/codebase-audit-2026-10-10.md",
+        "source": "spec-edge"
+      },
+      {
+        "path": "spec-spine.toml",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": "README.md"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "refines",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "docs/codebase-audit-2026-10-10.md"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "refines",
+        "unit": {
+          "kind": "file",
+          "path": "docs/codebase-audit-2026-10-10.md"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "spec-spine.toml"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "refines",
+        "unit": {
+          "kind": "file",
+          "path": "spec-spine.toml"
+        }
+      }
+    ],
+    "specId": "018-spec-spine-029-adoption-prerequisites",
+    "specStatus": "approved"
+  },
+  "schemaVersion": "1.2.0",
+  "shardHash": "8cb81c0706940679a21c5ec5891d1b524c07285b11218f4b01adb604660edfb3"
+}

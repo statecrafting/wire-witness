@@ -1,0 +1,66 @@
+{
+  "record": {
+    "amends": [
+      "012-profile-13-engine-location"
+    ],
+    "amendsVerification": [
+      "012-profile-13-engine-location"
+    ],
+    "created": "2026-10-10",
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "011-agent-attribution-and-governance-flows",
+      "012-profile-13-engine-location"
+    ],
+    "establishes": [
+      {
+        "kind": "file",
+        "path": ".github/workflows/wire-witness-boundaries.yml"
+      },
+      {
+        "kind": "file",
+        "path": "docs/codebase-audit-2026-10-10.md"
+      }
+    ],
+    "id": "017-profile-15-and-required-boundary-checks",
+    "implementation": "complete",
+    "refines": [
+      {
+        "aspect": "portable-boundary-check-invocation",
+        "unit": {
+          "kind": "file",
+          "path": "Makefile"
+        }
+      },
+      {
+        "aspect": "current-operator-documentation",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      }
+    ],
+    "sectionDigests": {
+      "017-profile-15-preserves-required-workspace-and-dependency-checks": "23d2b4f6507d817e4bcbec4ab6c3229ea3fd1a4228e37f810dd9704f9d96bfd7",
+      "1-purpose": "2f11e13b1cefb4e1e10d176afc1db46bc41e859815a56d2efbbf0c578f92f6ed",
+      "2-territory": "030d74c63ee82381419edcf661c589d68f806c0cb466eadda6595cd2d2a109d0",
+      "3-behavior": "eb10f780003bd1ec6f094a6ea7719eadac73fd45c7fbe9e5ed446a583c57a542",
+      "4-out-of-scope": "dbc4f57e671999dde8d29329e4e35d88eda790ed7a7d93086f45597be6a3ecd3",
+      "verification": "cb564fe563657d32519a43943bcfc2a00f268a30cc4e2ae56eea1898c3689c00"
+    },
+    "sectionHeadings": [
+      "017: Profile 15 preserves required workspace and dependency checks",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "4. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/017-profile-15-and-required-boundary-checks/spec.md",
+    "status": "approved",
+    "summary": "Adopts the current Statecraft setup profile with the supported exact engine pin, makes dependency-boundary verification a required CI job, and replaces historical setup prose with current operator instructions.\n",
+    "title": "Profile 15 preserves required workspace and dependency checks"
+  },
+  "shardHash": "637406e804e9ac812a2dfed0d68263cb3310f367ef935c09441752c093f156b5",
+  "specVersion": "1.9.0"
+}

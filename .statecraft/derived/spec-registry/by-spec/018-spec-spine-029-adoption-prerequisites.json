@@ -1,0 +1,62 @@
+{
+  "record": {
+    "amends": [
+      "017-profile-15-and-required-boundary-checks"
+    ],
+    "amendsVerification": [
+      "017-profile-15-and-required-boundary-checks"
+    ],
+    "created": "2026-10-10",
+    "dependsOn": [
+      "017-profile-15-and-required-boundary-checks",
+      "016-binding-verification-engine"
+    ],
+    "id": "018-spec-spine-029-adoption-prerequisites",
+    "implementation": "complete",
+    "refines": [
+      {
+        "aspect": "exact-governance-engine-pin",
+        "unit": {
+          "kind": "file",
+          "path": "spec-spine.toml"
+        }
+      },
+      {
+        "aspect": "current-toolchain-status",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      },
+      {
+        "aspect": "migration-evidence",
+        "unit": {
+          "kind": "file",
+          "path": "docs/codebase-audit-2026-10-10.md"
+        }
+      }
+    ],
+    "sectionDigests": {
+      "018-adopt-spec-spine-0-29-through-the-updated-statecraft-producer": "bea961b444027a5e157cef1997bf50af9426aeecd4b030f6a9b7afde53a8edc2",
+      "1-purpose": "39c3dc21c63c12893f271797d0ac80220c2d57e85afeb3d2e843fe72eca61415",
+      "2-territory": "fc9dc62bce5fb326a17401984d1db02f0781d8a2837c557c5700250ef56b6833",
+      "3-behavior": "0010f385a75f202d8e3acb7a01d655728d2cf20c16527479544cd508eec13235",
+      "4-delivery-boundary": "54af8bc4b1d70d8fce93b5741be8f9bf72f1511b6c6ecd11d32f4d8eb43ffa87",
+      "verification": "2d54b2442457adcf94d432b746587b33af4727ed9cde28f4fda94ca2230631d8"
+    },
+    "sectionHeadings": [
+      "018: Adopt spec-spine 0.29 through the updated Statecraft producer",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "4. Delivery boundary",
+      "Verification"
+    ],
+    "specPath": "specs/018-spec-spine-029-adoption-prerequisites/spec.md",
+    "status": "approved",
+    "summary": "Migrates the exact governance engine through a Statecraft build that links the same released producer, adopting current profile 16 and all required checks.\n",
+    "title": "Adopt spec-spine 0.29 through the updated Statecraft producer"
+  },
+  "shardHash": "8cb81c0706940679a21c5ec5891d1b524c07285b11218f4b01adb604660edfb3",
+  "specVersion": "1.9.0"
+}

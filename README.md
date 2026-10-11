@@ -1,32 +1,72 @@
 # wire-witness
 
-`wire-witness` captures provider wire exchanges and produces evidence claims.
-It produces testimony, never authority. The approved specification corpus and
-three-crate workspace are present. The pure core implements the
-`wire-witness.exchange/1` record, provider normalization, canonical JSON, and
-SHA-256 digest construction. It also implements metadata-only default
-retention, structured and detector-backed redaction, and pure custody metadata.
-The proxy crate implements exact allowlist routing, strict CONNECT and TLS
-identity checks, bounded queues, and bounded SSE, HTTP/2, and WebSocket framing.
-The CLI crate implements the strict versioned sidecar protocol, immutable
-attempt binding, ordered terminal state, byte-bound evidence references,
-unsupervised session identity, child-only environment overlays, direct child
-spawning, mode-0600 filesystem custody, cleanup findings, and common result
-rendering.
+`wire-witness` captures provider wire exchanges and produces attributed
+observations with custody facts. Its output is testimony and never grants
+authority to execute, admit evidence, change policy, or decide acceptance.
 
-## Setup gaps
+## Codebase
 
-The bootstrap recorded these gaps instead of silently working around them:
-
-| Gap in statecraft-cli initialization | Repository action |
+| Crate | Implemented responsibilities |
 |---|---|
-| `project register` reports a new repository as ungoverned before the corpus exists and exits with a finding. | Continued with `init plan`; registration became qualified during `init apply`. |
-| The first profile plan evaluates prerequisites before the same initialization writes `spec-spine.toml`. | Applied the governance scaffold first, then ran a second profile plan. |
-| The generated `spec-spine.toml` leaves `required_version` commented. | Transferred the file from `managed` to `user`, then set the exact release pinned by statecraft-cli. A later initialization re-adopted the manifest entry while the transfer journal still records `user`; the exact current statecraft-cli reports `journal-disagrees`, and supported apply or revert refuses pending a producer repair. No manual manifest repair was made. |
-| The profile requires but does not create `Cargo.toml`, `Cargo.lock`, or `rust-toolchain.toml`. | Created the virtual workspace and toolchain files, then generated the lockfile without adding a crate. |
-| The profile accepts an authored-content script path but does not create the repository-specific script. | Created `scripts/check-authored-content.sh` before selecting it in the setup parameters. |
-| Profile parameters cannot be supplied on the `init plan` command line. | Added the requested parameter block to the project declaration, then re-planned and applied it. |
-| The scaffold does not create product boundary specs, repository-specific constitution text, or planned crate directories. | Authored the draft specs and left crate directories absent because this session writes no product code. |
-| The scaffold does not create a product README or record bootstrap gaps. | Expanded this README with the product boundary and this gap record. |
-| Initialization does not discover the profile-installed `.tooling/bin/spec-spine` when the matching version is absent from `PATH`. | Ran the exact statecraft-cli checkout with `STATECRAFT_SPEC_SPINE` naming the repository-local pinned binary. |
-| Codex delivery through an `@.statecraft/AGENTS.md` root bridge is not established by the harness documentation statecraft-cli can evaluate. | Recorded the delivery as `unverified`; no alternate instruction injection was added. |
+| `wire-witness-core` | Exchange records, provider normalization, canonical bytes and digests, redaction, retention, instruction observations, measurement summaries, and policy-bounded corpus exports. |
+| `wire-witness-proxy` | Exact allowlist routing, bounded protocol parsers, loopback listener, CONNECT tunnels, per-attempt TLS interception, and a live HTTP/1.1 relay. |
+| `wire-witness-cli` | Standalone child execution, supervised `wire-witness.sidecar/1` stdio host, exact attempt binding, producer identity, private filesystem custody, cleanup, and result rendering. |
+
+The live transport offers HTTP/1.1. Pure HTTP/2 and WebSocket framing support
+does not establish live capture support for those transports. Metadata-only
+retention is the default. Child-only proxy and additional-CA settings never
+change ambient trust or routing. Missing observations and capture limitations
+remain explicit.
+
+## Local checks
+
+Use the exact repository-local engine. A globally installed `spec-spine` may
+have another version and must not judge this repository.
+
+```sh
+make tools
+.bin/spec-spine --version
+make gate
+make code
+make boundaries
+```
+
+`make gate` checks registry and index freshness, lint, ownership coverage,
+unresolved claims, and authored content. `make code` builds and tests the
+workspace, runs clippy and formatting, then checks the locked dependency graph.
+`make boundaries` invokes the Bash checker explicitly on macOS and Linux.
+
+The candidate setup uses Statecraft `github-actions-rust` revision 16 and adds
+a required reusable dependency-boundary job to its hosted aggregate gate.
+Managed scripts and workflows are rendered through Statecraft plan and apply;
+repository-owned checks are declared as profile parameters.
+
+## Tooling and integration status
+
+The candidate pins spec-spine 0.29.0, the newest published release checked on
+2026-10-10. It was migrated through Statecraft's supported plan-bound apply
+using a separate producer adoption candidate based on current main
+`4c12c5236b8e507f0c7569274862a4f5579d101d`, with the CLI and linked core
+both pinned to 0.29.0. The exact producer candidate and checksums are recorded
+in [the audit](docs/codebase-audit-2026-10-10.md).
+
+Approved [spec 018](specs/018-spec-spine-029-adoption-prerequisites/spec.md)
+records the engine migration and profile 16 adoption. The producer prerequisite
+must merge upstream before this represents delivery from Statecraft main.
+Profile 16 renders the expected remote settings for read-only comparison;
+local apply does not change GitHub settings.
+
+Approved [spec 017](specs/017-profile-15-and-required-boundary-checks/spec.md)
+records the profile upgrade and required boundary checks. Draft spec 016
+modernizes binding-protocol verification without changing its approved source.
+The owner ratified specs 017 and 018 on 2026-10-10. Protected GitHub
+Environment approval remains separate; spec 016 remains draft.
+
+[The dated codebase audit](docs/codebase-audit-2026-10-10.md) records local check
+results, two stale external interface references, and remaining acceptance
+work. The historical [backlog disposition](docs/backlog-disposition.md) is a
+2026-09-26 snapshot rather than a current implementation inventory.
+
+Release, publication, live-provider observation, and Statecraft consumer
+qualification require separate evidence. Local tests and merged source alone
+do not establish them.

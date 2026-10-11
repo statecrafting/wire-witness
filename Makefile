@@ -14,4 +14,4 @@ code:
 	$(MAKE) boundaries
 
 boundaries:
-	sh scripts/check-boundaries.sh
+	bash scripts/check-boundaries.sh
