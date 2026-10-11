@@ -159,3 +159,15 @@ The validated Statecraft build has SHA-256
 `192a2fe0faf8150cb3c8749f28223ad2b605fd77bdf8b00dbe8b9cc8ffb1bf4b`;
 the repository-local spec-spine has SHA-256
 `2dd46867de2d687c321b431f49fd006639cb703ee57b697b7e9f8897124afafc`.
+
+
+The first hosted review questioned whether spec 017's superseded profile-15
+verification could run before its amendment. Direct execution on the upgrade
+commit, `.bin/spec-spine verify 017`, passed all eight commands from spec 018,
+including profile 16 and version 0.29.0 assertions. Verification resolves the
+amendment before execution; the older block is historical, just like the
+approved spec 012 block it replaced. The spec 012 plan independently confirms
+that transitive resolution. Logs are `upgrade029-profile-verify.log` and
+`upgrade029-profile-plan.log`. Replacing approved history is unnecessary to
+make effective acceptance current. The spec 017 and 018 source bytes are
+unchanged by this clarification.
