@@ -111,3 +111,51 @@ Draft specs 017 and 018 are proposals. Owner ratification and the protected
 No remote settings, release, provider activity, publication, deployment,
 adoption by a supervisor, or consumer qualification is claimed. Statecraft's
 Codex import delivery assessment remains unverified.
+
+
+## Current upgrade candidate, 2026-10-10
+
+This section supersedes the earlier candidate's tooling status, not its
+historical baseline evidence. The owner requested the newest dependencies.
+The latest published spec-spine remains v0.29.0. Refreshed Statecraft main
+`4c12c5236b8e507f0c7569274862a4f5579d101d` supplies profile 16 but
+still links spec-spine-core 0.28.0. A separate isolated producer adoption
+candidate `1e8d51a924422af958e5c8c3cba3b9aa7729663a` moves Statecraft's
+exact CLI and linked-core pins to 0.29.0. Its Git signature verifies.
+
+Wire Witness was migrated with that build through `init plan --spine =0.29.0`
+and matching plan-bound apply. Apply returned `ok` (exit 0), compiled and
+indexed the corpus, and reported registration qualified with arming false.
+This initialization verdict is distinct from machine qualification, release,
+owner ratification and upstream merge.
+
+The resulting declaration pins engine and producer 0.29.0 with registry core
+checksum `7567085df32090df82182bc1449012ae12229c138f307ed425a7672d22a1e5a5`.
+It carries profile 16 identity
+`84502467bf0415db39b0bf77b9bc072cb09c7ab49505371306b80ab198f45e9f`.
+Profile 16 adds the remote desired-state document for read-only comparison;
+no GitHub settings were applied. The extra required dependency-boundary job,
+workspace checks and all recorded governance parameters are preserved.
+
+Local validation passed: workspace build and tests, clippy with warnings
+denied, formatting, exact dependency boundaries, corpus freshness, lint,
+coverage, unresolved claims, authored content, workflow lint, ordinary
+coupling, and all eight commands of spec 018 acceptance. Spec 005 acceptance
+also passed through its existing draft verification amendment. The spec 012
+verification plan resolves transitively through 017 to 018. All managed-file
+digests match, approved specs remain byte-identical to merged main, and a
+second initialization plan reports no writes.
+
+The existing two stale interface pins and remaining historical acceptance
+paths are separate semantic and verification-amendment work. They were not
+silently repinned or rewritten. Draft specs 017 and 018 remain unratified;
+the managed merge gate and protected owner Environment approval remain binding.
+The latest machine doctor again refused the pre-existing multiply linked
+protected Cargo object under the unrelated attest-ledger shared target.
+
+Exact plan, apply, idempotence, checks and binary hashes are retained in the
+ignored `.statecraft/state/toolchain-audit/upgrade029-*` evidence files.
+The validated Statecraft build has SHA-256
+`192a2fe0faf8150cb3c8749f28223ad2b605fd77bdf8b00dbe8b9cc8ffb1bf4b`;
+the repository-local spec-spine has SHA-256
+`2dd46867de2d687c321b431f49fd006639cb703ee57b697b7e9f8897124afafc`.

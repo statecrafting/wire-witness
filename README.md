@@ -36,18 +36,25 @@ unresolved claims, and authored content. `make code` builds and tests the
 workspace, runs clippy and formatting, then checks the locked dependency graph.
 `make boundaries` invokes the Bash checker explicitly on macOS and Linux.
 
-The candidate setup uses Statecraft `github-actions-rust` revision 15 and adds
+The candidate setup uses Statecraft `github-actions-rust` revision 16 and adds
 a required reusable dependency-boundary job to its hosted aggregate gate.
 Managed scripts and workflows are rendered through Statecraft plan and apply;
 repository-owned checks are declared as profile parameters.
 
 ## Tooling and integration status
 
-The supported exact engine pin remains spec-spine 0.28.0. The newest published
-release checked on 2026-10-10 is 0.29.0, but current Statecraft main still links
-spec-spine-core 0.28.0 and refuses the supported 0.29.0 pin migration. Draft
-[spec 018](specs/018-spec-spine-029-adoption-prerequisites/spec.md) records the
-prerequisite and adoption checks. A successful standalone probe is not adoption.
+The candidate pins spec-spine 0.29.0, the newest published release checked on
+2026-10-10. It was migrated through Statecraft's supported plan-bound apply
+using a separate producer adoption candidate based on current main
+`4c12c5236b8e507f0c7569274862a4f5579d101d`, with the CLI and linked core
+both pinned to 0.29.0. The exact producer candidate and checksums are recorded
+in [the audit](docs/codebase-audit-2026-10-10.md).
+
+Draft [spec 018](specs/018-spec-spine-029-adoption-prerequisites/spec.md)
+records the engine migration and profile 16 adoption. The producer prerequisite
+must merge upstream before this represents delivery from Statecraft main.
+Profile 16 renders the expected remote settings for read-only comparison;
+local apply does not change GitHub settings.
 
 Draft [spec 017](specs/017-profile-15-and-required-boundary-checks/spec.md)
 records the profile upgrade and required boundary checks. Draft spec 016
