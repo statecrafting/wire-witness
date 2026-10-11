@@ -1,7 +1,7 @@
 ---
 id: "017-profile-15-and-required-boundary-checks"
 title: "Profile 15 preserves required workspace and dependency checks"
-status: draft
+status: approved
 implementation: complete
 created: "2026-10-10"
 summary: >

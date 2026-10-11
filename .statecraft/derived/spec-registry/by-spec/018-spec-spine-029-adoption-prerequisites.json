@@ -53,10 +53,10 @@
       "Verification"
     ],
     "specPath": "specs/018-spec-spine-029-adoption-prerequisites/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Migrates the exact governance engine through a Statecraft build that links the same released producer, adopting current profile 16 and all required checks.\n",
     "title": "Adopt spec-spine 0.29 through the updated Statecraft producer"
   },
-  "shardHash": "0c6ae8ef5a06259bba4767a9fa135fac90a39eddf7ca49258c19d4a37f07f675",
+  "shardHash": "8cb81c0706940679a21c5ec5891d1b524c07285b11218f4b01adb604660edfb3",
   "specVersion": "1.9.0"
 }

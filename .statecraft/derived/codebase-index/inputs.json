@@ -28,13 +28,13 @@
       "contentHash": "f519c78a5ed4ed73c556dfa418f9456ff9f794640a508b6bc7b56cbfddba11c4"
     },
     "README.md": {
-      "contentHash": "ddd896be46a59ff0f8a8e549c611d0f39a99fa48476078ae8a5fde3e28715596"
+      "contentHash": "3178a955b6e617e1d42d8bbe8f91680f7b2630b4db2ee8f80bf3871a527b195f"
     },
     "docs/backlog-disposition.md": {
       "contentHash": "cc87befff47184e65f927b2c3996244b1b8dce610591660771dd4866903d1892"
     },
     "docs/codebase-audit-2026-10-10.md": {
-      "contentHash": "0bc80df9c769a628aa7d56c26589d5a58c51c2e62fa230dd331fe33f7b206eaf"
+      "contentHash": "8dc279f178af946824dfbfad9e43f070cc81515b296a0f8f975137d233147029"
     },
     "scripts/check-authored-content.sh": {
       "contentHash": "ebc061e2bf3cf15ffc70c33a4556ca759800e1ca0f2c3f02d8d914c0624d7b45"

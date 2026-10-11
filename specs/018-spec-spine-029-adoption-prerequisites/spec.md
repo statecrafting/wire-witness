@@ -1,7 +1,7 @@
 ---
 id: "018-spec-spine-029-adoption-prerequisites"
 title: "Adopt spec-spine 0.29 through the updated Statecraft producer"
-status: draft
+status: approved
 implementation: complete
 created: "2026-10-10"
 summary: >

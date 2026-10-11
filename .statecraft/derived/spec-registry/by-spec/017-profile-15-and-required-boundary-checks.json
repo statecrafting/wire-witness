@@ -57,10 +57,10 @@
       "Verification"
     ],
     "specPath": "specs/017-profile-15-and-required-boundary-checks/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Adopts the current Statecraft setup profile with the supported exact engine pin, makes dependency-boundary verification a required CI job, and replaces historical setup prose with current operator instructions.\n",
     "title": "Profile 15 preserves required workspace and dependency checks"
   },
-  "shardHash": "da04c214eacf1b97aedfd9f9150a9131d5a3faa6284cf85a10d78defbb4cfcfe",
+  "shardHash": "637406e804e9ac812a2dfed0d68263cb3310f367ef935c09441752c093f156b5",
   "specVersion": "1.9.0"
 }

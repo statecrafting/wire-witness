@@ -50,16 +50,17 @@ using a separate producer adoption candidate based on current main
 both pinned to 0.29.0. The exact producer candidate and checksums are recorded
 in [the audit](docs/codebase-audit-2026-10-10.md).
 
-Draft [spec 018](specs/018-spec-spine-029-adoption-prerequisites/spec.md)
+Approved [spec 018](specs/018-spec-spine-029-adoption-prerequisites/spec.md)
 records the engine migration and profile 16 adoption. The producer prerequisite
 must merge upstream before this represents delivery from Statecraft main.
 Profile 16 renders the expected remote settings for read-only comparison;
 local apply does not change GitHub settings.
 
-Draft [spec 017](specs/017-profile-15-and-required-boundary-checks/spec.md)
+Approved [spec 017](specs/017-profile-15-and-required-boundary-checks/spec.md)
 records the profile upgrade and required boundary checks. Draft spec 016
 modernizes binding-protocol verification without changing its approved source.
-These drafts do not supply owner ratification or protected Environment approval.
+The owner ratified specs 017 and 018 on 2026-10-10. Protected GitHub
+Environment approval remains separate; spec 016 remains draft.
 
 [The dated codebase audit](docs/codebase-audit-2026-10-10.md) records local check
 results, two stale external interface references, and remaining acceptance

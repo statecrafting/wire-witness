@@ -143,13 +143,14 @@ coverage, unresolved claims, authored content, workflow lint, ordinary
 coupling, and all eight commands of spec 018 acceptance. Spec 005 acceptance
 also passed through its existing draft verification amendment. The spec 012
 verification plan resolves transitively through 017 to 018. All managed-file
-digests match, approved specs remain byte-identical to merged main, and a
+digests match, previously approved specs remain byte-identical to merged main, and a
 second initialization plan reports no writes.
 
 The existing two stale interface pins and remaining historical acceptance
 paths are separate semantic and verification-amendment work. They were not
-silently repinned or rewritten. Draft specs 017 and 018 remain unratified;
-the managed merge gate and protected owner Environment approval remain binding.
+silently repinned or rewritten. The owner subsequently ratified specs 017
+and 018 as recorded below. The protected owner Environment approval remains
+binding.
 The latest machine doctor again refused the pre-existing multiply linked
 protected Cargo object under the unrelated attest-ledger shared target.
 
@@ -171,3 +172,13 @@ that transitive resolution. Logs are `upgrade029-profile-verify.log` and
 `upgrade029-profile-plan.log`. Replacing approved history is unnecessary to
 make effective acceptance current. The spec 017 and 018 source bytes are
 unchanged by this clarification.
+
+### Owner ratification of specs 017 and 018
+
+On 2026-10-10 the owner explicitly replied "Ratify specs 017 and 018 as written"
+to the ratification request naming PR #14 and signed commit
+`8b3a95411a12118c164606d553130e7e8799e2a0`. The two spec files still
+matched that commit byte for byte before recording `status: approved`. No
+requirements or verification commands changed in the ratification commit.
+Protected GitHub Environment approval and upstream producer merge remain
+separate delivery requirements.
