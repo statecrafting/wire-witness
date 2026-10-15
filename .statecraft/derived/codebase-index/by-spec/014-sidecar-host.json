@@ -50,6 +50,10 @@
       {
         "path": "crates/wire-witness-proxy/src/live.rs",
         "source": "spec-edge"
+      },
+      {
+        "path": "qualification/",
+        "source": "spec-edge"
       }
     ],
     "resolvedUnits": [
@@ -64,6 +68,19 @@
         "unit": {
           "kind": "directory",
           "path": "crates/wire-witness-cli/tests/fixtures/sidecar-1/"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "qualification/"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "kind": "directory",
+          "path": "qualification/"
         }
       },
       {
@@ -233,5 +250,5 @@
     "specStatus": "approved"
   },
   "schemaVersion": "1.2.0",
-  "shardHash": "a57d6f4cedb29479d509889b7d450c0208b67321835cbda01b975f2955649aa3"
+  "shardHash": "346eed56cbdb2f77110d80721687141e8fe47785611c35c060501afa8f9275d9"
 }
