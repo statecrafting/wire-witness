@@ -40,6 +40,10 @@
       {
         "kind": "directory",
         "path": "crates/wire-witness-cli/tests/fixtures/sidecar-1/"
+      },
+      {
+        "kind": "directory",
+        "path": "qualification/"
       }
     ],
     "extends": [
@@ -178,6 +182,6 @@
     "summary": "Implements `wire-witness sidecar` over the spec 005 protocol and the spec 013 live runtime: one supervised attempt per process, exact AttemptBinding and terminal schema versions, a statecraft/wire-exchange/v1 manifest with a fixed member set, a producer identity Statecraft can pin, and the compatibility, rollback, and qualification records a release must carry.\n",
     "title": "The wire-witness.sidecar/1 stdio host"
   },
-  "shardHash": "baa3359e9610c348ca9e959f3392f7ffd88ab33f7284786bb9792e34d891b0eb",
+  "shardHash": "e92d3c73d160d992629432c6e5bcc687d76fcad5935e7490f92dcd1cef9af287",
   "specVersion": "1.9.0"
 }

@@ -24,6 +24,7 @@ establishes:
   - { kind: section, file: "crates/wire-witness-cli/src/producer_identity.rs", anchor: "producer-identity" }
   - { kind: section, file: "crates/wire-witness-cli/tests/sidecar_host.rs", anchor: "sidecar-host-acceptance" }
   - { kind: directory, path: "crates/wire-witness-cli/tests/fixtures/sidecar-1/" }
+  - { kind: directory, path: "qualification/" }
 depends_on:
   - "002-exchange-record-and-normalization"
   - "003-redaction-custody-and-retention"
