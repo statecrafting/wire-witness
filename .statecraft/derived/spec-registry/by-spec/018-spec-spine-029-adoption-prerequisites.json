@@ -37,12 +37,13 @@
       }
     ],
     "sectionDigests": {
-      "018-adopt-spec-spine-0-29-through-the-updated-statecraft-producer": "bea961b444027a5e157cef1997bf50af9426aeecd4b030f6a9b7afde53a8edc2",
+      "018-adopt-spec-spine-0-29-through-the-updated-statecraft-producer": "c51eafa93530f1190542c4566c0c9fa07087b294397146b8515589eb7df36b89",
       "1-purpose": "39c3dc21c63c12893f271797d0ac80220c2d57e85afeb3d2e843fe72eca61415",
       "2-territory": "fc9dc62bce5fb326a17401984d1db02f0781d8a2837c557c5700250ef56b6833",
       "3-behavior": "0010f385a75f202d8e3acb7a01d655728d2cf20c16527479544cd508eec13235",
       "4-delivery-boundary": "54af8bc4b1d70d8fce93b5741be8f9bf72f1511b6c6ecd11d32f4d8eb43ffa87",
-      "verification": "2d54b2442457adcf94d432b746587b33af4727ed9cde28f4fda94ca2230631d8"
+      "5-revision-21-and-spec-spine-0-31-0-refresh-2026-10-28": "a395f1ba77505f64682eef0d305df1c8dec70b6bbfbf5a29be88c5f9c0dc373c",
+      "verification": "1bae06b61725293873749b3ef8ccf973b110373b4328d25cf8aef6fce14448a0"
     },
     "sectionHeadings": [
       "018: Adopt spec-spine 0.29 through the updated Statecraft producer",
@@ -50,6 +51,7 @@
       "2. Territory",
       "3. Behavior",
       "4. Delivery boundary",
+      "5. Revision 21 and spec-spine 0.31.0 refresh (2026-10-28)",
       "Verification"
     ],
     "specPath": "specs/018-spec-spine-029-adoption-prerequisites/spec.md",
@@ -57,6 +59,6 @@
     "summary": "Migrates the exact governance engine through a Statecraft build that links the same released producer, adopting current profile 16 and all required checks.\n",
     "title": "Adopt spec-spine 0.29 through the updated Statecraft producer"
   },
-  "shardHash": "8cb81c0706940679a21c5ec5891d1b524c07285b11218f4b01adb604660edfb3",
-  "specVersion": "1.9.0"
+  "shardHash": "1152ee3466a9fcb2c8b848692f667e3111804a1d946add096a36838a438ab471",
+  "specVersion": "1.10.0"
 }

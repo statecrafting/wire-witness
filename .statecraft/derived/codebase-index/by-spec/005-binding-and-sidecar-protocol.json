@@ -48,6 +48,6 @@
     "specId": "005-binding-and-sidecar-protocol",
     "specStatus": "approved"
   },
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "shardHash": "f0fcc79767ad3d2342378a21b41f72f094efdcb015dc876489df2b726ffdb0fb"
 }

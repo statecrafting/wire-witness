@@ -65,6 +65,6 @@
     "specId": "018-spec-spine-029-adoption-prerequisites",
     "specStatus": "approved"
   },
-  "schemaVersion": "1.2.0",
-  "shardHash": "8cb81c0706940679a21c5ec5891d1b524c07285b11218f4b01adb604660edfb3"
+  "schemaVersion": "1.3.0",
+  "shardHash": "1152ee3466a9fcb2c8b848692f667e3111804a1d946add096a36838a438ab471"
 }

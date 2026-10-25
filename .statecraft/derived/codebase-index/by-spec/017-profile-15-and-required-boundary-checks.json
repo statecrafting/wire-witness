@@ -83,6 +83,6 @@
     "specId": "017-profile-15-and-required-boundary-checks",
     "specStatus": "approved"
   },
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "shardHash": "637406e804e9ac812a2dfed0d68263cb3310f367ef935c09441752c093f156b5"
 }

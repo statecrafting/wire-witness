@@ -36,14 +36,20 @@ unresolved claims, and authored content. `make code` builds and tests the
 workspace, runs clippy and formatting, then checks the locked dependency graph.
 `make boundaries` invokes the Bash checker explicitly on macOS and Linux.
 
-The candidate setup uses Statecraft `github-actions-rust` revision 16 and adds
+The candidate setup uses Statecraft `github-actions-rust` revision 21 and adds
 a required reusable dependency-boundary job to its hosted aggregate gate.
 Managed scripts and workflows are rendered through Statecraft plan and apply;
 repository-owned checks are declared as profile parameters.
 
 ## Tooling and integration status
 
-The candidate pins spec-spine 0.29.0, the newest published release checked on
+The candidate pins spec-spine 0.31.0. The dated 2026-10-28 section of
+[spec 018](specs/018-spec-spine-029-adoption-prerequisites/spec.md) records
+that pin move and the profile 21 adoption together, through Statecraft CLI
+main `167a02f3ce69472c029bdd64d0bcd04421e3df75`, because profile 21 refuses a
+pin that does not admit its linked producer.
+
+The earlier pin, spec-spine 0.29.0, was the newest published release checked on
 2026-10-10. It was migrated through Statecraft's supported plan-bound apply
 using a separate producer adoption candidate based on current main
 `4c12c5236b8e507f0c7569274862a4f5579d101d`, with the CLI and linked core

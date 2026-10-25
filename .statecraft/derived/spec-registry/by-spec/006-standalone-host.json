@@ -124,5 +124,5 @@
     "title": "Standalone host and per-process environment"
   },
   "shardHash": "c9dcf12b2411f13ee69901bfb19a2b7b91a989b7080f9874f228a9820a4af19b",
-  "specVersion": "1.9.0"
+  "specVersion": "1.10.0"
 }
