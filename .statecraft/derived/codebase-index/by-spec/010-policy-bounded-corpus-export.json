@@ -127,6 +127,6 @@
     "specId": "010-policy-bounded-corpus-export",
     "specStatus": "approved"
   },
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "shardHash": "5c58c54dfb917b4a3f2620ecff17480839ba4fdc545281cf1894549595d106c0"
 }

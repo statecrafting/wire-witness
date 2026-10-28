@@ -195,6 +195,6 @@
     "specId": "008-instruction-delivery-observation",
     "specStatus": "approved"
   },
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "shardHash": "8e05995602db7f7f3a23f9bc4f8945981ef3b74d7071046e2da71bdb8371df55"
 }

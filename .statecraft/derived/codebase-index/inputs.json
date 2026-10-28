@@ -4,10 +4,10 @@
       "contentHash": "07a5e0d4febe61062544dab0bb98cf2a8cc4b7b661d76837d6d293b951b41209"
     },
     ".github/workflows/statecraft-ai-review.yml": {
-      "contentHash": "f42b4a78b1ee70179030c3546da1b771f3733ad5a2013212dc9e3827b717374a"
+      "contentHash": "35676b9f4c20fe495fbdf4ef5a2a7944503d2002af96c92da34e0b7a1f2e4150"
     },
     ".github/workflows/statecraft-ci.yml": {
-      "contentHash": "751ee64a102096bf4418632cf16517b18bd185c1b087ae825fc1aea37c138f33"
+      "contentHash": "906a106d1c1e319d4748844f4784b952ca214cf446515257481201e3c7952561"
     },
     ".github/workflows/wire-witness-boundaries.yml": {
       "contentHash": "286e22d2ab99f9dd559a5fbb7850aed34dcccf5210fd9fb6854accb013f50e1a"
@@ -28,7 +28,7 @@
       "contentHash": "f519c78a5ed4ed73c556dfa418f9456ff9f794640a508b6bc7b56cbfddba11c4"
     },
     "README.md": {
-      "contentHash": "3178a955b6e617e1d42d8bbe8f91680f7b2630b4db2ee8f80bf3871a527b195f"
+      "contentHash": "2bd40a034453a61d4b80721726fa514e1b6b388f63e78c8bc488d0c73bcfb901"
     },
     "docs/backlog-disposition.md": {
       "contentHash": "cc87befff47184e65f927b2c3996244b1b8dce610591660771dd4866903d1892"
@@ -43,19 +43,19 @@
       "contentHash": "832b35a477ba408c85d343210224d7de8e2ef2858ee3f44ba6c57e02ffaaa9c8"
     },
     "scripts/statecraft/ai-review.sh": {
-      "contentHash": "ed3fd584ab00a2981bb63d8f61d7f097961baea32c86a6fff8e35b068fb01174"
+      "contentHash": "2a76067ca818c15b393fe15208e4d1743ce55acda99af575c28734b415b12976"
     },
     "scripts/statecraft/ci-gate.sh": {
-      "contentHash": "168c74b193b1c3005ff68c3513713834bbef8c523c3009e14b35414b1d289b08"
+      "contentHash": "89c1b0612b3140f79dfec4a174b96111f14fd040f2b054c693f9f8007a1c92d5"
     },
     "scripts/statecraft/gate.sh": {
-      "contentHash": "c3392e65aa9970b9daf050e329a74dc48351bbfadc0e5bd41431b088805cf38f"
+      "contentHash": "bbc28ea3b5666bb89bb9222a34a81e4ddd8dc975da38e16e449d0182844b7b22"
     },
     "scripts/statecraft/install-spec-spine.sh": {
-      "contentHash": "5a97a82a8edfc5716bbdb0233f787e04649ad2ca602a49b994c2941c9c988fb0"
+      "contentHash": "87dd98d56ec17251d0cb2ed1152d3b63f816e6e8ae0a9d4df3e7325bc950bbaa"
     },
     "spec-spine.toml": {
-      "contentHash": "a7998c50b96075f7f2c71608578e4ae3168841be50f2a307cfa412e8b1ec91a2"
+      "contentHash": "24cb735e560a479096ba41b557c8c02cb2e3c695cf031a1aecc689fb5d6eda7d"
     },
     "standards/spec/constitution.md": {
       "contentHash": "3240847a46ba5204dfe87bd6174add1be6661a1ccf2cc506708338eeea595681"
@@ -70,5 +70,5 @@
       "contentHash": "ff016dd58ed2e6e59fed062a49961c76496b37a7a60d1f321af75b76574eef4f"
     }
   },
-  "schemaVersion": "1.2.0"
+  "schemaVersion": "1.3.0"
 }

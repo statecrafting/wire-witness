@@ -10,6 +10,6 @@
     "specId": "012-profile-13-engine-location",
     "specStatus": "approved"
   },
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "shardHash": "f24c0192ddab01027d47c03b81d667c10dddb467b8fa2fa116d43169a07f0541"
 }

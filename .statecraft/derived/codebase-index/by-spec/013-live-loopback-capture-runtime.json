@@ -280,6 +280,6 @@
     "specId": "013-live-loopback-capture-runtime",
     "specStatus": "approved"
   },
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "shardHash": "20cbe08255cd00fabc8d6aa410449ccbb465e1959085a12106c45e912670d040"
 }

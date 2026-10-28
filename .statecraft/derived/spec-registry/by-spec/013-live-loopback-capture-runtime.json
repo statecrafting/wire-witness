@@ -204,5 +204,5 @@
     "title": "Live loopback capture runtime and the wire-witness executable"
   },
   "shardHash": "b0ff4cc5de6420f4a8f426c5078b3b0b113c7a9ffd7895de0e9b257b6f1e4e48",
-  "specVersion": "1.9.0"
+  "specVersion": "1.10.0"
 }

@@ -75,52 +75,65 @@
       [
         "scripts/check-authored-content.sh"
       ]
+    ],
+    "preflight": [
+      [
+        ".bin/spec-spine",
+        "check",
+        "--fail-on-warn"
+      ],
+      [
+        "cargo",
+        "fmt",
+        "--all",
+        "--check"
+      ]
     ]
   },
   "files": [
     {
-      "digest": "be2a0c4f412a284ed3520229b2ac1b5053789771e30917f4bf582a4012be8d7d",
+      "digest": "09d7ffcf6bc6b0c0e1ce28fc13aff5c7ff1c25c71baf50f37bd8dee3e8ea4cd2",
       "path": ".github/workflows/statecraft-ci.yml",
       "role": "workflow"
     },
     {
-      "digest": "36ec218c7553237660fb673fbd0b7d437afdd03c44356e6e96212fd3995883b6",
+      "digest": "ebc30842b947513c1c03661d9f3099bd77ea4a32efe4316582fd710788f90b14",
       "path": ".github/workflows/statecraft-ai-review.yml",
       "role": "workflow"
     },
     {
-      "digest": "2845e685e29b583b19e6bcb1e34db2e92597cc0bc55fbc664fd2d1246d1aa3d7",
+      "digest": "877615ece81661c570690ff7b074d25a058cdc5c3dcbac08af43b55969c2b18a",
       "path": "scripts/statecraft/install-spec-spine.sh",
       "role": "script"
     },
     {
-      "digest": "1fbef51751802e6a099282cb3143ae84d64ca6ee1af33c16cfd2f47320d34b68",
+      "digest": "32cf3c1d4460d6b663e4f8b06630e204e25c2d7abeabf51c46ff6b02c1792c61",
       "path": "scripts/statecraft/gate.sh",
       "role": "script"
     },
     {
-      "digest": "d4a9fc19f140d4a5bb8f1cd54e43ae863ae6fb9dda68dc1e65ccc3ac5cbdcfb1",
+      "digest": "84106bca029ca1488f5bfaf4c4b0aaf7b853c55e379c27d2e384ff88c5b9e66e",
       "path": "scripts/statecraft/ci-gate.sh",
       "role": "script"
     },
     {
-      "digest": "12fb1b9d418600ce8d8c0d8c814705cdd3c2e0fc4a6c13fd383e35ba0661372a",
+      "digest": "9d44626cb44eb7809ff16da9b11b2d1a3bb1c2f7cd03b71e9a2d0a9c084bf108",
       "path": "scripts/statecraft/ai-review.sh",
       "role": "script"
     },
     {
-      "digest": "68be1be4ab475cf11dbb8d56bfceefbf264793500db0f11240e959d0add352b5",
+      "digest": "49d773af4c7e36fab5cd6a538a1fc3aafab620f13c5c660c021caaba7c3c4faf",
       "path": ".github/CODEOWNERS",
       "role": "codeowners"
     },
     {
-      "digest": "928ee7269e0a6a5b1b74d82fd2fb89b590e6b2e889e5bced8b131b19db81519e",
+      "digest": "4d3a5976739bdb07199bc5105f3413b85c06652d021ef34359fabce4ce8facea",
       "path": ".statecraft/setup/github-actions-rust.remote.json",
       "role": "remote-state"
     }
   ],
   "id": "github-actions-rust",
-  "identity": "84502467bf0415db39b0bf77b9bc072cb09c7ab49505371306b80ab198f45e9f",
+  "identity": "29183723d833fc7b8c332dbac0e83edfb15eafe2ffc50f01c817f89a70785217",
   "jobs": {
     "ai-review": {
       "merge_group": "recorded-review",
@@ -137,6 +150,13 @@
       "required": true
     },
     "governance": {
+      "merge_group": "required",
+      "optional": false,
+      "pull_request": "required",
+      "push": "required",
+      "required": true
+    },
+    "preflight": {
       "merge_group": "required",
       "optional": false,
       "pull_request": "required",
@@ -169,6 +189,7 @@
     "code_owners": [
       "@bartekus"
     ],
+    "contextPaths": [],
     "context_tokens": 200000,
     "default_branch": "main",
     "deletion_cap": 20000,
@@ -219,10 +240,22 @@
     "revision 14: external code selection runs the project-owned reusable workflow and script behind the required code job; that script joins the trusted-base authority set, and failed, cancelled or skipped code still blocks ci-gate (spec 032)",
     "revision 15: an exact consented spec-spine pin move is reviewed with its initialization plan, and the managed installer reads that adopted pin; this changes no required remote check or branch-protection authority (spec 033)",
     "revision 16: the profile renders .statecraft/setup/github-actions-rust.remote.json (schema statecraft/remote-desired-state/1), a canonical desired-state document of what this profile expects of the remote: required checks with their App, the extra required jobs and their aggregation by ci-gate, code-owner review and the governed paths CODEOWNERS covers, the merge queue (remote.merge_queue), the exception Environment and its reviewers (remote.exception_reviewers), workflow-token defaults, secret names, and repository custom properties (remote.custom_properties). An omitted field is no claim. `doctor --remote` compares every field read-only and reports each as matching, drifted, unavailable, unauthorized, unsupported or unverified; this product never applies it, and an owner-operated applier outside this product needs its own authorization (spec 012)",
+    "revision 17: the AI review reads governance documents as Git blobs at the base commit (AGENTS.md, .statecraft/AGENTS.md, standards/spec/constitution.md, standards/spec/contract.md by default, absent ones recorded as absent) plus review.context_paths, at most 32 literal repository-relative paths read from the policy at the base, never from the candidate; the documents must fit a quarter of review.context_tokens whole or the review refuses with 2 before any provider call, every call's whole input must fit three quarters of it, the diff budget is what remains (at most half), and the evidence records each document's blob, digest and length and each call's budget (spec 041)",
+    "revision 18: a newer push to a pull request cancels the work of that pull request's older statecraft-ci run, job by job: every job but review-exception and ci-gate has a concurrency group of its pull request and job, because a run waiting on the owner exception is never cancelled by a group and would hold a workflow-level one (spec 059), while a push to the default branch and each merge-queue entry keep groups of their own run; a preflight job (the pull request's base, the committed artifacts' freshness, and cargo fmt for a Rust code selection) runs before code and every declared extra job, which need it, so a stacked pull request skips them unless it carries the label statecraft:stacked-ci; every preflight check also runs in governance or code, and a base gate.sh without the verb judges nothing; the code job restores the cargo cache on every event and saves it only on a push to the default branch, with incremental compilation off and line-table debuginfo (specs 058 and 059)",
+    "revision 19: a blocked ci-gate reports failed jobs of its own run attempt, their first failed step and at most five error lines each in the step summary and as at most ten annotations; this is best effort, never changes the verdict or exit code, and fences or escapes candidate text; before saving the code job cache, the job drops workspace artifacts on the same default-branch condition (spec 060)",
+    "revision 20: reviewer calls stream partial events; 180 seconds of silence stops a call and retries it once with fresh cwd and home, a second stall skips as transient, and the review job allows 20 minutes (spec 061)",
+    "revision 21: every review or visible skip publishes a statecraft-ai-review check run after its evidence artifact, with the exact record and a success, failure or neutral conclusion; fork heads are excluded and publication failures fail the job (spec 062; 044 moves to 22)",
     "a repository that already runs these checks by hand keeps them by setting governance.enforce_coverage (index coverage --fail-on-untraced), governance.authored_content (the script's path; absent or not executable refuses), governance.authored_content_text (the title, the body and every commit message), governance.gate_each_commit (each commit's tree passes the gate and cargo fmt) and governance.require_signed_commits (each commit verified as signed by GitHub) (revision 4)"
   ],
   "review": {
+    "context_paths": [],
     "credential": "CLAUDE_CODE_OAUTH_TOKEN",
+    "default_context_paths": [
+      "AGENTS.md",
+      ".statecraft/AGENTS.md",
+      "standards/spec/constitution.md",
+      "standards/spec/contract.md"
+    ],
     "findings_rule": {
       "exception_environment": "statecraft-review-exception",
       "requires": "a no-findings review, or an owner exception approved for the run"
@@ -243,5 +276,5 @@
     "tool": "claude-code",
     "tool_version": "2.1.116"
   },
-  "revision": 16
+  "revision": 21
 }

@@ -62,5 +62,5 @@
     "title": "Profile 15 preserves required workspace and dependency checks"
   },
   "shardHash": "637406e804e9ac812a2dfed0d68263cb3310f367ef935c09441752c093f156b5",
-  "specVersion": "1.9.0"
+  "specVersion": "1.10.0"
 }

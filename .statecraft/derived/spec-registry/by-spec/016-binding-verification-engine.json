@@ -35,5 +35,5 @@
     "title": "Binding protocol verification uses the repository-local engine"
   },
   "shardHash": "69d25ae77132fd29a9014fe326b5a68074d9897ee5a2b2dcec5a54bc80af8aa2",
-  "specVersion": "1.9.0"
+  "specVersion": "1.10.0"
 }
