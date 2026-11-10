@@ -1,0 +1,69 @@
+{
+  "record": {
+    "created": "2026-11-10",
+    "declaresAcceptance": true,
+    "dependsOn": [
+      "017-profile-15-and-required-boundary-checks",
+      "018-spec-spine-029-adoption-prerequisites",
+      "019-statecraft-profile-28"
+    ],
+    "id": "020-readme-describes-functionality",
+    "implementation": "complete",
+    "obligations": [
+      {
+        "anchor": "3-behavior",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Every command, option value, environment variable, exit code, schema identifier and output path the README names exists in the source, and a surface the live runtime does not implement is stated as not implemented."
+      },
+      {
+        "anchor": "3-behavior",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "Example output in the README is taken from a real run of the documented command, abridged but not invented."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/020-readme-describes-functionality/spec.md",
+          "README.md",
+          "crates/wire-witness-cli/src/main.rs"
+        ],
+        "kind": "verification",
+        "text": "The README names every option and value the built executable prints in its usage text, carries no engine pin chronology, and the gate passes."
+      }
+    ],
+    "refines": [
+      {
+        "aspect": "user-guide",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      }
+    ],
+    "sectionDigests": {
+      "020-the-readme-describes-what-wire-witness-does": "601fa8449fb5ee8db3be38f480f347f3d72982b3efbaf1f898f67b0d9e167c92",
+      "1-purpose": "26ad90790fa9cbf761c49e4ef3a2cba38b49d69a035bd7d225b86ba97e9b1224",
+      "2-territory": "94686d568912e72e8857814712caf7fc2b4f4918304a2760553a4a1f6886f0c6",
+      "3-behavior": "7650626c66c61cf615fbd0a70cf83dccae463e2ef3f237575be2ee22ba946725",
+      "4-out-of-scope": "5008babd27b4fce7678125fa382bd10b9a21e0601a5a12887db9e2be5c0bd484",
+      "verification": "bf2646315052a52fc4beb5a98c929023ed596f20b17337cc686d0cd56f56f6ea"
+    },
+    "sectionHeadings": [
+      "020: The README describes what wire-witness does",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "4. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/020-readme-describes-functionality/spec.md",
+    "status": "approved",
+    "summary": "Rewrites README.md as a user guide to wire-witness: what it records, its guarantees, install, a quick start taken from a real run, usage, trust variables, exit codes, concepts and limits. Toolchain and governance chronology leaves the README for the specs and the dated audit.\n",
+    "title": "The README describes what wire-witness does"
+  },
+  "shardHash": "8dc37fdd9d17d1a3fc3afdd3393e09f846129eec5a1c1a84df27ef57d9e67e98",
+  "specVersion": "1.11.0"
+}
