@@ -66,7 +66,7 @@
       }
     ],
     "id": "019-statecraft-profile-28",
-    "implementation": "in-progress",
+    "implementation": "complete",
     "obligations": [
       {
         "anchor": "3-behavior",
@@ -121,10 +121,10 @@
       }
     ],
     "sectionDigests": {
-      "019-adopt-statecraft-profile-28-and-spec-spine-0-32-with-a-supply-chain-policy": "b69302e17504d1e9565090d59d2473a35ff9ee35870f42348699a24e92f60a7e",
+      "019-adopt-statecraft-profile-28-and-spec-spine-0-32-with-a-supply-chain-policy": "106bc25c6d864bd72b7c7f792cab1860992c0b28a762666d2f3667ab4ca7f018",
       "1-purpose": "e01da87f458d830a873434974cdeed847e61cff4001f70e303e29bbfafb7b124",
       "2-territory": "c9679e54782e5d384a49b6ae3e81ba9ba3c30b4cf0498ad995d5d082645a7f2a",
-      "3-behavior": "51348b171316c50a8d360e4599d265c84748ee7bef512a9a9960626b91412582",
+      "3-behavior": "138f0933e83047a678f9cd0368e5c6d724c51d932134cea637c694cda0300feb",
       "4-out-of-scope": "57f8a9c8dd0e6834b6fc6017f61f5507f38f7e89e74093798f3d6b5d9a365de9",
       "verification": "0b5dae68fa110c0413f04a184f1bd4912368e0bf16ce4748c0a5ca6298c5d726"
     },
@@ -141,6 +141,6 @@
     "summary": "Moves the exact engine pin from 0.31.0 to 0.32.0 and the setup profile from github-actions-rust revision 21 to 28, in two pull requests: first the pin, a committed cargo-deny policy the lockfile passes, and the other prerequisites revisions 22 and 24 add; then the plan-bound profile render, which changes no policy path.\n",
     "title": "Adopt Statecraft profile 28 and spec-spine 0.32 with a supply-chain policy"
   },
-  "shardHash": "0c29eace608f119d88417988e3c35dca87fc562441bbcec470ecf0e6ede316c7",
+  "shardHash": "3e1a2310e1f2f7e12e60359d693541c0b0a3265569192e1d96edd2552d73ca47",
   "specVersion": "1.11.0"
 }

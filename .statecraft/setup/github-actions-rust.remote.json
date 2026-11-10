@@ -6,13 +6,16 @@
     "paths": [
       "/.github/workflows/statecraft-ai-review.yml",
       "/.github/workflows/statecraft-ci.yml",
+      "/.statecraft/REVIEW.md",
       "/.statecraft/setup/github-actions-rust.json",
       "/.statecraft/setup/github-actions-rust.remote.json",
       "/Makefile",
       "/scripts/statecraft/ai-review.sh",
       "/scripts/statecraft/ci-gate.sh",
       "/scripts/statecraft/gate.sh",
-      "/scripts/statecraft/install-spec-spine.sh"
+      "/scripts/statecraft/guard-policy-files.sh",
+      "/scripts/statecraft/install-spec-spine.sh",
+      "/scripts/statecraft/verify-action-pins.sh"
     ],
     "required": true
   },
@@ -28,8 +31,8 @@
   },
   "profile": {
     "id": "github-actions-rust",
-    "identity": "29183723d833fc7b8c332dbac0e83edfb15eafe2ffc50f01c817f89a70785217",
-    "revision": 21
+    "identity": "ddb55e6ee7c1478b1c88463a3f2fa7a53b3f20aad492a7dfcae29cbbd4d21178",
+    "revision": 28
   },
   "requiredChecks": [
     {

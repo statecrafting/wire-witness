@@ -2,7 +2,7 @@
 id: "019-statecraft-profile-28"
 title: "Adopt Statecraft profile 28 and spec-spine 0.32 with a supply-chain policy"
 status: approved
-implementation: in-progress
+implementation: complete
 created: "2026-11-10"
 summary: >
   Moves the exact engine pin from 0.31.0 to 0.32.0 and the setup profile from
@@ -113,7 +113,8 @@ specs remain byte for byte unchanged.
 7. Profile step: revision 28 replaces revision 21 through `init plan --spine
    =0.32.0 --verify-local` and the matching plan-bound apply, which records
    the 0.32.0 producer in `.statecraft/environment.json`. It changes no
-   policy path. Revisions 22 to 28 arrive together: required
+   policy path. Applied as plan
+   `spine-init:5383b6346b1c7f451496cccae17d732dfb34fa00cef833a28178f4d1a675453f`. Revisions 22 to 28 arrive together: required
    supply-chain, workflow-lint, sg-scan and secret-scan jobs; the
    policy-isolation guard; the managed review guide; post-merge push
    handling; the optional free-disk step (off); AI review finding severity;
