@@ -10,7 +10,7 @@
       "contentHash": "906a106d1c1e319d4748844f4784b952ca214cf446515257481201e3c7952561"
     },
     ".github/workflows/wire-witness-boundaries.yml": {
-      "contentHash": "286e22d2ab99f9dd559a5fbb7850aed34dcccf5210fd9fb6854accb013f50e1a"
+      "contentHash": "32022e73197e23336c4b6044def9838a0f8a9f45eba6410c9bbbd60cf5e00e4e"
     },
     ".gitignore": {
       "contentHash": "60e3ba6cf69005bf93228c1475b25b57efad55e18b85abf05705a60cc151f75c"
@@ -19,16 +19,19 @@
       "contentHash": "ffd92e17af94ee0235099c078c89ea63ed6cb468d0eb656d25b5314a1272fed6"
     },
     "Cargo.lock": {
-      "contentHash": "735341c13a4c4a72e804a8afcfc04838bdefd2f774374d6eb93bc0d26492e0ae"
+      "contentHash": "f96d7f1a2841682b7e19dec12cde7bc0be59e8357394b98de0cc43b95a4a4016"
     },
     "Cargo.toml": {
-      "contentHash": "3099a15c595478b91fb2c585fb068dc5064df3742be9bb730de6967f56c0bf83"
+      "contentHash": "7acf4d4954177d2d9d3a50ea886726a706e420b09f6a3381968660d26e3d3e0f"
     },
     "Makefile": {
       "contentHash": "f519c78a5ed4ed73c556dfa418f9456ff9f794640a508b6bc7b56cbfddba11c4"
     },
     "README.md": {
       "contentHash": "2bd40a034453a61d4b80721726fa514e1b6b388f63e78c8bc488d0c73bcfb901"
+    },
+    "deny.toml": {
+      "contentHash": "f24463c40323c1343f4a6203d8b63e5ee12e25d77b3802c06dc12e9f276c2a31"
     },
     "docs/backlog-disposition.md": {
       "contentHash": "cc87befff47184e65f927b2c3996244b1b8dce610591660771dd4866903d1892"
@@ -55,7 +58,7 @@
       "contentHash": "87dd98d56ec17251d0cb2ed1152d3b63f816e6e8ae0a9d4df3e7325bc950bbaa"
     },
     "spec-spine.toml": {
-      "contentHash": "24cb735e560a479096ba41b557c8c02cb2e3c695cf031a1aecc689fb5d6eda7d"
+      "contentHash": "2ff9d9badb50fe25dbbea8b7d331da4d5990841698022600c529708431e40de3"
     },
     "standards/spec/constitution.md": {
       "contentHash": "3240847a46ba5204dfe87bd6174add1be6661a1ccf2cc506708338eeea595681"

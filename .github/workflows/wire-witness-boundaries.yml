@@ -1,8 +1,15 @@
 # Spec: 017-profile-15-and-required-boundary-checks
+# Extended by: 019-statecraft-profile-28
 name: wire-witness-boundaries
 
 on:
   workflow_call:
+    # Profile revision 24: true on a post-merge push to the default branch,
+    # whose exact commit the merge queue already judged.
+    inputs:
+      post_merge:
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -24,4 +31,5 @@ jobs:
           channel=$(python3 -c 'import tomllib; print(tomllib.load(open("rust-toolchain.toml", "rb"))["toolchain"]["channel"])')
           rustup toolchain install "$channel" --profile minimal
       - name: Check the exact locked dependency boundaries
+        if: ${{ !inputs.post_merge }}
         run: make boundaries

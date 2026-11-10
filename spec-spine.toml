@@ -10,7 +10,7 @@
 # features: the coupling gate's built-in bypass floor is compiled into
 # the binary, so two versions can judge the same diff differently.
 # Cargo semantics: a bare version is a caret range, `=` is exact.
-required_version = "=0.31.0"
+required_version = "=0.32.0"
 
 [manifest]
 # Drives the Cargo `[package.metadata.spec-spine].spec` and package.json `"spec-spine".spec` reads.
@@ -70,6 +70,7 @@ extra_hashed_inputs = [
   ".gitignore",
   "Cargo.toml",
   "Cargo.lock",
+  "deny.toml",
 ]
 # Directories the symbol resolver and the coverage walk skip.
 resolver_exclusions = ["target", "node_modules", "dist", "build", ".next", ".statecraft/derived", ".statecraft/state", ".tooling"]

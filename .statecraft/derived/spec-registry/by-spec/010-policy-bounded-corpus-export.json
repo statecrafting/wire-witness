@@ -1,6 +1,7 @@
 {
   "record": {
     "created": "2026-09-27",
+    "declaresAcceptance": true,
     "dependsOn": [
       "002-exchange-record-and-normalization",
       "003-redaction-custody-and-retention",
@@ -132,5 +133,5 @@
     "title": "Policy-bounded corpus export"
   },
   "shardHash": "d49bf7206c1bbe5c98bfa30a59fee957ff7577e999b86e21cadc33937f8a7f6b",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }

@@ -1,6 +1,7 @@
 {
   "record": {
     "created": "2026-09-26",
+    "declaresAcceptance": true,
     "dependsOn": [
       "001-boundaries-and-authority",
       "002-exchange-record-and-normalization",
@@ -131,5 +132,5 @@
     "title": "Attempt binding and stdio sidecar protocol"
   },
   "shardHash": "ae12eabd4da259e539456c7a6c3f047a9311fa25afb3de46159a2934a987cfea",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }
