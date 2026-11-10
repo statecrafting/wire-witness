@@ -1,0 +1,104 @@
+{
+  "record": {
+    "created": "2026-11-10",
+    "declaresAcceptance": true,
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "006-standalone-host",
+      "013-live-loopback-capture-runtime",
+      "019-statecraft-profile-28"
+    ],
+    "establishes": [
+      {
+        "kind": "file",
+        "path": ".github/workflows/release.yml",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "scripts/release/check-tag.sh",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "scripts/release/bump-version.py",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "npm/package.json",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "npm/bin/wire-witness.js",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "npm/lib/platform.js",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "npm/scripts/generate-platform-packages.js",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "py/pyproject.toml",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "py/scripts/generate_wheels.py",
+        "planned": true
+      },
+      {
+        "kind": "file",
+        "path": "docs/releasing.md",
+        "planned": true
+      }
+    ],
+    "id": "021-release-and-distribution",
+    "implementation": "pending",
+    "sectionDigests": {
+      "021-one-signed-tag-releases-wire-witness-to-github-crates-io-npm-and-pypi": "50ecaf471c6560709ba9436fca7500fa586208de2b84d5fd86ecc6cff6191701",
+      "1-purpose": "0d556b397177e30b7cd53964c617e753c9257dcf07a51d85800c8f42b233de89",
+      "2-territory": "690f923c3ab2576a51d47d19a9d7a0e553ced9a67a21ab30b7ec702cf1739e4f",
+      "3-1-versioning": "4e8d146adfa60125e0151d8b3a36673df64a61f66d5639f6b7aad66fb1daf697",
+      "3-2-trigger-and-tag-gate": "8b6aad02d9ebd50574ed8d2304dda4b35f2907862690e7b2e7c4c5b588e5beb9",
+      "3-3-targets-and-build": "504c4d6a28c4bbe28893507cd04f5cdd908ba6fd406fe91a1867669e357ef4e1",
+      "3-4-supply-chain-artifacts": "88f0317a0bd27c776efe02ad7a25540cfc33d83efbbbedd8b94e1ac7d35a86fe",
+      "3-5-publication": "82bdbeca1c9759f8c5038b2be5c37194a67987c4023fb055d76f89a2a06decc7",
+      "3-6-verification-after-publication": "7bca6659d3ea9cdc3d1578420e5947ba5ccb82953b6773fbf3e26f6d482132fd",
+      "3-7-owner-setup-outside-the-code": "9fafc0afdb409d8e50418224a8279c29a02172bda2946ee74c7dc91817dce1e1",
+      "3-behavior": "dda4fffdba401fadce8269c0b5172232be918e3d47fd3832c3f3dbd0d963456d",
+      "4-out-of-scope": "05fbd92e03a9c1862876d02c78674d73542307682cf17362c0df60cea4d0cf5e",
+      "5-open-decisions": "65f4211cddefacff9438ffab155334e23306ea679da4d50299c4124c2cea37c2",
+      "verification": "8f8ddbc04166a6f1b06e99a06d89c1aa0471fd8eda66e9f78c98b1b419641c91"
+    },
+    "sectionHeadings": [
+      "021: One signed tag releases wire-witness to GitHub, crates.io, npm and PyPI",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 Versioning",
+      "3.2 Trigger and tag gate",
+      "3.3 Targets and build",
+      "3.4 Supply-chain artifacts",
+      "3.5 Publication",
+      "3.6 Verification after publication",
+      "3.7 Owner setup outside the code",
+      "4. Out of scope",
+      "5. Open decisions",
+      "Verification"
+    ],
+    "specPath": "specs/021-release-and-distribution/spec.md",
+    "status": "draft",
+    "summary": "Proposes how the wire-witness executable and crates reach users: a release workflow started by the owner's signed annotated tag on main builds static binaries for four Unix targets once, attests them, and publishes the same bytes as GitHub release archives, the three crates on crates.io, an npm launcher with per-platform binary packages, and Python wheels. Every registry package is published from CI through trusted publishing with provenance. Modelled on spec-spine's distribution (its specs 006, 007, 019, 209) for the binary channels and on rustev's spec 058 for the tag gate.\n",
+    "title": "One signed tag releases wire-witness to GitHub, crates.io, npm and PyPI"
+  },
+  "shardHash": "ca728a07f19eb285a23da2c901f4732772e6bf4e27265197ba915913b4587d80",
+  "specVersion": "1.11.0"
+}

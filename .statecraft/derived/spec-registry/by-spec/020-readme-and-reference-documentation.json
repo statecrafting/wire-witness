@@ -1,0 +1,91 @@
+{
+  "record": {
+    "created": "2026-11-10",
+    "declaresAcceptance": true,
+    "dependsOn": [
+      "011-agent-attribution-and-governance-flows",
+      "017-profile-15-and-required-boundary-checks",
+      "018-spec-spine-029-adoption-prerequisites",
+      "019-statecraft-profile-28"
+    ],
+    "establishes": [
+      {
+        "kind": "file",
+        "path": "scripts/reference.sh"
+      },
+      {
+        "kind": "file",
+        "path": "docs/reference/request.json"
+      }
+    ],
+    "id": "020-readme-and-reference-documentation",
+    "implementation": "in-progress",
+    "obligations": [
+      {
+        "anchor": "3-1-readme",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Every command, option value, exit code, schema identifier and output path the README names exists in the source; a surface the live runtime does not implement is stated as not implemented."
+      },
+      {
+        "anchor": "3-1-readme",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "The README carries no engine pin chronology, setup-profile revision history or commit identities; it links to the specs and the dated audit that hold them."
+      },
+      {
+        "anchor": "3-2-reference-pages",
+        "id": "R-3",
+        "kind": "requirement",
+        "text": "docs/reference holds exactly the pages spec-spine reference generate writes for the committed corpus, and scripts/reference.sh check passes."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/020-readme-and-reference-documentation/spec.md",
+          "README.md",
+          "crates/wire-witness-cli/src/main.rs",
+          "docs/reference/request.json"
+        ],
+        "kind": "verification",
+        "text": "The README usage block matches the executable's usage text, the reference check passes, and the gate passes."
+      }
+    ],
+    "refines": [
+      {
+        "aspect": "user-guide-structure",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      }
+    ],
+    "sectionDigests": {
+      "020-the-readme-is-a-user-guide-and-reference-pages-are-generated-from-the-specs": "eae3ce7df87555675d533e5e9618f184639938b4432d66e434ee8e4be2e3f30c",
+      "1-purpose": "71aa4eb7fe206fdc093eba5e6bf0a3d7c3ac6fa0de8b71f4ef8d85e43057dda8",
+      "2-territory": "d3eaf40eb26fd7eb6fde1a6adf80e8fc04eb606d34afb5feb5881e5715c06038",
+      "3-1-readme": "16d823b456d2c18d07b7a7ad2ef0ba8b68513b5a44a96cad5dc946e99c806d50",
+      "3-2-reference-pages": "f273aa4151fa74ae0c0ae31ba740463822f1d236e76bc0b69569d1eb3a0fc1b8",
+      "3-behavior": "6fcdd5e5da52782f9b70d3377388e3dff1a48cad8022292c574aa1488b1a8149",
+      "4-out-of-scope": "6b9fbca2d7cd3933c0ba87160039de72b40916411f3987d7a57b93c378e5bb94",
+      "verification": "cd4fd2a4fb622085a644ff3e96c474623cf2a00d48b1f4c57b7344678db75975"
+    },
+    "sectionHeadings": [
+      "020: The README is a user guide and reference pages are generated from the specs",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "3.1 README",
+      "3.2 Reference pages",
+      "4. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/020-readme-and-reference-documentation/spec.md",
+    "status": "draft",
+    "summary": "Rewrites README.md as a user-facing guide (what wire-witness does, status, install, usage, exit codes, output schemas, workspace, documentation map, development) and moves toolchain and governance chronology out of it. Adds one generated spec-spine reference page per spec under docs/reference, with a repository-owned script that regenerates or checks them.\n",
+    "title": "The README is a user guide and reference pages are generated from the specs"
+  },
+  "shardHash": "33616d64ede8516ac6eb17d5b40864eb6e7269a83613e4c187fa0f0c733888ab",
+  "specVersion": "1.11.0"
+}

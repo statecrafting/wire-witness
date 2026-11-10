@@ -1,0 +1,6 @@
+{
+  "schemaVersion": "1.0.0",
+  "outputDir": "docs/reference",
+  "specs": { "select": "all" },
+  "traceability": true
+}

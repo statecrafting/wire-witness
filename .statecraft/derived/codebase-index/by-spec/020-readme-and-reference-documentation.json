@@ -1,0 +1,69 @@
+{
+  "mapping": {
+    "dependsOn": [
+      "011-agent-attribution-and-governance-flows",
+      "017-profile-15-and-required-boundary-checks",
+      "018-spec-spine-029-adoption-prerequisites",
+      "019-statecraft-profile-28"
+    ],
+    "implementingPaths": [
+      {
+        "path": "README.md",
+        "source": "spec-edge"
+      },
+      {
+        "path": "docs/reference/request.json",
+        "source": "spec-edge"
+      },
+      {
+        "path": "scripts/reference.sh",
+        "source": "spec-edge"
+      }
+    ],
+    "resolvedUnits": [
+      {
+        "locations": [
+          {
+            "file": "docs/reference/request.json"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "kind": "file",
+          "path": "docs/reference/request.json"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "scripts/reference.sh"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "establishes",
+        "unit": {
+          "kind": "file",
+          "path": "scripts/reference.sh"
+        }
+      },
+      {
+        "locations": [
+          {
+            "file": "README.md"
+          }
+        ],
+        "ownership": true,
+        "sourceField": "refines",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      }
+    ],
+    "specId": "020-readme-and-reference-documentation",
+    "specStatus": "draft"
+  },
+  "schemaVersion": "1.3.0",
+  "shardHash": "33616d64ede8516ac6eb17d5b40864eb6e7269a83613e4c187fa0f0c733888ab"
+}
