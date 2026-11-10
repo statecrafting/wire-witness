@@ -19,7 +19,7 @@
       }
     ],
     "id": "020-readme-and-reference-documentation",
-    "implementation": "in-progress",
+    "implementation": "complete",
     "obligations": [
       {
         "anchor": "3-1-readme",
@@ -82,10 +82,10 @@
       "Verification"
     ],
     "specPath": "specs/020-readme-and-reference-documentation/spec.md",
-    "status": "draft",
+    "status": "approved",
     "summary": "Rewrites README.md as a user-facing guide (what wire-witness does, status, install, usage, exit codes, output schemas, workspace, documentation map, development) and moves toolchain and governance chronology out of it. Adds one generated spec-spine reference page per spec under docs/reference, with a repository-owned script that regenerates or checks them.\n",
     "title": "The README is a user guide and reference pages are generated from the specs"
   },
-  "shardHash": "33616d64ede8516ac6eb17d5b40864eb6e7269a83613e4c187fa0f0c733888ab",
+  "shardHash": "2e8c13ac5b7ba1c4a76aaaaec71d9160d0a73cdd544dfeddd19a39f2eaa1b161",
   "specVersion": "1.11.0"
 }

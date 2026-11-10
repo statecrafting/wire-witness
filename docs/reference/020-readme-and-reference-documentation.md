@@ -11,8 +11,8 @@
 
 | Field | Value |
 | --- | --- |
-| status | `draft` |
-| implementation | `in-progress` |
+| status | `approved` |
+| implementation | `complete` |
 | superseded_by | None declared. |
 | retirement_rationale | None declared. |
 | created | `2026-11-10` |
@@ -109,8 +109,8 @@ This page restates declared and structurally resolved records. It does not state
 
 | Identity | Digest |
 | --- | --- |
-| `index:020-readme-and-reference-documentation` | `sha256:33616d64ede8516ac6eb17d5b40864eb6e7269a83613e4c187fa0f0c733888ab` |
-| `registry:020-readme-and-reference-documentation` | `sha256:33616d64ede8516ac6eb17d5b40864eb6e7269a83613e4c187fa0f0c733888ab` |
+| `index:020-readme-and-reference-documentation` | `sha256:2e8c13ac5b7ba1c4a76aaaaec71d9160d0a73cdd544dfeddd19a39f2eaa1b161` |
+| `registry:020-readme-and-reference-documentation` | `sha256:2e8c13ac5b7ba1c4a76aaaaec71d9160d0a73cdd544dfeddd19a39f2eaa1b161` |
 | `traceability:020-readme-and-reference-documentation` | `sha256:37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570` |
 <!-- spec-spine:end generated id="inputs" -->
 

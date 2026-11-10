@@ -1,8 +1,8 @@
 ---
 id: "020-readme-and-reference-documentation"
 title: "The README is a user guide and reference pages are generated from the specs"
-status: draft
-implementation: in-progress
+status: approved
+implementation: complete
 created: "2026-11-10"
 summary: >
   Rewrites README.md as a user-facing guide (what wire-witness does, status,
