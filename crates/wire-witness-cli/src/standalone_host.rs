@@ -328,6 +328,14 @@ impl ChildEnvironment {
             TrustMechanism::ExistingRootsBundle => "SSL_CERT_FILE",
         };
         values.insert(trust_name.into(), trust_path.into());
+        // Node's built-in fetch and http agents ignore the proxy variables
+        // unless NODE_USE_ENV_PROXY is set (Node 24 and later), so a Node
+        // child would bypass the witness while the capture reports absent.
+        // Only this mechanism makes Node trust the attempt CA, so only it
+        // routes Node through the proxy (spec 021).
+        if trust == TrustMechanism::NodeExtraCaCerts {
+            values.insert("NODE_USE_ENV_PROXY".into(), "1".into());
+        }
         Ok(Self { values })
     }
 
@@ -694,7 +702,20 @@ mod tests {
         );
         assert_eq!(environment.values().get("NO_PROXY").unwrap(), "");
         assert_eq!(environment.values().get("no_proxy").unwrap(), "");
+        assert_eq!(environment.values().get("NODE_USE_ENV_PROXY").unwrap(), "1");
         assert_eq!(std::env::var_os("NODE_EXTRA_CA_CERTS"), parent_value);
+        for trust in [
+            TrustMechanism::AwsCaBundle,
+            TrustMechanism::ExistingRootsBundle,
+        ] {
+            let other = ChildEnvironment::new(
+                &Authority::parse("127.0.0.1:38191").unwrap(),
+                Path::new("/attempt/bundle.pem"),
+                trust,
+            )
+            .unwrap();
+            assert!(!other.values().contains_key("NODE_USE_ENV_PROXY"));
+        }
         assert_eq!(
             ChildEnvironment::new(
                 &Authority::parse("proxy.example.com:443").unwrap(),

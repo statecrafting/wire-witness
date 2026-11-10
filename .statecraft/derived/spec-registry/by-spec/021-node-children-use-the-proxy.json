@@ -1,0 +1,70 @@
+{
+  "record": {
+    "created": "2026-11-10",
+    "declaresAcceptance": true,
+    "dependsOn": [
+      "006-standalone-host",
+      "013-live-loopback-capture-runtime",
+      "020-readme-describes-functionality"
+    ],
+    "id": "021-node-children-use-the-proxy",
+    "implementation": "complete",
+    "obligations": [
+      {
+        "anchor": "3-behavior",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "Under the node-extra-ca-certs trust mechanism the child overlay sets NODE_USE_ENV_PROXY to 1; under every other mechanism it does not set the variable."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/021-node-children-use-the-proxy/spec.md",
+          "crates/wire-witness-cli/src/standalone_host.rs"
+        ],
+        "kind": "verification",
+        "text": "The overlay unit test asserts the variable for the Node mechanism and its absence for the others, and the CLI tests pass."
+      }
+    ],
+    "refines": [
+      {
+        "aspect": "node-proxy-opt-in",
+        "unit": {
+          "anchor": "standalone-host",
+          "file": "crates/wire-witness-cli/src/standalone_host.rs",
+          "kind": "section"
+        }
+      },
+      {
+        "aspect": "node-trust-variables",
+        "unit": {
+          "kind": "file",
+          "path": "README.md"
+        }
+      }
+    ],
+    "sectionDigests": {
+      "021-node-children-trusting-the-attempt-ca-also-use-the-proxy": "f9031f7f47bb0d473c887f0b35c723987515b836e1bcb314c53e7ab08bd7ddfb",
+      "1-purpose": "b7190f68a8c8ccf0351a41de6e2c26a783e66d9bc7f83daa76572005a2492d46",
+      "2-territory": "7778e172413832207da7c2206e2bc23938a4cb84d25391868328e3eb1a2cb52e",
+      "3-behavior": "065659b3558342841e3672b8874937cc00065f3cc704cc64486c701a76dc83ed",
+      "4-out-of-scope": "13be2c965072197cb650d20ecab5b5e0160517b986341d861b73bbd6db315c38",
+      "verification": "9de298050905589c9eaa57a0b399086f2d22cddd751c87f7dffb53401f3925b0"
+    },
+    "sectionHeadings": [
+      "021: Node children trusting the attempt CA also use the proxy",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "4. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/021-node-children-use-the-proxy/spec.md",
+    "status": "approved",
+    "summary": "With --trust node-extra-ca-certs, the child environment overlay also sets NODE_USE_ENV_PROXY=1, so Node's built-in fetch and http agents (Node 24 and later) route through the witness instead of bypassing it.\n",
+    "title": "Node children trusting the attempt CA also use the proxy"
+  },
+  "shardHash": "049c52e527aa570d94314f07c52ffaa29e3cb87c26abaa3df5fcbfb5705edfeb",
+  "specVersion": "1.11.0"
+}
