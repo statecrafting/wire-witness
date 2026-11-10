@@ -110,15 +110,17 @@ The manifest lists each record by digest and adds routing counters
 
 ### When nothing is captured
 
-Node's built-in `fetch` ignores proxy variables unless `NODE_USE_ENV_PROXY=1`
-is set (Node 24 and later). Without it the request goes straight to the
+A client only reaches the witness if it honors the proxy variables. Node's
+built-in `fetch` does so only when `NODE_USE_ENV_PROXY=1`, which wire-witness
+sets with `--trust node-extra-ca-certs` and with no other mechanism. Run a
+Node client under another trust mode and the request goes straight to the
 provider, and wire-witness says so:
 
 ```text
 $ wire-witness run --capture api.anthropic.com:443,anthropic,http/1.1 \
-    --trust node-extra-ca-certs --output /tmp/ww -- node client.mjs
+    --trust existing-roots-bundle --output /tmp/ww -- node client.mjs
 401
-session 096064d48113cb2b819af5fc2cfed5d6
+session 319246b8b67387fc3930a9ce7668f1fe
 capture absent
 child 0
 exchanges 0
@@ -127,9 +129,9 @@ $ echo $?
 1
 ```
 
-With `NODE_USE_ENV_PROXY=1` the same run reports `capture complete`. A client
-must honor `HTTPS_PROXY` and the trust variable you choose; anything else is
-reported as absent, never as clean.
+With `--trust node-extra-ca-certs` the same client reports `capture
+complete`. Pick the trust mode your client reads; a request that bypasses the
+witness is reported as absent, never as clean.
 
 ## Usage
 
@@ -154,11 +156,11 @@ wire-witness identity [--json]
 | `--json` | Print the `wire-witness.result/1` document instead of the summary. |
 
 The child gets `HTTP_PROXY` and `HTTPS_PROXY` (both cases) pointing at the
-loopback proxy, an empty `NO_PROXY`, and one trust variable:
+loopback proxy, an empty `NO_PROXY`, and the variables of one trust mode:
 
-| `--trust` | Variable | Typical clients |
+| `--trust` | Variables | Typical clients |
 |---|---|---|
-| `node-extra-ca-certs` | `NODE_EXTRA_CA_CERTS`: the attempt CA | Node.js (`fetch` needs `NODE_USE_ENV_PROXY=1`) |
+| `node-extra-ca-certs` | `NODE_EXTRA_CA_CERTS`: the attempt CA, and `NODE_USE_ENV_PROXY=1` | Node.js, including built-in `fetch` (Node 24 and later) |
 | `aws-ca-bundle` | `AWS_CA_BUNDLE`: the attempt CA | AWS SDKs and CLI |
 | `existing-roots-bundle` | `SSL_CERT_FILE`: system roots plus the attempt CA | curl and OpenSSL-based clients |
 
