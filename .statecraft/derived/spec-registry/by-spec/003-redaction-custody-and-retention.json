@@ -1,6 +1,7 @@
 {
   "record": {
     "created": "2026-09-26",
+    "declaresAcceptance": true,
     "dependsOn": [
       "001-boundaries-and-authority",
       "002-exchange-record-and-normalization"
@@ -104,5 +105,5 @@
     "title": "Redaction, custody, and retention"
   },
   "shardHash": "86ba7b2ee74b02726fbc8b48e7f44f8f7ceb7492365196c7622c854afff54642",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }

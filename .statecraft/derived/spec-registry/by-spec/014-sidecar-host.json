@@ -4,6 +4,7 @@
       "013-live-loopback-capture-runtime"
     ],
     "created": "2026-10-10",
+    "declaresAcceptance": true,
     "dependsOn": [
       "002-exchange-record-and-normalization",
       "003-redaction-custody-and-retention",
@@ -183,5 +184,5 @@
     "title": "The wire-witness.sidecar/1 stdio host"
   },
   "shardHash": "e92d3c73d160d992629432c6e5bcc687d76fcad5935e7490f92dcd1cef9af287",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }

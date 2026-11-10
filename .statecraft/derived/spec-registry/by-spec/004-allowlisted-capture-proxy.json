@@ -1,6 +1,7 @@
 {
   "record": {
     "created": "2026-09-26",
+    "declaresAcceptance": true,
     "dependsOn": [
       "001-boundaries-and-authority",
       "002-exchange-record-and-normalization",
@@ -101,5 +102,5 @@
     "title": "Allowlisted capture proxy and transparent streams"
   },
   "shardHash": "39bfd4d7607665200729a6bb8ef9dfd4a8be7eed97bd1def05555cd75216521f",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }

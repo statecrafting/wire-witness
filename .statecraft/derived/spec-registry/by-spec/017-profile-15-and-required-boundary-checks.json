@@ -7,6 +7,7 @@
       "012-profile-13-engine-location"
     ],
     "created": "2026-10-10",
+    "declaresAcceptance": true,
     "dependsOn": [
       "001-boundaries-and-authority",
       "011-agent-attribution-and-governance-flows",
@@ -62,5 +63,5 @@
     "title": "Profile 15 preserves required workspace and dependency checks"
   },
   "shardHash": "637406e804e9ac812a2dfed0d68263cb3310f367ef935c09441752c093f156b5",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }

@@ -324,10 +324,10 @@ pub fn normalize_provider_json(
         _ => return malformed("direction must be request or response".into()),
     };
     let mut usage = Vec::new();
-    if let Some(value) = provider_field(&family, map, "usage") {
-        if !collect_usage(value, "usage", &mut usage) {
-            return malformed("usage values must be integer or decimal numbers".into());
-        }
+    if let Some(value) = provider_field(&family, map, "usage")
+        && !collect_usage(value, "usage", &mut usage)
+    {
+        return malformed("usage values must be integer or decimal numbers".into());
     }
     let reported_cost = match provider_field(&family, map, "cost") {
         Some(JsonValue::Number(value) | JsonValue::String(value)) if is_decimal_text(value) => {
@@ -432,10 +432,10 @@ pub fn normalize_sse(family: ProviderFamily, bytes: &[u8]) -> Normalization {
                     disclosure: ServedDisclosure::Reported,
                 });
             }
-            if let Some(value) = provider_field(&family, map, "usage") {
-                if !collect_usage(value, "usage", &mut result.usage) {
-                    return incomplete_stream_after(result, "invalid-usage");
-                }
+            if let Some(value) = provider_field(&family, map, "usage")
+                && !collect_usage(value, "usage", &mut result.usage)
+            {
+                return incomplete_stream_after(result, "invalid-usage");
             }
             if let Some(cost) = provider_field(&family, map, "cost") {
                 let unit = provider_field(&family, map, "currency")
@@ -978,10 +978,10 @@ fn sha256(input: &[u8]) -> [u32; 8] {
         0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 0x510e527f, 0x9b05688c, 0x1f83d9ab,
         0x5be0cd19,
     ];
-    for chunk in data.chunks_exact(64) {
+    for chunk in data.as_chunks::<64>().0 {
         let mut w = [0u32; 64];
-        for (i, bytes) in chunk.chunks_exact(4).enumerate() {
-            w[i] = u32::from_be_bytes(bytes.try_into().expect("four bytes"));
+        for (i, bytes) in chunk.as_chunks::<4>().0.iter().enumerate() {
+            w[i] = u32::from_be_bytes(*bytes);
         }
         for i in 16..64 {
             let s0 = w[i - 15].rotate_right(7) ^ w[i - 15].rotate_right(18) ^ (w[i - 15] >> 3);

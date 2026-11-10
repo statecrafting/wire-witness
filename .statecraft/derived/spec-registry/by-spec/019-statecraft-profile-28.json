@@ -1,0 +1,146 @@
+{
+  "record": {
+    "amends": [
+      "018-spec-spine-029-adoption-prerequisites"
+    ],
+    "amendsVerification": [
+      "018-spec-spine-029-adoption-prerequisites"
+    ],
+    "created": "2026-11-10",
+    "declaresAcceptance": true,
+    "dependsOn": [
+      "001-boundaries-and-authority",
+      "011-agent-attribution-and-governance-flows",
+      "017-profile-15-and-required-boundary-checks",
+      "018-spec-spine-029-adoption-prerequisites"
+    ],
+    "establishes": [
+      {
+        "kind": "file",
+        "path": "deny.toml"
+      }
+    ],
+    "extends": [
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "anchor": "workspace.package",
+          "file": "Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "anchor": "workspace.dependencies",
+          "file": "Cargo.toml",
+          "kind": "section"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "001-boundaries-and-authority",
+        "unit": {
+          "kind": "file",
+          "path": "Cargo.lock"
+        }
+      },
+      {
+        "nature": "additive",
+        "spec": "017-profile-15-and-required-boundary-checks",
+        "unit": {
+          "kind": "file",
+          "path": ".github/workflows/wire-witness-boundaries.yml"
+        }
+      },
+      {
+        "nature": "behavior-preserving lint conformance at MSRV 1.88",
+        "spec": "002-exchange-record-and-normalization",
+        "unit": {
+          "anchor": "exchange-record-and-normalization",
+          "file": "crates/wire-witness-core/src/exchange.rs",
+          "kind": "section"
+        }
+      }
+    ],
+    "id": "019-statecraft-profile-28",
+    "implementation": "in-progress",
+    "obligations": [
+      {
+        "anchor": "3-behavior",
+        "id": "R-1",
+        "kind": "requirement",
+        "text": "The setup profile is github-actions-rust revision 28, applied only through Statecraft's plan-bound apply; no managed file is edited by hand."
+      },
+      {
+        "anchor": "3-behavior",
+        "id": "R-2",
+        "kind": "requirement",
+        "text": "The engine pin, the installed engine and the recorded producer all agree at spec-spine 0.32.0."
+      },
+      {
+        "anchor": "3-behavior",
+        "id": "R-3",
+        "kind": "requirement",
+        "text": "cargo deny check passes against the committed deny.toml with no advisory, ban, license or source error."
+      },
+      {
+        "anchor": "3-behavior",
+        "id": "R-4",
+        "kind": "requirement",
+        "text": "Every check spec 018 keeps required stays required, and the wire-witness-boundaries job remains a declared extra required job."
+      },
+      {
+        "anchor": "verification",
+        "id": "V-1",
+        "inputs": [
+          "specs/019-statecraft-profile-28/spec.md",
+          "deny.toml",
+          "Cargo.lock"
+        ],
+        "kind": "verification",
+        "text": "Profile, pin, policy and boundary checks below pass, with the gate."
+      }
+    ],
+    "refines": [
+      {
+        "aspect": "exact-governance-engine-pin",
+        "unit": {
+          "kind": "file",
+          "path": "spec-spine.toml"
+        }
+      },
+      {
+        "aspect": "supply-chain-policy-hashed-input",
+        "unit": {
+          "kind": "file",
+          "path": "spec-spine.toml"
+        }
+      }
+    ],
+    "sectionDigests": {
+      "019-adopt-statecraft-profile-28-and-spec-spine-0-32-with-a-supply-chain-policy": "b69302e17504d1e9565090d59d2473a35ff9ee35870f42348699a24e92f60a7e",
+      "1-purpose": "e01da87f458d830a873434974cdeed847e61cff4001f70e303e29bbfafb7b124",
+      "2-territory": "c9679e54782e5d384a49b6ae3e81ba9ba3c30b4cf0498ad995d5d082645a7f2a",
+      "3-behavior": "51348b171316c50a8d360e4599d265c84748ee7bef512a9a9960626b91412582",
+      "4-out-of-scope": "57f8a9c8dd0e6834b6fc6017f61f5507f38f7e89e74093798f3d6b5d9a365de9",
+      "verification": "0b5dae68fa110c0413f04a184f1bd4912368e0bf16ce4748c0a5ca6298c5d726"
+    },
+    "sectionHeadings": [
+      "019: Adopt Statecraft profile 28 and spec-spine 0.32 with a supply-chain policy",
+      "1. Purpose",
+      "2. Territory",
+      "3. Behavior",
+      "4. Out of scope",
+      "Verification"
+    ],
+    "specPath": "specs/019-statecraft-profile-28/spec.md",
+    "status": "approved",
+    "summary": "Moves the exact engine pin from 0.31.0 to 0.32.0 and the setup profile from github-actions-rust revision 21 to 28, in two pull requests: first the pin, a committed cargo-deny policy the lockfile passes, and the other prerequisites revisions 22 and 24 add; then the plan-bound profile render, which changes no policy path.\n",
+    "title": "Adopt Statecraft profile 28 and spec-spine 0.32 with a supply-chain policy"
+  },
+  "shardHash": "0c29eace608f119d88417988e3c35dca87fc562441bbcec470ecf0e6ede316c7",
+  "specVersion": "1.11.0"
+}

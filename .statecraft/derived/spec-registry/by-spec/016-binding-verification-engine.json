@@ -7,6 +7,7 @@
       "005-binding-and-sidecar-protocol"
     ],
     "created": "2026-10-10",
+    "declaresAcceptance": true,
     "dependsOn": [
       "005-binding-and-sidecar-protocol",
       "012-profile-13-engine-location"
@@ -35,5 +36,5 @@
     "title": "Binding protocol verification uses the repository-local engine"
   },
   "shardHash": "69d25ae77132fd29a9014fe326b5a68074d9897ee5a2b2dcec5a54bc80af8aa2",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }

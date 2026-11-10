@@ -10,7 +10,7 @@ members = [
 [workspace.package]
 version = "0.1.0"
 edition = "2024"
-rust-version = "1.85"
+rust-version = "1.88"
 license = "Apache-2.0"
 repository = "https://github.com/statecrafting/wire-witness"
 
@@ -23,8 +23,8 @@ rustls = { version = "0.23", default-features = false, features = ["ring", "std"
 rustls-native-certs = "0.8"
 sha2 = { version = "0.10", default-features = false }
 time = { version = "0.3", default-features = false, features = ["std"] }
-wire-witness-core = { path = "crates/wire-witness-core" }
-wire-witness-proxy = { path = "crates/wire-witness-proxy" }
+wire-witness-core = { path = "crates/wire-witness-core", version = "=0.1.0" }
+wire-witness-proxy = { path = "crates/wire-witness-proxy", version = "=0.1.0" }
 zeroize = { version = "1.9.0", default-features = false }
 
 [workspace.lints.rust]

@@ -7,6 +7,7 @@
       "017-profile-15-and-required-boundary-checks"
     ],
     "created": "2026-10-10",
+    "declaresAcceptance": true,
     "dependsOn": [
       "017-profile-15-and-required-boundary-checks",
       "016-binding-verification-engine"
@@ -60,5 +61,5 @@
     "title": "Adopt spec-spine 0.29 through the updated Statecraft producer"
   },
   "shardHash": "1152ee3466a9fcb2c8b848692f667e3111804a1d946add096a36838a438ab471",
-  "specVersion": "1.10.0"
+  "specVersion": "1.11.0"
 }
