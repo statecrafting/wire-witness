@@ -37,9 +37,9 @@
       }
     ],
     "sectionDigests": {
-      "022-adopt-statecraft-profile-29": "9090c0cbc7c5a0c3f322f7becdc2089e99c262f191af9676cb251f39e90b0f1b",
+      "022-adopt-statecraft-profile-29": "71ad2e7bb81f710241d70406718ce514bcfa3c70dc5bf5b674f41d01c06d7980",
       "1-purpose": "3f6b57e107f3202cdc0bbf00429fdd88408cbc8bc51e830e3cf7c6c8b01f22cc",
-      "2-territory": "acc8ddba91ccd3a117fc7a67a40f117f50c288dfd8a9abc3a171fc4d0690142b",
+      "2-territory": "eb48665df6ade27f18e097b63dbc47e5905afe79e0392fb0e081320b649d1308",
       "3-behavior": "4719166cba8500e988688be46ab04babc33a7240bf9b3162d577b17b9428e180",
       "4-out-of-scope": "bcb1f8d5a65a5185cee5c39ad04b9c1dee5160e6aa4cd81de55897e3c332abe1",
       "verification": "cda9c5b15368fa92c51338c3926dd1524efda02b7fd68fc974768556f07cdcd5"
@@ -57,6 +57,6 @@
     "summary": "Moves the setup profile from github-actions-rust revision 28 to 29 through the plan-bound render. Revision 29 adds the policy-isolation guard's new-crate class, so a new workspace crate that adds no dependency lands in one pull request. No policy path, pin or recorded parameter changes.\n",
     "title": "Adopt Statecraft profile 29"
   },
-  "shardHash": "3d104c6b5d78a121172e59037098a30cab1c86ae291aced734ae4e6fdc6ad5de",
+  "shardHash": "932bf5be409c490da1069b1307fbd6d9431ec5f28bad16e3edcf86d92093a206",
   "specVersion": "1.11.0"
 }

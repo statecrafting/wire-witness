@@ -50,10 +50,10 @@ generated paths, while any registry or git package change stays policy.
 
 This spec establishes no file. It amends spec 019 only by replacing its
 revision-specific verification. Statecraft keeps ownership of every managed
-file the plan renders. Its compiled shards,
-`.statecraft/derived/spec-registry/by-spec/022-statecraft-profile-29.json` and
-`.statecraft/derived/codebase-index/by-spec/022-statecraft-profile-29.json`,
-are committed with it, as for every spec.
+file the plan renders. The compiler's output
+for this spec under `.statecraft/derived/` is generated, so the AI review
+leaves it out of the diff it reads; `make gate` refuses a tree whose
+registry or index is stale, which is where its presence is checked.
 
 ## 3. Behavior
 
